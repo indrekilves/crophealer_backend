@@ -5,3 +5,34 @@ project --topLevelPackage com.crophealer --projectName crophealer --java 7 --pac
 jpa setup --database POSTGRES --provider HIBERNATE --databaseName crophealer --hostName localhost --userName crophealer --password ssc
 
 web mvc setup 
+entity jpa --class ~.domain.Country
+
+field string --fieldName name
+// [failed] entity jpa --class ~.domain.Language
+
+entity jpa --class ~.domain.Languages
+
+field string --fieldName name
+field string --fieldName nativeName
+entity jpa --class ~.domain.Plant
+
+field string --fieldName comment
+field string --fieldName iconUrl
+field reference --fieldName country --type ~.domain.Country --cardinality MANY_TO_ONE
+
+entity jpa --class ~.domain.PlantTranslation
+
+field string --fieldName name
+field string --fieldName description --sizeMax 1000 
+
+field reference --fieldName plant --type ~.domain.Plant --cardinality MANY_TO_ONE
+
+// [failed] field reference --fieldName language --type ~.domain.Languages --cardinality MANY_TO_ONE
+
+field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
+
+focus --class ~.domain.Plant
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-20 23:03:18
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-20 23:29:16
+focus --class ~.domain.Plant
+field set --fieldName translations --type ~.domain.PlantTranslation --cardinality ONE_TO_MANY --mappedBy plant
