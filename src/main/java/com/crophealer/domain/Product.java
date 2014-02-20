@@ -40,4 +40,9 @@ public class Product {
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Set<ProductReseller> productResellers = new HashSet<ProductReseller>();
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private Set<ActiveIngredientProduct> activeIngredientProducts = new HashSet<ActiveIngredientProduct>();
 }

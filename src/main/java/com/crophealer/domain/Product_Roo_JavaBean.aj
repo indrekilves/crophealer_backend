@@ -3,6 +3,7 @@
 
 package com.crophealer.domain;
 
+import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.Producer;
 import com.crophealer.domain.Product;
@@ -58,6 +59,14 @@ privileged aspect Product_Roo_JavaBean {
     
     public void Product.setProductResellers(Set<ProductReseller> productResellers) {
         this.productResellers = productResellers;
+    }
+    
+    public Set<ActiveIngredientProduct> Product.getActiveIngredientProducts() {
+        return this.activeIngredientProducts;
+    }
+    
+    public void Product.setActiveIngredientProducts(Set<ActiveIngredientProduct> activeIngredientProducts) {
+        this.activeIngredientProducts = activeIngredientProducts;
     }
     
 }

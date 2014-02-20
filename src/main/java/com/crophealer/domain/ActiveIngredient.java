@@ -30,4 +30,14 @@ public class ActiveIngredient {
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activeIngredient")
     private Set<ActiveIngredientTranslation> translations = new HashSet<ActiveIngredientTranslation>();
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activeIngredient")
+    private Set<ProblemActiveIngredient> problemActiveIngredients = new HashSet<ProblemActiveIngredient>();
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activeIngredient")
+    private Set<ActiveIngredientProduct> activeIngredientProducts = new HashSet<ActiveIngredientProduct>();
 }

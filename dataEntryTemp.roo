@@ -1,48 +1,23 @@
-entity jpa --class ~.domain.Reseller
-field string --fieldName name
-field string --fieldName email
-field string --fieldName phone
-field string --fieldName contactPerson
-field reference --fieldName country --type ~.domain.Country --cardinality MANY_TO_ONE
 
-
-entity jpa --class ~.domain.Producer
-field string --fieldName name
-field string --fieldName email
-field string --fieldName phone
-field string --fieldName contactPerson
-field reference --fieldName country --type ~.domain.Country --cardinality MANY_TO_ONE
-
-
-entity jpa --class ~.domain.Product
+entity jpa --class ~.domain.ProblemActiveIngredient
 field string --fieldName comment
-field string --fieldName pictureUrl
-field reference --fieldName country --type ~.domain.Country --cardinality MANY_TO_ONE
-field reference --fieldName producer --type ~.domain.Producer --cardinality MANY_TO_ONE
+field reference --fieldName problem --type ~.domain.Problem --cardinality MANY_TO_ONE
+field reference --fieldName activeIngredient --type ~.domain.ActiveIngredient --cardinality MANY_TO_ONE
 
 
-entity jpa --class ~.domain.ProductTranslation
-field string --fieldName name
-field string --fieldName description --sizeMax 1000 
-field string --fieldName warning --sizeMax 1000 
-field reference --fieldName product --type ~.domain.Product --cardinality MANY_TO_ONE
-field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
-
-focus --class ~.domain.Producer
-field set --fieldName products --type ~.domain.Product --cardinality ONE_TO_MANY --mappedBy producer
-
-
-entity jpa --class ~.domain.ProductReseller
+entity jpa --class ~.domain.ActiveIngredientProduct
 field string --fieldName comment
+field reference --fieldName activeIngredient --type ~.domain.ActiveIngredient --cardinality MANY_TO_ONE
 field reference --fieldName product --type ~.domain.Product --cardinality MANY_TO_ONE
-field reference --fieldName reseller --type ~.domain.Reseller --cardinality MANY_TO_ONE
 
 
-focus --class ~.domain.Reseller
-field set --fieldName productResellers --type ~.domain.ProductReseller --cardinality ONE_TO_MANY --mappedBy reseller
+focus --class ~.domain.Problem
+field set --fieldName problemActiveIngredients --type ~.domain.ProblemActiveIngredient --cardinality ONE_TO_MANY --mappedBy problem
 
 focus --class ~.domain.Product
-field set --fieldName translations --type ~.domain.ProductTranslation --cardinality ONE_TO_MANY --mappedBy product
-field set --fieldName productResellers --type ~.domain.ProductReseller --cardinality ONE_TO_MANY --mappedBy product
+field set --fieldName activeIngredientProducts --type ~.domain.ActiveIngredientProduct --cardinality ONE_TO_MANY --mappedBy product
 
+focus --class ~.domain.ActiveIngredient
+field set --fieldName problemActiveIngredients --type ~.domain.ProblemActiveIngredient --cardinality ONE_TO_MANY --mappedBy activeIngredient
+field set --fieldName activeIngredientProducts --type ~.domain.ActiveIngredientProduct --cardinality ONE_TO_MANY --mappedBy activeIngredient
 

@@ -40,4 +40,9 @@ public class Problem {
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "problem")
     private Set<PlantPartPhaseSymptom> plantPartPhaseProblems = new HashSet<PlantPartPhaseSymptom>();
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "problem")
+    private Set<ProblemActiveIngredient> problemActiveIngredients = new HashSet<ProblemActiveIngredient>();
 }
