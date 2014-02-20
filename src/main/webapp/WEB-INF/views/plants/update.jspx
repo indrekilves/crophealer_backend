@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_crophealer_domain_Plant" modelAttribute="plant" path="/plants" versionField="Version" z="De1J2qnVT2VfWPL1zr15UwzFeYE=">
+        <field:input field="comment" id="c_com_crophealer_domain_Plant_comment" z="Sa/pzhQaqDnhZpDq5xK302VTIns="/>
+        <field:input field="iconUrl" id="c_com_crophealer_domain_Plant_iconUrl" z="D2Ym3GrV7V9Bwr6AwajZQD9N1mg="/>
+        <field:select field="country" id="c_com_crophealer_domain_Plant_country" itemValue="id" items="${countrys}" path="/countrys" z="aaEPqggHxEknJflAkZEWn9aiZek="/>
+        <field:simple field="translations" id="c_com_crophealer_domain_Plant_translations" messageCode="entity_reference_not_managed" messageCodeAttribute="Plant Translation" z="3NN5jn2r0/NZi4W25XGMPa0D8Ec="/>
+    </form:update>
+</div>

@@ -1,0 +1,10 @@
+entity jpa --class ~.domain.PlantPart
+field string --fieldName comment
+
+entity jpa --class ~.domain.PlantPartTranslation
+field string --fieldName name
+field reference --fieldName plantPart --type ~.domain.PlantPart --cardinality MANY_TO_ONE
+field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
+
+focus --class ~.domain.PlantPart
+field set --fieldName translations --type ~.domain.PlantPartTranslation --cardinality ONE_TO_MANY --mappedBy plantPart

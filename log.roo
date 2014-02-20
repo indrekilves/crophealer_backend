@@ -36,3 +36,20 @@ focus --class ~.domain.Plant
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-20 23:29:16
 focus --class ~.domain.Plant
 field set --fieldName translations --type ~.domain.PlantTranslation --cardinality ONE_TO_MANY --mappedBy plant
+entity jpa --class ~.domain.GrowthPhase
+
+field string --fieldName comment
+field string --fieldName iconUrl
+entity jpa --class ~.domain.GrowthPhaseTranslation
+field string --fieldName name
+field string --fieldName description --sizeMax 1000 
+
+field reference --fieldName growthPhase --type ~.domain.GrowthPhase --cardinality MANY_TO_ONE
+
+field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
+
+focus --class ~.domain.GrowthPhase
+field set --fieldName translations --type ~.domain.GrowthPhaseTranslation --cardinality ONE_TO_MANY --mappedBy growthPhase
+web mvc all --package ~.web 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-20 23:49:19
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-20 23:55:08

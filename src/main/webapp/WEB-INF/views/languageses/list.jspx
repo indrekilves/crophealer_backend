@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_Languages" items="${languageses}" z="Le7yU5hiesypF+t9DSSmogXp81I=">
+        <table:table data="${languageses}" id="l_com_crophealer_domain_Languages" path="/languageses" z="vgEF6/X520tEPIuXT2WF+4Y3eRg=">
+            <table:column id="c_com_crophealer_domain_Languages_name" property="name" z="U7KTCMIiH/kM052PsEgx/2x6oLc="/>
+            <table:column id="c_com_crophealer_domain_Languages_nativeName" property="nativeName" z="/HrhKU83aNTkHUVqgOBzuKSBNtk="/>
+        </table:table>
+    </page:list>
+</div>

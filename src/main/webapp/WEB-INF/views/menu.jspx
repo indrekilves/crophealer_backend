@@ -1,5 +1,31 @@
-<div id="menu" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
-	<jsp:directive.page contentType="text/html;charset=UTF-8" />
-	<jsp:output omit-xml-declaration="yes"/>
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_country" z="+9IFFFqXHr5bWdYjx7upDibmQfo=">
+            <menu:item id="i_country_new" messageCode="global_menu_new" url="/countrys?form" z="OnEHsuvR46cQji6jmcBL0pJOBMc="/>
+            <menu:item id="i_country_list" messageCode="global_menu_list" url="/countrys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="AwKhjnZH+dOj0X4glIoj4SVuHNY="/>
+        </menu:category>
+        <menu:category id="c_growthphase" z="AzTgWuLuw4wAzNeA7dDzDhiqM28=">
+            <menu:item id="i_growthphase_new" messageCode="global_menu_new" url="/growthphases?form" z="Sx6u9Bcd/x8Vj+6SlVFR8uOoUhk="/>
+            <menu:item id="i_growthphase_list" messageCode="global_menu_list" url="/growthphases?page=1&amp;size=${empty param.size ? 10 : param.size}" z="cKCKJY/E/aId49TjLGi1HmN8YTw="/>
+        </menu:category>
+        <menu:category id="c_planttranslation" z="EkzXOP2kYBY2CjVTHYJ/ENMkqVw=">
+            <menu:item id="i_planttranslation_new" messageCode="global_menu_new" url="/planttranslations?form" z="fsyZAaxHkPkYMchL69WT4N8AZiY="/>
+            <menu:item id="i_planttranslation_list" messageCode="global_menu_list" url="/planttranslations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="6FNUE6IISVx849OhQ4DPaj2S54g="/>
+        </menu:category>
+        <menu:category id="c_plant" z="HdutPA2/qByUmXrGQqzl91rhKKQ=">
+            <menu:item id="i_plant_new" messageCode="global_menu_new" url="/plants?form" z="xo+pvLk6blhjqcOUBTU4TvBovxs="/>
+            <menu:item id="i_plant_list" messageCode="global_menu_list" url="/plants?page=1&amp;size=${empty param.size ? 10 : param.size}" z="nVO5Nlhqho9gPDPyH2U9yITgeHo="/>
+        </menu:category>
+        <menu:category id="c_languages" z="Pn2ShB8ADvWTu/KbZlwbP+mFFPw=">
+            <menu:item id="i_languages_new" messageCode="global_menu_new" url="/languageses?form" z="809P/MzpmIUHvyJR/FQoCKePyVo="/>
+            <menu:item id="i_languages_list" messageCode="global_menu_list" url="/languageses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gTYaTwKnImhH2UmsioF1yg9rISA="/>
+        </menu:category>
+        <menu:category id="c_growthphasetranslation" z="Ci+1aSV4lcJo12BQdcSUFxWIG28=">
+            <menu:item id="i_growthphasetranslation_new" messageCode="global_menu_new" url="/growthphasetranslations?form" z="dw7qAxNnLiPErPqVoGWKVeoiFe4="/>
+            <menu:item id="i_growthphasetranslation_list" messageCode="global_menu_list" url="/growthphasetranslations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="o/3K/A6JHURawoaymtHTDt+SOj8="/>
+        </menu:category>
+    </menu:menu>
 </div>

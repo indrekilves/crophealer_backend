@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_Languages" object="${languages}" path="/languageses" z="7MUK2VxpvN8KldOj421hHR7b9A4=">
+        <field:display field="name" id="s_com_crophealer_domain_Languages_name" object="${languages}" z="kg37bi2WA7OniRfps3gwydGsuDg="/>
+        <field:display field="nativeName" id="s_com_crophealer_domain_Languages_nativeName" object="${languages}" z="1X5wrTdTdYnaAa9EFh00Ugxb1ys="/>
+    </page:show>
+</div>

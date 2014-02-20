@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_Plant" object="${plant}" path="/plants" z="566Gm8mbu15DFcx1kNb7wLy3SMA=">
+        <field:display field="comment" id="s_com_crophealer_domain_Plant_comment" object="${plant}" z="BztmWZlwMPVqeWsDXGfuDI2NwJ0="/>
+        <field:display field="iconUrl" id="s_com_crophealer_domain_Plant_iconUrl" object="${plant}" z="Ay40jSgQjFU2LPXlZ6zSar8ky4o="/>
+        <field:display field="country" id="s_com_crophealer_domain_Plant_country" object="${plant}" z="Pg+mv2Nq0XeskGIcBj+gTK1xgus="/>
+    </page:show>
+</div>

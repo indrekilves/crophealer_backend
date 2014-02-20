@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_crophealer_domain_PlantTranslation" modelAttribute="plantTranslation" path="/planttranslations" versionField="Version" z="p38oGOMc/2/hmE5Dq797jEvqjqY=">
+        <field:input field="name" id="c_com_crophealer_domain_PlantTranslation_name" z="DxGi6PiIqPvO9oIqTCsfhNxIpos="/>
+        <field:textarea field="description" id="c_com_crophealer_domain_PlantTranslation_description" z="fbdzXrPsBCLNIReCUKfQMzHe74o="/>
+        <field:select field="plant" id="c_com_crophealer_domain_PlantTranslation_plant" itemValue="id" items="${plants}" path="/plants" z="xYY5dhQmsqPNil8dg//bfip7Ssw="/>
+        <field:select field="lang" id="c_com_crophealer_domain_PlantTranslation_lang" itemValue="id" items="${languageses}" path="/languageses" z="IUm/pjruOp6FE5x3NW16bM8rkLU="/>
+    </form:update>
+</div>

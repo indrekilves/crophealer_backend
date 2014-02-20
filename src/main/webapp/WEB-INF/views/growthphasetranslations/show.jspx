@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_GrowthPhaseTranslation" object="${growthphasetranslation}" path="/growthphasetranslations" z="lLYQh2Vm1hhmp+AsJ+CTm40lueo=">
+        <field:display field="name" id="s_com_crophealer_domain_GrowthPhaseTranslation_name" object="${growthphasetranslation}" z="XdPCx9t4nsPdUEGg4RxQlWUn0ec="/>
+        <field:display field="description" id="s_com_crophealer_domain_GrowthPhaseTranslation_description" object="${growthphasetranslation}" z="Bon1sDwJUvWprpDwCxcQfFyGvo4="/>
+        <field:display field="growthPhase" id="s_com_crophealer_domain_GrowthPhaseTranslation_growthPhase" object="${growthphasetranslation}" z="JhTiPqMHRlDnTgDMCbmuy6HRm14="/>
+        <field:display field="lang" id="s_com_crophealer_domain_GrowthPhaseTranslation_lang" object="${growthphasetranslation}" z="r4V3vbAunsU7BxRJxxStS+muLKs="/>
+    </page:show>
+</div>
