@@ -129,3 +129,16 @@ field reference --fieldName problem --type ~.domain.Problem --cardinality MANY_T
 focus --class ~.domain.Problem
 field set --fieldName plantPartPhaseProblems --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy problem
 // script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
+entity jpa --class ~.domain.ActiveIngredient
+field string --fieldName latinName
+field string --fieldName comment
+field reference --fieldName country --type ~.domain.Country --cardinality MANY_TO_ONE
+entity jpa --class ~.domain.ActiveIngredientTranslation
+field string --fieldName name
+field string --fieldName description --sizeMax 1000 
+field string --fieldName warning --sizeMax 1000 
+field reference --fieldName activeIngredient --type ~.domain.ActiveIngredient --cardinality MANY_TO_ONE
+field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
+focus --class ~.domain.ActiveIngredient
+field set --fieldName translations --type ~.domain.ActiveIngredientTranslation --cardinality ONE_TO_MANY --mappedBy activeIngredient
+// script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
