@@ -35,4 +35,9 @@ public class Problem {
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "problem")
     private Set<ProblemPicture> pictures = new HashSet<ProblemPicture>();
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "problem")
+    private Set<PlantPartPhaseSymptom> plantPartPhaseProblems = new HashSet<PlantPartPhaseSymptom>();
 }

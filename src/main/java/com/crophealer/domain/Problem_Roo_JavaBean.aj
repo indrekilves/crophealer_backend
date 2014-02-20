@@ -4,6 +4,7 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.Country;
+import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.Problem;
 import com.crophealer.domain.ProblemPicture;
 import com.crophealer.domain.ProblemTranslation;
@@ -49,6 +50,14 @@ privileged aspect Problem_Roo_JavaBean {
     
     public void Problem.setPictures(Set<ProblemPicture> pictures) {
         this.pictures = pictures;
+    }
+    
+    public Set<PlantPartPhaseSymptom> Problem.getPlantPartPhaseProblems() {
+        return this.plantPartPhaseProblems;
+    }
+    
+    public void Problem.setPlantPartPhaseProblems(Set<PlantPartPhaseSymptom> plantPartPhaseProblems) {
+        this.plantPartPhaseProblems = plantPartPhaseProblems;
     }
     
 }

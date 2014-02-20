@@ -120,3 +120,12 @@ field reference --fieldName plantPartPhase --type ~.domain.PlantPartPhase --card
 focus --class ~.domain.PlantPartPhase
 field set --fieldName symptoms --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy plantPartPhase
 // script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
+focus --class ~.domain.PlantPartPhaseSymptom
+field reference --fieldName symptom --type ~.domain.Symptom --cardinality MANY_TO_ONE
+focus --class ~.domain.Symptom
+field set --fieldName plantPartPhaseSymptoms --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy symptom
+focus --class ~.domain.PlantPartPhaseProblem
+field reference --fieldName problem --type ~.domain.Problem --cardinality MANY_TO_ONE
+focus --class ~.domain.Problem
+field set --fieldName plantPartPhaseProblems --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy problem
+// script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo

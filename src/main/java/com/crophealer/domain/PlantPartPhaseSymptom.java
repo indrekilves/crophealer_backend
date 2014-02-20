@@ -22,4 +22,9 @@ public class PlantPartPhaseSymptom {
      */
     @ManyToOne
     private PlantPartPhase plantPartPhase;
+
+    /**
+     */
+    @ManyToOne
+    private Symptom symptom;
 }

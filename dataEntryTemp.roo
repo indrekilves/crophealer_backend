@@ -1,7 +1,12 @@
 
 focus --class ~.domain.PlantPartPhaseSymptom
-field reference --fieldName plantPartPhase --type ~.domain.PlantPartPhase --cardinality MANY_TO_ONE
+field reference --fieldName symptom --type ~.domain.Symptom --cardinality MANY_TO_ONE
 
-focus --class ~.domain.PlantPartPhase
-field set --fieldName symptoms --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy plantPartPhase
+focus --class ~.domain.Symptom
+field set --fieldName plantPartPhaseSymptoms --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy symptom
 
+focus --class ~.domain.PlantPartPhaseProblem
+field reference --fieldName problem --type ~.domain.Problem --cardinality MANY_TO_ONE
+
+focus --class ~.domain.Problem
+field set --fieldName plantPartPhaseProblems --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy problem
