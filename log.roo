@@ -107,3 +107,11 @@ focus --class ~.domain.Problem
 field set --fieldName translations --type ~.domain.ProblemTranslation --cardinality ONE_TO_MANY --mappedBy problem
 field set --fieldName pictures --type ~.domain.ProblemPicture --cardinality ONE_TO_MANY --mappedBy problem
 // script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
+entity jpa --class ~.domain.PlantPartPhaseProblem
+field string --fieldName comment
+entity jpa --class ~.domain.PlantPartPhaseSymptom
+field string --fieldName comment
+field reference --fieldName problem --type ~.domain.PlantPartPhaseProblem --cardinality MANY_TO_ONE
+focus --class ~.domain.PlantPartPhaseProblem
+field set --fieldName symptoms --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy problem
+// script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
