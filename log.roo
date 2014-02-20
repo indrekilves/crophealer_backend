@@ -1,0 +1,7 @@
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-20 22:13:17
+project --topLevelPackage com.crophealer --projectName crophealer --java 7 --packaging JAR
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-20 22:13:40
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-20 22:16:26
+jpa setup --database POSTGRES --provider HIBERNATE --databaseName crophealer --hostName localhost --userName crophealer --password ssc
+
+web mvc setup 
