@@ -11,13 +11,12 @@ field string --fieldName warning --sizeMax 1000
 field reference --fieldName symptom --type ~.domain.Symptom --cardinality MANY_TO_ONE
 field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
 
-entity jpa --class ~.domain.SymptomPictures
+entity jpa --class ~.domain.SymptomPicture
 field string --fieldName name
 field string --fieldName pictureUrl
 field reference --fieldName symptom --type ~.domain.Symptom --cardinality MANY_TO_ONE
 
-
 focus --class ~.domain.Symptom
 field set --fieldName translations --type ~.domain.SymptomTranslation --cardinality ONE_TO_MANY --mappedBy symptom
-field set --fieldName pictures --type ~.domain.SymptomPictures --cardinality ONE_TO_MANY --mappedBy symptom
+field set --fieldName pictures --type ~.domain.SymptomPicture --cardinality ONE_TO_MANY --mappedBy symptom
 
