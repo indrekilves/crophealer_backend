@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_PlantPartPhase" items="${plantpartphases}" z="xmboed/1HW4gvDKX4h/mYdWYcgk=">
+        <table:table data="${plantpartphases}" id="l_com_crophealer_domain_PlantPartPhase" path="/plantpartphases" z="BtZaGXwgTqQoZP9XjOL/FiQOLi4=">
+            <table:column id="c_com_crophealer_domain_PlantPartPhase_comment" property="comment" z="cUx4sO/EqvIa/YCdK9WJraFiQh0="/>
+            <table:column id="c_com_crophealer_domain_PlantPartPhase_plant" property="plant" z="kdsQxf4jfoaTaHEGs45YewriMgc="/>
+            <table:column id="c_com_crophealer_domain_PlantPartPhase_plantPart" property="plantPart" z="ynVHVuYXHaZg9WaM9Ywixezc63g="/>
+            <table:column id="c_com_crophealer_domain_PlantPartPhase_growthPhase" property="growthPhase" z="VMLoDPj07hT6wLnuJhuneo1L2w0="/>
+        </table:table>
+    </page:list>
+</div>

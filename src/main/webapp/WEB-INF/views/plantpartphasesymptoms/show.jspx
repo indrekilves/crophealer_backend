@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_PlantPartPhaseSymptom" object="${plantpartphasesymptom}" path="/plantpartphasesymptoms" z="MSuoKNhCq0EqN2qF/JIByRMgc5k=">
+        <field:display field="comment" id="s_com_crophealer_domain_PlantPartPhaseSymptom_comment" object="${plantpartphasesymptom}" z="NRa/b1MIlkMt0T1xxMNDpHwFq5U="/>
+        <field:display field="problem" id="s_com_crophealer_domain_PlantPartPhaseSymptom_problem" object="${plantpartphasesymptom}" z="eMValrH1j3/av+p8EM8flnkvOeo="/>
+        <field:display field="plantPartPhase" id="s_com_crophealer_domain_PlantPartPhaseSymptom_plantPartPhase" object="${plantpartphasesymptom}" z="rCDZ7chAC/AObO0Z2eSugCrgAiQ="/>
+        <field:display field="symptom" id="s_com_crophealer_domain_PlantPartPhaseSymptom_symptom" object="${plantpartphasesymptom}" z="XsYqXBmCiL6OQcFn+Y8kshVqxqk="/>
+    </page:show>
+</div>

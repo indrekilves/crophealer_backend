@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_Reseller" object="${reseller}" path="/resellers" z="jxI2y2M9TfY79LUeNrk4I3AUZ1M=">
+        <field:display field="name" id="s_com_crophealer_domain_Reseller_name" object="${reseller}" z="tL7iOLiEEgS7okBjDL9izlX/SYI="/>
+        <field:display field="email" id="s_com_crophealer_domain_Reseller_email" object="${reseller}" z="MpqEaON3lP1j2GDsZATkrDPzNMY="/>
+        <field:display field="phone" id="s_com_crophealer_domain_Reseller_phone" object="${reseller}" z="pDOoOXbggPY3FpqhJmKkQwS0xqk="/>
+        <field:display field="contactPerson" id="s_com_crophealer_domain_Reseller_contactPerson" object="${reseller}" z="89mxN3+AuAa2wEV9jE2S2DDPL0U="/>
+        <field:display field="country" id="s_com_crophealer_domain_Reseller_country" object="${reseller}" z="CMLLT8Si2JTnEEiNpfQwa/KFHu4="/>
+    </page:show>
+</div>

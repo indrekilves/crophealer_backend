@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_crophealer_domain_ProductReseller" modelAttribute="productReseller" path="/productresellers" versionField="Version" z="tH3fuCn40lEw1Wi7VDnfyRx3Emc=">
+        <field:input field="comment" id="c_com_crophealer_domain_ProductReseller_comment" z="BM2i3+UaQbelqZrheggOTSIwvOs="/>
+        <field:select field="product" id="c_com_crophealer_domain_ProductReseller_product" itemValue="id" items="${products}" path="/products" z="ovNx4y5ag6NSqEdFz9qSzMNOAqI="/>
+        <field:select field="reseller" id="c_com_crophealer_domain_ProductReseller_reseller" itemValue="id" items="${resellers}" path="/resellers" z="jfzZ6A4GEnUaeWY2aT/flfu9mkU="/>
+    </form:update>
+</div>

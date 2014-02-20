@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_Symptom" object="${symptom}" path="/symptoms" z="B+HU9jz5PWTu1TRgxKDqBqdk47A=">
+        <field:display field="comment" id="s_com_crophealer_domain_Symptom_comment" object="${symptom}" z="hAfgD6evSJSkIiMfQo3nz9wfmD0="/>
+        <field:display field="country" id="s_com_crophealer_domain_Symptom_country" object="${symptom}" z="MzehS4KOnUQdIbooD9rRwj6see0="/>
+    </page:show>
+</div>

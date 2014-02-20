@@ -27,5 +27,85 @@
             <menu:item id="i_growthphasetranslation_new" messageCode="global_menu_new" url="/growthphasetranslations?form" z="dw7qAxNnLiPErPqVoGWKVeoiFe4="/>
             <menu:item id="i_growthphasetranslation_list" messageCode="global_menu_list" url="/growthphasetranslations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="o/3K/A6JHURawoaymtHTDt+SOj8="/>
         </menu:category>
+        <menu:category id="c_activeingredient" z="FkWcxO+V4jpu0VqicqDPM51guUk=">
+            <menu:item id="i_activeingredient_new" messageCode="global_menu_new" url="/activeingredients?form" z="aDZetGepoTjXdnRfDrkyjpbwxsY="/>
+            <menu:item id="i_activeingredient_list" messageCode="global_menu_list" url="/activeingredients?page=1&amp;size=${empty param.size ? 10 : param.size}" z="URCK5ryy9PmupS2bC3diD69lEPQ="/>
+        </menu:category>
+        <menu:category id="c_producttranslation" z="D/cqRBfMITG6O9veZ4B1b31lhe4=">
+            <menu:item id="i_producttranslation_new" messageCode="global_menu_new" url="/producttranslations?form" z="6D+yBUKG6P++hxDlSDDFAL26HV8="/>
+            <menu:item id="i_producttranslation_list" messageCode="global_menu_list" url="/producttranslations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="bTHZLKhVClke4k4RMLplJEwmzVY="/>
+        </menu:category>
+        <menu:category id="c_activeingredienttranslation" z="wFbkX7Ns5h88pmtbx236R2j4zLs=">
+            <menu:item id="i_activeingredienttranslation_new" messageCode="global_menu_new" url="/activeingredienttranslations?form" z="SFNfrfS7UpJYPYtJ5Mwq8hScLiw="/>
+            <menu:item id="i_activeingredienttranslation_list" messageCode="global_menu_list" url="/activeingredienttranslations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="QWS2j7jgO1dNyGg5OvePWFSi+Z0="/>
+        </menu:category>
+        <menu:category id="c_plantpartphasesymptom" z="NvAiVStNpoaEXWTHMvnrvxtdMFM=">
+            <menu:item id="i_plantpartphasesymptom_new" messageCode="global_menu_new" url="/plantpartphasesymptoms?form" z="SOdr0K3vQ9wOI97PxfwC9kPpA78="/>
+            <menu:item id="i_plantpartphasesymptom_list" messageCode="global_menu_list" url="/plantpartphasesymptoms?page=1&amp;size=${empty param.size ? 10 : param.size}" z="9J/1BWAkB2HmX2rpp3ebt68dNKM="/>
+        </menu:category>
+        <menu:category id="c_productreseller" z="2JIYmt8xVVW852hkMmq26VzlSJU=">
+            <menu:item id="i_productreseller_new" messageCode="global_menu_new" url="/productresellers?form" z="0RHiZE3YWCieZfW9/aod//e3OnM="/>
+            <menu:item id="i_productreseller_list" messageCode="global_menu_list" url="/productresellers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sXIrbGJuChK4/V1+TiLTzn5lGAE="/>
+        </menu:category>
+        <menu:category id="c_problempicture" z="C92bQiBOzWTBwzTVxwkoP2pv3B0=">
+            <menu:item id="i_problempicture_new" messageCode="global_menu_new" url="/problempictures?form" z="1ckdXxvD73LZmpd8sAN5wxd/4Ow="/>
+            <menu:item id="i_problempicture_list" messageCode="global_menu_list" url="/problempictures?page=1&amp;size=${empty param.size ? 10 : param.size}" z="B68hhjrt2cJ9f48kAu+JCMK/N5E="/>
+        </menu:category>
+        <menu:category id="c_problemtranslation" z="6qjNdFXpkgC5cw8u8LiomXZQUSI=">
+            <menu:item id="i_problemtranslation_new" messageCode="global_menu_new" url="/problemtranslations?form" z="EEO3IZxsk7UvR0GIKVa977uKyBg="/>
+            <menu:item id="i_problemtranslation_list" messageCode="global_menu_list" url="/problemtranslations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="mOJwO9sQNDbQxCmedggpTjH9IAQ="/>
+        </menu:category>
+        <menu:category id="c_plantparttranslation" z="AErIxsYTSusG3lW5B2mT6Revo7w=">
+            <menu:item id="i_plantparttranslation_new" messageCode="global_menu_new" url="/plantparttranslations?form" z="HJmpj22mZ41BzjUhD7YRyaO8NwU="/>
+            <menu:item id="i_plantparttranslation_list" messageCode="global_menu_list" url="/plantparttranslations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Zp60GOYg9ONlCZ660+ycxxrFeJE="/>
+        </menu:category>
+        <menu:category id="c_problem" z="+HFBPrvKwpqd6NemqvXESnhQ/uo=">
+            <menu:item id="i_problem_new" messageCode="global_menu_new" url="/problems?form" z="udh8188hmnmEIASq49uKPUfqhDI="/>
+            <menu:item id="i_problem_list" messageCode="global_menu_list" url="/problems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="FuOH7zeetSDd56mAOCacGr+vo4A="/>
+        </menu:category>
+        <menu:category id="c_plantpart" z="jk0YDzzJMgmdNGlhRkxLuPDtGSs=">
+            <menu:item id="i_plantpart_new" messageCode="global_menu_new" url="/plantparts?form" z="EywcWfCZSXipp/AB4NLu34DJgnU="/>
+            <menu:item id="i_plantpart_list" messageCode="global_menu_list" url="/plantparts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="nTuchLch20AkNcFuYLOPTbswpxk="/>
+        </menu:category>
+        <menu:category id="c_activeingredientproduct" z="/+mBzBlfDsKU7zo4kjKG0siBW5k=">
+            <menu:item id="i_activeingredientproduct_new" messageCode="global_menu_new" url="/activeingredientproducts?form" z="nMHcSWtkzj4q/SXZTMDHPVXoFdI="/>
+            <menu:item id="i_activeingredientproduct_list" messageCode="global_menu_list" url="/activeingredientproducts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sfEDdkydOi2UY99IPlXCj8+9yQ0="/>
+        </menu:category>
+        <menu:category id="c_reseller" z="O0p2x2p0DwpFRgNbvGRLafO49I0=">
+            <menu:item id="i_reseller_new" messageCode="global_menu_new" url="/resellers?form" z="3Uk2uCaN06b9oMp/DnN938f9erY="/>
+            <menu:item id="i_reseller_list" messageCode="global_menu_list" url="/resellers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="jDi0oDGTWmAtP1dRWXFbopmEclU="/>
+        </menu:category>
+        <menu:category id="c_producer" z="KeWK2wm/jJeEIu2+gOkYbZDbXr8=">
+            <menu:item id="i_producer_new" messageCode="global_menu_new" url="/producers?form" z="k7PTYTPGXGN68Ox7Dlk4DSm4Zyc="/>
+            <menu:item id="i_producer_list" messageCode="global_menu_list" url="/producers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="jTOhiGfGTy/mKcMjOgzzIoHDkxg="/>
+        </menu:category>
+        <menu:category id="c_symptom" z="pE2UYJ2ZYTTdxL2OMdtdMjm3E7g=">
+            <menu:item id="i_symptom_new" messageCode="global_menu_new" url="/symptoms?form" z="B03MheivyT3J0KD8dHfF3CvmdTE="/>
+            <menu:item id="i_symptom_list" messageCode="global_menu_list" url="/symptoms?page=1&amp;size=${empty param.size ? 10 : param.size}" z="nDpxAEd157/C4jntJlORdOEFyBA="/>
+        </menu:category>
+        <menu:category id="c_plantpartphase" z="wYlmZ1L4LJnh8X12I3jwZCkYm9w=">
+            <menu:item id="i_plantpartphase_new" messageCode="global_menu_new" url="/plantpartphases?form" z="gHPgnsprxxX41E//FxukrbnLfeQ="/>
+            <menu:item id="i_plantpartphase_list" messageCode="global_menu_list" url="/plantpartphases?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vz9pjVr56Uf8XWc/StFd+3p5EYs="/>
+        </menu:category>
+        <menu:category id="c_symptomtranslation" z="2fDmQgnKl7usIlLDCiHHFgzWLe8=">
+            <menu:item id="i_symptomtranslation_new" messageCode="global_menu_new" url="/symptomtranslations?form" z="otg7GmhrHpneSK4lpUWiEkIYVPs="/>
+            <menu:item id="i_symptomtranslation_list" messageCode="global_menu_list" url="/symptomtranslations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Zet7SA4xqvBWl13L5WiaAjxlEFA="/>
+        </menu:category>
+        <menu:category id="c_problemactiveingredient" z="JY228OHWRHkJuYqrysZQirpJRrU=">
+            <menu:item id="i_problemactiveingredient_new" messageCode="global_menu_new" url="/problemactiveingredients?form" z="0L3MizdfES+IIW7m1bYdr2qcr2A="/>
+            <menu:item id="i_problemactiveingredient_list" messageCode="global_menu_list" url="/problemactiveingredients?page=1&amp;size=${empty param.size ? 10 : param.size}" z="iStU+snWO3lH5384vWW3+edWWns="/>
+        </menu:category>
+        <menu:category id="c_plantpartphaseproblem" z="PVW5aSH2mxl10+XOBiYMaafi53c=">
+            <menu:item id="i_plantpartphaseproblem_new" messageCode="global_menu_new" url="/plantpartphaseproblems?form" z="YfiD/fEOjf3u57R4WYI2rh833E8="/>
+            <menu:item id="i_plantpartphaseproblem_list" messageCode="global_menu_list" url="/plantpartphaseproblems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="aXNvmnm9wOPLB1kYXm0fFt2P7MY="/>
+        </menu:category>
+        <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
+            <menu:item id="i_product_new" messageCode="global_menu_new" url="/products?form" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
+            <menu:item id="i_product_list" messageCode="global_menu_list" url="/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
+        </menu:category>
+        <menu:category id="c_symptompicture" z="GVVKekytgREZNW7UKI6MA6iCrJ4=">
+            <menu:item id="i_symptompicture_new" messageCode="global_menu_new" url="/symptompictures?form" z="8+0/nid07i4+e4SmTnYbA/UOoNI="/>
+            <menu:item id="i_symptompicture_list" messageCode="global_menu_list" url="/symptompictures?page=1&amp;size=${empty param.size ? 10 : param.size}" z="AdlbqIfN9hcsKwp3gTES7bmCLFw="/>
+        </menu:category>
     </menu:menu>
 </div>

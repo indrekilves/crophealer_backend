@@ -193,3 +193,4 @@ focus --class ~.domain.ActiveIngredient
 field set --fieldName problemActiveIngredients --type ~.domain.ProblemActiveIngredient --cardinality ONE_TO_MANY --mappedBy activeIngredient
 field set --fieldName activeIngredientProducts --type ~.domain.ActiveIngredientProduct --cardinality ONE_TO_MANY --mappedBy activeIngredient
 // script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
+web mvc all --package ~.web 

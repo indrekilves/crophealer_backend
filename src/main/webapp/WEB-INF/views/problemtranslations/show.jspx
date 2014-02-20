@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_ProblemTranslation" object="${problemtranslation}" path="/problemtranslations" z="GI+Yw0+SurFfKV+M/d7myhmFm70=">
+        <field:display field="name" id="s_com_crophealer_domain_ProblemTranslation_name" object="${problemtranslation}" z="+GxGt7HN35uNrPK3ZdmAvbHidnQ="/>
+        <field:display field="description" id="s_com_crophealer_domain_ProblemTranslation_description" object="${problemtranslation}" z="46TzUPTjJLUtouFlzFgq4dnFOFo="/>
+        <field:display field="warning" id="s_com_crophealer_domain_ProblemTranslation_warning" object="${problemtranslation}" z="JRZkb9IwLRp5qE7rgqMLQ5dAgng="/>
+        <field:display field="problem" id="s_com_crophealer_domain_ProblemTranslation_problem" object="${problemtranslation}" z="dpTqNN+CuLE8+hnF8ancpJ3zUys="/>
+        <field:display field="lang" id="s_com_crophealer_domain_ProblemTranslation_lang" object="${problemtranslation}" z="HGQL79G7USC+thcGPJg2wE8Ga94="/>
+    </page:show>
+</div>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_crophealer_domain_SymptomTranslation" modelAttribute="symptomTranslation" path="/symptomtranslations" versionField="Version" z="Ri1DuT0uMOAi5RmBx/ZrFtU7ILA=">
+        <field:input field="name" id="c_com_crophealer_domain_SymptomTranslation_name" z="YUIhjGvpXknf4IX/e9bAjjpTs0Q="/>
+        <field:textarea field="description" id="c_com_crophealer_domain_SymptomTranslation_description" z="cqv401+FZOePFJncJB0GifBhD0k="/>
+        <field:textarea field="warning" id="c_com_crophealer_domain_SymptomTranslation_warning" z="4HxZFSTANV3tZ0oAixGs7mn/1No="/>
+        <field:select field="symptom" id="c_com_crophealer_domain_SymptomTranslation_symptom" itemValue="id" items="${symptoms}" path="/symptoms" z="dnMN9MvSrQj6ggnEeuubqKuI7Dk="/>
+        <field:select field="lang" id="c_com_crophealer_domain_SymptomTranslation_lang" itemValue="id" items="${languageses}" path="/languageses" z="9Y6G3EguefHRRnX1zoQkT4sLtOU="/>
+    </form:update>
+</div>

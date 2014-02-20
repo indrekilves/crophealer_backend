@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_crophealer_domain_Product" modelAttribute="product" path="/products" render="${empty dependencies}" z="f4u+BAuDe1F4bIJppms2ML7YgaU=">
+        <field:input field="comment" id="c_com_crophealer_domain_Product_comment" z="SOtLkkvTFVj4WyiXn4kZkpXr3ok="/>
+        <field:input field="pictureUrl" id="c_com_crophealer_domain_Product_pictureUrl" z="L/q8AFTkuhaetUHMH5/eng+pirM="/>
+        <field:select field="country" id="c_com_crophealer_domain_Product_country" itemValue="id" items="${countrys}" path="/countrys" z="rhtJh1pGjqedHQIppH1Ze70m8KQ="/>
+        <field:select field="producer" id="c_com_crophealer_domain_Product_producer" itemValue="id" items="${producers}" path="/producers" z="6gIOoVvN+gUf6GwzdEXlNbVR3n8="/>
+        <field:simple field="translations" id="c_com_crophealer_domain_Product_translations" messageCode="entity_reference_not_managed" messageCodeAttribute="Product Translation" z="M+kSgaEh2mRF0c+yhYicUxJiesQ="/>
+        <field:simple field="productResellers" id="c_com_crophealer_domain_Product_productResellers" messageCode="entity_reference_not_managed" messageCodeAttribute="Product Reseller" z="W5DEBKas63XQrY+jRKEGKA9UT40="/>
+        <field:simple field="activeIngredientProducts" id="c_com_crophealer_domain_Product_activeIngredientProducts" messageCode="entity_reference_not_managed" messageCodeAttribute="Active Ingredient Product" z="FkR6ZYFlzCKaE2mBNzOnjrh9yTw="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_Product" render="${not empty dependencies}" z="0PeWR/e2lq4JbzwGgwFxJeF4WDM="/>
+</div>

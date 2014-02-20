@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="symptoms/list">
+        <put-attribute name="body" value="/WEB-INF/views/symptoms/list.jspx"/>
+    </definition>
+<definition extends="default" name="symptoms/show">
+        <put-attribute name="body" value="/WEB-INF/views/symptoms/show.jspx"/>
+    </definition>
+<definition extends="default" name="symptoms/create">
+        <put-attribute name="body" value="/WEB-INF/views/symptoms/create.jspx"/>
+    </definition>
+<definition extends="default" name="symptoms/update">
+        <put-attribute name="body" value="/WEB-INF/views/symptoms/update.jspx"/>
+    </definition>
+</tiles-definitions>

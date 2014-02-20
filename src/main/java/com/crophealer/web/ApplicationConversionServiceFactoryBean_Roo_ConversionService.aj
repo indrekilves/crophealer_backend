@@ -3,12 +3,32 @@
 
 package com.crophealer.web;
 
+import com.crophealer.domain.ActiveIngredient;
+import com.crophealer.domain.ActiveIngredientProduct;
+import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.GrowthPhaseTranslation;
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Plant;
+import com.crophealer.domain.PlantPart;
+import com.crophealer.domain.PlantPartPhase;
+import com.crophealer.domain.PlantPartPhaseProblem;
+import com.crophealer.domain.PlantPartPhaseSymptom;
+import com.crophealer.domain.PlantPartTranslation;
 import com.crophealer.domain.PlantTranslation;
+import com.crophealer.domain.Problem;
+import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.ProblemPicture;
+import com.crophealer.domain.ProblemTranslation;
+import com.crophealer.domain.Producer;
+import com.crophealer.domain.Product;
+import com.crophealer.domain.ProductReseller;
+import com.crophealer.domain.ProductTranslation;
+import com.crophealer.domain.Reseller;
+import com.crophealer.domain.Symptom;
+import com.crophealer.domain.SymptomPicture;
+import com.crophealer.domain.SymptomTranslation;
 import com.crophealer.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -17,6 +37,78 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    public Converter<ActiveIngredient, String> ApplicationConversionServiceFactoryBean.getActiveIngredientToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ActiveIngredient, java.lang.String>() {
+            public String convert(ActiveIngredient activeIngredient) {
+                return new StringBuilder().append(activeIngredient.getLatinName()).append(' ').append(activeIngredient.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ActiveIngredient> ApplicationConversionServiceFactoryBean.getIdToActiveIngredientConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ActiveIngredient>() {
+            public com.crophealer.domain.ActiveIngredient convert(java.lang.Long id) {
+                return ActiveIngredient.findActiveIngredient(id);
+            }
+        };
+    }
+    
+    public Converter<String, ActiveIngredient> ApplicationConversionServiceFactoryBean.getStringToActiveIngredientConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ActiveIngredient>() {
+            public com.crophealer.domain.ActiveIngredient convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ActiveIngredient.class);
+            }
+        };
+    }
+    
+    public Converter<ActiveIngredientProduct, String> ApplicationConversionServiceFactoryBean.getActiveIngredientProductToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ActiveIngredientProduct, java.lang.String>() {
+            public String convert(ActiveIngredientProduct activeIngredientProduct) {
+                return new StringBuilder().append(activeIngredientProduct.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ActiveIngredientProduct> ApplicationConversionServiceFactoryBean.getIdToActiveIngredientProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ActiveIngredientProduct>() {
+            public com.crophealer.domain.ActiveIngredientProduct convert(java.lang.Long id) {
+                return ActiveIngredientProduct.findActiveIngredientProduct(id);
+            }
+        };
+    }
+    
+    public Converter<String, ActiveIngredientProduct> ApplicationConversionServiceFactoryBean.getStringToActiveIngredientProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ActiveIngredientProduct>() {
+            public com.crophealer.domain.ActiveIngredientProduct convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ActiveIngredientProduct.class);
+            }
+        };
+    }
+    
+    public Converter<ActiveIngredientTranslation, String> ApplicationConversionServiceFactoryBean.getActiveIngredientTranslationToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ActiveIngredientTranslation, java.lang.String>() {
+            public String convert(ActiveIngredientTranslation activeIngredientTranslation) {
+                return new StringBuilder().append(activeIngredientTranslation.getName()).append(' ').append(activeIngredientTranslation.getDescription()).append(' ').append(activeIngredientTranslation.getWarning()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ActiveIngredientTranslation> ApplicationConversionServiceFactoryBean.getIdToActiveIngredientTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ActiveIngredientTranslation>() {
+            public com.crophealer.domain.ActiveIngredientTranslation convert(java.lang.Long id) {
+                return ActiveIngredientTranslation.findActiveIngredientTranslation(id);
+            }
+        };
+    }
+    
+    public Converter<String, ActiveIngredientTranslation> ApplicationConversionServiceFactoryBean.getStringToActiveIngredientTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ActiveIngredientTranslation>() {
+            public com.crophealer.domain.ActiveIngredientTranslation convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ActiveIngredientTranslation.class);
+            }
+        };
+    }
     
     public Converter<Country, String> ApplicationConversionServiceFactoryBean.getCountryToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.Country, java.lang.String>() {
@@ -138,6 +230,126 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<PlantPart, String> ApplicationConversionServiceFactoryBean.getPlantPartToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.PlantPart, java.lang.String>() {
+            public String convert(PlantPart plantPart) {
+                return new StringBuilder().append(plantPart.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, PlantPart> ApplicationConversionServiceFactoryBean.getIdToPlantPartConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.PlantPart>() {
+            public com.crophealer.domain.PlantPart convert(java.lang.Long id) {
+                return PlantPart.findPlantPart(id);
+            }
+        };
+    }
+    
+    public Converter<String, PlantPart> ApplicationConversionServiceFactoryBean.getStringToPlantPartConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.PlantPart>() {
+            public com.crophealer.domain.PlantPart convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), PlantPart.class);
+            }
+        };
+    }
+    
+    public Converter<PlantPartPhase, String> ApplicationConversionServiceFactoryBean.getPlantPartPhaseToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.PlantPartPhase, java.lang.String>() {
+            public String convert(PlantPartPhase plantPartPhase) {
+                return new StringBuilder().append(plantPartPhase.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, PlantPartPhase> ApplicationConversionServiceFactoryBean.getIdToPlantPartPhaseConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.PlantPartPhase>() {
+            public com.crophealer.domain.PlantPartPhase convert(java.lang.Long id) {
+                return PlantPartPhase.findPlantPartPhase(id);
+            }
+        };
+    }
+    
+    public Converter<String, PlantPartPhase> ApplicationConversionServiceFactoryBean.getStringToPlantPartPhaseConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.PlantPartPhase>() {
+            public com.crophealer.domain.PlantPartPhase convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), PlantPartPhase.class);
+            }
+        };
+    }
+    
+    public Converter<PlantPartPhaseProblem, String> ApplicationConversionServiceFactoryBean.getPlantPartPhaseProblemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.PlantPartPhaseProblem, java.lang.String>() {
+            public String convert(PlantPartPhaseProblem plantPartPhaseProblem) {
+                return new StringBuilder().append(plantPartPhaseProblem.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, PlantPartPhaseProblem> ApplicationConversionServiceFactoryBean.getIdToPlantPartPhaseProblemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.PlantPartPhaseProblem>() {
+            public com.crophealer.domain.PlantPartPhaseProblem convert(java.lang.Long id) {
+                return PlantPartPhaseProblem.findPlantPartPhaseProblem(id);
+            }
+        };
+    }
+    
+    public Converter<String, PlantPartPhaseProblem> ApplicationConversionServiceFactoryBean.getStringToPlantPartPhaseProblemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.PlantPartPhaseProblem>() {
+            public com.crophealer.domain.PlantPartPhaseProblem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), PlantPartPhaseProblem.class);
+            }
+        };
+    }
+    
+    public Converter<PlantPartPhaseSymptom, String> ApplicationConversionServiceFactoryBean.getPlantPartPhaseSymptomToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.PlantPartPhaseSymptom, java.lang.String>() {
+            public String convert(PlantPartPhaseSymptom plantPartPhaseSymptom) {
+                return new StringBuilder().append(plantPartPhaseSymptom.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, PlantPartPhaseSymptom> ApplicationConversionServiceFactoryBean.getIdToPlantPartPhaseSymptomConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.PlantPartPhaseSymptom>() {
+            public com.crophealer.domain.PlantPartPhaseSymptom convert(java.lang.Long id) {
+                return PlantPartPhaseSymptom.findPlantPartPhaseSymptom(id);
+            }
+        };
+    }
+    
+    public Converter<String, PlantPartPhaseSymptom> ApplicationConversionServiceFactoryBean.getStringToPlantPartPhaseSymptomConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.PlantPartPhaseSymptom>() {
+            public com.crophealer.domain.PlantPartPhaseSymptom convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), PlantPartPhaseSymptom.class);
+            }
+        };
+    }
+    
+    public Converter<PlantPartTranslation, String> ApplicationConversionServiceFactoryBean.getPlantPartTranslationToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.PlantPartTranslation, java.lang.String>() {
+            public String convert(PlantPartTranslation plantPartTranslation) {
+                return new StringBuilder().append(plantPartTranslation.getName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, PlantPartTranslation> ApplicationConversionServiceFactoryBean.getIdToPlantPartTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.PlantPartTranslation>() {
+            public com.crophealer.domain.PlantPartTranslation convert(java.lang.Long id) {
+                return PlantPartTranslation.findPlantPartTranslation(id);
+            }
+        };
+    }
+    
+    public Converter<String, PlantPartTranslation> ApplicationConversionServiceFactoryBean.getStringToPlantPartTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.PlantPartTranslation>() {
+            public com.crophealer.domain.PlantPartTranslation convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), PlantPartTranslation.class);
+            }
+        };
+    }
+    
     public Converter<PlantTranslation, String> ApplicationConversionServiceFactoryBean.getPlantTranslationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.PlantTranslation, java.lang.String>() {
             public String convert(PlantTranslation plantTranslation) {
@@ -162,7 +374,304 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Problem, String> ApplicationConversionServiceFactoryBean.getProblemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.Problem, java.lang.String>() {
+            public String convert(Problem problem) {
+                return new StringBuilder().append(problem.getLatinName()).append(' ').append(problem.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Problem> ApplicationConversionServiceFactoryBean.getIdToProblemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.Problem>() {
+            public com.crophealer.domain.Problem convert(java.lang.Long id) {
+                return Problem.findProblem(id);
+            }
+        };
+    }
+    
+    public Converter<String, Problem> ApplicationConversionServiceFactoryBean.getStringToProblemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.Problem>() {
+            public com.crophealer.domain.Problem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Problem.class);
+            }
+        };
+    }
+    
+    public Converter<ProblemActiveIngredient, String> ApplicationConversionServiceFactoryBean.getProblemActiveIngredientToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ProblemActiveIngredient, java.lang.String>() {
+            public String convert(ProblemActiveIngredient problemActiveIngredient) {
+                return new StringBuilder().append(problemActiveIngredient.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ProblemActiveIngredient> ApplicationConversionServiceFactoryBean.getIdToProblemActiveIngredientConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ProblemActiveIngredient>() {
+            public com.crophealer.domain.ProblemActiveIngredient convert(java.lang.Long id) {
+                return ProblemActiveIngredient.findProblemActiveIngredient(id);
+            }
+        };
+    }
+    
+    public Converter<String, ProblemActiveIngredient> ApplicationConversionServiceFactoryBean.getStringToProblemActiveIngredientConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ProblemActiveIngredient>() {
+            public com.crophealer.domain.ProblemActiveIngredient convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ProblemActiveIngredient.class);
+            }
+        };
+    }
+    
+    public Converter<ProblemPicture, String> ApplicationConversionServiceFactoryBean.getProblemPictureToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ProblemPicture, java.lang.String>() {
+            public String convert(ProblemPicture problemPicture) {
+                return new StringBuilder().append(problemPicture.getName()).append(' ').append(problemPicture.getPictureUrl()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ProblemPicture> ApplicationConversionServiceFactoryBean.getIdToProblemPictureConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ProblemPicture>() {
+            public com.crophealer.domain.ProblemPicture convert(java.lang.Long id) {
+                return ProblemPicture.findProblemPicture(id);
+            }
+        };
+    }
+    
+    public Converter<String, ProblemPicture> ApplicationConversionServiceFactoryBean.getStringToProblemPictureConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ProblemPicture>() {
+            public com.crophealer.domain.ProblemPicture convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ProblemPicture.class);
+            }
+        };
+    }
+    
+    public Converter<ProblemTranslation, String> ApplicationConversionServiceFactoryBean.getProblemTranslationToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ProblemTranslation, java.lang.String>() {
+            public String convert(ProblemTranslation problemTranslation) {
+                return new StringBuilder().append(problemTranslation.getName()).append(' ').append(problemTranslation.getDescription()).append(' ').append(problemTranslation.getWarning()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ProblemTranslation> ApplicationConversionServiceFactoryBean.getIdToProblemTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ProblemTranslation>() {
+            public com.crophealer.domain.ProblemTranslation convert(java.lang.Long id) {
+                return ProblemTranslation.findProblemTranslation(id);
+            }
+        };
+    }
+    
+    public Converter<String, ProblemTranslation> ApplicationConversionServiceFactoryBean.getStringToProblemTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ProblemTranslation>() {
+            public com.crophealer.domain.ProblemTranslation convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ProblemTranslation.class);
+            }
+        };
+    }
+    
+    public Converter<Producer, String> ApplicationConversionServiceFactoryBean.getProducerToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.Producer, java.lang.String>() {
+            public String convert(Producer producer) {
+                return new StringBuilder().append(producer.getName()).append(' ').append(producer.getEmail()).append(' ').append(producer.getPhone()).append(' ').append(producer.getContactPerson()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Producer> ApplicationConversionServiceFactoryBean.getIdToProducerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.Producer>() {
+            public com.crophealer.domain.Producer convert(java.lang.Long id) {
+                return Producer.findProducer(id);
+            }
+        };
+    }
+    
+    public Converter<String, Producer> ApplicationConversionServiceFactoryBean.getStringToProducerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.Producer>() {
+            public com.crophealer.domain.Producer convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Producer.class);
+            }
+        };
+    }
+    
+    public Converter<Product, String> ApplicationConversionServiceFactoryBean.getProductToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.Product, java.lang.String>() {
+            public String convert(Product product) {
+                return new StringBuilder().append(product.getComment()).append(' ').append(product.getPictureUrl()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Product> ApplicationConversionServiceFactoryBean.getIdToProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.Product>() {
+            public com.crophealer.domain.Product convert(java.lang.Long id) {
+                return Product.findProduct(id);
+            }
+        };
+    }
+    
+    public Converter<String, Product> ApplicationConversionServiceFactoryBean.getStringToProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.Product>() {
+            public com.crophealer.domain.Product convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Product.class);
+            }
+        };
+    }
+    
+    public Converter<ProductReseller, String> ApplicationConversionServiceFactoryBean.getProductResellerToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ProductReseller, java.lang.String>() {
+            public String convert(ProductReseller productReseller) {
+                return new StringBuilder().append(productReseller.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ProductReseller> ApplicationConversionServiceFactoryBean.getIdToProductResellerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ProductReseller>() {
+            public com.crophealer.domain.ProductReseller convert(java.lang.Long id) {
+                return ProductReseller.findProductReseller(id);
+            }
+        };
+    }
+    
+    public Converter<String, ProductReseller> ApplicationConversionServiceFactoryBean.getStringToProductResellerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ProductReseller>() {
+            public com.crophealer.domain.ProductReseller convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ProductReseller.class);
+            }
+        };
+    }
+    
+    public Converter<ProductTranslation, String> ApplicationConversionServiceFactoryBean.getProductTranslationToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ProductTranslation, java.lang.String>() {
+            public String convert(ProductTranslation productTranslation) {
+                return new StringBuilder().append(productTranslation.getName()).append(' ').append(productTranslation.getDescription()).append(' ').append(productTranslation.getWarning()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ProductTranslation> ApplicationConversionServiceFactoryBean.getIdToProductTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ProductTranslation>() {
+            public com.crophealer.domain.ProductTranslation convert(java.lang.Long id) {
+                return ProductTranslation.findProductTranslation(id);
+            }
+        };
+    }
+    
+    public Converter<String, ProductTranslation> ApplicationConversionServiceFactoryBean.getStringToProductTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ProductTranslation>() {
+            public com.crophealer.domain.ProductTranslation convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ProductTranslation.class);
+            }
+        };
+    }
+    
+    public Converter<Reseller, String> ApplicationConversionServiceFactoryBean.getResellerToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.Reseller, java.lang.String>() {
+            public String convert(Reseller reseller) {
+                return new StringBuilder().append(reseller.getName()).append(' ').append(reseller.getEmail()).append(' ').append(reseller.getPhone()).append(' ').append(reseller.getContactPerson()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Reseller> ApplicationConversionServiceFactoryBean.getIdToResellerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.Reseller>() {
+            public com.crophealer.domain.Reseller convert(java.lang.Long id) {
+                return Reseller.findReseller(id);
+            }
+        };
+    }
+    
+    public Converter<String, Reseller> ApplicationConversionServiceFactoryBean.getStringToResellerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.Reseller>() {
+            public com.crophealer.domain.Reseller convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Reseller.class);
+            }
+        };
+    }
+    
+    public Converter<Symptom, String> ApplicationConversionServiceFactoryBean.getSymptomToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.Symptom, java.lang.String>() {
+            public String convert(Symptom symptom) {
+                return new StringBuilder().append(symptom.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Symptom> ApplicationConversionServiceFactoryBean.getIdToSymptomConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.Symptom>() {
+            public com.crophealer.domain.Symptom convert(java.lang.Long id) {
+                return Symptom.findSymptom(id);
+            }
+        };
+    }
+    
+    public Converter<String, Symptom> ApplicationConversionServiceFactoryBean.getStringToSymptomConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.Symptom>() {
+            public com.crophealer.domain.Symptom convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Symptom.class);
+            }
+        };
+    }
+    
+    public Converter<SymptomPicture, String> ApplicationConversionServiceFactoryBean.getSymptomPictureToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.SymptomPicture, java.lang.String>() {
+            public String convert(SymptomPicture symptomPicture) {
+                return new StringBuilder().append(symptomPicture.getName()).append(' ').append(symptomPicture.getPictureUrl()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, SymptomPicture> ApplicationConversionServiceFactoryBean.getIdToSymptomPictureConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.SymptomPicture>() {
+            public com.crophealer.domain.SymptomPicture convert(java.lang.Long id) {
+                return SymptomPicture.findSymptomPicture(id);
+            }
+        };
+    }
+    
+    public Converter<String, SymptomPicture> ApplicationConversionServiceFactoryBean.getStringToSymptomPictureConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.SymptomPicture>() {
+            public com.crophealer.domain.SymptomPicture convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), SymptomPicture.class);
+            }
+        };
+    }
+    
+    public Converter<SymptomTranslation, String> ApplicationConversionServiceFactoryBean.getSymptomTranslationToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.SymptomTranslation, java.lang.String>() {
+            public String convert(SymptomTranslation symptomTranslation) {
+                return new StringBuilder().append(symptomTranslation.getName()).append(' ').append(symptomTranslation.getDescription()).append(' ').append(symptomTranslation.getWarning()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, SymptomTranslation> ApplicationConversionServiceFactoryBean.getIdToSymptomTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.SymptomTranslation>() {
+            public com.crophealer.domain.SymptomTranslation convert(java.lang.Long id) {
+                return SymptomTranslation.findSymptomTranslation(id);
+            }
+        };
+    }
+    
+    public Converter<String, SymptomTranslation> ApplicationConversionServiceFactoryBean.getStringToSymptomTranslationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.SymptomTranslation>() {
+            public com.crophealer.domain.SymptomTranslation convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), SymptomTranslation.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getActiveIngredientToStringConverter());
+        registry.addConverter(getIdToActiveIngredientConverter());
+        registry.addConverter(getStringToActiveIngredientConverter());
+        registry.addConverter(getActiveIngredientProductToStringConverter());
+        registry.addConverter(getIdToActiveIngredientProductConverter());
+        registry.addConverter(getStringToActiveIngredientProductConverter());
+        registry.addConverter(getActiveIngredientTranslationToStringConverter());
+        registry.addConverter(getIdToActiveIngredientTranslationConverter());
+        registry.addConverter(getStringToActiveIngredientTranslationConverter());
         registry.addConverter(getCountryToStringConverter());
         registry.addConverter(getIdToCountryConverter());
         registry.addConverter(getStringToCountryConverter());
@@ -178,9 +687,60 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getPlantToStringConverter());
         registry.addConverter(getIdToPlantConverter());
         registry.addConverter(getStringToPlantConverter());
+        registry.addConverter(getPlantPartToStringConverter());
+        registry.addConverter(getIdToPlantPartConverter());
+        registry.addConverter(getStringToPlantPartConverter());
+        registry.addConverter(getPlantPartPhaseToStringConverter());
+        registry.addConverter(getIdToPlantPartPhaseConverter());
+        registry.addConverter(getStringToPlantPartPhaseConverter());
+        registry.addConverter(getPlantPartPhaseProblemToStringConverter());
+        registry.addConverter(getIdToPlantPartPhaseProblemConverter());
+        registry.addConverter(getStringToPlantPartPhaseProblemConverter());
+        registry.addConverter(getPlantPartPhaseSymptomToStringConverter());
+        registry.addConverter(getIdToPlantPartPhaseSymptomConverter());
+        registry.addConverter(getStringToPlantPartPhaseSymptomConverter());
+        registry.addConverter(getPlantPartTranslationToStringConverter());
+        registry.addConverter(getIdToPlantPartTranslationConverter());
+        registry.addConverter(getStringToPlantPartTranslationConverter());
         registry.addConverter(getPlantTranslationToStringConverter());
         registry.addConverter(getIdToPlantTranslationConverter());
         registry.addConverter(getStringToPlantTranslationConverter());
+        registry.addConverter(getProblemToStringConverter());
+        registry.addConverter(getIdToProblemConverter());
+        registry.addConverter(getStringToProblemConverter());
+        registry.addConverter(getProblemActiveIngredientToStringConverter());
+        registry.addConverter(getIdToProblemActiveIngredientConverter());
+        registry.addConverter(getStringToProblemActiveIngredientConverter());
+        registry.addConverter(getProblemPictureToStringConverter());
+        registry.addConverter(getIdToProblemPictureConverter());
+        registry.addConverter(getStringToProblemPictureConverter());
+        registry.addConverter(getProblemTranslationToStringConverter());
+        registry.addConverter(getIdToProblemTranslationConverter());
+        registry.addConverter(getStringToProblemTranslationConverter());
+        registry.addConverter(getProducerToStringConverter());
+        registry.addConverter(getIdToProducerConverter());
+        registry.addConverter(getStringToProducerConverter());
+        registry.addConverter(getProductToStringConverter());
+        registry.addConverter(getIdToProductConverter());
+        registry.addConverter(getStringToProductConverter());
+        registry.addConverter(getProductResellerToStringConverter());
+        registry.addConverter(getIdToProductResellerConverter());
+        registry.addConverter(getStringToProductResellerConverter());
+        registry.addConverter(getProductTranslationToStringConverter());
+        registry.addConverter(getIdToProductTranslationConverter());
+        registry.addConverter(getStringToProductTranslationConverter());
+        registry.addConverter(getResellerToStringConverter());
+        registry.addConverter(getIdToResellerConverter());
+        registry.addConverter(getStringToResellerConverter());
+        registry.addConverter(getSymptomToStringConverter());
+        registry.addConverter(getIdToSymptomConverter());
+        registry.addConverter(getStringToSymptomConverter());
+        registry.addConverter(getSymptomPictureToStringConverter());
+        registry.addConverter(getIdToSymptomPictureConverter());
+        registry.addConverter(getStringToSymptomPictureConverter());
+        registry.addConverter(getSymptomTranslationToStringConverter());
+        registry.addConverter(getIdToSymptomTranslationConverter());
+        registry.addConverter(getStringToSymptomTranslationConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

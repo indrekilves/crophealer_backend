@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_ActiveIngredientTranslation" object="${activeingredienttranslation}" path="/activeingredienttranslations" z="d4LXkgs/8nuHYxApNICvSXXixy0=">
+        <field:display field="name" id="s_com_crophealer_domain_ActiveIngredientTranslation_name" object="${activeingredienttranslation}" z="mzWn0gCI9xVIkUk7IuUHLyHnDPo="/>
+        <field:display field="description" id="s_com_crophealer_domain_ActiveIngredientTranslation_description" object="${activeingredienttranslation}" z="MEEVaSjxB6bg9cnw9Lzik+oLJQo="/>
+        <field:display field="warning" id="s_com_crophealer_domain_ActiveIngredientTranslation_warning" object="${activeingredienttranslation}" z="hAloSS3yUJEc6rbg9JQKPgGAusw="/>
+        <field:display field="activeIngredient" id="s_com_crophealer_domain_ActiveIngredientTranslation_activeIngredient" object="${activeingredienttranslation}" z="3RZ+DWVstcZXsOZFHfvBb2m2Vr8="/>
+        <field:display field="lang" id="s_com_crophealer_domain_ActiveIngredientTranslation_lang" object="${activeingredienttranslation}" z="E/upkIwtR0k27z1tkbz5M7oka1I="/>
+    </page:show>
+</div>

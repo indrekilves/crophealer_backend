@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_SymptomTranslation" items="${symptomtranslations}" z="OueVwBINaGM5VHbIWc7W8M94w5A=">
+        <table:table data="${symptomtranslations}" id="l_com_crophealer_domain_SymptomTranslation" path="/symptomtranslations" z="R1PoO8ZhH7ipPKGlmo/ISEGvC+k=">
+            <table:column id="c_com_crophealer_domain_SymptomTranslation_name" property="name" z="kfxVDPkwiIM4bByBs3i1bZdg17U="/>
+            <table:column id="c_com_crophealer_domain_SymptomTranslation_description" property="description" z="KzfHv7QfU8QaoN1SsxQcmbEFbTA="/>
+            <table:column id="c_com_crophealer_domain_SymptomTranslation_warning" property="warning" z="k+sdj2FxpQghDUeNxxEBAGqLr84="/>
+            <table:column id="c_com_crophealer_domain_SymptomTranslation_symptom" property="symptom" z="JfGyFl0Hv7VObfMmTx0o9LdLAJc="/>
+            <table:column id="c_com_crophealer_domain_SymptomTranslation_lang" property="lang" z="JVCJOdYESbNkI5bnKZOqeCgUKU0="/>
+        </table:table>
+    </page:list>
+</div>

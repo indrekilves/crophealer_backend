@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_ProductTranslation" items="${producttranslations}" z="rYPwLW00teCOkUBa+E2NUlCW2yE=">
+        <table:table data="${producttranslations}" id="l_com_crophealer_domain_ProductTranslation" path="/producttranslations" z="XRM9YVn7nWpwFAFW/+GfVyy4j3k=">
+            <table:column id="c_com_crophealer_domain_ProductTranslation_name" property="name" z="/oMg4y8Owb0Q/o5HwN8B8a1FEII="/>
+            <table:column id="c_com_crophealer_domain_ProductTranslation_description" property="description" z="nh7lQ1KWjq6+PlLQxd+Y6RXWLYk="/>
+            <table:column id="c_com_crophealer_domain_ProductTranslation_warning" property="warning" z="hyac0MfLziL9rRwV3noXOVjggc4="/>
+            <table:column id="c_com_crophealer_domain_ProductTranslation_product" property="product" z="kqFjLVHnM9QsgDyYP+gc4esfBjU="/>
+            <table:column id="c_com_crophealer_domain_ProductTranslation_lang" property="lang" z="Zb1KZGzklqyyuQ/QDKRIXDpPfVQ="/>
+        </table:table>
+    </page:list>
+</div>

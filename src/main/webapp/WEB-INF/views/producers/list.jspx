@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_Producer" items="${producers}" z="EuAwaVbQV6Mflw6JSVQu4zEivr0=">
+        <table:table data="${producers}" id="l_com_crophealer_domain_Producer" path="/producers" z="fIR3KYX/pHF4eYc9IY53ufTlryQ=">
+            <table:column id="c_com_crophealer_domain_Producer_name" property="name" z="oSnN6wBD0VcgHB+glynV78E4l/Y="/>
+            <table:column id="c_com_crophealer_domain_Producer_email" property="email" z="gBoJNPk4owgG2NZXFuYTk+OhxE8="/>
+            <table:column id="c_com_crophealer_domain_Producer_phone" property="phone" z="AsJfr8YivB+XFJKOOhIcA+lxGs4="/>
+            <table:column id="c_com_crophealer_domain_Producer_contactPerson" property="contactPerson" z="H3UUdzDl0vZfWch/niXobmyRkjk="/>
+            <table:column id="c_com_crophealer_domain_Producer_country" property="country" z="xplR8+i14+Gid4AkboYZXCo1m0c="/>
+        </table:table>
+    </page:list>
+</div>

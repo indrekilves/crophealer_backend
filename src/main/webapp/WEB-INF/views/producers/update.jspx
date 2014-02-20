@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_crophealer_domain_Producer" modelAttribute="producer" path="/producers" versionField="Version" z="D9wqTuCY5b9gw50TIQVECjBXDh8=">
+        <field:input field="name" id="c_com_crophealer_domain_Producer_name" z="kuUuACrZRqxOJJaTri9CMY4FOIU="/>
+        <field:input field="email" id="c_com_crophealer_domain_Producer_email" validationMessageCode="field_invalid_email" z="RQ5T5v+FeFhJK+av1APd6VdaZe4="/>
+        <field:input field="phone" id="c_com_crophealer_domain_Producer_phone" z="aWAqd21pJQ//yFcwRY8YyJlFamo="/>
+        <field:input field="contactPerson" id="c_com_crophealer_domain_Producer_contactPerson" z="NtLClA5cz8L9noK2Ym9s+j/9gFo="/>
+        <field:select field="country" id="c_com_crophealer_domain_Producer_country" itemValue="id" items="${countrys}" path="/countrys" z="hqAUEfsld2d74u7Tc6iy5szT45A="/>
+        <field:simple field="products" id="c_com_crophealer_domain_Producer_products" messageCode="entity_reference_not_managed" messageCodeAttribute="Product" z="LpDhGG1L5E2pGqUIS8GwVtr6NWI="/>
+    </form:update>
+</div>

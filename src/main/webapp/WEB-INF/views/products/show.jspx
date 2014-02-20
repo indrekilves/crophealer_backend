@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_Product" object="${product}" path="/products" z="dArhqxrwkf+/aP5/WpCMmjM46Ww=">
+        <field:display field="comment" id="s_com_crophealer_domain_Product_comment" object="${product}" z="6moIdLr9/i3buquAQQASKtV9E9w="/>
+        <field:display field="pictureUrl" id="s_com_crophealer_domain_Product_pictureUrl" object="${product}" z="/K4gclB0Jya1QRpYTnAYZXevO+E="/>
+        <field:display field="country" id="s_com_crophealer_domain_Product_country" object="${product}" z="AgtGjLT1VJxmI9+vcYYj+siKVaI="/>
+        <field:display field="producer" id="s_com_crophealer_domain_Product_producer" object="${product}" z="dcv8LjmY0GUTHdwsJ34HFAg3ZGs="/>
+    </page:show>
+</div>

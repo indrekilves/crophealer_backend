@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_Product" items="${products}" z="mXVxIXRpH+Ab3EYovkB010cT6OI=">
+        <table:table data="${products}" id="l_com_crophealer_domain_Product" path="/products" z="AXmTMaOlm69lYDNYi1iX1BmJd6I=">
+            <table:column id="c_com_crophealer_domain_Product_comment" property="comment" z="V8QjO5Z+9NnAzKX57SJuiklIpDo="/>
+            <table:column id="c_com_crophealer_domain_Product_pictureUrl" property="pictureUrl" z="1qHHTHheelM9zdxBJq7aMW/l7fQ="/>
+            <table:column id="c_com_crophealer_domain_Product_country" property="country" z="3fWIKdckCdq6cqBIh4mLu8pV4xk="/>
+            <table:column id="c_com_crophealer_domain_Product_producer" property="producer" z="gH78g5eeapae7Ica8qtfxNP9tB4="/>
+        </table:table>
+    </page:list>
+</div>

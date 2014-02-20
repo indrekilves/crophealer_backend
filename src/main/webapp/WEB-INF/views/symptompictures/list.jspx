@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_SymptomPicture" items="${symptompictures}" z="Yd0a7D/JTo0AsPirQsgCvfUNrOY=">
+        <table:table data="${symptompictures}" id="l_com_crophealer_domain_SymptomPicture" path="/symptompictures" z="RuCh2rFXb5O7aieN88w6QDK3UPQ=">
+            <table:column id="c_com_crophealer_domain_SymptomPicture_name" property="name" z="wVcoCoyTQi5kcjc4rg0rGgCP6mY="/>
+            <table:column id="c_com_crophealer_domain_SymptomPicture_pictureUrl" property="pictureUrl" z="2XDeSnUCe74yMNjs7DbbQthNp9I="/>
+            <table:column id="c_com_crophealer_domain_SymptomPicture_symptom" property="symptom" z="V2fMcAh2X13NF3mD1fhZjZhwM5s="/>
+        </table:table>
+    </page:list>
+</div>
