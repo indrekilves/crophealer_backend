@@ -1,12 +1,7 @@
 
+focus --class ~.domain.PlantPartPhaseSymptom
+field reference --fieldName plantPartPhase --type ~.domain.PlantPartPhase --cardinality MANY_TO_ONE
 
-entity jpa --class ~.domain.PlantPartPhaseProblem
-field string --fieldName comment
-
-entity jpa --class ~.domain.PlantPartPhaseSymptom
-field string --fieldName comment
-field reference --fieldName problem --type ~.domain.PlantPartPhaseProblem --cardinality MANY_TO_ONE
-
-focus --class ~.domain.PlantPartPhaseProblem
-field set --fieldName symptoms --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy problem
+focus --class ~.domain.PlantPartPhase
+field set --fieldName symptoms --type ~.domain.PlantPartPhaseSymptom --cardinality ONE_TO_MANY --mappedBy plantPartPhase
 

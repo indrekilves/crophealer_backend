@@ -7,6 +7,8 @@ import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.Plant;
 import com.crophealer.domain.PlantPart;
 import com.crophealer.domain.PlantPartPhase;
+import com.crophealer.domain.PlantPartPhaseSymptom;
+import java.util.Set;
 
 privileged aspect PlantPartPhase_Roo_JavaBean {
     
@@ -40,6 +42,14 @@ privileged aspect PlantPartPhase_Roo_JavaBean {
     
     public void PlantPartPhase.setGrowthPhase(GrowthPhase growthPhase) {
         this.growthPhase = growthPhase;
+    }
+    
+    public Set<PlantPartPhaseSymptom> PlantPartPhase.getSymptoms() {
+        return this.symptoms;
+    }
+    
+    public void PlantPartPhase.setSymptoms(Set<PlantPartPhaseSymptom> symptoms) {
+        this.symptoms = symptoms;
     }
     
 }

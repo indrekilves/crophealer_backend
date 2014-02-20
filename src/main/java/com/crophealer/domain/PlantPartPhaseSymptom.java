@@ -17,4 +17,9 @@ public class PlantPartPhaseSymptom {
      */
     @ManyToOne
     private PlantPartPhaseProblem problem;
+
+    /**
+     */
+    @ManyToOne
+    private PlantPartPhase plantPartPhase;
 }
