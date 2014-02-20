@@ -1,72 +1,54 @@
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-20 22:13:17
-project --topLevelPackage com.crophealer --projectName crophealer --java 7 --packaging JAR
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-20 22:13:40
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-20 22:16:26
-jpa setup --database POSTGRES --provider HIBERNATE --databaseName crophealer --hostName localhost --userName crophealer --password ssc
-
-web mvc setup 
 entity jpa --class ~.domain.Country
-
 field string --fieldName name
-// [failed] entity jpa --class ~.domain.Language
 
 entity jpa --class ~.domain.Languages
-
 field string --fieldName name
 field string --fieldName nativeName
-entity jpa --class ~.domain.Plant
 
+entity jpa --class ~.domain.Plant
 field string --fieldName comment
 field string --fieldName iconUrl
 field reference --fieldName country --type ~.domain.Country --cardinality MANY_TO_ONE
 
 entity jpa --class ~.domain.PlantTranslation
-
 field string --fieldName name
 field string --fieldName description --sizeMax 1000 
-
 field reference --fieldName plant --type ~.domain.Plant --cardinality MANY_TO_ONE
-
-// [failed] field reference --fieldName language --type ~.domain.Languages --cardinality MANY_TO_ONE
-
 field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
 
 focus --class ~.domain.Plant
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-20 23:03:18
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-20 23:29:16
-focus --class ~.domain.Plant
 field set --fieldName translations --type ~.domain.PlantTranslation --cardinality ONE_TO_MANY --mappedBy plant
-entity jpa --class ~.domain.GrowthPhase
 
+entity jpa --class ~.domain.GrowthPhase
 field string --fieldName comment
 field string --fieldName iconUrl
+
 entity jpa --class ~.domain.GrowthPhaseTranslation
 field string --fieldName name
 field string --fieldName description --sizeMax 1000 
-
 field reference --fieldName growthPhase --type ~.domain.GrowthPhase --cardinality MANY_TO_ONE
-
 field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
 
 focus --class ~.domain.GrowthPhase
 field set --fieldName translations --type ~.domain.GrowthPhaseTranslation --cardinality ONE_TO_MANY --mappedBy growthPhase
-web mvc all --package ~.web 
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-20 23:49:19
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-20 23:55:08
+
 entity jpa --class ~.domain.PlantPart
 field string --fieldName comment
+
 entity jpa --class ~.domain.PlantPartTranslation
 field string --fieldName name
 field reference --fieldName plantPart --type ~.domain.PlantPart --cardinality MANY_TO_ONE
 field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
+
 focus --class ~.domain.PlantPart
 field set --fieldName translations --type ~.domain.PlantPartTranslation --cardinality ONE_TO_MANY --mappedBy plantPart
-// script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
+
 entity jpa --class ~.domain.PlantPartPhase
 field string --fieldName comment
+
 field reference --fieldName plant --type ~.domain.Plant --cardinality MANY_TO_ONE
 field reference --fieldName plantPart --type ~.domain.PlantPart --cardinality MANY_TO_ONE
 field reference --fieldName growthPhase --type ~.domain.GrowthPhase --cardinality MANY_TO_ONE
+
 focus --class ~.domain.Plant
 field set --fieldName plantPartPhases --type ~.domain.PlantPartPhase --cardinality ONE_TO_MANY --mappedBy plant
-// script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo

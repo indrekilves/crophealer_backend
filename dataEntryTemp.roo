@@ -1,10 +1,23 @@
-entity jpa --class ~.domain.PlantPart
-field string --fieldName comment
 
-entity jpa --class ~.domain.PlantPartTranslation
+
+entity jpa --class ~.domain.Symptom
+field string --fieldName comment
+field reference --fieldName country --type ~.domain.Country --cardinality MANY_TO_ONE
+
+entity jpa --class ~.domain.SymptomTranslation
 field string --fieldName name
-field reference --fieldName plantPart --type ~.domain.PlantPart --cardinality MANY_TO_ONE
+field string --fieldName description --sizeMax 1000 
+field string --fieldName warning --sizeMax 1000 
+field reference --fieldName symptom --type ~.domain.Symptom --cardinality MANY_TO_ONE
 field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
 
-focus --class ~.domain.PlantPart
-field set --fieldName translations --type ~.domain.PlantPartTranslation --cardinality ONE_TO_MANY --mappedBy plantPart
+entity jpa --class ~.domain.SymptomPictures
+field string --fieldName name
+field string --fieldName pictureUrl
+field reference --fieldName symptom --type ~.domain.Symptom --cardinality MANY_TO_ONE
+
+
+focus --class ~.domain.Symptom
+field set --fieldName translations --type ~.domain.SymptomTranslation --cardinality ONE_TO_MANY --mappedBy symptom
+field set --fieldName pictures --type ~.domain.SymptomPictures --cardinality ONE_TO_MANY --mappedBy symptom
+

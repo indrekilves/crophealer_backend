@@ -5,6 +5,7 @@ package com.crophealer.web;
 
 import com.crophealer.domain.Country;
 import com.crophealer.domain.Plant;
+import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantTranslation;
 import com.crophealer.web.PlantController;
 import java.io.UnsupportedEncodingException;
@@ -89,6 +90,7 @@ privileged aspect PlantController_Roo_Controller {
     void PlantController.populateEditForm(Model uiModel, Plant plant) {
         uiModel.addAttribute("plant", plant);
         uiModel.addAttribute("countrys", Country.findAllCountrys());
+        uiModel.addAttribute("plantpartphases", PlantPartPhase.findAllPlantPartPhases());
         uiModel.addAttribute("planttranslations", PlantTranslation.findAllPlantTranslations());
     }
     

@@ -5,6 +5,7 @@ package com.crophealer.domain;
 
 import com.crophealer.domain.Country;
 import com.crophealer.domain.Plant;
+import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantTranslation;
 import java.util.Set;
 
@@ -40,6 +41,14 @@ privileged aspect Plant_Roo_JavaBean {
     
     public void Plant.setTranslations(Set<PlantTranslation> translations) {
         this.translations = translations;
+    }
+    
+    public Set<PlantPartPhase> Plant.getPlantPartPhases() {
+        return this.plantPartPhases;
+    }
+    
+    public void Plant.setPlantPartPhases(Set<PlantPartPhase> plantPartPhases) {
+        this.plantPartPhases = plantPartPhases;
     }
     
 }

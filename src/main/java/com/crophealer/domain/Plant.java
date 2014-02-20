@@ -30,4 +30,9 @@ public class Plant {
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "plant")
     private Set<PlantTranslation> translations = new HashSet<PlantTranslation>();
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plant")
+    private Set<PlantPartPhase> plantPartPhases = new HashSet<PlantPartPhase>();
 }
