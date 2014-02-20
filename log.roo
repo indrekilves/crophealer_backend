@@ -87,3 +87,23 @@ focus --class ~.domain.Symptom
 field set --fieldName translations --type ~.domain.SymptomTranslation --cardinality ONE_TO_MANY --mappedBy symptom
 field set --fieldName pictures --type ~.domain.SymptomPicture --cardinality ONE_TO_MANY --mappedBy symptom
 // script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-21 00:16:41
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-21 00:17:19
+entity jpa --class ~.domain.Problem
+field string --fieldName latinName
+field string --fieldName comment
+field reference --fieldName country --type ~.domain.Country --cardinality MANY_TO_ONE
+entity jpa --class ~.domain.ProblemTranslation
+field string --fieldName name
+field string --fieldName description --sizeMax 1000 
+field string --fieldName warning --sizeMax 1000 
+field reference --fieldName problem --type ~.domain.Problem --cardinality MANY_TO_ONE
+field reference --fieldName lang --type ~.domain.Languages --cardinality MANY_TO_ONE
+entity jpa --class ~.domain.ProblemPicture
+field string --fieldName name
+field string --fieldName pictureUrl
+field reference --fieldName problem --type ~.domain.Problem --cardinality MANY_TO_ONE
+focus --class ~.domain.Problem
+field set --fieldName translations --type ~.domain.ProblemTranslation --cardinality ONE_TO_MANY --mappedBy problem
+field set --fieldName pictures --type ~.domain.ProblemPicture --cardinality ONE_TO_MANY --mappedBy problem
+// script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
