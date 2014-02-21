@@ -194,3 +194,6 @@ field set --fieldName problemActiveIngredients --type ~.domain.ProblemActiveIngr
 field set --fieldName activeIngredientProducts --type ~.domain.ActiveIngredientProduct --cardinality ONE_TO_MANY --mappedBy activeIngredient
 // script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
 web mvc all --package ~.web 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-21 10:43:00
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-22 00:05:39
+security setup
