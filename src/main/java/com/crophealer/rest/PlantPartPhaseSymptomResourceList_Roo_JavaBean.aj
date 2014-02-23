@@ -9,12 +9,12 @@ import java.util.List;
 
 privileged aspect PlantPartPhaseSymptomResourceList_Roo_JavaBean {
     
-    public List<PlantPartPhaseSymptomResource> PlantPartPhaseSymptomResourceList.getPlantPartPhaseSymptomResources() {
-        return this.plantPartPhaseSymptomResources;
+    public List<PlantPartPhaseSymptomResource> PlantPartPhaseSymptomResourceList.getPlantPartPhaseSymptoms() {
+        return this.plantPartPhaseSymptoms;
     }
     
-    public void PlantPartPhaseSymptomResourceList.setPlantPartPhaseSymptomResources(List<PlantPartPhaseSymptomResource> plantPartPhaseSymptomResources) {
-        this.plantPartPhaseSymptomResources = plantPartPhaseSymptomResources;
+    public void PlantPartPhaseSymptomResourceList.setPlantPartPhaseSymptoms(List<PlantPartPhaseSymptomResource> plantPartPhaseSymptoms) {
+        this.plantPartPhaseSymptoms = plantPartPhaseSymptoms;
     }
     
 }

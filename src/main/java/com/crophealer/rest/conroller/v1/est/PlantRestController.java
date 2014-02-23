@@ -12,6 +12,7 @@ import com.crophealer.rest.GrowthPhaseResourceList;
 import com.crophealer.rest.PlantPartResourceList;
 import com.crophealer.rest.PlantResource;
 import com.crophealer.rest.PlantResourceList;
+import com.crophealer.rest.SymptomResourceList;
 import com.crophealer.rest.service.PlantRestService;
 
 
@@ -46,10 +47,17 @@ public class PlantRestController {
     }
     
     
-    @RequestMapping(method = RequestMethod.GET, value="/{pId}/growthphases/{gId}/plantparts")
-	public ResponseEntity<PlantPartResourceList> getAllPlantPartsForPlantInGrowthPhase(@PathVariable("pId") Long pId, @PathVariable("gId") Long gId){
-		return plantRestService.getAllPlantPartsForPlantInGrowthPhaseByLanguage(pId, gId, estonian);
+    @RequestMapping(method = RequestMethod.GET, value="/{pId}/growthphases/{gpId}/plantparts")
+	public ResponseEntity<PlantPartResourceList> getAllPlantPartsForPlantInGrowthPhase(@PathVariable("pId") Long pId, @PathVariable("gpId") Long gpId){
+		return plantRestService.getAllPlantPartsForPlantInGrowthPhaseByLanguage(pId, gpId, estonian);
 	}
-	
+    
+    
+	@RequestMapping(method = RequestMethod.GET, value="/{pId}/growthphases/{gpId}/plantparts/{ppId}/symptoms")
+	public ResponseEntity<SymptomResourceList> getAllSymptomsForPlantPartAndGrowthPhaseAndPlant(@PathVariable("pId") Long pId, @PathVariable("gpId") Long gpId, @PathVariable("ppId") Long ppId){
+	return plantRestService.getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(pId, gpId, ppId, estonian);
+}
+
+
 
 }

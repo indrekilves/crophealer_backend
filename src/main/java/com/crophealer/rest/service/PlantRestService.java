@@ -13,6 +13,8 @@ import com.crophealer.domain.Languages;
 import com.crophealer.domain.Plant;
 import com.crophealer.domain.PlantPart;
 import com.crophealer.domain.PlantPartPhase;
+import com.crophealer.domain.PlantPartPhaseSymptom;
+import com.crophealer.domain.Symptom;
 import com.crophealer.rest.GrowthPhaseResourceAssembler;
 import com.crophealer.rest.GrowthPhaseResourceList;
 import com.crophealer.rest.PlantPartResourceAssembler;
@@ -20,6 +22,8 @@ import com.crophealer.rest.PlantPartResourceList;
 import com.crophealer.rest.PlantResource;
 import com.crophealer.rest.PlantResourceAssembler;
 import com.crophealer.rest.PlantResourceList;
+import com.crophealer.rest.SymptomResourceAssembler;
+import com.crophealer.rest.SymptomResourceList;
 
 @Service
 public class PlantRestService {
@@ -167,7 +171,76 @@ public class PlantRestService {
 		return response;		
 	}
 
+	
+	public ResponseEntity<SymptomResourceList> getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(Long pId, Long gpId, Long ppId, Languages language) 
+	{
+    	System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage plantID: " + pId + " growthPhaseId: " + gpId + " plantPart: " + ppId + " Lang: " + language);
 
+    	// Get Plant
+    	ResponseEntity<SymptomResourceList> response; 
+		
+		if (pId == null || gpId == null || ppId == null || language == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+			
+		Plant plant = Plant.findPlant(pId);
+		if (plant == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (Plant):" + plant.toString());
+	
+		
+		// GetGrowthPhase
+		GrowthPhase growthPhase = GrowthPhase.findGrowthPhase(gpId);
+		if (growthPhase == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (GrowthPhase):" + growthPhase.toString());
+
+		// GetPlantPart
+		PlantPart plantPart = PlantPart.findPlantPart(ppId);
+		if (plantPart == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (PlantPart):" + plantPart.toString());
+
+		
+		// GetPlantPartPhase
+		List<PlantPartPhase> plantPartPhases = (List<PlantPartPhase>) PlantPartPhase.findPlantPartPhasesByPlantAndGrowthPhaseAndPlantPart(plant, growthPhase, plantPart).getResultList();
+		if (plantPartPhases == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (plantPartPhases):" + plantPartPhases.toString());
+		
+		
+		// GetSymptoms
+		List <Symptom> symptoms = new ArrayList<Symptom>();
+		for (PlantPartPhase plantPartPhase : plantPartPhases) 
+		{
+			Set<PlantPartPhaseSymptom> pppSymptoms = plantPartPhase.getSymptoms();
+			for (PlantPartPhaseSymptom pppSymptom : pppSymptoms)
+			{
+				if ( !symptoms.contains(pppSymptom.getSymptom()) )
+				{
+					symptoms.add(pppSymptom.getSymptom());
+				}
+			}
+
+		}
+		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (Symptoms):" + symptoms.toString());
+
+    	
+    	SymptomResourceAssembler asm = new SymptomResourceAssembler();
+    	SymptomResourceList srl = asm.toResource(symptoms, language);
+		
+		response = new ResponseEntity<>(srl, HttpStatus.OK);
+		return response;		
+	}
     
 
 

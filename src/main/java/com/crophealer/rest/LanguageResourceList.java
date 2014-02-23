@@ -9,13 +9,13 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 @JsonRootName(value = "languages")
 public class LanguageResourceList {
 
-	private List<LanguageResource> languageResource;
+	private List<LanguageResource> languages;
 
 	public LanguageResourceList() {
 	}
 
-	public LanguageResourceList(List<LanguageResource> languageResource) {
-		this.setLanguageResource(languageResource);
+	public LanguageResourceList(List<LanguageResource> languages) {
+		this.setLanguages(languages);
 	}
 
 }

@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findPlantPartPhasesByPlantAndGrowthPhase" })
+@RooJpaActiveRecord(finders = { "findPlantPartPhasesByPlantAndGrowthPhase", "findPlantPartPhasesByPlantAndGrowthPhaseAndPlantPart" })
 public class PlantPartPhase {
 
     /**

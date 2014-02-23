@@ -9,12 +9,12 @@ import java.util.List;
 
 privileged aspect PlantPartResourceList_Roo_JavaBean {
     
-    public List<PlantPartResource> PlantPartResourceList.getPlantPartResources() {
-        return this.plantPartResources;
+    public List<PlantPartResource> PlantPartResourceList.getPlantParts() {
+        return this.plantParts;
     }
     
-    public void PlantPartResourceList.setPlantPartResources(List<PlantPartResource> plantPartResources) {
-        this.plantPartResources = plantPartResources;
+    public void PlantPartResourceList.setPlantParts(List<PlantPartResource> plantParts) {
+        this.plantParts = plantParts;
     }
     
 }

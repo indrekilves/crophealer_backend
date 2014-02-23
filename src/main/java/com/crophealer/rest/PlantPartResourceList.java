@@ -9,13 +9,13 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 @JsonRootName(value = "plantParts")
 public class PlantPartResourceList {
 
-	private List<PlantPartResource> plantPartResources;
+	private List<PlantPartResource> plantParts;
 
 	public PlantPartResourceList() {
 	}
 
-	public PlantPartResourceList(List<PlantPartResource> plantPartResources) {
-		this.setPlantPartResources(plantPartResources);
+	public PlantPartResourceList(List<PlantPartResource> plantParts) {
+		this.setPlantParts(plantParts);
 	}
 
 }

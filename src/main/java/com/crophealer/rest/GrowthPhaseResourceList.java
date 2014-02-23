@@ -9,13 +9,13 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 @JsonRootName(value = "growthPhases")
 public class GrowthPhaseResourceList {
 
-	private List<GrowthPhaseResource> growthPhaseResources;
+	private List<GrowthPhaseResource> growthPhases;
 
 	public GrowthPhaseResourceList() {
 	}
 
-	public GrowthPhaseResourceList(List<GrowthPhaseResource> growthPhaseResources) {
-		this.setGrowthPhaseResources(growthPhaseResources);
+	public GrowthPhaseResourceList(List<GrowthPhaseResource> growthPhases) {
+		this.setGrowthPhases(growthPhases);
 	}
 
 }

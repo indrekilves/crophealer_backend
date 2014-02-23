@@ -12,6 +12,4 @@ public class SymptomResource {
     private String description;  
     private String warning;   
     private SymptomPictureResourceList pictures;
-	private String comment;	
-	private String country;
 }

@@ -216,3 +216,9 @@ finder add findPlantPartTranslationsByLang
 focus --class ~.domain.PlantPartPhase
 finder list
 finder add findPlantPartPhasesByPlantAndGrowthPhase
+focus --class ~.domain.SymptomTranslation
+finder list
+finder add findSymptomTranslationsByLang
+focus --class ~.domain.PlantPartPhase
+finder list
+finder add findPlantPartPhasesByPlantAndGrowthPhaseAndPlantPart

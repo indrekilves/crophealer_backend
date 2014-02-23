@@ -8,13 +8,13 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 @JsonRootName(value = "symptomPictures")
 public class SymptomPictureResourceList {
 
-	private List<SymptomPictureResource> symptomPictureResource;
+	private List<SymptomPictureResource> symptomPictures;
 
 	public SymptomPictureResourceList() {
 	}
 
-	public SymptomPictureResourceList(List<SymptomPictureResource> symptomPictureResource) {
-		//TODO : set
+	public SymptomPictureResourceList(List<SymptomPictureResource> symptomPictures) {
+		this.setSymptomPictures(symptomPictures);
 	}
 
 }

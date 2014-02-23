@@ -9,12 +9,12 @@ import java.util.List;
 
 privileged aspect LanguageResourceList_Roo_JavaBean {
     
-    public List<LanguageResource> LanguageResourceList.getLanguageResource() {
-        return this.languageResource;
+    public List<LanguageResource> LanguageResourceList.getLanguages() {
+        return this.languages;
     }
     
-    public void LanguageResourceList.setLanguageResource(List<LanguageResource> languageResource) {
-        this.languageResource = languageResource;
+    public void LanguageResourceList.setLanguages(List<LanguageResource> languages) {
+        this.languages = languages;
     }
     
 }

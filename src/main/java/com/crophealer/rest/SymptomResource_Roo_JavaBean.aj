@@ -48,20 +48,4 @@ privileged aspect SymptomResource_Roo_JavaBean {
         this.pictures = pictures;
     }
     
-    public String SymptomResource.getComment() {
-        return this.comment;
-    }
-    
-    public void SymptomResource.setComment(String comment) {
-        this.comment = comment;
-    }
-    
-    public String SymptomResource.getCountry() {
-        return this.country;
-    }
-    
-    public void SymptomResource.setCountry(String country) {
-        this.country = country;
-    }
-    
 }

@@ -9,12 +9,12 @@ import java.util.List;
 
 privileged aspect GrowthPhaseResourceList_Roo_JavaBean {
     
-    public List<GrowthPhaseResource> GrowthPhaseResourceList.getGrowthPhaseResources() {
-        return this.growthPhaseResources;
+    public List<GrowthPhaseResource> GrowthPhaseResourceList.getGrowthPhases() {
+        return this.growthPhases;
     }
     
-    public void GrowthPhaseResourceList.setGrowthPhaseResources(List<GrowthPhaseResource> growthPhaseResources) {
-        this.growthPhaseResources = growthPhaseResources;
+    public void GrowthPhaseResourceList.setGrowthPhases(List<GrowthPhaseResource> growthPhases) {
+        this.growthPhases = growthPhases;
     }
     
 }

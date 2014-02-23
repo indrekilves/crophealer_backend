@@ -9,12 +9,12 @@ import java.util.List;
 
 privileged aspect SymptomPictureResourceList_Roo_JavaBean {
     
-    public List<SymptomPictureResource> SymptomPictureResourceList.getSymptomPictureResource() {
-        return this.symptomPictureResource;
+    public List<SymptomPictureResource> SymptomPictureResourceList.getSymptomPictures() {
+        return this.symptomPictures;
     }
     
-    public void SymptomPictureResourceList.setSymptomPictureResource(List<SymptomPictureResource> symptomPictureResource) {
-        this.symptomPictureResource = symptomPictureResource;
+    public void SymptomPictureResourceList.setSymptomPictures(List<SymptomPictureResource> symptomPictures) {
+        this.symptomPictures = symptomPictures;
     }
     
 }
