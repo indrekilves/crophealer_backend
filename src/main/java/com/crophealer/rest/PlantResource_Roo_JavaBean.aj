@@ -15,12 +15,20 @@ privileged aspect PlantResource_Roo_JavaBean {
         this.id = id;
     }
     
-    public String PlantResource.getComment() {
-        return this.comment;
+    public String PlantResource.getName() {
+        return this.name;
     }
     
-    public void PlantResource.setComment(String comment) {
-        this.comment = comment;
+    public void PlantResource.setName(String name) {
+        this.name = name;
+    }
+    
+    public String PlantResource.getDescription() {
+        return this.description;
+    }
+    
+    public void PlantResource.setDescription(String description) {
+        this.description = description;
     }
     
     public String PlantResource.getIconUrl() {

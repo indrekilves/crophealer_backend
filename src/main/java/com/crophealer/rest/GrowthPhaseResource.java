@@ -5,11 +5,12 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 
 @RooJavaBean 
-@JsonRootName(value = "plant")
-public class PlantResource {
+@JsonRootName(value = "growthPhase")
+public class GrowthPhaseResource {
 
 	private Long   id; 
 	private String name;
     private String description;   
     private String iconUrl;
+
 }

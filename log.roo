@@ -197,3 +197,22 @@ web mvc all --package ~.web
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-21 10:43:00
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-22 00:05:39
 security setup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-22 11:48:04
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-22 11:48:17
+focus --class ~.domain.PlantTranslation
+finder list
+finder add findPlantTranslationsByLang
+focus --class ~.domain.Languages
+focus --class ~.domain.Languages
+finder list
+finder add findLanguagesesByNameEquals
+focus --class ~.domain.GrowthPhaseTranslation
+finder list
+finder add findGrowthPhaseTranslationsByNameEquals
+finder add findGrowthPhaseTranslationsByLang
+focus --class ~.domain.PlantPartTranslation
+finder list
+finder add findPlantPartTranslationsByLang
+focus --class ~.domain.PlantPartPhase
+finder list
+finder add findPlantPartPhasesByPlantAndGrowthPhase

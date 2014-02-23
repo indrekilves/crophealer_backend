@@ -3,28 +3,36 @@ package com.crophealer.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.crophealer.domain.Languages;
 import com.crophealer.domain.Plant;
+import com.crophealer.domain.PlantTranslation;
 
 public class PlantResourceAssembler {
 
 	
 
-	public PlantResource toResource(Plant p) {
+	public PlantResource toResource(Plant p, Languages l) {
 		
 		PlantResource pr = new PlantResource();
 		pr.setId(p.getId());
-		pr.setComment(p.getComment());
 		pr.setIconUrl(p.getIconUrl());
+		if (l != null){
+			PlantTranslation pt = PlantTranslation.findPlantTranslationsByLang(l).getSingleResult();
+			if (pt != null){
+				pr.setName(pt.getName());
+				pr.setDescription(pt.getDescription());
+			}
+		}
 		return pr;
 	}
 
 	
-	public PlantResourceList toResource(List<Plant> pl) {
+	public PlantResourceList toResource(List<Plant> pl, Languages l) {
 		if (pl == null) return null;
 
 		List<PlantResource> prl = new ArrayList<PlantResource>();
 		for (Plant p : pl) {
-			prl.add(toResource(p));
+			prl.add(toResource(p, l));
 		}
 		
 		return new PlantResourceList(prl);
