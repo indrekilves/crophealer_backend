@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findPlantPartPhaseSymptomsBySymptom" })
 public class PlantPartPhaseSymptom {
 
     /**
