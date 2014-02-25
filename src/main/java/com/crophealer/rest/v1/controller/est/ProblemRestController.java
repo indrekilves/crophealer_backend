@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.rest.v1.ActiveIngredientResourceList;
 import com.crophealer.rest.v1.ProblemResource;
 import com.crophealer.rest.v1.ProblemResourceList;
 import com.crophealer.rest.v1.service.ProblemRestService;
@@ -45,5 +46,12 @@ public class ProblemRestController {
     	return problemRestService.getProblemsBySymptomsAndLanguage(symptomsCsv, estonian);
     }
 
+    
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/activeIngredients")
+	public ResponseEntity<ActiveIngredientResourceList> getActiveIngredients(@PathVariable("id") Long id)
+	{   	
+	    return problemRestService.getActiveIngredientsByLanguage(id, estonian);		
+	}
+    
 
 }
