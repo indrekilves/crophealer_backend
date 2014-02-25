@@ -26,7 +26,7 @@ import com.crophealer.rest.v1.SymptomResourceAssembler;
 import com.crophealer.rest.v1.SymptomResourceList;
 
 @Service
-public class PlantRestService {
+public class PlantRestService extends GenericRestService{
 
 	
 	public ResponseEntity<PlantResourceList> getAllPlantsByLanguage(Languages language){

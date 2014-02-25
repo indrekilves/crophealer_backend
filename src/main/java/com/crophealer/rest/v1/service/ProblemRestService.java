@@ -23,7 +23,7 @@ import com.crophealer.rest.v1.ProblemResourceAssembler;
 import com.crophealer.rest.v1.ProblemResourceList;
 
 @Service
-public class ProblemRestService {
+public class ProblemRestService extends GenericRestService {
 
 	
 	public ResponseEntity<ProblemResourceList> getAllProblemByLanguage(Languages language){

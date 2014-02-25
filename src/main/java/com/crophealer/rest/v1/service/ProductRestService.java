@@ -19,7 +19,7 @@ import com.crophealer.rest.v1.ResellerResourceAssembler;
 import com.crophealer.rest.v1.ResellerResourceList;
 
 @Service
-public class ProductRestService {
+public class ProductRestService extends GenericRestService {
 
 	
 	public ResponseEntity<ProductResourceList> getAllProductsByLanguage(Languages language) {

@@ -19,7 +19,7 @@ import com.crophealer.rest.v1.ProductResourceAssembler;
 import com.crophealer.rest.v1.ProductResourceList;
 
 @Service
-public class ActiveIngredientRestService {
+public class ActiveIngredientRestService extends GenericRestService {
 
 	
 	public ResponseEntity<ActiveIngredientResourceList> getAllActiveIngredientsByLanguage(Languages language) {

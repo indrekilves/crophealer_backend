@@ -1,6 +1,5 @@
 package com.crophealer.rest.v1.controller.est;
 
-import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.crophealer.domain.Languages;
 import com.crophealer.rest.v1.GrowthPhaseResourceList;
 import com.crophealer.rest.v1.PlantPartResourceList;
 import com.crophealer.rest.v1.PlantResource;
@@ -26,42 +24,36 @@ public class PlantRestController {
 	
 	@Autowired
 	private PlantRestService plantRestService;
-	private Languages estonian = getEstonian();
-	
-	private Languages getEstonian() {
-		TypedQuery<Languages> languages = Languages.findLanguagesesByNameEquals("Estonian");
-		return languages != null ? languages.getSingleResult() : null;
-	}
 	
 	
 	@RequestMapping(method = RequestMethod.GET)	
 	public ResponseEntity<PlantResourceList> getAllPlants(){
-	    return plantRestService.getAllPlantsByLanguage(estonian);		
+	    return plantRestService.getAllPlantsByLanguage(plantRestService.getEstonian());		
 	}
 	
 	
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
 	public ResponseEntity<PlantResource> getPlant(@PathVariable("id") Long id)
 	{   	
-	    return plantRestService.getPlantByLanguage(id, estonian);		
+	    return plantRestService.getPlantByLanguage(id, plantRestService.getEstonian());		
 	}
     
     
     @RequestMapping(method = RequestMethod.GET, value="/{id}/growthphases")
   	public ResponseEntity<GrowthPhaseResourceList> getAllGrowthPhasesForPlant(@PathVariable("id") Long id){
-    	return plantRestService.getAllGrowthPhasesForPlantByLanguage(id, estonian);
+    	return plantRestService.getAllGrowthPhasesForPlantByLanguage(id, plantRestService.getEstonian());
     }
     
     
     @RequestMapping(method = RequestMethod.GET, value="/{pId}/growthphases/{gpId}/plantparts")
 	public ResponseEntity<PlantPartResourceList> getAllPlantPartsForPlantInGrowthPhase(@PathVariable("pId") Long pId, @PathVariable("gpId") Long gpId){
-		return plantRestService.getAllPlantPartsForPlantInGrowthPhaseByLanguage(pId, gpId, estonian);
+		return plantRestService.getAllPlantPartsForPlantInGrowthPhaseByLanguage(pId, gpId, plantRestService.getEstonian());
 	}
     
     
 	@RequestMapping(method = RequestMethod.GET, value="/{pId}/growthphases/{gpId}/plantparts/{ppId}/symptoms")
 	public ResponseEntity<SymptomResourceList> getAllSymptomsForPlantPartAndGrowthPhaseAndPlant(@PathVariable("pId") Long pId, @PathVariable("gpId") Long gpId, @PathVariable("ppId") Long ppId){
-		return plantRestService.getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(pId, gpId, ppId, estonian);
+		return plantRestService.getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(pId, gpId, ppId, plantRestService.getEstonian());
 	}
 
 

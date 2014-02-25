@@ -1,7 +1,5 @@
 package com.crophealer.rest.v1.controller.est;
 
-import javax.persistence.TypedQuery;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.crophealer.domain.Languages;
 import com.crophealer.rest.v1.ProductResource;
 import com.crophealer.rest.v1.ProductResourceList;
 import com.crophealer.rest.v1.ResellerResourceList;
@@ -25,24 +22,18 @@ public class ProductRestController {
 	
 	@Autowired
 	private ProductRestService productRestService;
-	private Languages estonian = getEstonian();
-	
-	private Languages getEstonian() {
-		TypedQuery<Languages> languages = Languages.findLanguagesesByNameEquals("Estonian");
-		return languages != null ? languages.getSingleResult() : null;
-	}
 	
 	
 	@RequestMapping(method = RequestMethod.GET)	
 	public ResponseEntity<ProductResourceList> getAllProducts(){
-	    return productRestService.getAllProductsByLanguage(estonian);		
+	    return productRestService.getAllProductsByLanguage(productRestService.getEstonian());		
 	}
 	
 	
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
 	public ResponseEntity<ProductResource> getProduct(@PathVariable("id") Long id)
 	{   	
-	    return productRestService.getProductByLanguage(id, estonian);		
+	    return productRestService.getProductByLanguage(id, productRestService.getEstonian());		
 	}
     
     
@@ -50,7 +41,7 @@ public class ProductRestController {
     @RequestMapping(method = RequestMethod.GET, value="/{id}/resellers")
 	public ResponseEntity<ResellerResourceList> getResellerForProduct(@PathVariable("id") Long id)
 	{   	
-	    return productRestService.getResellerForProductByLanguage(id, estonian);		
+	    return productRestService.getResellerForProductByLanguage(id, productRestService.getEstonian());		
 	}
     
 
