@@ -1,5 +1,7 @@
 package com.crophealer.rest.v1.controller.est;
 
+import javax.persistence.TypedQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,17 +26,22 @@ public class ProblemRestController {
 	
 	@Autowired
 	private ProblemRestService problemRestService;
-	private Languages estonian = Languages.findLanguagesesByNameEquals("Estonian").getSingleResult();
+	private Languages estonian = getEstonian();
+		
+	private Languages getEstonian() {
+		TypedQuery<Languages> languages = Languages.findLanguagesesByNameEquals("Estonian");
+		return languages != null ? languages.getSingleResult() : null;
+	}
 
-	
 	
 	@RequestMapping(method = RequestMethod.GET)	
 	public ResponseEntity<ProblemResourceList> getAllProblems(){
 	    return problemRestService.getAllProblemByLanguage(estonian);		
 	}
+
 	
-	
-    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    
+	@RequestMapping(method = RequestMethod.GET, value="/{id}")
 	public ResponseEntity<ProblemResource> getProblem(@PathVariable("id") Long id)
 	{   	
 	    return problemRestService.getProblemByLanguage(id, estonian);		
