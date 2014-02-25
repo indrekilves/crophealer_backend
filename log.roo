@@ -236,3 +236,6 @@ finder list
 finder add findActiveIngredientTranslationsByLang
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-25 08:47:23
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-25 08:47:35
+focus --class ~.domain.ProductTranslation
+finder list
+finder add findProductTranslationsByLang
