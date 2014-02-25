@@ -13,4 +13,5 @@ public class ProductResource {
     private String description;   
     private String warning;
 	private String pictureUrl;
+	private ProducerResource producer;
 }

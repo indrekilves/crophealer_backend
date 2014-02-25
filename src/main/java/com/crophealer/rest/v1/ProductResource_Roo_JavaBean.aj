@@ -3,6 +3,7 @@
 
 package com.crophealer.rest.v1;
 
+import com.crophealer.rest.v1.ProducerResource;
 import com.crophealer.rest.v1.ProductResource;
 
 privileged aspect ProductResource_Roo_JavaBean {
@@ -45,6 +46,14 @@ privileged aspect ProductResource_Roo_JavaBean {
     
     public void ProductResource.setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
+    }
+    
+    public ProducerResource ProductResource.getProducer() {
+        return this.producer;
+    }
+    
+    public void ProductResource.setProducer(ProducerResource producer) {
+        this.producer = producer;
     }
     
 }

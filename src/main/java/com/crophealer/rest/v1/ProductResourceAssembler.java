@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.Producer;
 import com.crophealer.domain.Product;
 import com.crophealer.domain.ProductTranslation;
 
@@ -23,6 +24,11 @@ public class ProductResourceAssembler {
 				pr.setDescription(pt.getDescription());
 				pr.setWarning(pt.getWarning());
 			}
+		}
+		Producer producer = p.getProducer();
+		if (producer != null){
+			ProducerResourceAssembler asm = new ProducerResourceAssembler();
+			pr.setProducer(asm.toResource(producer));
 		}
 
 		return pr;
