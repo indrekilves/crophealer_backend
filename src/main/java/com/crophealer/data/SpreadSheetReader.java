@@ -39,6 +39,9 @@ public interface SpreadSheetReader
 		
 	public List<String> getRowAsArray(Integer rowNum);
 	
+	public List<String> getColumnAsArray(Integer columnNum);
+	
+	public List<String> getColumnAsArray(Integer columnNum, Integer fromRow);
 	
 
 

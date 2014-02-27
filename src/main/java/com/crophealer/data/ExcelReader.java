@@ -44,7 +44,7 @@ public class ExcelReader implements SpreadSheetReader
 
 	@Override
 	public Integer getLastColumn() {
-		return 18;
+		return 21;
 	}
 
 
@@ -58,7 +58,7 @@ public class ExcelReader implements SpreadSheetReader
 
 	@Override
 	public Integer getDiseaseLatinColumn() {
-		return 8;
+		return 7;
 	}
 
 
@@ -105,7 +105,7 @@ public class ExcelReader implements SpreadSheetReader
 	@Override
 	public Integer getHeaderRow() {
 		// TODO Auto-generated method stub
-		return 5;
+		return 4;
 	}
 	
 	
@@ -113,7 +113,7 @@ public class ExcelReader implements SpreadSheetReader
 	@Override
 	public Integer getCountryRow() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 2;
 	}
 
 
@@ -121,7 +121,7 @@ public class ExcelReader implements SpreadSheetReader
 	@Override
 	public Integer getLanguageRow() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 3;
 	}
 
 
@@ -158,10 +158,43 @@ public class ExcelReader implements SpreadSheetReader
 		HSSFSheet sheet = this.workBook.getSheetAt(this.getActiveSheetNum());
 		Row row = sheet.getRow(rowNum);    
 		
-		for(Cell cell : row) {              
-			rowArr.add(cell.getStringCellValue());
-		}     
+		for (int i = 0; i < this.getLastColumn(); i++) {
+			Cell c = row.getCell(i, Row.CREATE_NULL_AS_BLANK);
+			rowArr.add(c.getStringCellValue());
+		}
+		
 		return rowArr;
+	}
+	
+	
+	
+	public List<String> getColumnAsArray(Integer columnNum)
+	{
+		List<String> colArr = new ArrayList<String>();
+		HSSFSheet sheet = this.workBook.getSheetAt(this.getActiveSheetNum());
+		
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) 
+		{
+			Row row = sheet.getRow(i);
+			Cell c = row.getCell(columnNum, Row.CREATE_NULL_AS_BLANK);
+			colArr.add(c.getStringCellValue());
+		}
+		
+		return colArr;
+	}
+	
+	
+	public List<String> getColumnAsArray(Integer columnNum, Integer fromRow)
+	{
+		List<String> colArr = new ArrayList<String>();
+		List<String> fullArr = this.getColumnAsArray(columnNum);		
+		
+		for (int i = fromRow; i < fullArr.size(); i++) 
+		{
+			colArr.add(fullArr.get(i));
+		}
+		
+		return colArr;
 	}
 	
 	
