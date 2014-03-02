@@ -242,3 +242,23 @@ finder add findProductTranslationsByLang
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-02-28 00:09:26
 focus --class com.crophealer.domain.Languages
 finder list
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-02-28 01:34:46
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-03-02 16:17:31
+focus --class com.crophealer.domain.ActiveIngredient
+finder list
+finder add findActiveIngredientsByLatinNameEquals
+focus --class com.crophealer.domain.Product
+finder list
+// [failed] focus --class com.crophealer.domain.ProductLanguage
+focus --class com.crophealer.domain.ProductTranslation
+finder list
+finder add findProductTranslationsByNameEquals
+focus --class com.crophealer.domain.Producer
+finder list
+finder add findProducersByNameEquals
+focus --class com.crophealer.domain.Country
+finder list
+finder add findCountrysByNameEquals
+focus --class com.crophealer.domain.Reseller
+finder list
+finder add findResellersByNameEquals

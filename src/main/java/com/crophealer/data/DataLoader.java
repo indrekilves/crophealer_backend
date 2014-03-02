@@ -50,12 +50,38 @@ public class DataLoader
 		this.loadCountries();
 		this.loadLanguages();
 		this.loadPhases();
+		this.loadProducers();
+		this.loadResellers();
+		this.loadActiveIngredientsAndProducts();
 		// AIs
 		// Resellers
 		// Producers
 		// phases
 	}
 	
+
+	private void loadActiveIngredientsAndProducts() 
+	{
+		ActiveIngredientLoader ail = new ActiveIngredientLoader(this.ssReader);
+		ail.loadAIs();
+		ail.loadAITranslations();
+	}
+
+
+	private void loadResellers() {
+		ResellerLoader rl = new ResellerLoader(this.ssReader);
+		rl.loadResellers();		
+	}
+
+
+
+	private void loadProducers() 
+	{
+		ProducerLoader pl = new ProducerLoader(this.ssReader);
+		pl.loadProducers();
+	}
+
+
 
 	private void loadPhases() 
 	{
@@ -67,40 +93,17 @@ public class DataLoader
 
 	
 
-
-
 	private void loadCountries()
 	{
-		ssReader.setActiveSheetNum(0);
-		List<String> row = ssReader.getRowAsArray(ssReader.getCountryRow());
-		for (String s : row)
-		{
-			if (!s.isEmpty())
-			{
-				Country c = new Country();
-				c.setName(s);
-				c.persist();
-			}
-		}
+		CountryLoader cl = new CountryLoader(this.ssReader);
+		cl.loadCountries();
 	}
 	
 	
 	private void loadLanguages()
 	{
-		ssReader.setActiveSheetNum(0);
-		List<String> row = ssReader.getRowAsArray(ssReader.getLanguageRow());
-		
-		
-		for (int i = 0; i < row.size(); i++) 
-		{			
-			if (!row.get(i).isEmpty())
-			{
-				Languages l = new Languages();
-				l.setName(row.get(i));
-				l.setNativeName(row.get(++i));
-				l.persist();
-			}
-		}
+		LanguageLoader cl = new LanguageLoader(this.ssReader);
+		cl.loadLanguages();
 	}
 
 	

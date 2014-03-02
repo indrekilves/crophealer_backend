@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findResellersByNameEquals" })
 public class Reseller {
 
     /**

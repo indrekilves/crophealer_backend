@@ -18,4 +18,12 @@ privileged aspect ProductTranslation_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<ProductTranslation> ProductTranslation.findProductTranslationsByNameEquals(String name) {
+        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+        EntityManager em = ProductTranslation.entityManager();
+        TypedQuery<ProductTranslation> q = em.createQuery("SELECT o FROM ProductTranslation AS o WHERE o.name = :name", ProductTranslation.class);
+        q.setParameter("name", name);
+        return q;
+    }
+    
 }
