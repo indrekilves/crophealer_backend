@@ -36,6 +36,6 @@ public class Reseller {
 
     /**
      */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reseller")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reseller", orphanRemoval=true)
     private Set<ProductReseller> productResellers = new HashSet<ProductReseller>();
 }

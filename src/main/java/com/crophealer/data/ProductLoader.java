@@ -13,8 +13,6 @@ import com.crophealer.domain.Reseller;
 
 public class ProductLoader 
 {
-
-	
 	
 	public static Product loadProductWithDetails(String productName, String producerName, String resellerName)
 	{
@@ -26,7 +24,11 @@ public class ProductLoader
 		else
 		{
 			Product p = new Product();
-			p.setComment(productName + " - Estonian");			
+			p.setComment(productName + " - Estonian");
+			Producer producer = ProducerLoader.loadProducerByName(producerName);
+			p.setProducer(producer);
+			
+			p.persist();
 			
 			ProductTranslation pt = new ProductTranslation();
 			pt.setDescription(productName + " - Estonian");
@@ -34,10 +36,7 @@ public class ProductLoader
 			pt.setWarning("Keep out of raech of children.");
 			pt.setProduct(p);
 			//pt.setLang(Languages.f);
-			pt.persist();
-			
-			Producer producer = ProducerLoader.loadProducerByName(producerName);
-			p.setProducer(producer);
+			pt.persist();			
 			
 			Reseller reseller = ResellerLoader.loadResellerByName(resellerName);
 			
@@ -50,7 +49,7 @@ public class ProductLoader
 			pResellerSet.add(pr);
 			
 			p.setProductResellers(pResellerSet);
-			p.persist();
+			p.merge();
 			
 			return p;
 		}				

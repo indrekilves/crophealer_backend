@@ -9,15 +9,14 @@ import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.Product;
 
-public class ActiveIngredientLoader 
+public class ActiveIngredientLoader extends GenericLoader 
 {
-
-	private SpreadSheetReader ssReader;
+	protected Integer activeSheetNum = 1;
 	
 	public ActiveIngredientLoader(SpreadSheetReader ssReader)
 	{
-		this.ssReader = ssReader;
-		this.ssReader.setActiveSheetNum(1);
+		super(ssReader);
+		this.setActiveSheetNum(this.activeSheetNum);
 	}
 	
 	
@@ -28,6 +27,8 @@ public class ActiveIngredientLoader
 		for (int i = 0; i < ais.size(); i++) 
 		{
 			ActiveIngredient ai;
+			if (ais.get(i).isEmpty()) return;
+			
 			TypedQuery<ActiveIngredient> aiq = ActiveIngredient.findActiveIngredientsByLatinNameEquals(ais.get(i));
 			if (aiq.getResultList().size() > 0)
 			{

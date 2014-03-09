@@ -28,11 +28,11 @@ public class Plant {
 
     /**
      */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plant")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plant", orphanRemoval=true)
     private Set<PlantTranslation> translations = new HashSet<PlantTranslation>();
 
     /**
      */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plant")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plant", orphanRemoval=true)
     private Set<PlantPartPhase> plantPartPhases = new HashSet<PlantPartPhase>();
 }

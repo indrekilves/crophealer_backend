@@ -262,3 +262,11 @@ finder add findCountrysByNameEquals
 focus --class com.crophealer.domain.Reseller
 finder list
 finder add findResellersByNameEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-03-03 15:25:59
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-03-09 18:29:54
+focus --class com.crophealer.domain.Problem
+finder list
+finder add findProblemsByLatinNameEquals
+focus --class com.crophealer.domain.GrowthPhase
+finder list
+finder add findGrowthPhasesByCommentEquals

@@ -2,13 +2,35 @@ package com.crophealer.data;
 
 import java.util.List;
 
+import javax.naming.InitialContext;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.transaction.UserTransaction;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.mapping.Map;
 
+import com.crophealer.domain.ActiveIngredient;
+import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Plant;
+import com.crophealer.domain.Producer;
+import com.crophealer.domain.Product;
+import com.crophealer.domain.ProductReseller;
+import com.crophealer.domain.Reseller;
 
 public class DataLoader 
 {
@@ -46,6 +68,9 @@ public class DataLoader
 		this.ssReader.setFileName(this.fileName);
 		this.ssReader.loadWorkBook();
 		
+		DataCleaner dCleaner = new DataCleaner();
+		dCleaner.truncateAllTables();
+
 		// load capsulated data:
 		this.loadCountries();
 		this.loadLanguages();
@@ -53,12 +78,18 @@ public class DataLoader
 		this.loadProducers();
 		this.loadResellers();
 		this.loadActiveIngredientsAndProducts();
-		// AIs
-		// Resellers
-		// Producers
-		// phases
+		this.loadPlantWithPartsAndPhases();
 	}
+
 	
+	
+	private void loadPlantWithPartsAndPhases() 
+	{
+		PlantLoader pl = new PlantLoader(this.ssReader);
+		pl.loadPlants();
+	}
+
+
 
 	private void loadActiveIngredientsAndProducts() 
 	{

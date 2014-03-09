@@ -2,6 +2,7 @@ package com.crophealer.data;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import com.crophealer.domain.Country;
@@ -9,14 +10,14 @@ import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.GrowthPhaseTranslation;
 import com.crophealer.domain.Languages;
 
-public class GrowthPhaseLoader
+public class GrowthPhaseLoader extends GenericLoader
 {
-	private SpreadSheetReader ssReader;
-			
+	protected Integer activeSheetNum = 2;
+	
 	public GrowthPhaseLoader(SpreadSheetReader ssReader)
 	{
-		this.ssReader = ssReader;
-		this.ssReader.setActiveSheetNum(2);
+		super(ssReader);
+		this.setActiveSheetNum(this.activeSheetNum);
 	}
 	
 	
@@ -42,11 +43,17 @@ public class GrowthPhaseLoader
 		{
 			if ( !languageRow.get(i).isEmpty() )
 			{
-				Languages lang = Languages.findLanguagesesByNameEquals(languageRow.get(i)).getSingleResult();
-				List<String> names = ssReader.getColumnAsArray(i, 2);
-				List<String> descs = ssReader.getColumnAsArray(i + 1, 2);
-				this.loadTranslationsForLanguage(lang, names, descs);
-				
+				try
+				{
+					Languages lang = Languages.findLanguagesesByNameEquals(languageRow.get(i)).getSingleResult();
+					List<String> names = ssReader.getColumnAsArray(i, 2);
+					List<String> descs = ssReader.getColumnAsArray(i + 1, 2);
+					this.loadTranslationsForLanguage(lang, names, descs);
+				}
+				catch(Exception e)
+				{
+					//
+				}								
 			}
 		}
 		

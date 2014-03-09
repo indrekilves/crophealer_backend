@@ -4,18 +4,16 @@ import java.util.List;
 
 import com.crophealer.domain.Languages;
 
-public class LanguageLoader 
+public class LanguageLoader extends GenericLoader 
 {
 
-	
-	private SpreadSheetReader ssReader;
+	protected Integer activeSheetNum = 0;
 	
 	public LanguageLoader(SpreadSheetReader ssReader)
 	{
-		this.ssReader = ssReader;
-		this.ssReader.setActiveSheetNum(0);
+		super(ssReader);
+		this.setActiveSheetNum(this.activeSheetNum);
 	}
-	
 	
 		
 	public void loadLanguages()

@@ -176,8 +176,15 @@ public class ExcelReader implements SpreadSheetReader
 		for (int i = 0; i <= sheet.getLastRowNum(); i++) 
 		{
 			Row row = sheet.getRow(i);
-			Cell c = row.getCell(columnNum, Row.CREATE_NULL_AS_BLANK);
-			colArr.add(c.getStringCellValue());
+			if (row != null)
+			{
+				Cell c = row.getCell(columnNum, Row.CREATE_NULL_AS_BLANK);
+				colArr.add(c.getStringCellValue());
+			}
+			else
+			{
+				colArr.add("");
+			}
 		}
 		
 		return colArr;

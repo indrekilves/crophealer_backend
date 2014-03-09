@@ -7,34 +7,37 @@ import javax.persistence.TypedQuery;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.Producer;
 
-public class ProducerLoader 
+public class ProducerLoader extends GenericLoader 
 {
-
-	private SpreadSheetReader ssReader;
+	
+	protected Integer activeSheetNum = 3;
 	
 	public ProducerLoader(SpreadSheetReader ssReader)
 	{
-		this.ssReader = ssReader;
-		this.ssReader.setActiveSheetNum(3);
+		super(ssReader);
+		this.setActiveSheetNum(this.activeSheetNum);
 	}
 	
 	
 	public void loadProducers()
 	{
-        List<String> producerNames = this.ssReader.getColumnAsArray(0, 2);
+        List<String> producerNames = this.ssReader.getColumnAsArray(0, 3);
 		
 		for (int i = 0; i < producerNames.size(); i++) 
 		{
-			List<String> producerDetails = this.ssReader.getRowAsArray(3+i);
-			Producer p = new Producer();
-			p.setName(producerNames.get(i));
-			p.setEmail(producerDetails.get(1));
-			p.setContactPerson(producerDetails.get(2));
-			p.setPhone(producerDetails.get(3));
-			
-			Country c = CountryLoader.loadCountryByName(producerDetails.get(4));
-			p.setCountry(c);
-			p.persist();
+			if ( !producerNames.get(i).isEmpty() )
+			{
+				List<String> producerDetails = this.ssReader.getRowAsArray(3+i);
+				Producer p = new Producer();
+				p.setName(producerNames.get(i));
+				p.setEmail(producerDetails.get(1));
+				p.setContactPerson(producerDetails.get(2));
+				p.setPhone(producerDetails.get(3));
+				
+				Country c = CountryLoader.loadCountryByName(producerDetails.get(4));
+				p.setCountry(c);
+				p.persist();
+			}
 		}
 	}
 	

@@ -6,17 +6,15 @@ import javax.persistence.TypedQuery;
 
 import com.crophealer.domain.Country;
 
-public class CountryLoader 
+public class CountryLoader extends GenericLoader 
 {
-	
-	private SpreadSheetReader ssReader;
-	
+	protected Integer activeSheetNum = 0;
+
 	public CountryLoader(SpreadSheetReader ssReader)
 	{
-		this.ssReader = ssReader;
-		this.ssReader.setActiveSheetNum(0);
+		super(ssReader);
+		this.setActiveSheetNum(this.activeSheetNum);
 	}
-	
 	
 	
 	public void loadCountries()

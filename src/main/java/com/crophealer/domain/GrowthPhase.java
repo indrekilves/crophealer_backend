@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findGrowthPhasesByCommentEquals" })
 public class GrowthPhase {
 
     /**
