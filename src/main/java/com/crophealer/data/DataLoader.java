@@ -1,5 +1,7 @@
 package com.crophealer.data;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.naming.InitialContext;
@@ -20,6 +22,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.mapping.Map;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.ActiveIngredientProduct;
@@ -40,7 +46,14 @@ public class DataLoader
 
 	public void setFileName(String fileName) 
 	{
-		this.fileName = fileName;
+		this.fileName = this.getDatafileRelativePath();
+		//this.fileName = fileName;		
+	}
+	
+	
+	public String getDatafileRelativePath()
+	{
+		return "/data/diseases_base_cereals.xls";
 	}
 	
 	
@@ -78,12 +91,20 @@ public class DataLoader
 		this.loadProducers();
 		this.loadResellers();
 		this.loadActiveIngredientsAndProducts();
-		this.loadPlantWithPartsAndPhases();
+		this.loadPlants();
+		this.loadProblems();
 	}
 
 	
 	
-	private void loadPlantWithPartsAndPhases() 
+	private void loadProblems() {
+		ProblemLoader pl = new ProblemLoader(ssReader);
+		pl.loadProblems();		
+	}
+
+
+
+	private void loadPlants() 
 	{
 		PlantLoader pl = new PlantLoader(this.ssReader);
 		pl.loadPlants();

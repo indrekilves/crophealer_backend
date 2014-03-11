@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,7 +19,8 @@ public class ExcelReader implements SpreadSheetReader
 {
 	
 	private String fileName;
-	private FileInputStream stream;
+	//private FileInputStream stream;
+	private InputStream stream;
 	private HSSFWorkbook workBook;
 	private Integer activeSheetNum;
 	
@@ -129,7 +131,9 @@ public class ExcelReader implements SpreadSheetReader
 	{
 		try 
 		{
-			this.stream = new FileInputStream(new File(this.fileName));
+			//this.stream = new FileInputStream(new File(this.fileName));
+			this.stream = DataLoader.class.getResourceAsStream(this.fileName);
+			
 			this.workBook = new HSSFWorkbook(this.stream);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -144,10 +148,17 @@ public class ExcelReader implements SpreadSheetReader
 
 	public String getCellContent(Integer rowNum, Integer column)
 	{
-		HSSFSheet sheet = this.workBook.getSheetAt(this.getActiveSheetNum());
-		Row row = sheet.getRow(rowNum);    
-		Cell cell = row.getCell(column);
-		return cell.getStringCellValue();
+		String cellStr = "";
+		try
+		{
+			HSSFSheet sheet = this.workBook.getSheetAt(this.getActiveSheetNum());
+			Row row = sheet.getRow(rowNum);    
+			Cell cell = row.getCell(column);
+			cellStr = cell.getStringCellValue();
+		}
+		catch(Exception e)
+		{}
+		return cellStr;
 	}
 	
 	
@@ -204,6 +215,21 @@ public class ExcelReader implements SpreadSheetReader
 		return colArr;
 	}
 	
+	
+	
+	
+	public List<String> getColumnAsArray(Integer columnNum, Integer fromRow, Integer toRow)
+	{
+		List<String> colArr = new ArrayList<String>();
+		List<String> fullArr = this.getColumnAsArray(columnNum);		
+		
+		for (int i = fromRow; (i < fullArr.size() && i <= toRow ); i++) 
+		{
+			colArr.add(fullArr.get(i));
+		}
+		
+		return colArr;
+	}
 	
 	
 

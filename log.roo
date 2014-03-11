@@ -270,3 +270,21 @@ finder add findProblemsByLatinNameEquals
 focus --class com.crophealer.domain.GrowthPhase
 finder list
 finder add findGrowthPhasesByCommentEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-03-10 12:37:14
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-03-11 18:42:41
+focus --class com.crophealer.domain.Plant
+finder list
+finder add findPlantsByCommentEquals
+focus --class com.crophealer.domain.PlantPartPhase
+focus --class com.crophealer.domain.PlantPartPhase
+// [failed] finder list
+// [failed] finder list
+// [failed] finder list
+focus --class com.crophealer.domain.Plant
+// [failed] finder list
+// [failed] finder list
+finder list
+focus --class com.crophealer.domain.PlantPartPhaseProblem
+finder list
+focus --class com.crophealer.domain.PlantPartPhase
+finder list
