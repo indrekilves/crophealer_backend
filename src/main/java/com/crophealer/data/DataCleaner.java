@@ -10,6 +10,8 @@ import com.crophealer.domain.Languages;
 import com.crophealer.domain.Plant;
 import com.crophealer.domain.PlantPart;
 import com.crophealer.domain.PlantPartPhase;
+import com.crophealer.domain.PlantPartPhaseProblem;
+import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.PlantPartTranslation;
 import com.crophealer.domain.PlantTranslation;
 import com.crophealer.domain.Problem;
@@ -48,8 +50,20 @@ public class DataCleaner
 			reseller.flush();
 		}
 		
-		List<PlantPartPhase> ppps = PlantPartPhase.findAllPlantPartPhases();
-		for (PlantPartPhase plantPartPhase : ppps) {
+		List<PlantPartPhaseProblem> pppps = PlantPartPhaseProblem.findAllPlantPartPhaseProblems();
+		for (PlantPartPhaseProblem plantPartPhaseProblem : pppps) {
+			plantPartPhaseProblem.remove();
+			plantPartPhaseProblem.flush();
+		}
+		
+		List<PlantPartPhaseSymptom> ppps = PlantPartPhaseSymptom.findAllPlantPartPhaseSymptoms();
+		for (PlantPartPhaseSymptom plantPartPhaseSymptom : ppps) {
+			plantPartPhaseSymptom.remove();
+			plantPartPhaseSymptom.flush();		
+		}
+		
+		List<PlantPartPhase> ppp = PlantPartPhase.findAllPlantPartPhases();
+		for (PlantPartPhase plantPartPhase : ppp) {
 			plantPartPhase.remove();
 			plantPartPhase.flush();
 		}
