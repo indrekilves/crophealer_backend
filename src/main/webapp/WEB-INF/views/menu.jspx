@@ -107,5 +107,9 @@
             <menu:item id="i_symptompicture_new" messageCode="global_menu_new" url="/symptompictures?form" z="8+0/nid07i4+e4SmTnYbA/UOoNI="/>
             <menu:item id="i_symptompicture_list" messageCode="global_menu_list" url="/symptompictures?page=1&amp;size=${empty param.size ? 10 : param.size}" z="AdlbqIfN9hcsKwp3gTES7bmCLFw="/>
         </menu:category>
+        <menu:category id="c_growthphaseproduct" z="Yl6AiOO1TWX+6CRo8+Kt6fF0J68=">
+            <menu:item id="i_growthphaseproduct_new" messageCode="global_menu_new" url="/growthphaseproducts?form" z="229M5Q3Y4OlJXpjauYLpUImKfNw="/>
+            <menu:item id="i_growthphaseproduct_list" messageCode="global_menu_list" url="/growthphaseproducts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="yClBcaGSsA3XZGFVj1ZCQXxTcUA="/>
+        </menu:category>
     </menu:menu>
 </div>

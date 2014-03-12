@@ -5,6 +5,7 @@ package com.crophealer.web;
 
 import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.Country;
+import com.crophealer.domain.GrowthPhaseProduct;
 import com.crophealer.domain.Producer;
 import com.crophealer.domain.Product;
 import com.crophealer.domain.ProductReseller;
@@ -93,6 +94,7 @@ privileged aspect ProductController_Roo_Controller {
         uiModel.addAttribute("product", product);
         uiModel.addAttribute("activeingredientproducts", ActiveIngredientProduct.findAllActiveIngredientProducts());
         uiModel.addAttribute("countrys", Country.findAllCountrys());
+        uiModel.addAttribute("growthphaseproducts", GrowthPhaseProduct.findAllGrowthPhaseProducts());
         uiModel.addAttribute("producers", Producer.findAllProducers());
         uiModel.addAttribute("productresellers", ProductReseller.findAllProductResellers());
         uiModel.addAttribute("producttranslations", ProductTranslation.findAllProductTranslations());

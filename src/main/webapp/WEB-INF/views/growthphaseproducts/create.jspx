@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_crophealer_domain_GrowthPhaseProduct" modelAttribute="growthPhaseProduct" path="/growthphaseproducts" render="${empty dependencies}" z="bBrEvTxSwaDhG9jPTenzeB2JMxo=">
+        <field:input field="comment" id="c_com_crophealer_domain_GrowthPhaseProduct_comment" z="KZi6h9V3izlWOxwCZJZNjnblsYE="/>
+        <field:select field="product" id="c_com_crophealer_domain_GrowthPhaseProduct_product" itemValue="id" items="${products}" path="/products" z="V92euswDYVKYQQ5N9BaIZUUi2lI="/>
+        <field:select field="growthPhase" id="c_com_crophealer_domain_GrowthPhaseProduct_growthPhase" itemValue="id" items="${growthphases}" path="/growthphases" z="j8FHvPNrYaeDOJdDIuaZa+XoWbM="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_GrowthPhaseProduct" render="${not empty dependencies}" z="UoI7lPqjv2SWzAL6xCFrlhp9nDk="/>
+</div>

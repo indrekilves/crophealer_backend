@@ -9,6 +9,7 @@
             <table:column id="c_com_crophealer_domain_ProductTranslation_warning" property="warning" z="hyac0MfLziL9rRwV3noXOVjggc4="/>
             <table:column id="c_com_crophealer_domain_ProductTranslation_product" property="product" z="kqFjLVHnM9QsgDyYP+gc4esfBjU="/>
             <table:column id="c_com_crophealer_domain_ProductTranslation_lang" property="lang" z="Zb1KZGzklqyyuQ/QDKRIXDpPfVQ="/>
+            <table:column id="c_com_crophealer_domain_ProductTranslation_type" property="type" z="mtoqKWhsTWyFmE5Unq1+lBd2nm8="/>
         </table:table>
     </page:list>
 </div>

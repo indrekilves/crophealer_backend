@@ -8,5 +8,13 @@
         <field:textarea field="warning" id="c_com_crophealer_domain_ProductTranslation_warning" z="quqT7NoERA005XYfiBLGlZ9Ptmg="/>
         <field:select field="product" id="c_com_crophealer_domain_ProductTranslation_product" itemValue="id" items="${products}" path="/products" z="h5fNzKtH/MKbOx2shTliBU2FyVQ="/>
         <field:select field="lang" id="c_com_crophealer_domain_ProductTranslation_lang" itemValue="id" items="${languageses}" path="/languageses" z="RZpwzQM3gM3qQvsen/pzk4d4Zos="/>
+        <field:input field="type" id="c_com_crophealer_domain_ProductTranslation_type" z="oKyJXmREZw/OX2OwLAcBVN+MmFI="/>
+        <field:input field="usageRate" id="c_com_crophealer_domain_ProductTranslation_usageRate" z="QD8VmdKqfH3QFrk89QIKjp5TAzE="/>
+        <field:input field="activeIngredientRate" id="c_com_crophealer_domain_ProductTranslation_activeIngredientRate" z="Qvc01c6b1s9zxt8NstfW4Ye/9L0="/>
+        <field:input field="ppc" id="c_com_crophealer_domain_ProductTranslation_ppc" z="+TY4rXhQdRKa+w+pr049B61wR6M="/>
+        <field:input field="raintFastness" id="c_com_crophealer_domain_ProductTranslation_raintFastness" z="L9GxLqBTnoBFDc34E+okc8d/lYU="/>
+        <field:input field="formulation" id="c_com_crophealer_domain_ProductTranslation_formulation" z="mHnyclyXeLc03/CwdpYSPGI9mUM="/>
+        <field:input field="waterVolume" id="c_com_crophealer_domain_ProductTranslation_waterVolume" z="W27mBD12jcchgGuSC4bI/bxMQMc="/>
+        <field:input field="latestUsegeTimeSprayInterval" id="c_com_crophealer_domain_ProductTranslation_latestUsegeTimeSprayInterval" z="UBlXwKuLLFRwP9Wxo9xmWNmTMiM="/>
     </form:update>
 </div>

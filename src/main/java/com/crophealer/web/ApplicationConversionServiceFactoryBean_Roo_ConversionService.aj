@@ -8,6 +8,7 @@ import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.GrowthPhase;
+import com.crophealer.domain.GrowthPhaseProduct;
 import com.crophealer.domain.GrowthPhaseTranslation;
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Plant;
@@ -154,6 +155,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.GrowthPhase>() {
             public com.crophealer.domain.GrowthPhase convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), GrowthPhase.class);
+            }
+        };
+    }
+    
+    public Converter<GrowthPhaseProduct, String> ApplicationConversionServiceFactoryBean.getGrowthPhaseProductToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.GrowthPhaseProduct, java.lang.String>() {
+            public String convert(GrowthPhaseProduct growthPhaseProduct) {
+                return new StringBuilder().append(growthPhaseProduct.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, GrowthPhaseProduct> ApplicationConversionServiceFactoryBean.getIdToGrowthPhaseProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.GrowthPhaseProduct>() {
+            public com.crophealer.domain.GrowthPhaseProduct convert(java.lang.Long id) {
+                return GrowthPhaseProduct.findGrowthPhaseProduct(id);
+            }
+        };
+    }
+    
+    public Converter<String, GrowthPhaseProduct> ApplicationConversionServiceFactoryBean.getStringToGrowthPhaseProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.GrowthPhaseProduct>() {
+            public com.crophealer.domain.GrowthPhaseProduct convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), GrowthPhaseProduct.class);
             }
         };
     }
@@ -497,7 +522,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Product, String> ApplicationConversionServiceFactoryBean.getProductToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.Product, java.lang.String>() {
             public String convert(Product product) {
-                return new StringBuilder().append(product.getComment()).append(' ').append(product.getPictureUrl()).toString();
+                return new StringBuilder().append(product.getComment()).append(' ').append(product.getPictureUrl()).append(' ').append(product.getEfficiency()).append(' ').append(product.getRaintFastness()).toString();
             }
         };
     }
@@ -545,7 +570,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<ProductTranslation, String> ApplicationConversionServiceFactoryBean.getProductTranslationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ProductTranslation, java.lang.String>() {
             public String convert(ProductTranslation productTranslation) {
-                return new StringBuilder().append(productTranslation.getName()).append(' ').append(productTranslation.getDescription()).append(' ').append(productTranslation.getWarning()).toString();
+                return new StringBuilder().append(productTranslation.getName()).append(' ').append(productTranslation.getDescription()).append(' ').append(productTranslation.getWarning()).append(' ').append(productTranslation.getType()).toString();
             }
         };
     }
@@ -678,6 +703,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getGrowthPhaseToStringConverter());
         registry.addConverter(getIdToGrowthPhaseConverter());
         registry.addConverter(getStringToGrowthPhaseConverter());
+        registry.addConverter(getGrowthPhaseProductToStringConverter());
+        registry.addConverter(getIdToGrowthPhaseProductConverter());
+        registry.addConverter(getStringToGrowthPhaseProductConverter());
         registry.addConverter(getGrowthPhaseTranslationToStringConverter());
         registry.addConverter(getIdToGrowthPhaseTranslationConverter());
         registry.addConverter(getStringToGrowthPhaseTranslationConverter());
