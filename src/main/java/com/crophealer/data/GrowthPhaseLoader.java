@@ -24,11 +24,13 @@ public class GrowthPhaseLoader extends GenericLoader
 	public void loadPhaseCodes() 
 	{
 		List<String> codes = ssReader.getColumnAsArray(0);
+		List<String> urls  = ssReader.getColumnAsArray(1);
 		
 		for (int i = 2; i < codes.size(); i++) 
 		{
 			GrowthPhase gp = new GrowthPhase();
 			gp.setComment(codes.get(i));
+			gp.setIconUrl(urls.get(i));
 			gp.persist();
 		}
 		
