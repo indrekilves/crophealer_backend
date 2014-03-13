@@ -4,6 +4,7 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.Problem;
 import com.crophealer.domain.ProblemTranslation;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -14,6 +15,16 @@ privileged aspect ProblemTranslation_Roo_Finder {
         if (lang == null) throw new IllegalArgumentException("The lang argument is required");
         EntityManager em = ProblemTranslation.entityManager();
         TypedQuery<ProblemTranslation> q = em.createQuery("SELECT o FROM ProblemTranslation AS o WHERE o.lang = :lang", ProblemTranslation.class);
+        q.setParameter("lang", lang);
+        return q;
+    }
+    
+    public static TypedQuery<ProblemTranslation> ProblemTranslation.findProblemTranslationsByProblemAndLang(Problem problem, Languages lang) {
+        if (problem == null) throw new IllegalArgumentException("The problem argument is required");
+        if (lang == null) throw new IllegalArgumentException("The lang argument is required");
+        EntityManager em = ProblemTranslation.entityManager();
+        TypedQuery<ProblemTranslation> q = em.createQuery("SELECT o FROM ProblemTranslation AS o WHERE o.problem = :problem AND o.lang = :lang", ProblemTranslation.class);
+        q.setParameter("problem", problem);
         q.setParameter("lang", lang);
         return q;
     }

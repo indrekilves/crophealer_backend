@@ -3,12 +3,23 @@
 
 package com.crophealer.domain;
 
+import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.GrowthPhaseTranslation;
 import com.crophealer.domain.Languages;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 privileged aspect GrowthPhaseTranslation_Roo_Finder {
+    
+    public static TypedQuery<GrowthPhaseTranslation> GrowthPhaseTranslation.findGrowthPhaseTranslationsByGrowthPhaseAndLang(GrowthPhase growthPhase, Languages lang) {
+        if (growthPhase == null) throw new IllegalArgumentException("The growthPhase argument is required");
+        if (lang == null) throw new IllegalArgumentException("The lang argument is required");
+        EntityManager em = GrowthPhaseTranslation.entityManager();
+        TypedQuery<GrowthPhaseTranslation> q = em.createQuery("SELECT o FROM GrowthPhaseTranslation AS o WHERE o.growthPhase = :growthPhase AND o.lang = :lang", GrowthPhaseTranslation.class);
+        q.setParameter("growthPhase", growthPhase);
+        q.setParameter("lang", lang);
+        return q;
+    }
     
     public static TypedQuery<GrowthPhaseTranslation> GrowthPhaseTranslation.findGrowthPhaseTranslationsByLang(Languages lang) {
         if (lang == null) throw new IllegalArgumentException("The lang argument is required");

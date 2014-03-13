@@ -3,12 +3,23 @@
 
 package com.crophealer.domain;
 
+import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Languages;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 privileged aspect ActiveIngredientTranslation_Roo_Finder {
+    
+    public static TypedQuery<ActiveIngredientTranslation> ActiveIngredientTranslation.findActiveIngredientTranslationsByActiveIngredientAndLang(ActiveIngredient activeIngredient, Languages lang) {
+        if (activeIngredient == null) throw new IllegalArgumentException("The activeIngredient argument is required");
+        if (lang == null) throw new IllegalArgumentException("The lang argument is required");
+        EntityManager em = ActiveIngredientTranslation.entityManager();
+        TypedQuery<ActiveIngredientTranslation> q = em.createQuery("SELECT o FROM ActiveIngredientTranslation AS o WHERE o.activeIngredient = :activeIngredient AND o.lang = :lang", ActiveIngredientTranslation.class);
+        q.setParameter("activeIngredient", activeIngredient);
+        q.setParameter("lang", lang);
+        return q;
+    }
     
     public static TypedQuery<ActiveIngredientTranslation> ActiveIngredientTranslation.findActiveIngredientTranslationsByLang(Languages lang) {
         if (lang == null) throw new IllegalArgumentException("The lang argument is required");

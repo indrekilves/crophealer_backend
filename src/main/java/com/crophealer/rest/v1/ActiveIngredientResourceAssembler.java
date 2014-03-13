@@ -3,6 +3,8 @@ package com.crophealer.rest.v1;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Languages;
@@ -17,11 +19,14 @@ public class ActiveIngredientResourceAssembler {
 		air.setId(ai.getId());
 		air.setLatinName(ai.getLatinName());
 		if (language != null){
-			ActiveIngredientTranslation ait = ActiveIngredientTranslation.findActiveIngredientTranslationsByLang(language).getSingleResult();
-			if (ait != null){
-				air.setName(ait.getName());
-				air.setDescription(ait.getDescription());
-				air.setWarning(ait.getWarning());
+			TypedQuery<ActiveIngredientTranslation> tq = ActiveIngredientTranslation.findActiveIngredientTranslationsByActiveIngredientAndLang(ai, language);
+			if (tq != null){
+				ActiveIngredientTranslation ait = tq.getSingleResult();
+				if (ait != null){
+					air.setName(ait.getName());
+					air.setDescription(ait.getDescription());
+					air.setWarning(ait.getWarning());
+				}
 			}
 		}
 

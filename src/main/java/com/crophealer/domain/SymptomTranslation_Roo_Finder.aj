@@ -4,6 +4,7 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.Symptom;
 import com.crophealer.domain.SymptomTranslation;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -14,6 +15,16 @@ privileged aspect SymptomTranslation_Roo_Finder {
         if (lang == null) throw new IllegalArgumentException("The lang argument is required");
         EntityManager em = SymptomTranslation.entityManager();
         TypedQuery<SymptomTranslation> q = em.createQuery("SELECT o FROM SymptomTranslation AS o WHERE o.lang = :lang", SymptomTranslation.class);
+        q.setParameter("lang", lang);
+        return q;
+    }
+    
+    public static TypedQuery<SymptomTranslation> SymptomTranslation.findSymptomTranslationsBySymptomAndLang(Symptom symptom, Languages lang) {
+        if (symptom == null) throw new IllegalArgumentException("The symptom argument is required");
+        if (lang == null) throw new IllegalArgumentException("The lang argument is required");
+        EntityManager em = SymptomTranslation.entityManager();
+        TypedQuery<SymptomTranslation> q = em.createQuery("SELECT o FROM SymptomTranslation AS o WHERE o.symptom = :symptom AND o.lang = :lang", SymptomTranslation.class);
+        q.setParameter("symptom", symptom);
         q.setParameter("lang", lang);
         return q;
     }
