@@ -334,3 +334,6 @@ focus --class ~.domain.ProductTranslation
 finder list
 finder add findProductTranslationsByProductAndLang
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-03-13 13:30:32
+focus --class com.crophealer.domain.PlantPart
+finder list
+finder add findPlantPartsByCommentEquals

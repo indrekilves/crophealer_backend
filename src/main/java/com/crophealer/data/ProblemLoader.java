@@ -105,7 +105,7 @@ public class ProblemLoader extends GenericLoader
 		}
 		
 		List<GrowthPhase> phases   = this.getPhasesForProblem(problem, pRow);
-		List<PlantPart> plantParts = this.loadAndGetPlantPartForProblem(pRow);
+		List<PlantPart> plantParts = this.loadAndGetPlantPartsForProblem(pRow);
 		List<Plant>		plants	   = this.getPlantsForProblem(problem, pRow);
 		List<Symptom>	symptoms   = this.loadAndGetSymptomsForProblem(problem, pRow);
 		
@@ -202,8 +202,8 @@ public class ProblemLoader extends GenericLoader
 		for (Map.Entry<String, Integer> countryCol : countryCols.entrySet()) 
 		{
 			Integer countryColNum = countryCol.getValue();
-			if(countryColNum.equals(baseCountryCol))
-					continue;
+//			if(countryColNum.equals(baseCountryCol))
+//					continue;
 			
 			// add symptom translations
 			String symptomTransStr = ssReader.getCellContent(sympRow, countryColNum + symptomOS);
@@ -356,7 +356,7 @@ public class ProblemLoader extends GenericLoader
 		
 		for (int i = 0; i < problemRows.size(); i++) 
 		{
-			Integer realRowNum = i+this.problemsStartRow;
+			Integer realRowNum = i+curProblemRow+1;
 			String pLatinName = problemRows.get(i);
 			
 			if ( !pLatinName.isEmpty() )
@@ -380,7 +380,7 @@ public class ProblemLoader extends GenericLoader
 				continue;
 			try
 			{
-				String phaseF = "F" + phaseStr;
+				String phaseF = "F" + phaseStr.trim();
 				GrowthPhase phase = GrowthPhase.findGrowthPhasesByCommentEquals(phaseF).getSingleResult();
 				phaseList.add(phase);
 			}
@@ -391,18 +391,31 @@ public class ProblemLoader extends GenericLoader
 		return phaseList;
 	}
 	
-	private List<PlantPart> loadAndGetPlantPartForProblem(int row)
+	private List<PlantPart> loadAndGetPlantPartsForProblem(int row)
 	{
 		List<PlantPart> ppList = new ArrayList<PlantPart>();
-
+		
+		Integer firstPPColumn = this.getFirstTypeColumn(plantPartOS);
+		
+		if (firstPPColumn == null) return ppList;
+		
+		String basePlantPartStr = ssReader.getCellContent(row, firstPPColumn);
+		PlantPart existingPP = PlantPart.getSinglePlantPartByName(basePlantPartStr);
+		
+		if (existingPP != null)
+		{
+			ppList.add(existingPP);
+			return ppList;
+		}
+		
 		// firstone will be root plant
 		PlantPart pp = new PlantPart();
 
 		for (Map.Entry<String, Integer> countryCol : countryCols.entrySet()) 
 		{
 			Integer countryColNum = countryCol.getValue();
-			String plantPartStr = ssReader.getCellContent(row, countryColNum + plantPartOS);
-						
+			String plantPartStr = ssReader.getCellContent(row, countryColNum + plantPartOS);	
+		
 			if (pp.getComment() == null)
 			{
 				pp.setComment(plantPartStr);
@@ -423,6 +436,33 @@ public class ProblemLoader extends GenericLoader
 		}
 
 		return ppList;
+	}
+	
+	
+	private Boolean plantPartExistsByName(String ppName)
+	{
+		if (ppName.isEmpty())
+			return false;
+		
+		PlantPart existingPP = PlantPart.getSinglePlantPartByName(ppName);
+		if (existingPP != null)
+		{
+			return true;
+		}
+		else
+			return false;
+				
+	}
+	
+	
+	private Integer getFirstTypeColumn(Integer offSet)
+	{
+		for (Map.Entry<String, Integer> countryCol : countryCols.entrySet()) 
+		{
+			Integer countryColNum = countryCol.getValue();		
+			return countryColNum + offSet;		
+		}
+		return null;
 	}
 
 

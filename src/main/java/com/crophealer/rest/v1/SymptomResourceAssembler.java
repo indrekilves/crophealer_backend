@@ -19,7 +19,9 @@ public class SymptomResourceAssembler {
 		sr.setId(s.getId());
 		if (language != null){
 			TypedQuery<SymptomTranslation> tq = SymptomTranslation.findSymptomTranslationsBySymptomAndLang(s, language);
-			if (tq != null){
+			//if (tq != null){
+			if (tq.getResultList().size() > 0)
+			{
 				SymptomTranslation st = tq.getSingleResult();
 				if (st != null){
 					sr.setName(st.getName());
