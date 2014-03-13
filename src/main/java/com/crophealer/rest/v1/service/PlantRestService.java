@@ -130,7 +130,7 @@ public class PlantRestService extends GenericRestService{
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
 		}
-		System.out.println("getAllPlantPartsForPlantInGrowthPhaseByLanguage - found (Plant):" + plant.toString());
+		System.out.println("getAllPlantPartsForPlantInGrowthPhaseByLanguage - found (Plant):" + plant.getComment());
 	
 		
 		// Get GrowthPhase
@@ -139,7 +139,7 @@ public class PlantRestService extends GenericRestService{
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
 		}	
-		System.out.println("getAllPlantPartsForPlantInGrowthPhaseByLanguage - found (GrowthPhase):" + growthPhase.toString());
+		System.out.println("getAllPlantPartsForPlantInGrowthPhaseByLanguage - found (GrowthPhase):" + growthPhase.getComment());
 
 		
 		// Get PlantPartPhase
@@ -148,7 +148,7 @@ public class PlantRestService extends GenericRestService{
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
 		}
-		System.out.println("getAllPlantPartsForPlantInGrowthPhaseByLanguage - found (PlantPartPhase):" + plantPartPhases.toString());
+		//System.out.println("getAllPlantPartsForPlantInGrowthPhaseByLanguage - found (PlantPartPhase):" + plantPartPhases.get);
 		
 		
 		// Get PlantParts
@@ -161,7 +161,7 @@ public class PlantRestService extends GenericRestService{
 				}
 			}
 		}
-		System.out.println("getAllPlantPartsForPlantInGrowthPhaseByLanguage - found (Plant Parts):" + plantParts.toString());
+		//System.out.println("getAllPlantPartsForPlantInGrowthPhaseByLanguage - found (Plant Parts):" + plantParts.toString());
 
 		
     	PlantPartResourceAssembler asm = new PlantPartResourceAssembler();
@@ -189,7 +189,7 @@ public class PlantRestService extends GenericRestService{
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
 		}
-		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (Plant):" + plant.toString());
+		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (Plant):" + plant.getComment());
 	
 		
 		// GetGrowthPhase
@@ -198,7 +198,7 @@ public class PlantRestService extends GenericRestService{
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
 		}
-		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (GrowthPhase):" + growthPhase.toString());
+		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (GrowthPhase):" + growthPhase.getComment());
 
 		// GetPlantPart
 		PlantPart plantPart = PlantPart.findPlantPart(ppId);
@@ -206,7 +206,7 @@ public class PlantRestService extends GenericRestService{
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
 		}
-		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (PlantPart):" + plantPart.toString());
+		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (PlantPart):" + plantPart.getComment());
 
 		
 		// GetPlantPartPhase
@@ -215,7 +215,7 @@ public class PlantRestService extends GenericRestService{
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
 		}
-		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (plantPartPhases):" + plantPartPhases.toString());
+		//System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (plantPartPhases):" + plantPartPhases.toString());
 		
 		
 		// GetSymptoms
@@ -232,7 +232,7 @@ public class PlantRestService extends GenericRestService{
 			}
 
 		}
-		System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (Symptoms):" + symptoms.toString());
+		//System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage - found (Symptoms):" + symptoms.toString());
 
     	
     	SymptomResourceAssembler asm = new SymptomResourceAssembler();
