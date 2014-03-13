@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findActiveIngredientTranslationsByLang" })
+@RooJpaActiveRecord(finders = { "findActiveIngredientTranslationsByLang", "findActiveIngredientTranslationsByActiveIngredientAndLang" })
 public class ActiveIngredientTranslation {
 
     /**

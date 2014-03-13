@@ -3,6 +3,8 @@ package com.crophealer.rest.v1;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Symptom;
 import com.crophealer.domain.SymptomTranslation;
@@ -16,12 +18,15 @@ public class SymptomResourceAssembler {
 		SymptomResource sr = new SymptomResource();
 		sr.setId(s.getId());
 		if (language != null){
-			SymptomTranslation st = SymptomTranslation.findSymptomTranslationsByLang(language).getSingleResult();
-			if (st != null){
-				sr.setName(st.getName());
-				sr.setDescription(st.getDescription());
-				sr.setWarning(st.getWarning());
-			}
+			TypedQuery<SymptomTranslation> tq = SymptomTranslation.findSymptomTranslationsBySymptomAndLang(s, language);
+			if (tq != null){
+				SymptomTranslation st = tq.getSingleResult();
+				if (st != null){
+					sr.setName(st.getName());
+					sr.setDescription(st.getDescription());
+					sr.setWarning(st.getWarning());
+				}
+			}	
 		}
 
 		SymptomPictureResourceAssembler spAsm = new SymptomPictureResourceAssembler();

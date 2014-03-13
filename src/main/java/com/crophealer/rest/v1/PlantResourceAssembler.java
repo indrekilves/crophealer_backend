@@ -19,14 +19,13 @@ public class PlantResourceAssembler {
 		pr.setId(p.getId());
 		pr.setIconUrl(p.getIconUrl());
 		if (l != null){
-			//PlantTranslation pt = PlantTranslation.findPlantTranslationsByLang(l).getSingleResult();
-			
-			TypedQuery<PlantTranslation> tpq = PlantTranslation.findPlantTranslationsByPlantAndLang(p, l);
-			PlantTranslation pt = tpq.getSingleResult();
-			
-			if (pt != null){
-				pr.setName(pt.getName());
-				pr.setDescription(pt.getDescription());
+			TypedQuery<PlantTranslation> tq = PlantTranslation.findPlantTranslationsByPlantAndLang(p, l);
+			if (tq != null){
+				PlantTranslation pt = tq.getSingleResult();
+				if (pt != null){
+					pr.setName(pt.getName());
+					pr.setDescription(pt.getDescription());
+				}
 			}
 		}
 		return pr;

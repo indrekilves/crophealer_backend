@@ -308,8 +308,28 @@ field string --fieldName waterVolume
 field string --fieldName latestUsegeTimeSprayInterval
 // script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
 web mvc all --package ~.web 
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-03-13 11:49:37
-focus --class com.crophealer.domain.PlantTranslation
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-03-12 10:48:04
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-03-13 12:20:27
+// [failed] focus --class ~domain.PlantTranslations
+// [failed] finder list
+focus --class ~domain.PlantTranslation
 finder list
 finder add findPlantTranslationsByPlantAndLang
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-03-13 11:57:00
+focus --class ~.domain.GrowthPhaseTranslation
+finder list
+finder add findGrowthPhaseTranslationsByGrowthPhaseAndLang
+focus --class ~.domain.PlantPartTranslation
+finder list
+finder add findPlantPartTranslationsByPlantPartAndLang
+focus --class ~.domain.SymptomTranslation
+finder list
+finder add findSymptomTranslationsBySymptomAndLang
+focus --class ~.domain.ProblemTranslation
+finder list 
+finder add findProblemTranslationsByProblemAndLang
+focus --class ~.domain.ActiveIngredientTranslation
+finder list
+finder add findActiveIngredientTranslationsByActiveIngredientAndLang
+focus --class ~.domain.ProductTranslation
+finder list
+finder add findProductTranslationsByProductAndLang

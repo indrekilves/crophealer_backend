@@ -3,6 +3,8 @@ package com.crophealer.rest.v1;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.GrowthPhaseTranslation;
 import com.crophealer.domain.Languages;
@@ -17,11 +19,14 @@ public class GrowthPhaseResourceAssembler {
 		gpr.setId(gp.getId());
 		gpr.setIconUrl(gp.getIconUrl());
 		if (l != null){
-			GrowthPhaseTranslation gpt = GrowthPhaseTranslation.findGrowthPhaseTranslationsByLang(l).getSingleResult();
-			if (gpt != null){
-				gpr.setName(gpt.getName());
-				gpr.setDescription(gpt.getDescription());
-			}
+			TypedQuery<GrowthPhaseTranslation> tq = GrowthPhaseTranslation.findGrowthPhaseTranslationsByGrowthPhaseAndLang(gp, l);
+			if (tq != null){
+				GrowthPhaseTranslation gpt = tq.getSingleResult();
+				if (gpt != null){
+					gpr.setName(gpt.getName());
+					gpr.setDescription(gpt.getDescription());
+				}
+			}	
 		}
 		return gpr;
 	}

@@ -4,6 +4,7 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.Product;
 import com.crophealer.domain.ProductTranslation;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -23,6 +24,16 @@ privileged aspect ProductTranslation_Roo_Finder {
         EntityManager em = ProductTranslation.entityManager();
         TypedQuery<ProductTranslation> q = em.createQuery("SELECT o FROM ProductTranslation AS o WHERE o.name = :name", ProductTranslation.class);
         q.setParameter("name", name);
+        return q;
+    }
+    
+    public static TypedQuery<ProductTranslation> ProductTranslation.findProductTranslationsByProductAndLang(Product product, Languages lang) {
+        if (product == null) throw new IllegalArgumentException("The product argument is required");
+        if (lang == null) throw new IllegalArgumentException("The lang argument is required");
+        EntityManager em = ProductTranslation.entityManager();
+        TypedQuery<ProductTranslation> q = em.createQuery("SELECT o FROM ProductTranslation AS o WHERE o.product = :product AND o.lang = :lang", ProductTranslation.class);
+        q.setParameter("product", product);
+        q.setParameter("lang", lang);
         return q;
     }
     

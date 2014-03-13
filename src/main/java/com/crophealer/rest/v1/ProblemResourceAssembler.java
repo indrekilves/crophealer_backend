@@ -3,6 +3,8 @@ package com.crophealer.rest.v1;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Problem;
 import com.crophealer.domain.ProblemTranslation;
@@ -17,11 +19,14 @@ public class ProblemResourceAssembler {
 		pr.setId(p.getId());
 		pr.setLatinName(p.getLatinName());
 		if (language != null){
-			ProblemTranslation pt = ProblemTranslation.findProblemTranslationsByLang(language).getSingleResult();
-			if (pt != null){
-				pr.setName(pt.getName());
-				pr.setDescription(pt.getDescription());
-				pr.setWarning(pt.getWarning());
+			TypedQuery<ProblemTranslation> tq = ProblemTranslation.findProblemTranslationsByProblemAndLang(p, language);
+			if (tq != null){
+				ProblemTranslation pt = tq.getSingleResult();
+				if (pt != null){
+					pr.setName(pt.getName());
+					pr.setDescription(pt.getDescription());
+					pr.setWarning(pt.getWarning());
+				}
 			}
 		}
 

@@ -4,6 +4,7 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.PlantPart;
 import com.crophealer.domain.PlantPartTranslation;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -14,6 +15,16 @@ privileged aspect PlantPartTranslation_Roo_Finder {
         if (lang == null) throw new IllegalArgumentException("The lang argument is required");
         EntityManager em = PlantPartTranslation.entityManager();
         TypedQuery<PlantPartTranslation> q = em.createQuery("SELECT o FROM PlantPartTranslation AS o WHERE o.lang = :lang", PlantPartTranslation.class);
+        q.setParameter("lang", lang);
+        return q;
+    }
+    
+    public static TypedQuery<PlantPartTranslation> PlantPartTranslation.findPlantPartTranslationsByPlantPartAndLang(PlantPart plantPart, Languages lang) {
+        if (plantPart == null) throw new IllegalArgumentException("The plantPart argument is required");
+        if (lang == null) throw new IllegalArgumentException("The lang argument is required");
+        EntityManager em = PlantPartTranslation.entityManager();
+        TypedQuery<PlantPartTranslation> q = em.createQuery("SELECT o FROM PlantPartTranslation AS o WHERE o.plantPart = :plantPart AND o.lang = :lang", PlantPartTranslation.class);
+        q.setParameter("plantPart", plantPart);
         q.setParameter("lang", lang);
         return q;
     }
