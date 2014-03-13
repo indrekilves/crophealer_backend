@@ -337,3 +337,8 @@ finder add findProductTranslationsByProductAndLang
 focus --class com.crophealer.domain.PlantPart
 finder list
 finder add findPlantPartsByCommentEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-03-13 16:04:16
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-03-13 19:19:36
+focus --class com.crophealer.domain.Problem
+finder list
+finder add findProblemsByLatinNameEquals

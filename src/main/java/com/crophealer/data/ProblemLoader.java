@@ -167,7 +167,9 @@ public class ProblemLoader extends GenericLoader
 		List<Symptom> symptomList = new ArrayList<Symptom>();
 		Integer nextProblemRow = this.getNextProblemRowNum(pRow);
 		
-		Boolean loopOnce = true;
+		if (nextProblemRow == null) 
+			return symptomList;
+		
 		for (Map.Entry<String, Integer> countryCol : countryCols.entrySet()) 
 		{
 			Integer countryColNum = countryCol.getValue();
@@ -180,8 +182,8 @@ public class ProblemLoader extends GenericLoader
 				symptomList.add(symp);	
 			}
 			
-			if (loopOnce)
-				break;
+			// only loop once
+			break;
 		}
 
 		return symptomList;				
@@ -354,6 +356,10 @@ public class ProblemLoader extends GenericLoader
 	{
 		List<String> problemRows = this.ssReader.getColumnAsArray(this.latinNameColNum, curProblemRow+1);
 		
+		if (problemRows.size() <= 0) 
+		{
+			return null;
+		}		
 		for (int i = 0; i < problemRows.size(); i++) 
 		{
 			Integer realRowNum = i+curProblemRow+1;

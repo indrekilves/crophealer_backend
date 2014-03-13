@@ -29,13 +29,17 @@ import org.springframework.core.io.Resource;
 
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.ActiveIngredientProduct;
+import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Plant;
+import com.crophealer.domain.Problem;
+import com.crophealer.domain.ProblemActiveIngredient;
 import com.crophealer.domain.Producer;
 import com.crophealer.domain.Product;
 import com.crophealer.domain.ProductReseller;
+import com.crophealer.domain.ProductTranslation;
 import com.crophealer.domain.Reseller;
 
 public class DataLoader 
@@ -93,10 +97,119 @@ public class DataLoader
 		this.loadActiveIngredientsAndProducts();
 		this.loadPlants();
 		this.loadProblems();
+		this.loadTempDemoData();
 	}
 
 	
 	
+	private void loadTempDemoData() {
+		this.loadAarislaiksus();
+		this.loadHelelaiksus();
+	}
+	
+	private void loadHelelaiksus() {
+		Country country = Country.getSingleCountryByName("Estonia");
+		Languages lang = Languages.getSingleLanguageByName("Estonian");
+		
+		// äärislaiksus
+		ActiveIngredient ai = new ActiveIngredient();
+		ai.setComment("pikoksüstrobiin");
+		ai.setCountry(country);
+		ai.setLatinName("picoxystrobin");
+		ai.persist();
+		
+		ActiveIngredientTranslation aiTrans = new ActiveIngredientTranslation();
+		aiTrans.setActiveIngredient(ai);
+		aiTrans.setLang(lang);
+		aiTrans.setName(ai.getComment());
+		aiTrans.persist();
+				
+		Product product = new Product();
+		product.setComment("Acanto 250 SC");
+		product.setEfficiency((long) 5);
+		product.setRaintFastness("2");
+		product.persist();
+		
+		ActiveIngredientProduct aip = new ActiveIngredientProduct();
+		aip.setActiveIngredient(ai);
+		aip.setProduct(product);
+		aip.setComment(ai.getLatinName() + " - "  + product.getComment() );
+		aip.persist();
+				
+		ProductTranslation productTrans = new ProductTranslation();
+		productTrans.setName("Acanto 250 SC");
+		productTrans.setProduct(product);
+		productTrans.setWaterVolume("100-300 (optim. 200)");
+		productTrans.setType("fungitsiid");
+		productTrans.setLang(lang);
+		productTrans.setWarning("Parim on piirduda ühe strobiluriinide rühma fungitsiidi pritsega hooajal. Parim aeg pritsimiseks lipulehe faasis.");
+		productTrans.setActiveIngredientRate("250");
+		productTrans.setLatestUsegeTimeSprayInterval("35/14");
+		productTrans.persist();
+		
+		Problem problem = Problem.getSingleProblemByLatinName("Septoria tritici, Septoria nodorum");
+		
+		ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
+		problemAI.setActiveIngredient(ai);
+		problemAI.setProblem(problem);
+		problemAI.setComment(problem.getLatinName() + " - " + ai.getComment());
+		problemAI.persist();
+	}
+	
+
+	
+	private void loadAarislaiksus()
+	{
+		Country country = Country.getSingleCountryByName("Estonia");
+		Languages lang = Languages.getSingleLanguageByName("Estonian");
+		
+		// äärislaiksus
+		ActiveIngredient ai = new ActiveIngredient();
+		ai.setComment("pikoksüstrobiin");
+		ai.setCountry(country);
+		ai.setLatinName("picoxystrobin");
+		ai.persist();
+		
+		ActiveIngredientTranslation aiTrans = new ActiveIngredientTranslation();
+		aiTrans.setActiveIngredient(ai);
+		aiTrans.setLang(lang);
+		aiTrans.setName(ai.getComment());
+		aiTrans.persist();
+				
+		Product product = new Product();
+		product.setComment("Acanto 250 SC");
+		product.setEfficiency((long) 5);
+		product.setRaintFastness("2");
+		product.persist();
+		
+		ActiveIngredientProduct aip = new ActiveIngredientProduct();
+		aip.setActiveIngredient(ai);
+		aip.setProduct(product);
+		aip.setComment(ai.getLatinName() + " - "  + product.getComment() );
+		aip.persist();
+				
+		ProductTranslation productTrans = new ProductTranslation();
+		productTrans.setName("Acanto 250 SC");
+		productTrans.setProduct(product);
+		productTrans.setWaterVolume("100-300 (optim. 200)");
+		productTrans.setType("fungitsiid");
+		productTrans.setLang(lang);
+		productTrans.setWarning("Parim on piirduda ühe strobiluriinide rühma fungitsiidi pritsega hooajal. Parim aeg pritsimiseks lipulehe faasis.");
+		productTrans.setActiveIngredientRate("250");
+		productTrans.setLatestUsegeTimeSprayInterval("35/14");
+		productTrans.persist();
+		
+		Problem problem = Problem.getSingleProblemByLatinName("Rhynchosporium graminicola, Rhynchosporium secalis");
+		
+		ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
+		problemAI.setActiveIngredient(ai);
+		problemAI.setProblem(problem);
+		problemAI.setComment(problem.getLatinName() + " - " + ai.getComment());
+		problemAI.persist();
+		
+
+	}
+
 	private void loadProblems() {
 		ProblemLoader pl = new ProblemLoader(ssReader);
 		pl.loadProblems();		

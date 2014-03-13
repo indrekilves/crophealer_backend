@@ -15,10 +15,12 @@ import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.PlantPartTranslation;
 import com.crophealer.domain.PlantTranslation;
 import com.crophealer.domain.Problem;
+import com.crophealer.domain.ProblemActiveIngredient;
 import com.crophealer.domain.ProblemTranslation;
 import com.crophealer.domain.Producer;
 import com.crophealer.domain.Product;
 import com.crophealer.domain.ProductReseller;
+import com.crophealer.domain.ProductTranslation;
 import com.crophealer.domain.Reseller;
 import com.crophealer.domain.Symptom;
 import com.crophealer.domain.SymptomTranslation;
@@ -39,6 +41,18 @@ public class DataCleaner
 			productReseller.remove();
 			productReseller.flush();
 		}
+		List<ProductTranslation> prodTrans = ProductTranslation.findAllProductTranslations();
+		for (ProductTranslation productTranslation : prodTrans) {
+			productTranslation.remove();
+			productTranslation.flush();
+		}
+		
+		List<ProblemActiveIngredient> pai = ProblemActiveIngredient.findAllProblemActiveIngredients();
+		for (ProblemActiveIngredient problemActiveIngredient : pai) {
+			problemActiveIngredient.remove();
+			problemActiveIngredient.flush();
+		}
+		
 		List<Product> ps2 = Product.findAllProducts();
 		for (Product product : ps2) {
 			product.remove();
@@ -113,17 +127,7 @@ public class DataCleaner
 		for (PlantTranslation plantTranslation : plantTranslations) {
 			plantTranslation.remove();
 			plantTranslation.flush();
-		}
-		List<Country> cs = Country.findAllCountrys();
-		for (Country country : cs) {
-			country.remove();
-			country.flush();
-		}
-		List<Languages> ls = Languages.findAllLanguageses();
-		for (Languages languages : ls) {
-			languages.remove();
-			languages.flush();
-		}
+		}	
 		List<ActiveIngredient> as = ActiveIngredient.findAllActiveIngredients();
 		for (ActiveIngredient activeIngredient : as) {
 			activeIngredient.remove();
@@ -135,5 +139,15 @@ public class DataCleaner
 			activeIngredientProduct.flush();
 		}
 		
+		List<Country> cs = Country.findAllCountrys();
+		for (Country country : cs) {
+			country.remove();
+			country.flush();
+		}
+		List<Languages> ls = Languages.findAllLanguageses();
+		for (Languages languages : ls) {
+			languages.remove();
+			languages.flush();
+		}
 	}
 }
