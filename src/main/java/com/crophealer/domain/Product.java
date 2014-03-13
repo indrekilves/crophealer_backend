@@ -45,4 +45,17 @@ public class Product {
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Set<ActiveIngredientProduct> activeIngredientProducts = new HashSet<ActiveIngredientProduct>();
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private Set<GrowthPhaseProduct> growthPhaseProducts = new HashSet<GrowthPhaseProduct>();
+
+    /**
+     */
+    private Long efficiency;
+
+    /**
+     */
+    private String raintFastness;
 }

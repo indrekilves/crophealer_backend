@@ -7,5 +7,7 @@
         <field:display field="pictureUrl" id="s_com_crophealer_domain_Product_pictureUrl" object="${product}" z="/K4gclB0Jya1QRpYTnAYZXevO+E="/>
         <field:display field="country" id="s_com_crophealer_domain_Product_country" object="${product}" z="AgtGjLT1VJxmI9+vcYYj+siKVaI="/>
         <field:display field="producer" id="s_com_crophealer_domain_Product_producer" object="${product}" z="dcv8LjmY0GUTHdwsJ34HFAg3ZGs="/>
+        <field:display field="efficiency" id="s_com_crophealer_domain_Product_efficiency" object="${product}" z="sQDs8QqGKlJFrKqKa5AWeZH2agI="/>
+        <field:display field="raintFastness" id="s_com_crophealer_domain_Product_raintFastness" object="${product}" z="6y4F/SMXtEvCNd/oT5FTilXUTrU="/>
     </page:show>
 </div>

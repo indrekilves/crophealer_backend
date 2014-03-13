@@ -8,5 +8,13 @@
         <field:display field="warning" id="s_com_crophealer_domain_ProductTranslation_warning" object="${producttranslation}" z="8ptUWLwFe2YUpvSAqKsVHLhlsa4="/>
         <field:display field="product" id="s_com_crophealer_domain_ProductTranslation_product" object="${producttranslation}" z="iPWruCj9JlhmH6j1Xf79xzAtbxQ="/>
         <field:display field="lang" id="s_com_crophealer_domain_ProductTranslation_lang" object="${producttranslation}" z="7ns4rITnSxtmCb67zNq6596g2VM="/>
+        <field:display field="type" id="s_com_crophealer_domain_ProductTranslation_type" object="${producttranslation}" z="Q3UJPjvP8d32WBnBe7VlFCPYpec="/>
+        <field:display field="usageRate" id="s_com_crophealer_domain_ProductTranslation_usageRate" object="${producttranslation}" z="6plIzmGmk8kpvp/3cet6zR7OmdA="/>
+        <field:display field="activeIngredientRate" id="s_com_crophealer_domain_ProductTranslation_activeIngredientRate" object="${producttranslation}" z="NKqJ/zyXBVF/SYHFwpAPJaQms5M="/>
+        <field:display field="ppc" id="s_com_crophealer_domain_ProductTranslation_ppc" object="${producttranslation}" z="tfub+xPeLDl/Osmh5Lp36OE6nOg="/>
+        <field:display field="raintFastness" id="s_com_crophealer_domain_ProductTranslation_raintFastness" object="${producttranslation}" z="RVC0lYrdUASpaxIBkOf4bzLZUew="/>
+        <field:display field="formulation" id="s_com_crophealer_domain_ProductTranslation_formulation" object="${producttranslation}" z="OFPOSpxqniQQOvpjZvBEmFZSYi0="/>
+        <field:display field="waterVolume" id="s_com_crophealer_domain_ProductTranslation_waterVolume" object="${producttranslation}" z="44i5sQ5n4bDy7vGEH+K8lBsTacg="/>
+        <field:display field="latestUsegeTimeSprayInterval" id="s_com_crophealer_domain_ProductTranslation_latestUsegeTimeSprayInterval" object="${producttranslation}" z="7BKbqhyPSnQxtsfsgAUQp9w43Hk="/>
     </page:show>
 </div>

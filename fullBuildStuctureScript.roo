@@ -217,3 +217,25 @@ field set --fieldName activeIngredientProducts --type ~.domain.ActiveIngredientP
 
 
 
+entity jpa --class ~.domain.GrowthPhaseProduct
+field string --fieldName comment
+field reference --fieldName product --type ~.domain.Product --cardinality MANY_TO_ONE
+field reference --fieldName growthPhase --type ~.domain.GrowthPhase --cardinality MANY_TO_ONE
+
+
+focus --class ~.domain.Product
+field set --fieldName growthPhaseProducts --type ~.domain.GrowthPhaseProduct --cardinality ONE_TO_MANY --mappedBy product
+field number --fieldName efficiency --type java.lang.Long
+field string --fieldName raintFastness
+
+
+focus --class ~.domain.ProductTranslation
+field string --fieldName type
+field string --fieldName usageRate
+field string --fieldName activeIngredientRate
+field string --fieldName ppc
+field string --fieldName raintFastness
+field string --fieldName formulation
+field string --fieldName waterVolume
+field string --fieldName latestUsegeTimeSprayInterval
+

@@ -49,4 +49,68 @@ privileged aspect ProductTranslation_Roo_JavaBean {
         this.lang = lang;
     }
     
+    public String ProductTranslation.getType() {
+        return this.type;
+    }
+    
+    public void ProductTranslation.setType(String type) {
+        this.type = type;
+    }
+    
+    public String ProductTranslation.getUsageRate() {
+        return this.usageRate;
+    }
+    
+    public void ProductTranslation.setUsageRate(String usageRate) {
+        this.usageRate = usageRate;
+    }
+    
+    public String ProductTranslation.getActiveIngredientRate() {
+        return this.activeIngredientRate;
+    }
+    
+    public void ProductTranslation.setActiveIngredientRate(String activeIngredientRate) {
+        this.activeIngredientRate = activeIngredientRate;
+    }
+    
+    public String ProductTranslation.getPpc() {
+        return this.ppc;
+    }
+    
+    public void ProductTranslation.setPpc(String ppc) {
+        this.ppc = ppc;
+    }
+    
+    public String ProductTranslation.getRaintFastness() {
+        return this.raintFastness;
+    }
+    
+    public void ProductTranslation.setRaintFastness(String raintFastness) {
+        this.raintFastness = raintFastness;
+    }
+    
+    public String ProductTranslation.getFormulation() {
+        return this.formulation;
+    }
+    
+    public void ProductTranslation.setFormulation(String formulation) {
+        this.formulation = formulation;
+    }
+    
+    public String ProductTranslation.getWaterVolume() {
+        return this.waterVolume;
+    }
+    
+    public void ProductTranslation.setWaterVolume(String waterVolume) {
+        this.waterVolume = waterVolume;
+    }
+    
+    public String ProductTranslation.getLatestUsegeTimeSprayInterval() {
+        return this.latestUsegeTimeSprayInterval;
+    }
+    
+    public void ProductTranslation.setLatestUsegeTimeSprayInterval(String latestUsegeTimeSprayInterval) {
+        this.latestUsegeTimeSprayInterval = latestUsegeTimeSprayInterval;
+    }
+    
 }

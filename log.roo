@@ -288,4 +288,23 @@ focus --class com.crophealer.domain.PlantPartPhaseProblem
 finder list
 focus --class com.crophealer.domain.PlantPartPhase
 finder list
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-03-12 10:30:13
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-03-12 10:22:20
+entity jpa --class ~.domain.GrowthPhaseProduct
+field string --fieldName comment
+field reference --fieldName product --type ~.domain.Product --cardinality MANY_TO_ONE
+field reference --fieldName growthPhase --type ~.domain.GrowthPhase --cardinality MANY_TO_ONE
+focus --class ~.domain.Product
+field set --fieldName growthPhaseProducts --type ~.domain.GrowthPhaseProduct --cardinality ONE_TO_MANY --mappedBy product
+field number --fieldName efficiency --type java.lang.Long
+field string --fieldName raintFastness
+focus --class ~.domain.ProductTranslation
+field string --fieldName type
+field string --fieldName usageRate
+field string --fieldName activeIngredientRate
+field string --fieldName ppc
+field string --fieldName raintFastness
+field string --fieldName formulation
+field string --fieldName waterVolume
+field string --fieldName latestUsegeTimeSprayInterval
+// script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
+web mvc all --package ~.web 

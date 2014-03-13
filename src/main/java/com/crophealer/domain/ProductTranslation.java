@@ -33,4 +33,36 @@ public class ProductTranslation {
      */
     @ManyToOne
     private Languages lang;
+
+    /**
+     */
+    private String type;
+
+    /**
+     */
+    private String usageRate;
+
+    /**
+     */
+    private String activeIngredientRate;
+
+    /**
+     */
+    private String ppc;
+
+    /**
+     */
+    private String raintFastness;
+
+    /**
+     */
+    private String formulation;
+
+    /**
+     */
+    private String waterVolume;
+
+    /**
+     */
+    private String latestUsegeTimeSprayInterval;
 }
