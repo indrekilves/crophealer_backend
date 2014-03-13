@@ -316,6 +316,7 @@ public class ProblemLoader extends GenericLoader
 	private Problem addProblemByLatin(String problemLatin) {
 		Problem p = new Problem();
 		p.setLatinName(problemLatin);
+		p.setCountry(Country.getSingleCountryByName("Estonia"));
 		p.persist();
 		return p;
 	}

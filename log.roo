@@ -288,3 +288,4 @@ focus --class com.crophealer.domain.PlantPartPhaseProblem
 finder list
 focus --class com.crophealer.domain.PlantPartPhase
 finder list
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-03-12 10:30:13
