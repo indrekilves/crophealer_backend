@@ -84,7 +84,7 @@ public class PlantRestService extends GenericRestService{
   			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
   			return response;
   		}
-  		System.out.println("getAllGrowthPhasesForPlant - found (Plant):" + plant.toString());
+  		//System.out.println("getAllGrowthPhasesForPlant - found (Plant):" + plant.toString());
   	
   		// Get PlantPartPhase
   		Set<PlantPartPhase> ppps = plant.getPlantPartPhases();
@@ -92,7 +92,7 @@ public class PlantRestService extends GenericRestService{
   			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
   			return response;
   		}
-  		System.out.println("getAllGrowthPhasesForPlant - found (PlantProblemAreas):" + ppps.toString());
+  		//System.out.println("getAllGrowthPhasesForPlant - found (PlantProblemAreas):" + ppps.toString());
   		
   		// Get GrowthPhases
   		List <GrowthPhase> gps = new ArrayList<GrowthPhase>();

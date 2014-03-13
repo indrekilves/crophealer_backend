@@ -3,6 +3,8 @@ package com.crophealer.rest.v1;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Plant;
 import com.crophealer.domain.PlantTranslation;
@@ -17,7 +19,11 @@ public class PlantResourceAssembler {
 		pr.setId(p.getId());
 		pr.setIconUrl(p.getIconUrl());
 		if (l != null){
-			PlantTranslation pt = PlantTranslation.findPlantTranslationsByLang(l).getSingleResult();
+			//PlantTranslation pt = PlantTranslation.findPlantTranslationsByLang(l).getSingleResult();
+			
+			TypedQuery<PlantTranslation> tpq = PlantTranslation.findPlantTranslationsByPlantAndLang(p, l);
+			PlantTranslation pt = tpq.getSingleResult();
+			
 			if (pt != null){
 				pr.setName(pt.getName());
 				pr.setDescription(pt.getDescription());
