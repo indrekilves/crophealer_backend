@@ -58,4 +58,11 @@ public class Product {
     /**
      */
     private String raintFastness;
+
+    
+    
+	public static boolean existsByName() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

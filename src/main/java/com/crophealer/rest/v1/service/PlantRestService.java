@@ -1,6 +1,7 @@
 package com.crophealer.rest.v1.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -24,6 +25,7 @@ import com.crophealer.rest.v1.PlantResourceAssembler;
 import com.crophealer.rest.v1.PlantResourceList;
 import com.crophealer.rest.v1.SymptomResourceAssembler;
 import com.crophealer.rest.v1.SymptomResourceList;
+import com.crophealer.utils.GrowthPhaseComparator;
 
 @Service
 public class PlantRestService extends GenericRestService{
@@ -104,6 +106,7 @@ public class PlantRestService extends GenericRestService{
   				}
   			}
   		}
+  		Collections.sort(gps, new GrowthPhaseComparator());
   				
   		GrowthPhaseResourceAssembler asm = new GrowthPhaseResourceAssembler();
   		GrowthPhaseResourceList gprl = asm.toResource(gps, language);

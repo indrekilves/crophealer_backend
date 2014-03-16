@@ -342,3 +342,4 @@ finder add findPlantPartsByCommentEquals
 focus --class com.crophealer.domain.Problem
 finder list
 finder add findProblemsByLatinNameEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-03-13 22:05:20
