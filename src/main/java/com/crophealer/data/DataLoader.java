@@ -97,7 +97,7 @@ public class DataLoader
 		this.loadActiveIngredientsAndProducts();
 		this.loadPlants();
 		this.loadProblems();
-		//this.loadTempDemoData();
+		this.loadTempDemoData();
 		
 		//this.loadProductsWithProblemLinks();
 		
