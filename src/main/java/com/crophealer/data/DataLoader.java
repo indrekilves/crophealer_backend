@@ -67,7 +67,7 @@ public class DataLoader
 		this.loadPhases();
 		this.loadProducers();
 		this.loadResellers();
-		this.loadActiveIngredientsAndProducts();
+		//this.loadActiveIngredientsAndProducts();
 		this.loadPlants();
 		this.loadProblems();
 		this.loadTempDemoData();
