@@ -14,7 +14,6 @@ import com.crophealer.domain.Product;
 import com.crophealer.domain.ProductReseller;
 import com.crophealer.domain.ProductTranslation;
 import com.crophealer.domain.Reseller;
-import com.crophealer.domain.Symptom;
 
 public class ProductLoader extends GenericLoader 
 {

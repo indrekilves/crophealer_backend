@@ -11,28 +11,12 @@ import com.crophealer.data.DataLoader;
 
 public class DataLoaderRestController 
 {
-	@RequestMapping(method = RequestMethod.GET, value="/loadall/EST")	
-	public void loadDemoDatasetEST()
-	{
-		//DemoDataLoaderEST dataLoader = new DemoDataLoaderEST();
-		//dataLoader.loadDefaultDataset();
-	}
-	
-	
-	@RequestMapping(method = RequestMethod.GET, value="/loadall/ENG")	
-	public void loadDemoDatasetENG()
-	{
-		//DemoDataLoaderENG dataLoader = new DemoDataLoaderENG();
-		//dataLoader.loadDefaultDataset();
-	}
-	
 	
 	@RequestMapping(method = RequestMethod.GET, value="/load")	
 	public void loadSpreadsheetData()
 	{
 		DataLoader dl = new DataLoader();
-		dl.setFileName("d:\\projects\\crophealer\\data\\diseases_base_cereals.xls");
-		dl.loadFromFile();
+		dl.runDataLoad();
 	}
 }
 

@@ -71,22 +71,4 @@ public class PlantLoader extends GenericLoader
 		}
 		
 	}
-
-
-	public void loadPlantTranslations()
-	{
-		List<String> plantsHeader = this.ssReader.getRowAsArray(2);
-		
-		for (int i = 0; i < plantsHeader.size(); i++) 
-		{
-			try
-			{
-				Languages lang = Languages.findLanguagesesByNameEquals(plantsHeader.get(i)).getSingleResult();
-				
-			}
-			catch(Exception e)
-			{}
-		}
-	}
-
 }

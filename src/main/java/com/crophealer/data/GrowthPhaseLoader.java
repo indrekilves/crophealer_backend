@@ -2,10 +2,6 @@ package com.crophealer.data;
 
 import java.util.List;
 
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-
-import com.crophealer.domain.Country;
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.GrowthPhaseTranslation;
 import com.crophealer.domain.Languages;

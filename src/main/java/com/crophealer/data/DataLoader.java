@@ -1,57 +1,30 @@
 package com.crophealer.data;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
-import javax.naming.InitialContext;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.transaction.UserTransaction;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.mapping.Map;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Country;
-import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.Languages;
-import com.crophealer.domain.Plant;
 import com.crophealer.domain.Problem;
 import com.crophealer.domain.ProblemActiveIngredient;
-import com.crophealer.domain.Producer;
 import com.crophealer.domain.Product;
-import com.crophealer.domain.ProductReseller;
 import com.crophealer.domain.ProductTranslation;
-import com.crophealer.domain.Reseller;
 
 public class DataLoader 
 {
 	protected String fileName;
 	protected SpreadSheetReader ssReader;
 	
-
-	public void setFileName(String fileName) 
+	
+	public DataLoader()
 	{
-		this.fileName = this.getDatafileRelativePath();
-		//this.fileName = fileName;		
+		this.loadFileName();
+	}
+
+	
+	public void loadFileName() 
+	{
+		this.fileName = this.getDatafileRelativePath();		
 	}
 	
 	
@@ -62,7 +35,7 @@ public class DataLoader
 	
 	
 	
-	public void loadFromFile()
+	public void runDataLoad()
 	{
 		switch (this.getFileType()) 
 		{

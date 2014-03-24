@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 import com.crophealer.domain.Country;
-import com.crophealer.domain.Producer;
 import com.crophealer.domain.Reseller;
 
 public class ResellerLoader extends GenericLoader 
