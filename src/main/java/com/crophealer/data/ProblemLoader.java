@@ -110,8 +110,8 @@ public class ProblemLoader extends GenericLoader
 			for (GrowthPhase phase : phases) {
 				for (PlantPart pPart : plantParts) {
 					
-					if ( !this.plant_plantPart_phase_exists(plant, phase, pPart) )
-					{
+					//if ( !this.plant_plantPart_phase_exists(plant, phase, pPart) )
+					//{
 						PlantPartPhase ppp = new PlantPartPhase();
 						ppp.setPlantPart(pPart);
 						ppp.setGrowthPhase(phase);
@@ -132,7 +132,7 @@ public class ProblemLoader extends GenericLoader
 							ppps.setProblem(pppp);
 							ppps.persist();							
 						}
-					}				
+					//}				
 				}
 			}
 		}
@@ -168,7 +168,7 @@ public class ProblemLoader extends GenericLoader
 		for (Map.Entry<String, Integer> countryCol : countryCols.entrySet()) 
 		{
 			Integer countryColNum = countryCol.getValue();
-			List<String> symptomStrs = ssReader.getColumnAsArray(countryColNum + symptomOS, pRow, nextProblemRow);
+			List<String> symptomStrs = ssReader.getColumnAsArray(countryColNum + symptomOS, pRow, nextProblemRow - 1);
 			
 			// loop symptoms for problem and add translations
 			for (int i = 0; i < symptomStrs.size(); i++) 
