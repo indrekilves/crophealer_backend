@@ -1,10 +1,6 @@
 package com.crophealer.data;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +18,6 @@ import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.PlantPartTranslation;
 import com.crophealer.domain.Problem;
 import com.crophealer.domain.ProblemTranslation;
-import com.crophealer.domain.Reseller;
 import com.crophealer.domain.Symptom;
 import com.crophealer.domain.SymptomTranslation;
 
@@ -114,47 +109,36 @@ public class ProblemLoader extends GenericLoader
 		for (Plant plant : plants) {
 			for (GrowthPhase phase : phases) {
 				for (PlantPart pPart : plantParts) {
-					
-					if ( !this.plant_plantPart_phase_exists(plant, phase, pPart) )
+
+					PlantPartPhase ppp;
+					ppp = this.getPlantPlantPartPhase(plant, phase, pPart);
+					if (ppp == null)
 					{
-						PlantPartPhase ppp = new PlantPartPhase();
+						ppp = new PlantPartPhase();
 						ppp.setPlantPart(pPart);
 						ppp.setGrowthPhase(phase);
 						ppp.setPlant(plant);
 						ppp.setComment(plant.getComment() + " - " + phase.getComment() + " - " + pPart.getComment());
 						ppp.persist();
-						
-						PlantPartPhaseProblem pppp = new PlantPartPhaseProblem();
-						pppp.setProblem(problem);
-						pppp.setComment(problem.getLatinName() + " - " + ppp.getComment());
-						pppp.persist();
-						
-						for (Symptom symptom : symptoms) {
-							PlantPartPhaseSymptom ppps = new PlantPartPhaseSymptom();
-							ppps.setComment(plant.getComment() + " - " + ppp.getComment());
-							ppps.setPlantPartPhase(ppp);
-							ppps.setSymptom(symptom);
-							ppps.setProblem(pppp);
-							ppps.persist();							
-						}
-					}				
+					}
+					
+					PlantPartPhaseProblem pppp = new PlantPartPhaseProblem();
+					pppp.setProblem(problem);
+					pppp.setComment(problem.getLatinName() + " - " + ppp.getComment());
+					pppp.persist();
+
+					for (Symptom symptom : symptoms) {
+						PlantPartPhaseSymptom ppps = new PlantPartPhaseSymptom();
+						ppps.setComment(plant.getComment() + " - " + ppp.getComment());
+						ppps.setPlantPartPhase(ppp);
+						ppps.setSymptom(symptom);
+						ppps.setProblem(pppp);
+						ppps.persist();							
+					}
+
 				}
 			}
-		}
-		
-		
-//		for (GrowthPhase phase : phases) {
-//			for (PlantPart plantPart : plantParts) {
-//				PlantPartPhase ppp = new PlantPartPhase();
-//				ppp.se
-//			}
-//			
-//		}
-		
-		// get plant parts for problem (should add parts as well)
-		// get symptoms for problem (add symptom with AI)
-		// get 
-		
+		}		
 	}
 	
 	
@@ -173,7 +157,7 @@ public class ProblemLoader extends GenericLoader
 		for (Map.Entry<String, Integer> countryCol : countryCols.entrySet()) 
 		{
 			Integer countryColNum = countryCol.getValue();
-			List<String> symptomStrs = ssReader.getColumnAsArray(countryColNum + symptomOS, pRow, nextProblemRow);
+			List<String> symptomStrs = ssReader.getColumnAsArray(countryColNum + symptomOS, pRow, nextProblemRow - 1);
 			
 			// loop symptoms for problem and add translations
 			for (int i = 0; i < symptomStrs.size(); i++) 
@@ -224,6 +208,21 @@ public class ProblemLoader extends GenericLoader
 	}
 
 
+	private PlantPartPhase getPlantPlantPartPhase(Plant plant, GrowthPhase phase, PlantPart pPart) 
+	{
+		try
+		{
+			TypedQuery<PlantPartPhase> pppQ = PlantPartPhase.findPlantPartPhasesByPlantAndGrowthPhaseAndPlantPart(plant, phase, pPart);
+			if (pppQ.getResultList().size() > 0) 
+				return pppQ.getSingleResult();
+			else
+				return null;
+		}
+		catch(Exception e)
+		{
+			return null;	
+		}		
+	}
 
 	private boolean plant_plantPart_phase_exists(Plant plant, GrowthPhase phase, PlantPart pPart) 
 	{

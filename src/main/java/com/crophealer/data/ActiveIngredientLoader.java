@@ -6,7 +6,6 @@ import javax.persistence.TypedQuery;
 
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.ActiveIngredientProduct;
-import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.Product;
 
 public class ActiveIngredientLoader extends GenericLoader 
