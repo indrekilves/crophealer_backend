@@ -129,13 +129,13 @@ public class DataLoader
 		productTrans.setLatestUsegeTimeSprayInterval("35/14");
 		productTrans.persist();
 		
-		Problem problem = Problem.getSingleProblemByLatinName("Septoria tritici, Septoria nodorum");
+//		Problem problem = Problem.getSingleProblemByLatinName("Septoria tritici, Septoria nodorum");
 		
-		ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
-		problemAI.setActiveIngredient(ai);
-		problemAI.setProblem(problem);
-		problemAI.setComment(problem.getLatinName() + " - " + ai.getComment());
-		problemAI.persist();
+//		ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
+//		problemAI.setActiveIngredient(ai);
+//		problemAI.setProblem(problem);
+//		problemAI.setComment(problem.getLatinName() + " - " + ai.getComment());
+//		problemAI.persist();
 	}
 	
 
@@ -181,13 +181,13 @@ public class DataLoader
 		productTrans.setLatestUsegeTimeSprayInterval("35/14");
 		productTrans.persist();
 		
-		Problem problem = Problem.getSingleProblemByLatinName("Rhynchosporium graminicola, Rhynchosporium secalis");
+//		Problem problem = Problem.getSingleProblemByLatinName("Rhynchosporium graminicola, Rhynchosporium secalis");
 		
-		ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
-		problemAI.setActiveIngredient(ai);
-		problemAI.setProblem(problem);
-		problemAI.setComment(problem.getLatinName() + " - " + ai.getComment());
-		problemAI.persist();
+//		ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
+//		problemAI.setActiveIngredient(ai);
+//		problemAI.setProblem(problem);
+//		problemAI.setComment(problem.getLatinName() + " - " + ai.getComment());
+//		problemAI.persist();
 		
 
 	}
