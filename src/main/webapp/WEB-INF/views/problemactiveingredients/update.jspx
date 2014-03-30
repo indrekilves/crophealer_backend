@@ -4,7 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_com_crophealer_domain_ProblemActiveIngredient" modelAttribute="problemActiveIngredient" path="/problemactiveingredients" versionField="Version" z="ZPQyFlk1TNKgpceEaNzaDzRvQUA=">
         <field:input field="comment" id="c_com_crophealer_domain_ProblemActiveIngredient_comment" z="HJ0h0S6nFQeO6FWeYX98gsCkhRY="/>
-        <field:select field="problem" id="c_com_crophealer_domain_ProblemActiveIngredient_problem" itemValue="id" items="${problems}" path="/problems" z="t9k8a8V0T/qFlWO+YOSWC+IZ3fY="/>
         <field:select field="activeIngredient" id="c_com_crophealer_domain_ProblemActiveIngredient_activeIngredient" itemValue="id" items="${activeingredients}" path="/activeingredients" z="Y/nP6dcEJFQqmjZzGFVsBy8z32I="/>
+        <field:select field="plantPartPhaseProblem" id="c_com_crophealer_domain_ProblemActiveIngredient_plantPartPhaseProblem" itemValue="id" items="${plantpartphaseproblems}" path="/plantpartphaseproblems" z="MULmATAM9nREbafgGcmcNC9j52g="/>
     </form:update>
 </div>

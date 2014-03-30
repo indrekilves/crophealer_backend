@@ -5,8 +5,8 @@
     <page:list id="pl_com_crophealer_domain_ProblemActiveIngredient" items="${problemactiveingredients}" z="vdB+SoEPQyZw3+O2SMkG2zogGeg=">
         <table:table data="${problemactiveingredients}" id="l_com_crophealer_domain_ProblemActiveIngredient" path="/problemactiveingredients" z="u0o3KVYqWtsD9cXgr7wjxnKN2ns=">
             <table:column id="c_com_crophealer_domain_ProblemActiveIngredient_comment" property="comment" z="0bGbnUVR1dmtGJk9Y0lBiGeMVj4="/>
-            <table:column id="c_com_crophealer_domain_ProblemActiveIngredient_problem" property="problem" z="//cklqhwfK7dthe1xabxAQua5QA="/>
             <table:column id="c_com_crophealer_domain_ProblemActiveIngredient_activeIngredient" property="activeIngredient" z="8GVXkvm5HRM8ohk8Og/wpyw1q9Q="/>
+            <table:column id="c_com_crophealer_domain_ProblemActiveIngredient_plantPartPhaseProblem" property="plantPartPhaseProblem" z="810VuL6BNkqiwCPFkuEQg4df/8c="/>
         </table:table>
     </page:list>
 </div>

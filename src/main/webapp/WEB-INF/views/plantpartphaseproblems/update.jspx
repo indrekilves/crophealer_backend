@@ -6,5 +6,6 @@
         <field:input field="comment" id="c_com_crophealer_domain_PlantPartPhaseProblem_comment" z="YfmJfkO4QVIcs4TCzEwYdFAjV1Q="/>
         <field:simple field="symptoms" id="c_com_crophealer_domain_PlantPartPhaseProblem_symptoms" messageCode="entity_reference_not_managed" messageCodeAttribute="Plant Part Phase Symptom" z="BqxswOUIXpds3z+gDP+xn25C4QE="/>
         <field:select field="problem" id="c_com_crophealer_domain_PlantPartPhaseProblem_problem" itemValue="id" items="${problems}" path="/problems" z="7EFZsLNHXedrdsBcdV+zI0IFMo0="/>
+        <field:simple field="problemActiveIngredients" id="c_com_crophealer_domain_PlantPartPhaseProblem_problemActiveIngredients" messageCode="entity_reference_not_managed" messageCodeAttribute="Problem Active Ingredient" z="xSJSCDzkF9qzGYvP1l/o7LQ+taE="/>
     </form:update>
 </div>

@@ -4,7 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_crophealer_domain_ProblemActiveIngredient" object="${problemactiveingredient}" path="/problemactiveingredients" z="ntoOxfBoYO5JGDdQU/D8ZhLJ60k=">
         <field:display field="comment" id="s_com_crophealer_domain_ProblemActiveIngredient_comment" object="${problemactiveingredient}" z="zqAGwGVY24q2/5pJGm6r7rvD8DQ="/>
-        <field:display field="problem" id="s_com_crophealer_domain_ProblemActiveIngredient_problem" object="${problemactiveingredient}" z="KUX8cLX5SepMlhPNXj46TOrtLy8="/>
         <field:display field="activeIngredient" id="s_com_crophealer_domain_ProblemActiveIngredient_activeIngredient" object="${problemactiveingredient}" z="6iTt2FyzTjw3cwxzPW1iQfndX/E="/>
+        <field:display field="plantPartPhaseProblem" id="s_com_crophealer_domain_ProblemActiveIngredient_plantPartPhaseProblem" object="${problemactiveingredient}" z="GGN/7wy7cV/ZXMhaFEYY3aGK91M="/>
     </page:show>
 </div>

@@ -45,12 +45,7 @@ public class Problem {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "problem")
     private Set<PlantPartPhaseSymptom> plantPartPhaseProblems = new HashSet<PlantPartPhaseSymptom>();
 
-    /**
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "problem")
-    private Set<ProblemActiveIngredient> problemActiveIngredients = new HashSet<ProblemActiveIngredient>();
-    
-    
+   
     public static Problem getSingleProblemByLatinName(String latinName)
     {
     	TypedQuery<Problem> pQ = Problem.findProblemsByLatinNameEquals(latinName);

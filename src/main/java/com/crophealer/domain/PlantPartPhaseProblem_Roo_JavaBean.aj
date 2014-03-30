@@ -6,6 +6,7 @@ package com.crophealer.domain;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.Problem;
+import com.crophealer.domain.ProblemActiveIngredient;
 import java.util.Set;
 
 privileged aspect PlantPartPhaseProblem_Roo_JavaBean {
@@ -32,6 +33,14 @@ privileged aspect PlantPartPhaseProblem_Roo_JavaBean {
     
     public void PlantPartPhaseProblem.setProblem(Problem problem) {
         this.problem = problem;
+    }
+    
+    public Set<ProblemActiveIngredient> PlantPartPhaseProblem.getProblemActiveIngredients() {
+        return this.problemActiveIngredients;
+    }
+    
+    public void PlantPartPhaseProblem.setProblemActiveIngredients(Set<ProblemActiveIngredient> problemActiveIngredients) {
+        this.problemActiveIngredients = problemActiveIngredients;
     }
     
 }

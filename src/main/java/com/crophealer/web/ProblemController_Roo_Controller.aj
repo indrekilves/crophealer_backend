@@ -6,7 +6,6 @@ package com.crophealer.web;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.Problem;
-import com.crophealer.domain.ProblemActiveIngredient;
 import com.crophealer.domain.ProblemPicture;
 import com.crophealer.domain.ProblemTranslation;
 import com.crophealer.web.ProblemController;
@@ -93,7 +92,6 @@ privileged aspect ProblemController_Roo_Controller {
         uiModel.addAttribute("problem", problem);
         uiModel.addAttribute("countrys", Country.findAllCountrys());
         uiModel.addAttribute("plantpartphasesymptoms", PlantPartPhaseSymptom.findAllPlantPartPhaseSymptoms());
-        uiModel.addAttribute("problemactiveingredients", ProblemActiveIngredient.findAllProblemActiveIngredients());
         uiModel.addAttribute("problempictures", ProblemPicture.findAllProblemPictures());
         uiModel.addAttribute("problemtranslations", ProblemTranslation.findAllProblemTranslations());
     }

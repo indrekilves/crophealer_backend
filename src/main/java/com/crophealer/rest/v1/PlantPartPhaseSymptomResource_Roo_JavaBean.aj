@@ -3,8 +3,6 @@
 
 package com.crophealer.rest.v1;
 
-import com.crophealer.rest.v1.PlantPartPhaseProblemResource;
-import com.crophealer.rest.v1.PlantPartPhaseResource;
 import com.crophealer.rest.v1.PlantPartPhaseSymptomResource;
 import com.crophealer.rest.v1.SymptomResource;
 
@@ -26,20 +24,20 @@ privileged aspect PlantPartPhaseSymptomResource_Roo_JavaBean {
         this.comment = comment;
     }
     
-    public PlantPartPhaseProblemResource PlantPartPhaseSymptomResource.getProblem() {
-        return this.problem;
+    public Long PlantPartPhaseSymptomResource.getPlantPartPhaseId() {
+        return this.plantPartPhaseId;
     }
     
-    public void PlantPartPhaseSymptomResource.setProblem(PlantPartPhaseProblemResource problem) {
-        this.problem = problem;
+    public void PlantPartPhaseSymptomResource.setPlantPartPhaseId(Long plantPartPhaseId) {
+        this.plantPartPhaseId = plantPartPhaseId;
     }
     
-    public PlantPartPhaseResource PlantPartPhaseSymptomResource.getPlantPartPhase() {
-        return this.plantPartPhase;
+    public Long PlantPartPhaseSymptomResource.getPlantPartPhaseProblemId() {
+        return this.plantPartPhaseProblemId;
     }
     
-    public void PlantPartPhaseSymptomResource.setPlantPartPhase(PlantPartPhaseResource plantPartPhase) {
-        this.plantPartPhase = plantPartPhase;
+    public void PlantPartPhaseSymptomResource.setPlantPartPhaseProblemId(Long plantPartPhaseProblemId) {
+        this.plantPartPhaseProblemId = plantPartPhaseProblemId;
     }
     
     public SymptomResource PlantPartPhaseSymptomResource.getSymptom() {

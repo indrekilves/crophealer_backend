@@ -16,10 +16,10 @@ public class ProblemActiveIngredient {
     /**
      */
     @ManyToOne
-    private Problem problem;
+    private ActiveIngredient activeIngredient;
 
     /**
      */
     @ManyToOne
-    private ActiveIngredient activeIngredient;
+    private PlantPartPhaseProblem plantPartPhaseProblem;
 }

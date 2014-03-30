@@ -4,7 +4,7 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.ActiveIngredient;
-import com.crophealer.domain.Problem;
+import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.ProblemActiveIngredient;
 
 privileged aspect ProblemActiveIngredient_Roo_JavaBean {
@@ -17,20 +17,20 @@ privileged aspect ProblemActiveIngredient_Roo_JavaBean {
         this.comment = comment;
     }
     
-    public Problem ProblemActiveIngredient.getProblem() {
-        return this.problem;
-    }
-    
-    public void ProblemActiveIngredient.setProblem(Problem problem) {
-        this.problem = problem;
-    }
-    
     public ActiveIngredient ProblemActiveIngredient.getActiveIngredient() {
         return this.activeIngredient;
     }
     
     public void ProblemActiveIngredient.setActiveIngredient(ActiveIngredient activeIngredient) {
         this.activeIngredient = activeIngredient;
+    }
+    
+    public PlantPartPhaseProblem ProblemActiveIngredient.getPlantPartPhaseProblem() {
+        return this.plantPartPhaseProblem;
+    }
+    
+    public void ProblemActiveIngredient.setPlantPartPhaseProblem(PlantPartPhaseProblem plantPartPhaseProblem) {
+        this.plantPartPhaseProblem = plantPartPhaseProblem;
     }
     
 }

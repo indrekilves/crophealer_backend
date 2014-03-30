@@ -8,10 +8,10 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 @JsonRootName(value = "plantPartPhaseSymptom")
 public class PlantPartPhaseSymptomResource {
 
-	private Long   id; 
-	private String comment;
-    private PlantPartPhaseProblemResource problem;
-    private PlantPartPhaseResource plantPartPhase;
+	private Long            id; 
+	private String          comment;
+	private Long            plantPartPhaseId;
+	private Long            plantPartPhaseProblemId;
     private SymptomResource symptom;
 
 }

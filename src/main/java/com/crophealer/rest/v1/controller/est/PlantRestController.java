@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.crophealer.rest.v1.GrowthPhaseResourceList;
+import com.crophealer.rest.v1.PlantPartPhaseSymptomResourceList;
 import com.crophealer.rest.v1.PlantPartResourceList;
 import com.crophealer.rest.v1.PlantResource;
 import com.crophealer.rest.v1.PlantResourceList;
@@ -56,6 +57,11 @@ public class PlantRestController {
 		return plantRestService.getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(pId, gpId, ppId, plantRestService.getEstonian());
 	}
 
+
+	@RequestMapping(method = RequestMethod.GET, value="/{pId}/growthphases/{gpId}/plantparts/{ppId}/plantPartPhaseSymptoms")
+	public ResponseEntity<PlantPartPhaseSymptomResourceList> getAllPlantPartPhaseSymptomsForPlantPartAndGrowthPhaseAndPlant(@PathVariable("pId") Long pId, @PathVariable("gpId") Long gpId, @PathVariable("ppId") Long ppId){
+		return plantRestService.getAllPlantPartPhaseSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(pId, gpId, ppId, plantRestService.getEstonian());
+	}
 
 }
 

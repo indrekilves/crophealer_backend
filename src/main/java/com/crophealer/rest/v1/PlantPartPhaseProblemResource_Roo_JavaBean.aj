@@ -4,6 +4,7 @@
 package com.crophealer.rest.v1;
 
 import com.crophealer.rest.v1.PlantPartPhaseProblemResource;
+import com.crophealer.rest.v1.ProblemResource;
 
 privileged aspect PlantPartPhaseProblemResource_Roo_JavaBean {
     
@@ -21,6 +22,14 @@ privileged aspect PlantPartPhaseProblemResource_Roo_JavaBean {
     
     public void PlantPartPhaseProblemResource.setComment(String comment) {
         this.comment = comment;
+    }
+    
+    public ProblemResource PlantPartPhaseProblemResource.getProblem() {
+        return this.problem;
+    }
+    
+    public void PlantPartPhaseProblemResource.setProblem(ProblemResource problem) {
+        this.problem = problem;
     }
     
 }

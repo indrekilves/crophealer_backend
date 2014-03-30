@@ -26,4 +26,9 @@ public class PlantPartPhaseProblem {
      */
     @ManyToOne
     private Problem problem;
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plantPartPhaseProblem")
+    private Set<ProblemActiveIngredient> problemActiveIngredients = new HashSet<ProblemActiveIngredient>();
 }

@@ -239,3 +239,10 @@ field string --fieldName formulation
 field string --fieldName waterVolume
 field string --fieldName latestUsegeTimeSprayInterval
 
+
+focus --class ~.domain.ProblemActiveIngredient
+field reference --fieldName problem --type ~.domain.PlantPartPhaseProblem --cardinality MANY_TO_ONE
+
+
+focus --class ~.domain.PlantPartPhaseProblem
+field set --fieldName problemActiveIngredients --type ~.domain.ProblemActiveIngredient --cardinality ONE_TO_MANY --mappedBy plantPartPhaseProblem
