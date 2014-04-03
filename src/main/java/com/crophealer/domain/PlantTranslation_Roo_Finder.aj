@@ -19,6 +19,14 @@ privileged aspect PlantTranslation_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<PlantTranslation> PlantTranslation.findPlantTranslationsByNameEquals(String name) {
+        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+        EntityManager em = PlantTranslation.entityManager();
+        TypedQuery<PlantTranslation> q = em.createQuery("SELECT o FROM PlantTranslation AS o WHERE o.name = :name", PlantTranslation.class);
+        q.setParameter("name", name);
+        return q;
+    }
+    
     public static TypedQuery<PlantTranslation> PlantTranslation.findPlantTranslationsByPlantAndLang(Plant plant, Languages lang) {
         if (plant == null) throw new IllegalArgumentException("The plant argument is required");
         if (lang == null) throw new IllegalArgumentException("The lang argument is required");

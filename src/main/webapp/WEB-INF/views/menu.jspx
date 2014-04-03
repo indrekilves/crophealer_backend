@@ -111,5 +111,17 @@
             <menu:item id="i_growthphaseproduct_new" messageCode="global_menu_new" url="/growthphaseproducts?form" z="229M5Q3Y4OlJXpjauYLpUImKfNw="/>
             <menu:item id="i_growthphaseproduct_list" messageCode="global_menu_list" url="/growthphaseproducts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="yClBcaGSsA3XZGFVj1ZCQXxTcUA="/>
         </menu:category>
+        <menu:category id="c_diagnosedproblem" z="2QTOmoyz25AnMIoVRS3LV5Gp0bE=">
+            <menu:item id="i_diagnosedproblem_new" messageCode="global_menu_new" url="/diagnosedproblems?form" z="KdnSijD9ems1LMAflDWoK75qEZ4="/>
+            <menu:item id="i_diagnosedproblem_list" messageCode="global_menu_list" url="/diagnosedproblems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="umnNSJm7bOBb4xj8vTbyUwYM2jo="/>
+        </menu:category>
+        <menu:category id="c_diagnosedproblempicture" z="4S1sjaAhEE18R8HP3HP+49ARp60=">
+            <menu:item id="i_diagnosedproblempicture_new" messageCode="global_menu_new" url="/diagnosedproblempictures?form" z="N8Z1s59Hv873bvdMY3I/CVaQEtw="/>
+            <menu:item id="i_diagnosedproblempicture_list" messageCode="global_menu_list" url="/diagnosedproblempictures?page=1&amp;size=${empty param.size ? 10 : param.size}" z="odzHomar76zlBVtLfCO2+Qf06cE="/>
+        </menu:category>
+        <menu:category id="c_users" z="Ysam8XVhG5uotPoUGGxkia1RE/s=">
+            <menu:item id="i_users_new" messageCode="global_menu_new" url="/userses?form" z="utrdLkYms6xk5f4IDxc9zrg5FWs="/>
+            <menu:item id="i_users_list" messageCode="global_menu_list" url="/userses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="tqSwojZmRduyx4xtHWcJzgbgtJk="/>
+        </menu:category>
     </menu:menu>
 </div>

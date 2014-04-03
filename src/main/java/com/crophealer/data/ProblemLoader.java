@@ -24,17 +24,17 @@ import com.crophealer.domain.SymptomTranslation;
 public class ProblemLoader extends GenericLoader
 {
 	protected Integer activeSheetNum 	= 0;
-	private Integer latinNameColNum 	= 7;
-	private Integer problemsStartRow 	= 5; 
-	private Integer phaseColumn 		= 8;
-	private Integer countryRowNum 		= 2;
-	private Integer headerRowNum		= 4;
+	private final Integer latinNameColNum 	= 7;
+	private final Integer problemsStartRow 	= 5; 
+	private final Integer phaseColumn 		= 8;
+	private final Integer countryRowNum 		= 2;
+	private final Integer headerRowNum		= 4;
 	private LinkedHashMap<String, Integer> countryCols;
 	
 	// offsets
-	private Integer plantPartOS = 1;
-	private Integer warningOS	= 3;
-	private Integer symptomOS 	= 2;
+	private final Integer plantPartOS = 1;
+	private final Integer warningOS	= 3;
+	private final Integer symptomOS 	= 2;
 	
 	public ProblemLoader(SpreadSheetReader ssReader)
 	{
@@ -74,10 +74,11 @@ public class ProblemLoader extends GenericLoader
 		for (int i = 0; i < latinNames.size(); i++) 
 		{
 			Integer realRowNum = i+this.problemsStartRow;
-			String pLatinName = latinNames.get(i);
+			String pLatinName = latinNames.get(i).trim();
 			
 			if ( !pLatinName.isEmpty() )
 			{
+				System.out.println("Loading symptoms for " + realRowNum + " - " + pLatinName);
 				this.processProblemSector(pLatinName, realRowNum);
 			}		
 		}
@@ -109,7 +110,9 @@ public class ProblemLoader extends GenericLoader
 		for (Plant plant : plants) {
 			for (GrowthPhase phase : phases) {
 				for (PlantPart pPart : plantParts) {
-
+					
+					System.out.println("Linking " + plant.getComment() + " - " + phase.getComment() + " - " + pPart.getComment());
+					
 					PlantPartPhase ppp;
 					ppp = this.getPlantPlantPartPhase(plant, phase, pPart);
 					if (ppp == null)
@@ -129,7 +132,7 @@ public class ProblemLoader extends GenericLoader
 
 					for (Symptom symptom : symptoms) {
 						PlantPartPhaseSymptom ppps = new PlantPartPhaseSymptom();
-						ppps.setComment(plant.getComment() + " - " + ppp.getComment());
+						ppps.setComment(pppp.getComment() + " - " + symptom.getComment());
 						ppps.setPlantPartPhase(ppp);
 						ppps.setSymptom(symptom);
 						ppps.setProblem(pppp);

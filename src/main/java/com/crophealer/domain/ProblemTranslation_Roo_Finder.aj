@@ -19,6 +19,14 @@ privileged aspect ProblemTranslation_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<ProblemTranslation> ProblemTranslation.findProblemTranslationsByNameEquals(String name) {
+        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+        EntityManager em = ProblemTranslation.entityManager();
+        TypedQuery<ProblemTranslation> q = em.createQuery("SELECT o FROM ProblemTranslation AS o WHERE o.name = :name", ProblemTranslation.class);
+        q.setParameter("name", name);
+        return q;
+    }
+    
     public static TypedQuery<ProblemTranslation> ProblemTranslation.findProblemTranslationsByProblemAndLang(Problem problem, Languages lang) {
         if (problem == null) throw new IllegalArgumentException("The problem argument is required");
         if (lang == null) throw new IllegalArgumentException("The lang argument is required");

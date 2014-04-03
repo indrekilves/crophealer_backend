@@ -127,7 +127,14 @@ public class DataCleaner
 		for (PlantTranslation plantTranslation : plantTranslations) {
 			plantTranslation.remove();
 			plantTranslation.flush();
-		}	
+		}
+		
+		List<ProblemActiveIngredient> problemAIs = ProblemActiveIngredient.findAllProblemActiveIngredients();
+		for (ProblemActiveIngredient problemActiveIngredient : problemAIs) {
+			problemActiveIngredient.remove();
+			problemActiveIngredient.flush();
+		}
+		
 		List<ActiveIngredient> as = ActiveIngredient.findAllActiveIngredients();
 		for (ActiveIngredient activeIngredient : as) {
 			activeIngredient.remove();
@@ -150,4 +157,7 @@ public class DataCleaner
 			languages.flush();
 		}
 	}
+	
+	
+	
 }

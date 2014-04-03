@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_crophealer_domain_DiagnosedProblem" modelAttribute="diagnosedProblem" path="/diagnosedproblems" versionField="Version" z="KPSBNzN4rsWjV5Bz8MdnLbyWRDg=">
+        <field:textarea field="comment" id="c_com_crophealer_domain_DiagnosedProblem_comment" z="NZDt/Xh8GpHDVZgGWJ6+c7is4R8="/>
+        <field:input field="location" id="c_com_crophealer_domain_DiagnosedProblem_location" z="izzyFvxMZJZKp9ELororsWVvrBA="/>
+        <field:datetime dateTimePattern="${diagnosedProblem_createdtimestamp_date_format}" field="createdTimestamp" id="c_com_crophealer_domain_DiagnosedProblem_createdTimestamp" z="33XgpB3bd59cHyq+Z6Jmzbf2PX0="/>
+        <field:datetime dateTimePattern="${diagnosedProblem_modifiedtimestamp_date_format}" field="modifiedTimestamp" id="c_com_crophealer_domain_DiagnosedProblem_modifiedTimestamp" z="KN20KSmdicg7MVw0uHtTGTfSBUA="/>
+        <field:datetime dateTimePattern="${diagnosedProblem_closedtimestamp_date_format}" field="closedTimestamp" id="c_com_crophealer_domain_DiagnosedProblem_closedTimestamp" z="8Yu8/KbfAs7UqOaUu6uzoLR7Qu8="/>
+        <field:select field="usr" id="c_com_crophealer_domain_DiagnosedProblem_usr" itemValue="id" items="${userses}" path="/userses" z="8Z+1Lk+wK13hgslyyU4LGZb/8vs="/>
+        <field:simple field="pictures" id="c_com_crophealer_domain_DiagnosedProblem_pictures" messageCode="entity_reference_not_managed" messageCodeAttribute="Diagnosed Problem Picture" z="izNDuPnhGKHjJDA8J/I488477Gg="/>
+        <field:select field="plantPartPhaseProblem" id="c_com_crophealer_domain_DiagnosedProblem_plantPartPhaseProblem" itemValue="id" items="${plantpartphaseproblems}" path="/plantpartphaseproblems" z="G0WrIE+PA67VebBsKNz21nvexMQ="/>
+    </form:update>
+</div>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_crophealer_domain_DiagnosedProblemPicture" modelAttribute="diagnosedProblemPicture" path="/diagnosedproblempictures" render="${empty dependencies}" z="jDnsZ1gwm4lrZXPsptX35xN8y/4=">
+        <field:input field="name" id="c_com_crophealer_domain_DiagnosedProblemPicture_name" z="YibHroymN/1zQ1sckrkAvgLx74g="/>
+        <field:input field="pictureUrl" id="c_com_crophealer_domain_DiagnosedProblemPicture_pictureUrl" z="xv6Nv1tEw+iE4u+U/ZiIOKIVt3M="/>
+        <field:select field="diagnosedProblem" id="c_com_crophealer_domain_DiagnosedProblemPicture_diagnosedProblem" itemValue="id" items="${diagnosedproblems}" path="/diagnosedproblems" z="2p7xjL2zhgiLLlvnQ6Bv9an8wLQ="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_DiagnosedProblemPicture" render="${not empty dependencies}" z="ORI3OMKp6LvqV1gtGjiWn5eKAb4="/>
+</div>

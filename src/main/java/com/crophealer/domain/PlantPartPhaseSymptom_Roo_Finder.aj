@@ -3,12 +3,21 @@
 
 package com.crophealer.domain;
 
+import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.Symptom;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 privileged aspect PlantPartPhaseSymptom_Roo_Finder {
+    
+    public static TypedQuery<PlantPartPhaseSymptom> PlantPartPhaseSymptom.findPlantPartPhaseSymptomsByProblem(PlantPartPhaseProblem problem) {
+        if (problem == null) throw new IllegalArgumentException("The problem argument is required");
+        EntityManager em = PlantPartPhaseSymptom.entityManager();
+        TypedQuery<PlantPartPhaseSymptom> q = em.createQuery("SELECT o FROM PlantPartPhaseSymptom AS o WHERE o.problem = :problem", PlantPartPhaseSymptom.class);
+        q.setParameter("problem", problem);
+        return q;
+    }
     
     public static TypedQuery<PlantPartPhaseSymptom> PlantPartPhaseSymptom.findPlantPartPhaseSymptomsBySymptom(Symptom symptom) {
         if (symptom == null) throw new IllegalArgumentException("The symptom argument is required");

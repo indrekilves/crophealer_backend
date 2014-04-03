@@ -33,4 +33,12 @@ privileged aspect ProblemActiveIngredient_Roo_JavaBean {
         this.plantPartPhaseProblem = plantPartPhaseProblem;
     }
     
+    public Integer ProblemActiveIngredient.getEffect() {
+        return this.effect;
+    }
+    
+    public void ProblemActiveIngredient.setEffect(Integer effect) {
+        this.effect = effect;
+    }
+    
 }

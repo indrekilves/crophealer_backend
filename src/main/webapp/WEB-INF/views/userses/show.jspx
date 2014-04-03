@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_security_Users" object="${users}" path="/userses" z="19q74MGz0xpz9QxVo8QwXldHbCg=">
+        <field:display field="username" id="s_com_crophealer_security_Users_username" object="${users}" z="28ZMSLcBfbPpAVf2Z+yOUxVcGWg="/>
+        <field:display field="password" id="s_com_crophealer_security_Users_password" object="${users}" z="q69CFdXWbElk5nfiRZHh893rvtU="/>
+        <field:display field="enabled" id="s_com_crophealer_security_Users_enabled" object="${users}" z="MzEUuhOOw7/yfIJRPp17rhzsjm0="/>
+        <field:display field="email" id="s_com_crophealer_security_Users_email" object="${users}" z="gbSlykFGMIjboLVAZsJqfQcXdbU="/>
+    </page:show>
+</div>

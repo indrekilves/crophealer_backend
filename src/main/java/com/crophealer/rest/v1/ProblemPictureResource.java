@@ -4,7 +4,7 @@ import org.codehaus.jackson.map.annotate.JsonRootName;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean 
-@JsonRootName(value = "problePicture")
+@JsonRootName(value = "problemPicture")
 public class ProblemPictureResource {
 
 	private Long   id; 

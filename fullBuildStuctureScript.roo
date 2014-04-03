@@ -246,3 +246,22 @@ field reference --fieldName problem --type ~.domain.PlantPartPhaseProblem --card
 
 focus --class ~.domain.PlantPartPhaseProblem
 field set --fieldName problemActiveIngredients --type ~.domain.ProblemActiveIngredient --cardinality ONE_TO_MANY --mappedBy plantPartPhaseProblem
+
+
+
+entity jpa --class ~.security.Users
+field string --fieldName username
+field string --fieldName password
+field boolean --fieldName enabled
+field string --fieldName email
+
+entity jpa --class ~.domain.DiagnosedProblem
+field string --fieldName comment --sizeMax 10000
+field string --fieldName location
+field date --fieldName createdTimestamp --type java.util.Date
+field date --fieldName modifiedTimestamp --type java.util.Date
+field date --fieldName closedTimestamp --type java.util.Date
+field reference --fieldName usr --type ~.security.Users --cardinality MANY_TO_ONE
+
+focus --class ~security.Users
+field set --fieldName diagnosedProblems --type ~.domain.DiagnosedProblem --cardinality ONE_TO_MANY --mappedBy usr

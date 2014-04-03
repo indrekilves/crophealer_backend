@@ -1,12 +1,5 @@
 package com.crophealer.data;
 
-import com.crophealer.domain.ActiveIngredient;
-import com.crophealer.domain.ActiveIngredientProduct;
-import com.crophealer.domain.ActiveIngredientTranslation;
-import com.crophealer.domain.Country;
-import com.crophealer.domain.Languages;
-import com.crophealer.domain.Product;
-import com.crophealer.domain.ProductTranslation;
 
 public class DataLoader {
 	protected String fileName;
@@ -37,26 +30,29 @@ public class DataLoader {
 		}
 	}
 
+	
 	private void loadFromExcel() {
+		//DeleteTest dt = new DeleteTest();
+		//dt.getAllRequests();
+
 		this.ssReader = new ExcelReader();
 		this.ssReader.setFileName(this.fileName);
 		this.ssReader.loadWorkBook();
 
 		DataCleaner dCleaner = new DataCleaner();
 		dCleaner.truncateAllTables();
-		// test
-		// load capsulated data:
-		this.loadCountries();
+
+		// load capsulated data: 
+		this.loadCountries(); 
 		this.loadLanguages();
 		this.loadPhases();
 		this.loadProducers();
-		this.loadResellers();
-		// this.loadActiveIngredientsAndProducts();
+		this.loadResellers();		
 		this.loadPlants();
 		this.loadProblems();
-		this.loadTempDemoData();
-
-		// this.loadProductsWithProblemLinks();
+		this.loadActiveIngredientsAndProducts();
+		// this.loadTempDemoData();
+		//this.loadProductsWithProblemLinks();
 
 	}
 
@@ -64,6 +60,61 @@ public class DataLoader {
 
 	}
 
+
+	private void loadProblems() {
+		ProblemLoader pl = new ProblemLoader(ssReader);
+		pl.loadProblems();
+	}
+
+	private void loadPlants() {
+		PlantLoader pl = new PlantLoader(this.ssReader);
+		pl.loadPlants();
+	}
+
+	private void loadActiveIngredientsAndProducts() {
+		ActiveIngredientLoader ail = new ActiveIngredientLoader(this.ssReader);
+		ail.loadAIs();
+		//ail.loadAITranslations();
+	}
+
+	private void loadResellers() {
+		ResellerLoader rl = new ResellerLoader(this.ssReader);
+		rl.loadResellers();
+	}
+
+	private void loadProducers() {
+		ProducerLoader pl = new ProducerLoader(this.ssReader);
+		pl.loadProducers();
+	}
+
+	private void loadPhases() {
+		ssReader.setActiveSheetNum(2);
+		GrowthPhaseLoader gpl = new GrowthPhaseLoader(this.ssReader);
+		gpl.loadPhaseCodes();
+		gpl.loadPhaseTranslations();
+	}
+
+	private void loadCountries() {
+		CountryLoader cl = new CountryLoader(this.ssReader);
+		cl.loadCountries();
+	}
+
+	private void loadLanguages() {
+		LanguageLoader cl = new LanguageLoader(this.ssReader);
+		cl.loadLanguages();
+	}
+
+	private void loadFromODS() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private String getFileType() {
+		return "XLS";
+	}
+	
+	
+	/*
 	private void loadTempDemoData() {
 		this.loadAarislaiksus();
 		this.loadHelelaiksus();
@@ -110,15 +161,14 @@ public class DataLoader {
 		productTrans.setLatestUsegeTimeSprayInterval("35/14");
 		productTrans.persist();
 
-		// Problem problem =
-		// Problem.getSingleProblemByLatinName("Septoria tritici, Septoria nodorum");
+		Problem problem = Problem
+				.getSingleProblemByLatinName("Septoria tritici, Septoria nodorum");
 
-		// ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
-		// problemAI.setActiveIngredient(ai);
-		// problemAI.setProblem(problem);
-		// problemAI.setComment(problem.getLatinName() + " - " +
-		// ai.getComment());
-		// problemAI.persist();
+		ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
+		problemAI.setActiveIngredient(ai);
+		problemAI.setProblem(problem);
+		problemAI.setComment(problem.getLatinName() + " - " + ai.getComment());
+		problemAI.persist();
 	}
 
 	private void loadAarislaiksus() {
@@ -162,68 +212,16 @@ public class DataLoader {
 		productTrans.setLatestUsegeTimeSprayInterval("35/14");
 		productTrans.persist();
 
-		// Problem problem =
-		// Problem.getSingleProblemByLatinName("Rhynchosporium graminicola, Rhynchosporium secalis");
+		Problem problem = Problem
+				.getSingleProblemByLatinName("Rhynchosporium graminicola, Rhynchosporium secalis");
 
-		// ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
-		// problemAI.setActiveIngredient(ai);
-		// problemAI.setProblem(problem);
-		// problemAI.setComment(problem.getLatinName() + " - " +
-		// ai.getComment());
-		// problemAI.persist();
-
-	}
-
-	private void loadProblems() {
-		ProblemLoader pl = new ProblemLoader(ssReader);
-		pl.loadProblems();
-	}
-
-	private void loadPlants() {
-		PlantLoader pl = new PlantLoader(this.ssReader);
-		pl.loadPlants();
-	}
-
-	private void loadActiveIngredientsAndProducts() {
-		ActiveIngredientLoader ail = new ActiveIngredientLoader(this.ssReader);
-		ail.loadAIs();
-		ail.loadAITranslations();
-	}
-
-	private void loadResellers() {
-		ResellerLoader rl = new ResellerLoader(this.ssReader);
-		rl.loadResellers();
-	}
-
-	private void loadProducers() {
-		ProducerLoader pl = new ProducerLoader(this.ssReader);
-		pl.loadProducers();
-	}
-
-	private void loadPhases() {
-		ssReader.setActiveSheetNum(2);
-		GrowthPhaseLoader gpl = new GrowthPhaseLoader(this.ssReader);
-		gpl.loadPhaseCodes();
-		gpl.loadPhaseTranslations();
-	}
-
-	private void loadCountries() {
-		CountryLoader cl = new CountryLoader(this.ssReader);
-		cl.loadCountries();
-	}
-
-	private void loadLanguages() {
-		LanguageLoader cl = new LanguageLoader(this.ssReader);
-		cl.loadLanguages();
-	}
-
-	private void loadFromODS() {
-		// TODO Auto-generated method stub
+		ProblemActiveIngredient problemAI = new ProblemActiveIngredient();
+		problemAI.setActiveIngredient(ai);
+		problemAI.setProblem(problem);
+		problemAI.setComment(problem.getLatinName() + " - " + ai.getComment());
+		problemAI.persist();
 
 	}
-
-	private String getFileType() {
-		return "XLS";
-	}
+*/
 
 }

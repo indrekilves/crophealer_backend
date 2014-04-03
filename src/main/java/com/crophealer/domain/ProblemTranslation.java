@@ -1,13 +1,15 @@
 package com.crophealer.domain;
+import javax.persistence.ManyToOne;
+import javax.persistence.TypedQuery;
+import javax.validation.constraints.Size;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-import javax.validation.constraints.Size;
-import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findProblemTranslationsByLang", "findProblemTranslationsByProblemAndLang" })
+@RooJpaActiveRecord(finders = { "findProblemTranslationsByLang", "findProblemTranslationsByProblemAndLang", "findProblemTranslationsByNameEquals" })
 public class ProblemTranslation {
 
     /**
@@ -33,4 +35,14 @@ public class ProblemTranslation {
      */
     @ManyToOne
     private Languages lang;
+    
+    public static ProblemTranslation getSingleProblemTranslationByName(String name) {
+        try {
+            TypedQuery<ProblemTranslation> q = ProblemTranslation.findProblemTranslationsByNameEquals(name);
+            if (q.getResultList().size() > 0) return q.getSingleResult(); else return null;
+            
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

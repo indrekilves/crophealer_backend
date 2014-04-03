@@ -8,16 +8,16 @@ import com.crophealer.data.DataLoader;
 
 @Controller
 @RequestMapping("/rest/v1/est/data")
+public class DataLoaderRestController {
 
-public class DataLoaderRestController 
-{
-	
-	@RequestMapping(method = RequestMethod.GET, value="/load")	
-	public void loadSpreadsheetData()
-	{
+	//@Autowired
+	//private DeleteTest dt;
+
+	@RequestMapping(method = RequestMethod.GET, value = "/load")
+	public void loadSpreadsheetData() {
+		//dt.getAllRequests();
 		DataLoader dl = new DataLoader();
 		dl.runDataLoad();
 	}
+
 }
-
-

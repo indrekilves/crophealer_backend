@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_DiagnosedProblem" items="${diagnosedproblems}" z="Fc92hALPMNvVF/yAWR7NzVIX+7k=">
+        <table:table data="${diagnosedproblems}" id="l_com_crophealer_domain_DiagnosedProblem" path="/diagnosedproblems" z="UdvDSIOlH0hWJbcKyOhJ3T9vWVo=">
+            <table:column id="c_com_crophealer_domain_DiagnosedProblem_comment" property="comment" z="iRGC/V3YBik9KITTJ0ksMFw+bwU="/>
+            <table:column id="c_com_crophealer_domain_DiagnosedProblem_location" property="location" z="PFqoWUs9oUX33QjQMp+Wx1AWxiY="/>
+            <table:column date="true" dateTimePattern="${diagnosedProblem_createdtimestamp_date_format}" id="c_com_crophealer_domain_DiagnosedProblem_createdTimestamp" property="createdTimestamp" z="myNuQ3goPNMW8DFThV+nY5ED9FQ="/>
+            <table:column date="true" dateTimePattern="${diagnosedProblem_modifiedtimestamp_date_format}" id="c_com_crophealer_domain_DiagnosedProblem_modifiedTimestamp" property="modifiedTimestamp" z="k+Mgc/j+HJIBI2feU29vVAbq8Vc="/>
+            <table:column date="true" dateTimePattern="${diagnosedProblem_closedtimestamp_date_format}" id="c_com_crophealer_domain_DiagnosedProblem_closedTimestamp" property="closedTimestamp" z="lp33d/M3TWQkJg+V0jRMii3z0jI="/>
+            <table:column id="c_com_crophealer_domain_DiagnosedProblem_usr" property="usr" z="z6X8IM6ki6rFvdJ3E16DbaFWpF4="/>
+        </table:table>
+    </page:list>
+</div>

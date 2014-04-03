@@ -23,10 +23,6 @@ privileged aspect PlantPartPhaseProblem_Roo_JavaBean {
         return this.symptoms;
     }
     
-    public void PlantPartPhaseProblem.setSymptoms(Set<PlantPartPhaseSymptom> symptoms) {
-        this.symptoms = symptoms;
-    }
-    
     public Problem PlantPartPhaseProblem.getProblem() {
         return this.problem;
     }
@@ -37,10 +33,6 @@ privileged aspect PlantPartPhaseProblem_Roo_JavaBean {
     
     public Set<ProblemActiveIngredient> PlantPartPhaseProblem.getProblemActiveIngredients() {
         return this.problemActiveIngredients;
-    }
-    
-    public void PlantPartPhaseProblem.setProblemActiveIngredients(Set<ProblemActiveIngredient> problemActiveIngredients) {
-        this.problemActiveIngredients = problemActiveIngredients;
     }
     
 }

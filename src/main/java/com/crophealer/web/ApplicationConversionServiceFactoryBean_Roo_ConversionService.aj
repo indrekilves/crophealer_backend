@@ -7,6 +7,8 @@ import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Country;
+import com.crophealer.domain.DiagnosedProblem;
+import com.crophealer.domain.DiagnosedProblemPicture;
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.GrowthPhaseProduct;
 import com.crophealer.domain.GrowthPhaseTranslation;
@@ -30,6 +32,7 @@ import com.crophealer.domain.Reseller;
 import com.crophealer.domain.Symptom;
 import com.crophealer.domain.SymptomPicture;
 import com.crophealer.domain.SymptomTranslation;
+import com.crophealer.security.Users;
 import com.crophealer.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -131,6 +134,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.Country>() {
             public com.crophealer.domain.Country convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Country.class);
+            }
+        };
+    }
+    
+    public Converter<DiagnosedProblem, String> ApplicationConversionServiceFactoryBean.getDiagnosedProblemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.DiagnosedProblem, java.lang.String>() {
+            public String convert(DiagnosedProblem diagnosedProblem) {
+                return new StringBuilder().append(diagnosedProblem.getComment()).append(' ').append(diagnosedProblem.getLocation()).append(' ').append(diagnosedProblem.getCreatedTimestamp()).append(' ').append(diagnosedProblem.getModifiedTimestamp()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, DiagnosedProblem> ApplicationConversionServiceFactoryBean.getIdToDiagnosedProblemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.DiagnosedProblem>() {
+            public com.crophealer.domain.DiagnosedProblem convert(java.lang.Long id) {
+                return DiagnosedProblem.findDiagnosedProblem(id);
+            }
+        };
+    }
+    
+    public Converter<String, DiagnosedProblem> ApplicationConversionServiceFactoryBean.getStringToDiagnosedProblemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.DiagnosedProblem>() {
+            public com.crophealer.domain.DiagnosedProblem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), DiagnosedProblem.class);
+            }
+        };
+    }
+    
+    public Converter<DiagnosedProblemPicture, String> ApplicationConversionServiceFactoryBean.getDiagnosedProblemPictureToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.DiagnosedProblemPicture, java.lang.String>() {
+            public String convert(DiagnosedProblemPicture diagnosedProblemPicture) {
+                return new StringBuilder().append(diagnosedProblemPicture.getName()).append(' ').append(diagnosedProblemPicture.getPictureUrl()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, DiagnosedProblemPicture> ApplicationConversionServiceFactoryBean.getIdToDiagnosedProblemPictureConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.DiagnosedProblemPicture>() {
+            public com.crophealer.domain.DiagnosedProblemPicture convert(java.lang.Long id) {
+                return DiagnosedProblemPicture.findDiagnosedProblemPicture(id);
+            }
+        };
+    }
+    
+    public Converter<String, DiagnosedProblemPicture> ApplicationConversionServiceFactoryBean.getStringToDiagnosedProblemPictureConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.DiagnosedProblemPicture>() {
+            public com.crophealer.domain.DiagnosedProblemPicture convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), DiagnosedProblemPicture.class);
             }
         };
     }
@@ -426,7 +477,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<ProblemActiveIngredient, String> ApplicationConversionServiceFactoryBean.getProblemActiveIngredientToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ProblemActiveIngredient, java.lang.String>() {
             public String convert(ProblemActiveIngredient problemActiveIngredient) {
-                return new StringBuilder().append(problemActiveIngredient.getComment()).toString();
+                return new StringBuilder().append(problemActiveIngredient.getComment()).append(' ').append(problemActiveIngredient.getEffect()).toString();
             }
         };
     }
@@ -687,6 +738,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Users, String> ApplicationConversionServiceFactoryBean.getUsersToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.security.Users, java.lang.String>() {
+            public String convert(Users users) {
+                return new StringBuilder().append(users.getUsername()).append(' ').append(users.getPassword()).append(' ').append(users.getEmail()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Users> ApplicationConversionServiceFactoryBean.getIdToUsersConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.security.Users>() {
+            public com.crophealer.security.Users convert(java.lang.Long id) {
+                return Users.findUsers(id);
+            }
+        };
+    }
+    
+    public Converter<String, Users> ApplicationConversionServiceFactoryBean.getStringToUsersConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.security.Users>() {
+            public com.crophealer.security.Users convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Users.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getActiveIngredientToStringConverter());
         registry.addConverter(getIdToActiveIngredientConverter());
@@ -700,6 +775,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getCountryToStringConverter());
         registry.addConverter(getIdToCountryConverter());
         registry.addConverter(getStringToCountryConverter());
+        registry.addConverter(getDiagnosedProblemToStringConverter());
+        registry.addConverter(getIdToDiagnosedProblemConverter());
+        registry.addConverter(getStringToDiagnosedProblemConverter());
+        registry.addConverter(getDiagnosedProblemPictureToStringConverter());
+        registry.addConverter(getIdToDiagnosedProblemPictureConverter());
+        registry.addConverter(getStringToDiagnosedProblemPictureConverter());
         registry.addConverter(getGrowthPhaseToStringConverter());
         registry.addConverter(getIdToGrowthPhaseConverter());
         registry.addConverter(getStringToGrowthPhaseConverter());
@@ -769,6 +850,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getSymptomTranslationToStringConverter());
         registry.addConverter(getIdToSymptomTranslationConverter());
         registry.addConverter(getStringToSymptomTranslationConverter());
+        registry.addConverter(getUsersToStringConverter());
+        registry.addConverter(getIdToUsersConverter());
+        registry.addConverter(getStringToUsersConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_DiagnosedProblem" object="${diagnosedproblem}" path="/diagnosedproblems" z="9J++ZyMFLxMDpefwtjukHhVU0Vw=">
+        <field:display field="comment" id="s_com_crophealer_domain_DiagnosedProblem_comment" object="${diagnosedproblem}" z="eAUzf/kWILK0OMiDDhl5j8yRkTY="/>
+        <field:display field="location" id="s_com_crophealer_domain_DiagnosedProblem_location" object="${diagnosedproblem}" z="ujqaENe6NqiGVzjEFtkKYxkeV5A="/>
+        <field:display date="true" dateTimePattern="${diagnosedProblem_createdtimestamp_date_format}" field="createdTimestamp" id="s_com_crophealer_domain_DiagnosedProblem_createdTimestamp" object="${diagnosedproblem}" z="fYd6+ZWHKtcQfkoMGgGfPFWeZ1g="/>
+        <field:display date="true" dateTimePattern="${diagnosedProblem_modifiedtimestamp_date_format}" field="modifiedTimestamp" id="s_com_crophealer_domain_DiagnosedProblem_modifiedTimestamp" object="${diagnosedproblem}" z="YlwjzSyHDgZTQoxJGSSTT7HQOzI="/>
+        <field:display date="true" dateTimePattern="${diagnosedProblem_closedtimestamp_date_format}" field="closedTimestamp" id="s_com_crophealer_domain_DiagnosedProblem_closedTimestamp" object="${diagnosedproblem}" z="MfZgz/iTm1wXzfTL5iBLTMfYG3U="/>
+        <field:display field="usr" id="s_com_crophealer_domain_DiagnosedProblem_usr" object="${diagnosedproblem}" z="k61ouK42aO/m2/LIBMzC2RVCRUo="/>
+        <field:display field="plantPartPhaseProblem" id="s_com_crophealer_domain_DiagnosedProblem_plantPartPhaseProblem" object="${diagnosedproblem}" z="qaV95mjKvr8CYQ9pjITaJxz8NJY="/>
+    </page:show>
+</div>
