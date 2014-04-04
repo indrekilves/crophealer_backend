@@ -91,10 +91,6 @@ public class ActiveIngredientLoader extends GenericLoader {
 	}
 
 	private void loadCropsAndProblems(ActiveIngredient ai, int aiRow) {
-		if (aiRow == 232)
-		{
-			int a = 3;
-		}
 		try
 		{
 			Integer nextAiRow = this.ssReader.getNextFilledRowNum(0, aiRow);
