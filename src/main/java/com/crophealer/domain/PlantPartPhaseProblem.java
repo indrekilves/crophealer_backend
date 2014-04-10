@@ -51,4 +51,69 @@ public class PlantPartPhaseProblem {
 		}
     	return null;
     }
+
+
+	@Override
+	public String toString() {
+		String symptomIdsCSV = getSymptomIdsCsv();
+		Long problemId = getProblemId();
+		String problemActiveIngredientIdCsv = getProblemActiveIngredientIdCsv();
+		return "PlantPartPhaseProblem [comment=" + comment + ", pppSymptoms="
+				+ symptomIdsCSV + ", problem=" + problemId
+				+ ", problemActiveIngredients=" + problemActiveIngredientIdCsv
+				+ "]";
+	}
+
+
+
+	private String getSymptomIdsCsv() {
+		if (symptoms == null) return null;
+		
+		StringBuilder sb = new StringBuilder();
+	    for (PlantPartPhaseSymptom pppSymptom : symptoms) {
+	    	if (pppSymptom != null){
+	    		if (sb.equals("")){
+	    			sb.append(pppSymptom.getId());
+	    		}
+	    		else{
+	    			sb.append("," + pppSymptom.getId());
+	    		}
+	    	}
+		}
+			    
+		return sb.toString();
+	}
+
+	
+
+	private Long getProblemId() {
+		if (problem == null) {
+			return null;
+		}
+		else{
+			return problem.getId();
+		}
+	}
+	
+
+	private String getProblemActiveIngredientIdCsv() {
+		if (problemActiveIngredients == null) return null;
+		
+		StringBuilder sb = new StringBuilder();
+	    for (ProblemActiveIngredient pai : problemActiveIngredients) {
+	    	if (pai != null){
+	    		if (sb.equals("")){
+	    			sb.append(pai.getId());
+	    		}
+	    		else{
+	    			sb.append("," + pai.getId());
+	    		}
+	    	}
+		}
+			    
+		return sb.toString();
+	}
+
+    
+    
 }

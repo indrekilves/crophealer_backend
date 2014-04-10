@@ -423,3 +423,9 @@ finder list
 finder add findPlantPartPhaseSymptomsByProblem
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-03 11:50:23
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-04-03 14:31:27
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-09 18:56:27
+// [failed] focus --class Users
+focus --class ~.security.Users
+finder list
+finder add findUsersesByUsernameEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-04-10 10:51:27
