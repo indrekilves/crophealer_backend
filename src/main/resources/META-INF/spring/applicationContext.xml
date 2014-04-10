@@ -50,13 +50,6 @@
 	</bean>
 	<tx:annotation-driven mode="aspectj"
 		transaction-manager="transactionManager" />
-	<bean
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		id="entityManagerFactory">
-		<property name="persistenceUnitName" value="persistenceUnit" />
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
