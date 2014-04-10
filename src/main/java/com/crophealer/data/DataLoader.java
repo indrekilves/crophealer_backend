@@ -56,7 +56,6 @@ public class DataLoader {
 
 	}
 
-	@SuppressWarnings("unused")
 	private void loadProductsWithProblemLinks() {
 
 	}

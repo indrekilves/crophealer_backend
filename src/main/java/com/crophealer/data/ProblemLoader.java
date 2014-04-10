@@ -227,7 +227,6 @@ public class ProblemLoader extends GenericLoader
 		}		
 	}
 
-	@SuppressWarnings("unused")
 	private boolean plant_plantPart_phase_exists(Plant plant, GrowthPhase phase, PlantPart pPart) 
 	{
 		try
@@ -245,7 +244,6 @@ public class ProblemLoader extends GenericLoader
 	}
 
 	
-	@SuppressWarnings("unused")
 	private boolean plant_plantPart_phase_problem_exists(Plant plant, GrowthPhase phase, PlantPart pPart, Problem problem) 
 	{
 		// TODO check if such link already exists
@@ -254,7 +252,6 @@ public class ProblemLoader extends GenericLoader
 	
 	
 	
-	@SuppressWarnings("unused")
 	private boolean plant_plantPart_phase_symptom_exists(Plant plant, GrowthPhase phase, PlantPart pPart, Symptom symptom) 
 	{
 		// TODO check if such link already exists
@@ -450,7 +447,6 @@ public class ProblemLoader extends GenericLoader
 	}
 	
 	
-	@SuppressWarnings("unused")
 	private Boolean plantPartExistsByName(String ppName)
 	{
 		if (ppName.isEmpty())
