@@ -6,29 +6,16 @@ public class FileManagementRestService {
 
 	
 	public static String getUserPictureDirectoryByUsername(String userId) {
-		String dir = getUserPicturesRootDirectory() + userId + "/";
+		String dir = getUserPicturesRootPath() + userId + "/";
 		createDirIfNeeded(dir);
 		return dir;
 	}
 	
 
 	
-	
-	private static String getUserPicturesRootDirectory() {
-		String dir = getUserPicturesRootPath();
-		createDirIfNeeded(dir);
-		return dir;
-	}
-
-
-
 
 	public static String getUserPicturesRootPath(){
-		String dir = "/var/";
-		createDirIfNeeded(dir);
-		dir += "userpictures/";
-		createDirIfNeeded(dir);		
-		return dir;
+		return "/var/userpictures/";		
 	}
 	
 
