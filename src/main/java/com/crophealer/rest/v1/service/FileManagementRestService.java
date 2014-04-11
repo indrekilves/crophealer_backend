@@ -5,8 +5,8 @@ import java.io.File;
 public class FileManagementRestService {
 
 	
-	public static String getUserPictureDirectoryByUsername(String username) {
-		String dir = getUserPicturesRootDirectory() + username + "/";
+	public static String getUserPictureDirectoryByUsername(String userId) {
+		String dir = getUserPicturesRootDirectory() + userId + "/";
 		createDirIfNeeded(dir);
 		return dir;
 	}
@@ -24,7 +24,11 @@ public class FileManagementRestService {
 
 
 	public static String getUserPicturesRootPath(){
-		return "/userpictures/";
+		String dir = "/var/";
+		createDirIfNeeded(dir);
+		dir += "userpictures/";
+		createDirIfNeeded(dir);		
+		return dir;
 	}
 	
 

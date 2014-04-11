@@ -117,7 +117,12 @@ public class DiagnosedProblemRestService  extends GenericRestService {
 	
 	
 	private void storePictures() {		
-		pictureDirectory = FileManagementRestService.getUserPictureDirectoryByUsername(user.getUsername());
+		pictureDirectory = FileManagementRestService.getUserPictureDirectoryByUsername(user.getId().toString());
+		if (pictureDirectory == null) {
+			System.out.println("ERROR: Failed to get pictureDirectory.");
+			return;
+		}
+		
 		List<MultipartFile> files = uploadForm.getFiles();       
 		
 		if(null != files && files.size() > 0) {
