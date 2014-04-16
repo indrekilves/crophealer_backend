@@ -1,12 +1,4 @@
 package com.crophealer.security;
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
-
-import com.crophealer.domain.DiagnosedProblem;
-import com.crophealer.rest.v1.RequestError;
-import com.crophealer.rest.v1.UserResource;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +6,15 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.persistence.TypedQuery;
+
+import org.springframework.roo.addon.javabean.RooJavaBean;
+import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
+import org.springframework.roo.addon.tostring.RooToString;
+
+import com.crophealer.domain.DiagnosedProblem;
+import com.crophealer.rest.v1.RequestError;
+import com.crophealer.rest.v1.UserResource;
+import com.crophealer.utils.EmailValidator;
 
 @RooJavaBean
 @RooToString
@@ -35,7 +36,7 @@ public class Users {
     /**
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usr")
-    private Set<DiagnosedProblem> diagnosedProblems = new HashSet<DiagnosedProblem>();
+    private final Set<DiagnosedProblem> diagnosedProblems = new HashSet<DiagnosedProblem>();
 
     /**
      */
@@ -52,7 +53,7 @@ public class Users {
 		if (ur.getPassword().isEmpty())           return RequestError.E0003;
 		if (isPasswordToWeak(ur.getPassword()))   return RequestError.E0004;
 		if (ur.getEmail().isEmpty())              return RequestError.E0005;
-		if (isEmailFormatFaulty(ur.getEmail()))   return RequestError.E0006;
+		if (isBadEmailFormat(ur.getEmail()))      return RequestError.E0006;
 		
 		return null;
 	}
@@ -71,9 +72,10 @@ public class Users {
 	}
 	
 	
-	private static boolean isEmailFormatFaulty(String email2) {
+	private static boolean isBadEmailFormat(String email2) {
 		// TODO: isEmailFormatFaulty isn't implemented
-		return false;
+		EmailValidator eValidator = new EmailValidator();
+		return !eValidator.validate(email2);
 	}
 	
 

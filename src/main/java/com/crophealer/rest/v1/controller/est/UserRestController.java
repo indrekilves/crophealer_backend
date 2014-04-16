@@ -40,9 +40,9 @@ public class UserRestController {
 	
 	
 	@RequestMapping(method = RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Void> createUser(@RequestBody UserResource ur)
+	public ResponseEntity<String> createUser(@RequestBody UserResource ur)
 	{   	
-	    return userRestService.addUser(ur);		
+	    return userRestService.createUser(ur);		
 	}    
 	
 	

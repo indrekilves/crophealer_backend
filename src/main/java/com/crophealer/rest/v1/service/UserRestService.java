@@ -42,8 +42,31 @@ public class UserRestService extends GenericRestService {
 		return response;	
 	}
 
-	
 
+	public ResponseEntity<String> createUser(UserResource ur) {
+		ResponseEntity<String> response;
+		if (ur == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+		
+		RequestError re = Users.validateUserResource(ur);
+		if (re != null){
+			// TODO: use requestError
+			response = new ResponseEntity<>(re.getValue(), HttpStatus.CONFLICT);
+			return response;
+		}
+				
+		Users user = Users.createFromResource(ur);
+
+		HttpHeaders headers = new HttpHeaders();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().pathSegment(user.getId().toString()).build().toUri();
+		headers.setLocation(location);
+
+		response = new ResponseEntity<>(headers,HttpStatus.CREATED);
+		return response;
+	}
+/*
 	public ResponseEntity<Void> createUser(UserResource ur) {
 		ResponseEntity<Void> response;
 		if (ur == null) {
@@ -67,7 +90,7 @@ public class UserRestService extends GenericRestService {
 		response = new ResponseEntity<>(headers,HttpStatus.CREATED);
 		return response;
 	}
-	
+*/	
 	
 	public ResponseEntity<UserResource> getUser(Long id) {
 		System.out.println("getUser - try to get for id:" + id);

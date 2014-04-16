@@ -73,6 +73,7 @@ public class ActiveIngredientLoader extends GenericLoader {
 			{
 				ai = new ActiveIngredient();
 				ai.setLatinName(ais.get(i));
+				ai.setComment(aisEst.get(i));
 				ai.setCountry(country);
 				ai.persist();
 
