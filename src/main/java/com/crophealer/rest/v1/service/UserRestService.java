@@ -38,13 +38,13 @@ public class UserRestService extends GenericRestService {
 			return response;
 		}
 				
-		response = new ResponseEntity<>(true, HttpStatus.OK);
+		response = new ResponseEntity<>(user.getEnabled(), HttpStatus.OK);
 		return response;	
 	}
 
 	
 
-	public ResponseEntity<Void> addUser(UserResource ur) {
+	public ResponseEntity<Void> createUser(UserResource ur) {
 		ResponseEntity<Void> response;
 		if (ur == null) {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
