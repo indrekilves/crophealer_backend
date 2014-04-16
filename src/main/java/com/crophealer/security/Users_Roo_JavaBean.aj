@@ -37,10 +37,6 @@ privileged aspect Users_Roo_JavaBean {
         return this.diagnosedProblems;
     }
     
-    public void Users.setDiagnosedProblems(Set<DiagnosedProblem> diagnosedProblems) {
-        this.diagnosedProblems = diagnosedProblems;
-    }
-    
     public String Users.getEmail() {
         return this.email;
     }

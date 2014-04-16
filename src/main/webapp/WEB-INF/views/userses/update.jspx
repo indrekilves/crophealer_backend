@@ -6,7 +6,6 @@
         <field:input field="username" id="c_com_crophealer_security_Users_username" z="45YtdpZJYTS6PHbM+ldGmpFiF3I="/>
         <field:input field="password" id="c_com_crophealer_security_Users_password" z="/3y++lDdB0DUofBTU5No1WQuuFQ="/>
         <field:checkbox field="enabled" id="c_com_crophealer_security_Users_enabled" z="+jDtIAO5dHU021icThUoewalPZw="/>
-        <field:simple field="diagnosedProblems" id="c_com_crophealer_security_Users_diagnosedProblems" messageCode="entity_reference_not_managed" messageCodeAttribute="Diagnosed Problem" z="7LWYRwazakZtoHmHEypDXx6JznI="/>
         <field:input field="email" id="c_com_crophealer_security_Users_email" validationMessageCode="field_invalid_email" z="zGMILTKQjBrqlqWBRgBwFem0DJE="/>
     </form:update>
 </div>

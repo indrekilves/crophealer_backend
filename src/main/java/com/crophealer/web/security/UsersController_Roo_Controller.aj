@@ -3,7 +3,6 @@
 
 package com.crophealer.web.security;
 
-import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.security.Users;
 import com.crophealer.web.security.UsersController;
 import java.io.UnsupportedEncodingException;
@@ -87,7 +86,6 @@ privileged aspect UsersController_Roo_Controller {
     
     void UsersController.populateEditForm(Model uiModel, Users users) {
         uiModel.addAttribute("users", users);
-        uiModel.addAttribute("diagnosedproblems", DiagnosedProblem.findAllDiagnosedProblems());
     }
     
     String UsersController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
