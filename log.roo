@@ -430,3 +430,9 @@ finder list
 finder add findUsersesByUsernameEquals
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-04-10 10:51:27
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-15 22:40:46
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-04-16 12:21:02
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-21 12:11:27
+focus --class ~.domain.PlantPartPhaseSymptom
+finder list
+finder add findPlantPartPhaseSymptomsByPlantPartPhaseAndSymptom
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-04-21 14:54:52

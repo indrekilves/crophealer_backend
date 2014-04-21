@@ -3,6 +3,7 @@
 
 package com.crophealer.domain;
 
+import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.Symptom;
@@ -10,6 +11,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 privileged aspect PlantPartPhaseSymptom_Roo_Finder {
+    
+    public static TypedQuery<PlantPartPhaseSymptom> PlantPartPhaseSymptom.findPlantPartPhaseSymptomsByPlantPartPhaseAndSymptom(PlantPartPhase plantPartPhase, Symptom symptom) {
+        if (plantPartPhase == null) throw new IllegalArgumentException("The plantPartPhase argument is required");
+        if (symptom == null) throw new IllegalArgumentException("The symptom argument is required");
+        EntityManager em = PlantPartPhaseSymptom.entityManager();
+        TypedQuery<PlantPartPhaseSymptom> q = em.createQuery("SELECT o FROM PlantPartPhaseSymptom AS o WHERE o.plantPartPhase = :plantPartPhase AND o.symptom = :symptom", PlantPartPhaseSymptom.class);
+        q.setParameter("plantPartPhase", plantPartPhase);
+        q.setParameter("symptom", symptom);
+        return q;
+    }
     
     public static TypedQuery<PlantPartPhaseSymptom> PlantPartPhaseSymptom.findPlantPartPhaseSymptomsByProblem(PlantPartPhaseProblem problem) {
         if (problem == null) throw new IllegalArgumentException("The problem argument is required");
