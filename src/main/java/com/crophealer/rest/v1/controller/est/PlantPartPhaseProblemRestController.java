@@ -40,17 +40,19 @@ public class PlantPartPhaseProblemRestController {
 	}
     
     
-    @RequestMapping(method = RequestMethod.GET, params="searchBySymptoms")
-  	public ResponseEntity<PlantPartPhaseProblemResourceList> getPlantPartPhaseProblemBySymptoms( @RequestParam(value = "searchBySymptoms", required = false) String symptomsCsv){
-    	System.out.println("getPlantPartPhaseProblemBySymptoms: " + symptomsCsv);
-    	return plantPartPhaseProblemRestService.getPlantPartPhaseProblemBySymptomsAndLanguage(symptomsCsv, plantPartPhaseProblemRestService.getEstonian());
-    }
+//    @RequestMapping(method = RequestMethod.GET, params="searchBySymptoms")
+//  	public ResponseEntity<PlantPartPhaseProblemResourceList> getPlantPartPhaseProblemByPPPSymptoms( @RequestParam(value = "searchBySymptoms", required = false) String symptomsCsv){
+//    	System.out.println("getPlantPartPhaseProblemBySymptoms: " + symptomsCsv);
+//    	return plantPartPhaseProblemRestService.getPlantPartPhaseProblemByPPPSymptomsAndLanguage(symptomsCsv, plantPartPhaseProblemRestService.getEstonian());
+//    }
 
-    @RequestMapping(method = RequestMethod.GET, params="loll")
-  	public void loll( @RequestParam(value = "loll", required = false) String loll){
-    	System.out.println("loll: " + loll);
-    }
-    
+	
+    @RequestMapping(method = RequestMethod.GET, params={"plantPartPhaseId", "searchBySymptoms"})
+  	public ResponseEntity<PlantPartPhaseProblemResourceList> getPlantPartPhaseProblemBySymptoms(@RequestParam(value = "plantPartPhaseId", required = false) String idStr, 
+  																								@RequestParam(value = "searchBySymptoms", required = false) String symptomsCsv){
+    	Long id = Long.parseLong(idStr);
+    	return plantPartPhaseProblemRestService.getPlantPartPhaseProblemBySymptomsAndLanguage(id, symptomsCsv, plantPartPhaseProblemRestService.getEstonian());
+    }    
     
     @RequestMapping(method = RequestMethod.GET, value="/{id}/activeIngredients")
 	public ResponseEntity<ActiveIngredientResourceList> getActiveIngredients(@PathVariable("id") Long id)

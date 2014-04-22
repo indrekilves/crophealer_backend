@@ -7,7 +7,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findPlantPartPhaseSymptomsBySymptom", "findPlantPartPhaseSymptomsByProblem" })
+@RooJpaActiveRecord(finders = { "findPlantPartPhaseSymptomsBySymptom", "findPlantPartPhaseSymptomsByProblem", "findPlantPartPhaseSymptomsByPlantPartPhaseAndSymptom" })
 public class PlantPartPhaseSymptom {
 
     /**

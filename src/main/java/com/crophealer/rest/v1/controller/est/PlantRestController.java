@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.crophealer.rest.v1.GrowthPhaseResourceList;
+import com.crophealer.rest.v1.PlantPartPhaseResourceList;
 import com.crophealer.rest.v1.PlantPartPhaseSymptomResourceList;
 import com.crophealer.rest.v1.PlantPartResourceList;
 import com.crophealer.rest.v1.PlantResource;
@@ -52,15 +53,22 @@ public class PlantRestController {
 	}
     
     
+    @Deprecated
 	@RequestMapping(method = RequestMethod.GET, value="/{pId}/growthphases/{gpId}/plantparts/{ppId}/symptoms")
 	public ResponseEntity<SymptomResourceList> getAllSymptomsForPlantPartAndGrowthPhaseAndPlant(@PathVariable("pId") Long pId, @PathVariable("gpId") Long gpId, @PathVariable("ppId") Long ppId){
 		return plantRestService.getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(pId, gpId, ppId, plantRestService.getEstonian());
 	}
 
-
+    @Deprecated
 	@RequestMapping(method = RequestMethod.GET, value="/{pId}/growthphases/{gpId}/plantparts/{ppId}/plantPartPhaseSymptoms")
 	public ResponseEntity<PlantPartPhaseSymptomResourceList> getAllPlantPartPhaseSymptomsForPlantPartAndGrowthPhaseAndPlant(@PathVariable("pId") Long pId, @PathVariable("gpId") Long gpId, @PathVariable("ppId") Long ppId){
 		return plantRestService.getAllPlantPartPhaseSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(pId, gpId, ppId, plantRestService.getEstonian());
+	}
+
+    
+	@RequestMapping(method = RequestMethod.GET, value="/{pId}/growthphases/{gpId}/plantparts/{ppId}/plantPartPhases")
+	public ResponseEntity<PlantPartPhaseResourceList> getPlantPartPhasesForPlantPartAndGrowthPhaseAndPlant(@PathVariable("pId") Long pId, @PathVariable("gpId") Long gpId, @PathVariable("ppId") Long ppId){
+		return plantRestService.getPlantPartPhasesForPlantPartAndGrowthPhaseAndPlantByLanguage(pId, gpId, ppId, plantRestService.getEstonian());
 	}
 
 }

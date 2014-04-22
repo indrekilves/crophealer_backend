@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.Symptom;
 import com.crophealer.rest.v1.ActiveIngredientResourceAssembler;
 import com.crophealer.rest.v1.ActiveIngredientResourceList;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResource;
@@ -23,7 +25,7 @@ import com.crophealer.rest.v1.PlantPartPhaseProblemResourceList;
 @Service
 public class PlantPartPhaseProblemRestService extends GenericRestService {
 
-
+		
 	public ResponseEntity<PlantPartPhaseProblemResourceList> getAllPlantPartPhaseProblemByLanguage(Languages language) {
 		ResponseEntity<PlantPartPhaseProblemResourceList> response; 
 		if (language == null) {
@@ -65,7 +67,7 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 
 	
 	
-	public ResponseEntity<PlantPartPhaseProblemResourceList> getPlantPartPhaseProblemBySymptomsAndLanguage(String pppSymptomsCsv, Languages language) {
+	public ResponseEntity<PlantPartPhaseProblemResourceList> getPlantPartPhaseProblemByPPPSymptomsAndLanguage(String pppSymptomsCsv, Languages language) {
 
 		System.out.println("getProblemsBySymptomsAndLanguage - try to get for symptoms:" + pppSymptomsCsv + " lang:" + language);
 		ResponseEntity<PlantPartPhaseProblemResourceList> response;
@@ -131,9 +133,55 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		
 		 response = new ResponseEntity<>(airl, HttpStatus.OK);
 		 return response;
-	 }
+	}
+	
 
+	public ResponseEntity<PlantPartPhaseProblemResourceList> getPlantPartPhaseProblemBySymptomsAndLanguage(Long id, String symptomsCsv, Languages language) {
+		System.out.println("getPlantPartPhaseProblemBySymptomsAndLanguage - try to get for PPPID: " + id + " symptoms:" + symptomsCsv + " lang:" + language);
+		ResponseEntity<PlantPartPhaseProblemResourceList> response;
+	
+		if (id == null || symptomsCsv == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+		
+		
+		// Get PlantPartPhase
+		PlantPartPhase ppp = PlantPartPhase.findPlantPartPhase(id);
+		if (ppp == null){
+			 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			 return response;
+		 }
 
+		// Get PlantPartPhaseProblems
+		List<String> symptomIdStings = Arrays.asList(symptomsCsv.split("\\s*,\\s*"));
+		List<PlantPartPhaseProblem> plantPartPhaseProblems = new ArrayList<PlantPartPhaseProblem>();
+		
+		for (String symptomIdStr : symptomIdStings) {
+			if (symptomIdStr != null) {
+				Symptom s = Symptom.findSymptom(Long.parseLong(symptomIdStr));
+				if (s != null) {
+					
+					List<PlantPartPhaseSymptom> plantPartPhaseSymptoms = PlantPartPhaseSymptom.findPlantPartPhaseSymptomsByPlantPartPhaseAndSymptom(ppp, s).getResultList();
+			    	for (PlantPartPhaseSymptom pppSymptom : plantPartPhaseSymptoms) 
+					{
+			    		PlantPartPhaseProblem pppProblem = pppSymptom.getProblem();
+			    		if (pppProblem != null) {
+							if ( !plantPartPhaseProblems.contains(pppProblem))
+							{
+								plantPartPhaseProblems.add(pppProblem);
+							}
+			    		}
 
-
+					}			    	
+				}
+			}
+		}
+		
+		PlantPartPhaseProblemResourceAssembler asm = new PlantPartPhaseProblemResourceAssembler();
+		PlantPartPhaseProblemResourceList drl = asm.toResource(plantPartPhaseProblems, language);
+		
+		response = new ResponseEntity<>(drl, HttpStatus.OK);
+		return response;
+	}
 }
