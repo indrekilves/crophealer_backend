@@ -7,5 +7,7 @@
         <field:display field="password" id="s_com_crophealer_security_Users_password" object="${users}" z="q69CFdXWbElk5nfiRZHh893rvtU="/>
         <field:display field="enabled" id="s_com_crophealer_security_Users_enabled" object="${users}" z="MzEUuhOOw7/yfIJRPp17rhzsjm0="/>
         <field:display field="email" id="s_com_crophealer_security_Users_email" object="${users}" z="gbSlykFGMIjboLVAZsJqfQcXdbU="/>
+        <field:display date="true" dateTimePattern="${users_expirationdate_date_format}" field="expirationDate" id="s_com_crophealer_security_Users_expirationDate" object="${users}" z="AHUdv3E39+I0ozt2RuPabmU5x0k="/>
+        <field:display field="phone" id="s_com_crophealer_security_Users_phone" object="${users}" z="hH/v/n3M3nSeJ7SU1H3w4L3qO34="/>
     </page:show>
 </div>

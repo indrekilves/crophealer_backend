@@ -436,3 +436,24 @@ focus --class ~.domain.PlantPartPhaseSymptom
 finder list
 finder add findPlantPartPhaseSymptomsByPlantPartPhaseAndSymptom
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-04-21 14:54:52
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-24 22:43:37
+focus --class ~.security.users
+field date --fieldName expirationDate --type java.util.Date
+
+entity jpa --class ~.security.Authorities
+field string --fieldName authority
+
+focus --class ~.security.users
+field string --fieldName phone
+
+entity jpa --class ~.security.Assignments
+field reference --fieldName usr --type ~.security.Users --cardinality MANY_TO_ONE
+
+field reference --fieldName authority --type ~.security.Authorities --cardinality MANY_TO_ONE
+
+web mvc scaffold --class ~.web.security.Assignments --backingType ~.security.Assignments
+
+web mvc scaffold --class ~.web.security.AssignmentsController --backingType ~.security.Assignments
+
+web mvc scaffold --class ~.web.security.AuthoritiesController --backingType ~.security.Authorities
+

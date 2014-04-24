@@ -32,6 +32,8 @@ import com.crophealer.domain.Reseller;
 import com.crophealer.domain.Symptom;
 import com.crophealer.domain.SymptomPicture;
 import com.crophealer.domain.SymptomTranslation;
+import com.crophealer.security.Assignments;
+import com.crophealer.security.Authorities;
 import com.crophealer.security.Users;
 import com.crophealer.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -738,10 +740,58 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Assignments, String> ApplicationConversionServiceFactoryBean.getAssignmentsToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.security.Assignments, java.lang.String>() {
+            public String convert(Assignments assignments) {
+                return "(no displayable fields)";
+            }
+        };
+    }
+    
+    public Converter<Long, Assignments> ApplicationConversionServiceFactoryBean.getIdToAssignmentsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.security.Assignments>() {
+            public com.crophealer.security.Assignments convert(java.lang.Long id) {
+                return Assignments.findAssignments(id);
+            }
+        };
+    }
+    
+    public Converter<String, Assignments> ApplicationConversionServiceFactoryBean.getStringToAssignmentsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.security.Assignments>() {
+            public com.crophealer.security.Assignments convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Assignments.class);
+            }
+        };
+    }
+    
+    public Converter<Authorities, String> ApplicationConversionServiceFactoryBean.getAuthoritiesToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.security.Authorities, java.lang.String>() {
+            public String convert(Authorities authorities) {
+                return new StringBuilder().append(authorities.getAuthority()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Authorities> ApplicationConversionServiceFactoryBean.getIdToAuthoritiesConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.security.Authorities>() {
+            public com.crophealer.security.Authorities convert(java.lang.Long id) {
+                return Authorities.findAuthorities(id);
+            }
+        };
+    }
+    
+    public Converter<String, Authorities> ApplicationConversionServiceFactoryBean.getStringToAuthoritiesConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.security.Authorities>() {
+            public com.crophealer.security.Authorities convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Authorities.class);
+            }
+        };
+    }
+    
     public Converter<Users, String> ApplicationConversionServiceFactoryBean.getUsersToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.security.Users, java.lang.String>() {
             public String convert(Users users) {
-                return new StringBuilder().append(users.getUsername()).append(' ').append(users.getPassword()).append(' ').append(users.getEmail()).toString();
+                return new StringBuilder().append(users.getUsername()).append(' ').append(users.getPassword()).append(' ').append(users.getEmail()).append(' ').append(users.getExpirationDate()).toString();
             }
         };
     }
@@ -850,6 +900,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getSymptomTranslationToStringConverter());
         registry.addConverter(getIdToSymptomTranslationConverter());
         registry.addConverter(getStringToSymptomTranslationConverter());
+        registry.addConverter(getAssignmentsToStringConverter());
+        registry.addConverter(getIdToAssignmentsConverter());
+        registry.addConverter(getStringToAssignmentsConverter());
+        registry.addConverter(getAuthoritiesToStringConverter());
+        registry.addConverter(getIdToAuthoritiesConverter());
+        registry.addConverter(getStringToAuthoritiesConverter());
         registry.addConverter(getUsersToStringConverter());
         registry.addConverter(getIdToUsersConverter());
         registry.addConverter(getStringToUsersConverter());

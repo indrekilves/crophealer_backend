@@ -5,6 +5,7 @@ package com.crophealer.security;
 
 import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.security.Users;
+import java.util.Date;
 import java.util.Set;
 
 privileged aspect Users_Roo_JavaBean {
@@ -43,6 +44,22 @@ privileged aspect Users_Roo_JavaBean {
     
     public void Users.setEmail(String email) {
         this.email = email;
+    }
+    
+    public Date Users.getExpirationDate() {
+        return this.expirationDate;
+    }
+    
+    public void Users.setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+    
+    public String Users.getPhone() {
+        return this.phone;
+    }
+    
+    public void Users.setPhone(String phone) {
+        this.phone = phone;
     }
     
 }
