@@ -22,10 +22,6 @@ privileged aspect Users_Roo_JavaBean {
         return this.password;
     }
     
-    public void Users.setPassword(String password) {
-        this.password = password;
-    }
-    
     public Boolean Users.getEnabled() {
         return this.enabled;
     }

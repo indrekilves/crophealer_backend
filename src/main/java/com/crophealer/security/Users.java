@@ -2,19 +2,27 @@ package com.crophealer.security;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.persistence.TypedQuery;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.rest.v1.RequestError;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.utils.EmailValidator;
+
 import java.util.Date;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @RooJavaBean
@@ -42,6 +50,24 @@ public class Users {
     /**
      */
     private String email;
+    
+    /**
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(style = "M-")
+    private Date expirationDate;
+
+    /**
+     */
+    private String phone;
+
+
+	public void setPassword(String password) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
+        this.password = passwordEncoder.encode(password); 
+    }
+
+    
 
     public static RequestError validateUserResource(UserResource ur) {
         if (ur.getUsername().isEmpty()) return RequestError.E0001;
@@ -82,13 +108,4 @@ public class Users {
         return u;
     }
 
-    /**
-     */
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
-    private Date expirationDate;
-
-    /**
-     */
-    private String phone;
 }

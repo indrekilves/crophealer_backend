@@ -4,12 +4,12 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_crophealer_security_Users" items="${userses}" z="6Nu2XK/ZS994fBraSLFkopQeNVc=">
         <table:table data="${userses}" id="l_com_crophealer_security_Users" path="/userses" z="Dl3DbegLbcjsXgMuQ8bvlPIdGHw=">
+            <table:column id="c_com_crophealer_security_Users_phone" property="phone" z="Jxx9O8nCribai9SgL48+VPq/35o="/>
             <table:column id="c_com_crophealer_security_Users_username" property="username" z="duAg74BcXhVfCQTwW8YthvzAUh4="/>
             <table:column id="c_com_crophealer_security_Users_password" property="password" z="DAeb3y9rFXvm6SrXnGGFHz7b9jc="/>
             <table:column id="c_com_crophealer_security_Users_enabled" property="enabled" z="Gr8m0Qas1pKPUvU9yD/KFTb4KhY="/>
             <table:column id="c_com_crophealer_security_Users_email" property="email" z="IfhsOriSNYFwqRRCrgE25Gdc2cY="/>
             <table:column date="true" dateTimePattern="${users_expirationdate_date_format}" id="c_com_crophealer_security_Users_expirationDate" property="expirationDate" z="Mw41FEln06Lj7u4EfrbNZ9F4S4E="/>
-            <table:column id="c_com_crophealer_security_Users_phone" property="phone" z="Jxx9O8nCribai9SgL48+VPq/35o="/>
         </table:table>
     </page:list>
 </div>
