@@ -457,3 +457,5 @@ web mvc scaffold --class ~.web.security.AssignmentsController --backingType ~.se
 
 web mvc scaffold --class ~.web.security.AuthoritiesController --backingType ~.security.Authorities
 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-25 11:24:51
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-04-25 11:28:32
