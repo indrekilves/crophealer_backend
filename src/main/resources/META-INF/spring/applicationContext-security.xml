@@ -17,6 +17,10 @@
         <intercept-url pattern="/rest/**" access="hasRole('ROLE_CLIENT')" /> 
 		<http-basic/>     
     </http>
+    
+    <!-- For hashing and salting user passwords -->
+    <beans:bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    
     <!-- Configure Authentication mechanism -->
     <authentication-manager alias="authenticationManager">
         <!-- SHA-256 values can be produced using 'echo -n your_desired_password | sha256sum' (using normal *nix environments) -->
@@ -28,5 +32,23 @@
                 <user name="client" password="eaded93a948cd58a33eef8ba374fb4a6c69ed66290ba8b12c52fda74bfc68c2f" authorities="ROLE_CLIENT" />
             </user-service>
         </authentication-provider>
+        
+        
+		<authentication-provider>
+			<password-encoder ref="bCryptPasswordEncoder"/>
+		
+			<jdbc-user-service data-source-ref="dataSource"
+ 				users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?;" 
+
+ 				authorities-by-username-query="SELECT p.username, a.authority  
+   	 				FROM users p, authorities a, assignments ra     
+    	 				WHERE p.id = ra.usr     
+    	 				  AND a.id = ra.authority    
+    	 				  AND p.username = ?;" />    
+		
+		</authentication-provider>
+        
     </authentication-manager>
+    
+    
 </beans:beans>
