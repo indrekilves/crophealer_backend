@@ -24,17 +24,21 @@ import com.crophealer.domain.SymptomTranslation;
 public class ProblemLoader extends GenericLoader
 {
 	protected Integer activeSheetNum 	= 0;
-	private final Integer latinNameColNum 	= 7;
-	private final Integer problemsStartRow 	= 5; 
-	private final Integer phaseColumn 		= 8;
-	private final Integer countryRowNum 		= 2;
-	private final Integer headerRowNum		= 4;
+	
+	private final Integer latinNameColNum 	= 9;
+	private final Integer phaseColumn 		= 10;
 	private LinkedHashMap<String, Integer> countryCols;
 	
-	// offsets
-	private final Integer plantPartOS = 1;
-	private final Integer warningOS	= 3;
+	//private final Integer problemsStartRow 	= 162;
+	private final Integer problemsStartRow 	= 5;
+	private final Integer countryRowNum 	= 2;
+	private final Integer headerRowNum		= 4;
+	
+	// offsets from Country column
+	private final Integer plantPartOS 	= 1;
+	private final Integer warningOS		= 3;
 	private final Integer symptomOS 	= 2;
+
 	
 	public ProblemLoader(SpreadSheetReader ssReader)
 	{
@@ -59,7 +63,6 @@ public class ProblemLoader extends GenericLoader
 				if (Country.getSingleCountryByName(country) != null)
 				{
 					this.countryCols.put(country, i);
-					
 				}
 			}
 		}
@@ -100,6 +103,10 @@ public class ProblemLoader extends GenericLoader
 			problem = this.getProblemByLatin(problemLatin);
 		}
 		
+		if (pRow >=169)
+		{
+			int ih=0;
+		}
 		List<GrowthPhase> phases   = this.getPhasesForProblem(problem, pRow);
 		List<PlantPart> plantParts = this.loadAndGetPlantPartsForProblem(pRow);
 		List<Plant>		plants	   = this.getPlantsForProblem(problem, pRow);
@@ -145,6 +152,7 @@ public class ProblemLoader extends GenericLoader
 	}
 	
 	
+
 
 
 
@@ -227,36 +235,7 @@ public class ProblemLoader extends GenericLoader
 		}		
 	}
 
-	private boolean plant_plantPart_phase_exists(Plant plant, GrowthPhase phase, PlantPart pPart) 
-	{
-		try
-		{
-			TypedQuery<PlantPartPhase> pppQ = PlantPartPhase.findPlantPartPhasesByPlantAndGrowthPhaseAndPlantPart(plant, phase, pPart);
-			if (pppQ.getResultList().size() > 0) 
-				return true;
-			else
-				return false;
-		}
-		catch(Exception e)
-		{
-			return false;	
-		}		
-	}
 
-	
-	private boolean plant_plantPart_phase_problem_exists(Plant plant, GrowthPhase phase, PlantPart pPart, Problem problem) 
-	{
-		// TODO check if such link already exists
-		return false;		
-	}
-	
-	
-	
-	private boolean plant_plantPart_phase_symptom_exists(Plant plant, GrowthPhase phase, PlantPart pPart, Symptom symptom) 
-	{
-		// TODO check if such link already exists
-		return false;		
-	}
 
 
 	
@@ -423,7 +402,10 @@ public class ProblemLoader extends GenericLoader
 		{
 			Integer countryColNum = countryCol.getValue();
 			String plantPartStr = ssReader.getCellContent(row, countryColNum + plantPartOS);	
-		
+			
+			if (plantPartStr == "")
+				continue;
+			
 			if (pp.getComment() == null)
 			{
 				pp.setComment(plantPartStr);

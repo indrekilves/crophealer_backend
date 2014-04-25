@@ -1,6 +1,7 @@
 package com.crophealer.data;
 
 
+
 public class DataLoader {
 	protected String fileName;
 	protected SpreadSheetReader ssReader;
@@ -32,9 +33,6 @@ public class DataLoader {
 
 	
 	private void loadFromExcel() {
-		//DeleteTest dt = new DeleteTest();
-		//dt.getAllRequests();
-
 		this.ssReader = new ExcelReader();
 		this.ssReader.setFileName(this.fileName);
 		this.ssReader.loadWorkBook();
@@ -51,9 +49,6 @@ public class DataLoader {
 		this.loadPlants();
 		this.loadProblems();
 		this.loadActiveIngredientsAndProducts();
-		// this.loadTempDemoData();
-		//this.loadProductsWithProblemLinks();
-
 	}
 
 	private void loadProductsWithProblemLinks() {

@@ -37,7 +37,7 @@ public class ActiveIngredientLoader extends GenericLoader {
 	{
 		this.problemsByCols = new HashMap<Integer, Problem>();
 		List<String> probsInEst = this.ssReader.getRowAsArray(0, this.problemStartColNum);
-		
+
 		for (int i = 0; i < probsInEst.size(); i++) {			
 			ProblemTranslation probTrans = ProblemTranslation.getSingleProblemTranslationByName(probsInEst.get(i));			
 			if (probTrans != null) 
@@ -45,7 +45,7 @@ public class ActiveIngredientLoader extends GenericLoader {
 				System.out.println("Loading AI problems, loaded " + probTrans.getName());
 				this.problemsByCols.put(i+this.problemStartColNum, probTrans.getProblem());			
 			}
-		}		
+		}	
 	}
 	
 	
