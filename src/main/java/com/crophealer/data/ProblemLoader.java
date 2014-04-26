@@ -17,6 +17,7 @@ import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.PlantPartTranslation;
 import com.crophealer.domain.Problem;
+import com.crophealer.domain.ProblemPicture;
 import com.crophealer.domain.ProblemTranslation;
 import com.crophealer.domain.Symptom;
 import com.crophealer.domain.SymptomTranslation;
@@ -25,14 +26,15 @@ public class ProblemLoader extends GenericLoader
 {
 	protected Integer activeSheetNum 	= 0;
 	
-	private final Integer latinNameColNum 	= 9;
-	private final Integer phaseColumn 		= 10;
+	private final Integer latinNameCol 	= 9;
+	private final Integer phaseCol 		= latinNameCol + 1;
+	private final Integer indexCol		= latinNameCol + 2;
 	private LinkedHashMap<String, Integer> countryCols;
 	
 	//private final Integer problemsStartRow 	= 162;
 	private final Integer problemsStartRow 	= 5;
-	private final Integer countryRowNum 	= 2;
-	private final Integer headerRowNum		= 4;
+	private final Integer countryRow 	    = 2;
+	private final Integer headerRow		    = 4;
 	
 	// offsets from Country column
 	private final Integer plantPartOS 	= 1;
@@ -54,10 +56,10 @@ public class ProblemLoader extends GenericLoader
 		
 		
 		this.countryCols = new LinkedHashMap<String, Integer>();
-		List<String> countryRow = ssReader.getRowAsArray(countryRowNum);
-		for (int i = 0; i < countryRow.size(); i++) 
+		List<String> countries = ssReader.getRowAsArray(countryRow);
+		for (int i = 0; i < countries.size(); i++) 
 		{
-			String country = countryRow.get(i);
+			String country = countries.get(i);
 			if ( !country.isEmpty())
 			{
 				if (Country.getSingleCountryByName(country) != null)
@@ -72,7 +74,7 @@ public class ProblemLoader extends GenericLoader
 
 	public void loadProblems()
 	{	
-		List<String> latinNames = this.ssReader.getColumnAsArray(this.latinNameColNum, this.problemsStartRow);
+		List<String> latinNames = this.ssReader.getColumnAsArray(this.latinNameCol, this.problemsStartRow);
 		
 		for (int i = 0; i < latinNames.size(); i++) 
 		{
@@ -96,6 +98,7 @@ public class ProblemLoader extends GenericLoader
 		if ( !this.problemExists(problemLatin) )
 		{
 			problem = this.addProblemByLatin(problemLatin);
+			this.addProblemPicture(problem, pRow);
 			this.loadProblemTranslations(problem, pRow);	
 		}
 		else
@@ -107,9 +110,9 @@ public class ProblemLoader extends GenericLoader
 		{
 			int ih=0;
 		}
-		List<GrowthPhase> phases   = this.getPhasesForProblem(problem, pRow);
-		List<PlantPart> plantParts = this.loadAndGetPlantPartsForProblem(pRow);
 		List<Plant>		plants	   = this.getPlantsForProblem(problem, pRow);
+		List<GrowthPhase> phases   = this.getPhasesForProblem(plants, problem, pRow);
+		List<PlantPart> plantParts = this.loadAndGetPlantPartsForProblem(pRow);
 		List<Symptom>	symptoms   = this.loadAndGetSymptomsForProblem(problem, pRow);
 		
 		// hurray to relations!
@@ -154,6 +157,20 @@ public class ProblemLoader extends GenericLoader
 	
 
 
+
+
+
+	private void addProblemPicture(Problem problem, int pRow) {
+		ProblemPicture probPic = new ProblemPicture();
+		String probPicStr = ssReader.getCellContent(pRow, indexCol);
+		
+		if (probPicStr.isEmpty()) return;
+		
+		probPic.setName(probPicStr);
+		probPic.setPictureUrl(probPicStr);
+		probPic.setProblem(problem);
+		probPic.persist();	
+	}
 
 
 
@@ -245,11 +262,11 @@ public class ProblemLoader extends GenericLoader
 		Plant plant;
 		String plantStr;
 		
-		for (int i = this.latinNameColNum; i >= 0; i--) {
+		for (int i = this.latinNameCol; i >= 0; i--) {
 			String plantCell = ssReader.getCellContent(pRow, i);
 			if (plantCell.equalsIgnoreCase("yes"))
 			{
-				plantStr = ssReader.getCellContent(this.headerRowNum, i);
+				plantStr = ssReader.getCellContent(this.headerRow, i);
 				plant = Plant.getSinglePlantByName(plantStr);
 				
 				if (plant != null)
@@ -335,7 +352,7 @@ public class ProblemLoader extends GenericLoader
 
 	private Integer getNextProblemRowNum(Integer curProblemRow)
 	{
-		List<String> problemRows = this.ssReader.getColumnAsArray(this.latinNameColNum, curProblemRow+1);
+		List<String> problemRows = this.ssReader.getColumnAsArray(this.latinNameCol, curProblemRow+1);
 		
 		if (problemRows.size() <= 0) 
 		{
@@ -356,10 +373,10 @@ public class ProblemLoader extends GenericLoader
 	
 	
 	
-	private List<GrowthPhase> getPhasesForProblem(Problem problem, int row)
+	private List<GrowthPhase> getPhasesForProblem(List<Plant> plants, Problem problem, int row)
 	{
 		List<GrowthPhase> phaseList = new ArrayList<GrowthPhase>();
-		String phaseCell = ssReader.getCellContent(row, phaseColumn);
+		String phaseCell = ssReader.getCellContent(row, phaseCol);
 		String[] phasePcs = phaseCell.split(",");
 
 		for (String phaseStr : phasePcs) {
@@ -367,16 +384,36 @@ public class ProblemLoader extends GenericLoader
 				continue;
 			try
 			{
-				String phaseF = "F" + phaseStr.trim();
+				String phaseF;				
+					
+				if (this.areOSRPlants(plants)) 
+					phaseF = "FR" + phaseStr.trim();
+				else
+					phaseF = "F" + phaseStr.trim();
+				
 				GrowthPhase phase = GrowthPhase.findGrowthPhasesByCommentEquals(phaseF).getSingleResult();
 				phaseList.add(phase);
 			}
 			catch(Exception e)
 			{}
-
 		}
 		return phaseList;
 	}
+	
+	private boolean areOSRPlants(List<Plant> plants)
+	{
+		if (plants.size() > 0)
+		{
+			Plant plant = plants.get(0);
+			if (plant.isOSR()) 
+				return true;
+			else
+				return false;
+		}
+		return false;
+	}
+	
+	
 	
 	private List<PlantPart> loadAndGetPlantPartsForProblem(int row)
 	{
@@ -462,7 +499,7 @@ public class ProblemLoader extends GenericLoader
 	
 	private Languages getLanguageByCountryCol(Integer countryCol)
 	{
-		String languageStr = ssReader.getCellContent(this.countryRowNum + 1, countryCol);
+		String languageStr = ssReader.getCellContent(this.countryRow + 1, countryCol);
 		Languages language = Languages.getSingleLanguageByName(languageStr);
 		return language;
 	}
@@ -471,7 +508,7 @@ public class ProblemLoader extends GenericLoader
 	
 	private Country getCountryByCountryCol(Integer countryCol)
 	{
-		String countryStr = ssReader.getCellContent(this.countryRowNum, countryCol);
+		String countryStr = ssReader.getCellContent(this.countryRow, countryCol);
 		Country country = Country.getSingleCountryByName(countryStr);
 		return country;
 	}

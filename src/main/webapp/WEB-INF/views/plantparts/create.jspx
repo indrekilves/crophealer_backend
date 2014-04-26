@@ -5,6 +5,7 @@
     <form:create id="fc_com_crophealer_domain_PlantPart" modelAttribute="plantPart" path="/plantparts" render="${empty dependencies}" z="388j3TNyBQlFMHjb0EgRgeDEh7o=">
         <field:input field="comment" id="c_com_crophealer_domain_PlantPart_comment" z="cJcHnRD0shvq4Cipky52fQyCY3w="/>
         <field:simple field="translations" id="c_com_crophealer_domain_PlantPart_translations" messageCode="entity_reference_not_managed" messageCodeAttribute="Plant Part Translation" z="Aqc8z6dSNr0QxrHxHCaN1e8d1Ho="/>
+        <field:simple field="phases" id="c_com_crophealer_domain_PlantPart_phases" messageCode="entity_reference_not_managed" messageCodeAttribute="Plant Part Phase" z="+DLtUvf9dZYzvuQvSs8EliMeG/E="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_PlantPart" render="${not empty dependencies}" z="PN0H1EbfOPZpMLTKrSe+CwYqZ1A="/>
 </div>

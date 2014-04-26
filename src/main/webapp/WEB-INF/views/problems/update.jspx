@@ -6,8 +6,5 @@
         <field:input field="latinName" id="c_com_crophealer_domain_Problem_latinName" z="qb/HxenKyY4WD0Aw9qD6/OXl3qQ="/>
         <field:input field="comment" id="c_com_crophealer_domain_Problem_comment" z="kk/B4c1fDZEMQCqNDy2mBtd2nvo="/>
         <field:select field="country" id="c_com_crophealer_domain_Problem_country" itemValue="id" items="${countrys}" path="/countrys" z="qgOuTN4rFTXpIHTxW/X/+dqvZ9M="/>
-        <field:simple field="translations" id="c_com_crophealer_domain_Problem_translations" messageCode="entity_reference_not_managed" messageCodeAttribute="Problem Translation" z="DmB92c9MpFRiya5jfRKWyhgmwZg="/>
-        <field:simple field="pictures" id="c_com_crophealer_domain_Problem_pictures" messageCode="entity_reference_not_managed" messageCodeAttribute="Problem Picture" z="n5QMCtYq9MQ7PRxDbnvoiZLMR+A="/>
-        <field:simple field="plantPartPhaseProblems" id="c_com_crophealer_domain_Problem_plantPartPhaseProblems" messageCode="entity_reference_not_managed" messageCodeAttribute="Plant Part Phase Symptom" z="pYQY1JFCI8NIfetWVIM5/YC3gok="/>
     </form:update>
 </div>

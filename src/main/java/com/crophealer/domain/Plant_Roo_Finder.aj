@@ -4,8 +4,6 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.Plant;
-import com.crophealer.domain.PlantTranslation;
-import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -16,22 +14,6 @@ privileged aspect Plant_Roo_Finder {
         EntityManager em = Plant.entityManager();
         TypedQuery<Plant> q = em.createQuery("SELECT o FROM Plant AS o WHERE o.comment = :comment", Plant.class);
         q.setParameter("comment", comment);
-        return q;
-    }
-    
-    public static TypedQuery<Plant> Plant.findPlantsByTranslations(Set<PlantTranslation> translations) {
-        if (translations == null) throw new IllegalArgumentException("The translations argument is required");
-        EntityManager em = Plant.entityManager();
-        StringBuilder queryBuilder = new StringBuilder("SELECT o FROM Plant AS o WHERE");
-        for (int i = 0; i < translations.size(); i++) {
-            if (i > 0) queryBuilder.append(" AND");
-            queryBuilder.append(" :translations_item").append(i).append(" MEMBER OF o.translations");
-        }
-        TypedQuery<Plant> q = em.createQuery(queryBuilder.toString(), Plant.class);
-        int translationsIndex = 0;
-        for (PlantTranslation _planttranslation: translations) {
-            q.setParameter("translations_item" + translationsIndex++, _planttranslation);
-        }
         return q;
     }
     

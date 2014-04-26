@@ -459,3 +459,7 @@ web mvc scaffold --class ~.web.security.AuthoritiesController --backingType ~.se
 
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-25 11:24:51
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-04-25 11:28:32
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-26 11:40:44
+focus --class com.crophealer.domain.PlantPartPhase
+focus --class com.crophealer.domain.PlantPart
+field set --fieldName phases --type ~.domain.PlantPartPhase --cardinality ONE_TO_MANY --mappedBy plantPart

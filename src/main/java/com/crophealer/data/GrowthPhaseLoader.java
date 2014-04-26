@@ -35,8 +35,7 @@ public class GrowthPhaseLoader extends GenericLoader
 	public void loadPhaseTranslations()
 	{
 		List<String> languageRow = ssReader.getRowAsArray(0);
-
-		
+	
 		for (int i = 0; i < languageRow.size(); i++) 
 		{
 			if ( !languageRow.get(i).isEmpty() )

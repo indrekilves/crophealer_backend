@@ -6,8 +6,6 @@
         <field:input field="comment" id="c_com_crophealer_domain_Plant_comment" z="Sa/pzhQaqDnhZpDq5xK302VTIns="/>
         <field:input field="iconUrl" id="c_com_crophealer_domain_Plant_iconUrl" z="D2Ym3GrV7V9Bwr6AwajZQD9N1mg="/>
         <field:select field="country" id="c_com_crophealer_domain_Plant_country" itemValue="id" items="${countrys}" path="/countrys" z="aaEPqggHxEknJflAkZEWn9aiZek="/>
-        <field:simple field="translations" id="c_com_crophealer_domain_Plant_translations" messageCode="entity_reference_not_managed" messageCodeAttribute="Plant Translation" z="3NN5jn2r0/NZi4W25XGMPa0D8Ec="/>
-        <field:simple field="plantPartPhases" id="c_com_crophealer_domain_Plant_plantPartPhases" messageCode="entity_reference_not_managed" messageCodeAttribute="Plant Part Phase" z="qDHs0UOt9+Gtz2WD5iymkkfypCY="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_Plant" render="${not empty dependencies}" z="GqOb40yyMFLxAgDkjvtfIvUSYIA="/>
 </div>

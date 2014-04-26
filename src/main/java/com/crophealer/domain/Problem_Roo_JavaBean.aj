@@ -40,24 +40,12 @@ privileged aspect Problem_Roo_JavaBean {
         return this.translations;
     }
     
-    public void Problem.setTranslations(Set<ProblemTranslation> translations) {
-        this.translations = translations;
-    }
-    
     public Set<ProblemPicture> Problem.getPictures() {
         return this.pictures;
     }
     
-    public void Problem.setPictures(Set<ProblemPicture> pictures) {
-        this.pictures = pictures;
-    }
-    
     public Set<PlantPartPhaseSymptom> Problem.getPlantPartPhaseProblems() {
         return this.plantPartPhaseProblems;
-    }
-    
-    public void Problem.setPlantPartPhaseProblems(Set<PlantPartPhaseSymptom> plantPartPhaseProblems) {
-        this.plantPartPhaseProblems = plantPartPhaseProblems;
     }
     
 }

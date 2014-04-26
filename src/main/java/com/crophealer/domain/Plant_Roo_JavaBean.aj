@@ -39,16 +39,8 @@ privileged aspect Plant_Roo_JavaBean {
         return this.translations;
     }
     
-    public void Plant.setTranslations(Set<PlantTranslation> translations) {
-        this.translations = translations;
-    }
-    
     public Set<PlantPartPhase> Plant.getPlantPartPhases() {
         return this.plantPartPhases;
-    }
-    
-    public void Plant.setPlantPartPhases(Set<PlantPartPhase> plantPartPhases) {
-        this.plantPartPhases = plantPartPhases;
     }
     
 }
