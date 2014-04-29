@@ -463,3 +463,9 @@ web mvc scaffold --class ~.web.security.AuthoritiesController --backingType ~.se
 focus --class com.crophealer.domain.PlantPartPhase
 focus --class com.crophealer.domain.PlantPart
 field set --fieldName phases --type ~.domain.PlantPartPhase --cardinality ONE_TO_MANY --mappedBy plantPart
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-29 09:17:08
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-04-29 09:37:16
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-04-29 10:02:26
+focus --class ~.security.Authorities
+finder list
+finder add findAuthoritiesesByAuthorityEquals

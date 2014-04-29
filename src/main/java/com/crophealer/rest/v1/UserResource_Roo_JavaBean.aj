@@ -47,4 +47,12 @@ privileged aspect UserResource_Roo_JavaBean {
         this.email = email;
     }
     
+    public String UserResource.getPhone() {
+        return this.phone;
+    }
+    
+    public void UserResource.setPhone(String phone) {
+        this.phone = phone;
+    }
+    
 }

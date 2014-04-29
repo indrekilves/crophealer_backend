@@ -38,13 +38,14 @@
 			<password-encoder ref="bCryptPasswordEncoder"/>
 		
 			<jdbc-user-service data-source-ref="dataSource"
- 				users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?;" 
+ 				users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ? AND expiration_date >= now();" 
 
  				authorities-by-username-query="SELECT p.username, a.authority  
    	 				FROM users p, authorities a, assignments ra     
     	 				WHERE p.id = ra.usr     
     	 				  AND a.id = ra.authority    
-    	 				  AND p.username = ?;" />    
+    	 				  AND p.username = ?
+    	 				  AND p.expiration_date >= now();" />    
 		
 		</authentication-provider>
         
