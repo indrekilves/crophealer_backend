@@ -8,6 +8,7 @@ public class FileUploadForm {
 	
 	private String pppProblemId;
 	private String location;	
+	private String symptoms;
 	private List<MultipartFile> files;
 	
 
@@ -26,6 +27,14 @@ public class FileUploadForm {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getSymptoms() {
+		return symptoms;
+	}
+
+	public void setSymptoms(String symptoms) {
+		this.symptoms = symptoms;
 	}
 
 	public List<MultipartFile> getFiles() {

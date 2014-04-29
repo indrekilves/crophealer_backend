@@ -39,6 +39,10 @@ $(document).ready(function() {
     		<td>Location:</td> 
     		<td><input name = "location" type="text" width="100"></td>
 		</tr>
+		<tr>
+    		<td>Symptoms:</td> 
+    		<td><input name = "symptoms" type="text" width="100"></td>
+		</tr>
 	</table> 
 	<p>Select files to upload. Press Add button to add more file inputs.</p>
 	

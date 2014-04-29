@@ -469,3 +469,9 @@ field set --fieldName phases --type ~.domain.PlantPartPhase --cardinality ONE_TO
 focus --class ~.security.Authorities
 finder list
 finder add findAuthoritiesesByAuthorityEquals
+// [failed] focus --class ~.domain.diagnosedProblems
+// [failed] field string --fieldName symptomIDsCSV
+
+focus --class ~.domain.diagnosedProblem
+field string --fieldName symptomIDsCSV
+

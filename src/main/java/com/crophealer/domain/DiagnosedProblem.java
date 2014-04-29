@@ -2,23 +2,15 @@ package com.crophealer.domain;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
 import javax.validation.constraints.Size;
-
 import java.util.Date;
-
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import com.crophealer.security.Users;
-
 import javax.persistence.ManyToOne;
-
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 
@@ -68,4 +60,8 @@ public class DiagnosedProblem {
      */
     @ManyToOne
     private PlantPartPhaseProblem plantPartPhaseProblem;
+
+    /**
+     */
+    private String symptomIDsCSV;
 }

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.domain.Languages;
+import com.crophealer.security.Users;
 
 public class DiagnosedProblemResourceAssembler {
 
@@ -17,9 +18,14 @@ public class DiagnosedProblemResourceAssembler {
 		dpr.setId(dp.getId());
 		dpr.setComment(dp.getComment());
 		dpr.setLocation(dp.getLocation());
+		dpr.setSymptopmIDsCSV(dp.getSymptomIDsCSV());
 		dpr.setCreatedTimestamp(dp.getCreatedTimestamp());
 		dpr.setModifiedTimestamp(dp.getModifiedTimestamp());
-		
+		Users u = dp.getUsr();
+		if (u != null){
+			dpr.setUserId(u.getId().toString());
+		}
+			
 		DiagnosedProblemPictureResourceAssembler dppAsm = new DiagnosedProblemPictureResourceAssembler();
 		dpr.setPictures(dppAsm.toResource(dp.getPictures()));
 
