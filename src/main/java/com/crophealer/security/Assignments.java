@@ -18,4 +18,13 @@ public class Assignments {
      */
     @ManyToOne
     private Authorities authority;
+
+	public static void assignAuthorityToUser(Authorities auth, Users user) {
+		if (auth == null || user == null) return;
+		
+		Assignments a = new Assignments();
+	    a.setAuthority(auth);
+	    a.setUsr(user);
+	    a.persist();
+	}
 }

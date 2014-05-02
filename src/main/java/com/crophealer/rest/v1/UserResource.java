@@ -11,5 +11,6 @@ public class UserResource {
 	private String username;
 	private String password;
 	private boolean enabled;  
-    private String email;   
+    private String email;  
+    private String phone;
 }

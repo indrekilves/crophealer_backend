@@ -76,4 +76,12 @@ privileged aspect DiagnosedProblem_Roo_JavaBean {
         this.plantPartPhaseProblem = plantPartPhaseProblem;
     }
     
+    public String DiagnosedProblem.getSymptomIDsCSV() {
+        return this.symptomIDsCSV;
+    }
+    
+    public void DiagnosedProblem.setSymptomIDsCSV(String symptomIDsCSV) {
+        this.symptomIDsCSV = symptomIDsCSV;
+    }
+    
 }

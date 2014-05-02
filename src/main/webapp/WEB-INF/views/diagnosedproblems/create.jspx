@@ -11,6 +11,7 @@
         <field:select field="usr" id="c_com_crophealer_domain_DiagnosedProblem_usr" itemValue="id" items="${userses}" path="/userses" z="8Z+1Lk+wK13hgslyyU4LGZb/8vs="/>
         <field:simple field="pictures" id="c_com_crophealer_domain_DiagnosedProblem_pictures" messageCode="entity_reference_not_managed" messageCodeAttribute="Diagnosed Problem Picture" z="izNDuPnhGKHjJDA8J/I488477Gg="/>
         <field:select field="plantPartPhaseProblem" id="c_com_crophealer_domain_DiagnosedProblem_plantPartPhaseProblem" itemValue="id" items="${plantpartphaseproblems}" path="/plantpartphaseproblems" z="G0WrIE+PA67VebBsKNz21nvexMQ="/>
+        <field:input field="symptomIDsCSV" id="c_com_crophealer_domain_DiagnosedProblem_symptomIDsCSV" z="qdtkXAjzHEKtP1cFATynhQxOUL0="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_DiagnosedProblem" render="${not empty dependencies}" z="OnUmgTiwzipSjKGiMfIvhbYsAio="/>
 </div>

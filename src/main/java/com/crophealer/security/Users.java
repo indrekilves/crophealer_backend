@@ -1,4 +1,5 @@
 package com.crophealer.security;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,7 +31,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @RooJpaActiveRecord(finders = { "findUsersesByUsernameEquals" })
 public class Users {
 
-    /**
+	/**
      */
     private String username;
 
@@ -60,6 +61,17 @@ public class Users {
     /**
      */
     private String phone;
+    
+    
+    
+
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", expirationDate="
+				+ expirationDate + "]";
+	}
+
 
 
 	public void setPassword(String password) {
@@ -99,13 +111,27 @@ public class Users {
     public static Users createFromResource(UserResource ur) {
         if (ur == null) return null;
         Users u = new Users();
-        u.username = ur.getUsername();
-        u.password = ur.getPassword();
-        u.email = ur.getEmail();
-        u.enabled = false;
+        u.setUsername(ur.getUsername());
+        u.setPassword(ur.getPassword());
+        u.setEmail(ur.getEmail());
+        u.setPhone(ur.getPhone());
+        u.setEnabled(true);
+		u.setExpirationDate(getTrialPeriodEndDate()) ;
         u.persist();
+        
         // TODO: Send verification email.
         return u;
     }
+
+
+
+	private static Date getTrialPeriodEndDate() {
+		int trialPeriodLength = 30;
+
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date()); 
+		c.add(Calendar.DATE, trialPeriodLength);
+		return c.getTime(); 
+	}
 
 }

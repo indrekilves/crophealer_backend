@@ -13,6 +13,8 @@ public class DiagnosedProblemResource {
 	private Long   id; 
 	private String comment;
 	private String location;
+	private String symptopmIDsCSV;
+	private String userId; 
     private Date   createdTimestamp;   
     private Date   modifiedTimestamp;   
     private DiagnosedProblemPictureResourceList pictures;

@@ -3,6 +3,8 @@ package com.crophealer.rest.v1.service;
 
 import java.net.URI;
 
+import javax.persistence.TypedQuery;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import com.crophealer.rest.v1.DiagnosedProblemResourceList;
 import com.crophealer.rest.v1.RequestError;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.rest.v1.UserResourceAssembler;
+import com.crophealer.security.Assignments;
+import com.crophealer.security.Authorities;
 import com.crophealer.security.Users;
 
 @Service
@@ -58,6 +62,8 @@ public class UserRestService extends GenericRestService {
 		}
 				
 		Users user = Users.createFromResource(ur);
+		Authorities authority = getUserRole();				
+		Assignments.assignAuthorityToUser(authority, user);
 
 		HttpHeaders headers = new HttpHeaders();
 		URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().pathSegment(user.getId().toString()).build().toUri();
@@ -68,6 +74,15 @@ public class UserRestService extends GenericRestService {
 	}
 	
 	
+	private Authorities getUserRole() {
+		TypedQuery<Authorities> tq = Authorities.findAuthoritiesesByAuthorityEquals("ROLE_USER");
+		if (tq == null){
+			return null;
+		}
+ 		return tq.getSingleResult();
+	}
+
+
 	public ResponseEntity<UserResource> getUser(Long id) {
 		System.out.println("getUser - try to get for id:" + id);
 		

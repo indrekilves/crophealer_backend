@@ -33,6 +33,22 @@ privileged aspect DiagnosedProblemResource_Roo_JavaBean {
         this.location = location;
     }
     
+    public String DiagnosedProblemResource.getSymptopmIDsCSV() {
+        return this.symptopmIDsCSV;
+    }
+    
+    public void DiagnosedProblemResource.setSymptopmIDsCSV(String symptopmIDsCSV) {
+        this.symptopmIDsCSV = symptopmIDsCSV;
+    }
+    
+    public String DiagnosedProblemResource.getUserId() {
+        return this.userId;
+    }
+    
+    public void DiagnosedProblemResource.setUserId(String userId) {
+        this.userId = userId;
+    }
+    
     public Date DiagnosedProblemResource.getCreatedTimestamp() {
         return this.createdTimestamp;
     }

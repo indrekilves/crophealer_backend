@@ -3,6 +3,7 @@ package com.crophealer.rest.v1.service;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
@@ -87,6 +88,8 @@ public class DiagnosedProblemRestService  extends GenericRestService {
 	    dp.setUsr(user);
 		dp.setPlantPartPhaseProblem(pppProblem);
 		dp.setLocation(uploadForm.getLocation());
+		dp.setSymptomIDsCSV(uploadForm.getSymptoms());
+		dp.setCreatedTimestamp(Calendar.getInstance().getTime());
 		dp.persist();
 		
 	    diagnosedProblem = dp;		
