@@ -4,10 +4,9 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.ActiveIngredient;
-import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Country;
-import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.ProblemAIProduct;
 import java.util.Set;
 
 privileged aspect ActiveIngredient_Roo_JavaBean {
@@ -40,24 +39,8 @@ privileged aspect ActiveIngredient_Roo_JavaBean {
         return this.translations;
     }
     
-    public void ActiveIngredient.setTranslations(Set<ActiveIngredientTranslation> translations) {
-        this.translations = translations;
-    }
-    
-    public Set<ProblemActiveIngredient> ActiveIngredient.getProblemActiveIngredients() {
-        return this.problemActiveIngredients;
-    }
-    
-    public void ActiveIngredient.setProblemActiveIngredients(Set<ProblemActiveIngredient> problemActiveIngredients) {
-        this.problemActiveIngredients = problemActiveIngredients;
-    }
-    
-    public Set<ActiveIngredientProduct> ActiveIngredient.getActiveIngredientProducts() {
-        return this.activeIngredientProducts;
-    }
-    
-    public void ActiveIngredient.setActiveIngredientProducts(Set<ActiveIngredientProduct> activeIngredientProducts) {
-        this.activeIngredientProducts = activeIngredientProducts;
+    public Set<ProblemAIProduct> ActiveIngredient.getProblemProductLinks() {
+        return this.problemProductLinks;
     }
     
 }

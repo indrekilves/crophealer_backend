@@ -1,5 +1,4 @@
 package com.crophealer.domain;
-import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -8,13 +7,13 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class ProblemActiveIngredient {
+@RooJpaActiveRecord(finders = { "findProblemAIProductsByActiveIngredient", "findProblemAIProductsByProblem" })
+public class ProblemAIProduct {
 
     /**
      */
-	@Column(length=1000)
-    private String comment;
+    @ManyToOne
+    private PlantPartPhaseProblem problem;
 
     /**
      */
@@ -24,10 +23,17 @@ public class ProblemActiveIngredient {
     /**
      */
     @ManyToOne
-    private PlantPartPhaseProblem plantPartPhaseProblem;
-
+    private Product product;
 
     /**
      */
-    private Integer effect;
+    private String comment;
+
+    /**
+     */
+    private Integer aiEffect;
+
+    /**
+     */
+    private Integer productEffect;
 }

@@ -3,7 +3,7 @@
 
 package com.crophealer.domain;
 
-import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.ProblemAIProduct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,32 +11,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
-privileged aspect ProblemActiveIngredient_Roo_Jpa_Entity {
+privileged aspect ProblemAIProduct_Roo_Jpa_Entity {
     
-    declare @type: ProblemActiveIngredient: @Entity;
+    declare @type: ProblemAIProduct: @Entity;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long ProblemActiveIngredient.id;
+    private Long ProblemAIProduct.id;
     
     @Version
     @Column(name = "version")
-    private Integer ProblemActiveIngredient.version;
+    private Integer ProblemAIProduct.version;
     
-    public Long ProblemActiveIngredient.getId() {
+    public Long ProblemAIProduct.getId() {
         return this.id;
     }
     
-    public void ProblemActiveIngredient.setId(Long id) {
+    public void ProblemAIProduct.setId(Long id) {
         this.id = id;
     }
     
-    public Integer ProblemActiveIngredient.getVersion() {
+    public Integer ProblemAIProduct.getVersion() {
         return this.version;
     }
     
-    public void ProblemActiveIngredient.setVersion(Integer version) {
+    public void ProblemAIProduct.setVersion(Integer version) {
         this.version = version;
     }
     

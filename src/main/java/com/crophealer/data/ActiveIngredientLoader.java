@@ -14,7 +14,7 @@ import com.crophealer.domain.Plant;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantTranslation;
 import com.crophealer.domain.Problem;
-import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.ProblemAIProduct;
 import com.crophealer.domain.ProblemTranslation;
 
 public class ActiveIngredientLoader extends GenericLoader {
@@ -135,6 +135,15 @@ public class ActiveIngredientLoader extends GenericLoader {
 	protected void linkPlantPartPhaseProblemsToAIs(ActiveIngredient ai, List<PlantPartPhaseProblem> pppps, Integer effect)
 	{
 		for (PlantPartPhaseProblem pppp : pppps) {
+			System.out.println("Creating ProblemAIProduct: " + ai.getLatinName() + " - "  + pppp.getComment());
+			ProblemAIProduct paip = new ProblemAIProduct();
+			paip.setActiveIngredient(ai);
+			paip.setProblem(pppp);
+			paip.setComment(ai.getComment() + pppp.getComment());
+			paip.setAiEffect(effect);
+			paip.persist();
+		}
+		/*for (PlantPartPhaseProblem pppp : pppps) {
 			System.out.println("Creating ProblemActiveIngredient: " + ai.getLatinName() + " - "  + pppp.getComment());
 			ProblemActiveIngredient pai = new ProblemActiveIngredient();
 			pai.setActiveIngredient(ai);
@@ -142,7 +151,7 @@ public class ActiveIngredientLoader extends GenericLoader {
 			pai.setComment(ai.getComment() + " - " + pppp.getComment());
 			pai.setEffect(effect);
 			pai.persist();
-		}
+		}*/
 	}
 	
 	

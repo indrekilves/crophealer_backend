@@ -3,7 +3,6 @@ package com.crophealer.data;
 import java.util.List;
 
 import com.crophealer.domain.ActiveIngredient;
-import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.Languages;
@@ -15,7 +14,7 @@ import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.PlantPartTranslation;
 import com.crophealer.domain.PlantTranslation;
 import com.crophealer.domain.Problem;
-import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.ProblemAIProduct;
 import com.crophealer.domain.ProblemTranslation;
 import com.crophealer.domain.Producer;
 import com.crophealer.domain.Product;
@@ -47,10 +46,10 @@ public class DataCleaner
 			productTranslation.flush();
 		}
 		
-		List<ProblemActiveIngredient> pai = ProblemActiveIngredient.findAllProblemActiveIngredients();
-		for (ProblemActiveIngredient problemActiveIngredient : pai) {
-			problemActiveIngredient.remove();
-			problemActiveIngredient.flush();
+		List<ProblemAIProduct> pai = ProblemAIProduct.findAllProblemAIProducts();
+		for (ProblemAIProduct problemAIProduct : pai) {
+			problemAIProduct.remove();
+			problemAIProduct.flush();
 		}
 		
 		List<Product> ps2 = Product.findAllProducts();
@@ -128,24 +127,13 @@ public class DataCleaner
 			plantTranslation.remove();
 			plantTranslation.flush();
 		}
-		
-		List<ProblemActiveIngredient> problemAIs = ProblemActiveIngredient.findAllProblemActiveIngredients();
-		for (ProblemActiveIngredient problemActiveIngredient : problemAIs) {
-			problemActiveIngredient.remove();
-			problemActiveIngredient.flush();
-		}
-		
+
 		List<ActiveIngredient> as = ActiveIngredient.findAllActiveIngredients();
 		for (ActiveIngredient activeIngredient : as) {
 			activeIngredient.remove();
 			activeIngredient.flush();
 		}
-		List<ActiveIngredientProduct> aip = ActiveIngredientProduct.findAllActiveIngredientProducts();
-		for (ActiveIngredientProduct activeIngredientProduct : aip) {
-			activeIngredientProduct.remove();
-			activeIngredientProduct.flush();
-		}
-		
+
 		List<Country> cs = Country.findAllCountrys();
 		for (Country country : cs) {
 			country.remove();

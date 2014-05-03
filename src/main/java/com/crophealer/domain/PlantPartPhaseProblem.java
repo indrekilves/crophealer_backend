@@ -34,9 +34,15 @@ public class PlantPartPhaseProblem {
     private Problem problem;
     
     /**
-     */
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "plantPartPhaseProblem")
     private final Set<ProblemActiveIngredient> problemActiveIngredients = new HashSet<ProblemActiveIngredient>();
+     */
+    /**
+     */
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "problem")
+    private final Set<ProblemAIProduct> activeIngredientProductLinks = new HashSet<ProblemAIProduct>();
     
     
     public Plant getPlant()
@@ -97,10 +103,10 @@ public class PlantPartPhaseProblem {
 	
 
 	private String getProblemActiveIngredientIdCsv() {
-		if (problemActiveIngredients == null) return null;
+		if (activeIngredientProductLinks == null) return null;
 		
 		StringBuilder sb = new StringBuilder();
-	    for (ProblemActiveIngredient pai : problemActiveIngredients) {
+	    for (ProblemAIProduct pai : activeIngredientProductLinks) {
 	    	if (pai != null){
 	    		if (sb.equals("")){
 	    			sb.append(pai.getId());

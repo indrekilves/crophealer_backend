@@ -3,7 +3,8 @@ package com.crophealer.rest.v1.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+
+import javax.persistence.TypedQuery;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import com.crophealer.domain.Languages;
 import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
-import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.ProblemAIProduct;
 import com.crophealer.domain.Symptom;
 import com.crophealer.rest.v1.ActiveIngredientResourceAssembler;
 import com.crophealer.rest.v1.ActiveIngredientResourceList;
@@ -117,16 +118,15 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 			 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			 return response;
 		 }
-		
-		 // Get ProblemActiveIngredients
-		 Set<ProblemActiveIngredient> problemActiveIngredients = pppProblem.getProblemActiveIngredients();
-		
-		 // Get ActiveIngredients
+		 
+		 // Get AIs by pppProblem
+		 TypedQuery<ProblemAIProduct> paipQ = ProblemAIProduct.findProblemAIProductsByProblem(pppProblem);
+		 List<ProblemAIProduct> paipList = paipQ.getResultList();
+		 
 		 List <ActiveIngredient> activeIngredients = new ArrayList<ActiveIngredient>();
-		 for (ProblemActiveIngredient problemActiveIngredient :
-			 problemActiveIngredients) {
-			 activeIngredients.add(problemActiveIngredient.getActiveIngredient());
-		 }
+		 for (ProblemAIProduct problemAIProduct : paipList) {
+			 activeIngredients.add(problemAIProduct.getActiveIngredient());
+		}
 		
 		 ActiveIngredientResourceAssembler asm = new ActiveIngredientResourceAssembler();
 		 ActiveIngredientResourceList airl = asm.toResource(activeIngredients, language);

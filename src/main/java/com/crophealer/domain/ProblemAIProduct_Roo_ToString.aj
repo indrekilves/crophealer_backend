@@ -3,13 +3,13 @@
 
 package com.crophealer.domain;
 
-import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.ProblemAIProduct;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect ProblemActiveIngredient_Roo_ToString {
+privileged aspect ProblemAIProduct_Roo_ToString {
     
-    public String ProblemActiveIngredient.toString() {
+    public String ProblemAIProduct.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

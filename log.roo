@@ -475,3 +475,20 @@ finder add findAuthoritiesesByAuthorityEquals
 focus --class ~.domain.diagnosedProblem
 field string --fieldName symptomIDsCSV
 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-03 07:31:21
+entity jpa --class ~.domain.ProblemAIProduct
+field reference --fieldName problem --type ~.domain.PlantPartPhaseProblem --cardinality MANY_TO_ONE
+field reference --fieldName activeingredient --type ~.domain.ActiveIngredient --cardinality MANY_TO_ONE
+field reference --fieldName product --type ~.domain.Product --cardinality MANY_TO_ONE
+field string --fieldName comment
+field number --fieldName aiEffect --type Int
+field number --fieldName productEffect --type Int
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-03 08:09:57
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-03 08:10:52
+focus --class com.crophealer.domain.ProblemAIProduct
+finder list
+finder add findProblemAIProductsByActiveingredient
+finder add findProblemAIProductsByProblem
+web mvc scaffold --class ~.web.ProblemAIProductController --backingType ~.domain.ProblemAIProduct
+web mvc all --package com.crophealer.domain
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-03 09:49:21

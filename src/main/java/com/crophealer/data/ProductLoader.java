@@ -1,23 +1,9 @@
 package com.crophealer.data;
 
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.persistence.TypedQuery;
-
-import com.crophealer.domain.Country;
-import com.crophealer.domain.Producer;
-import com.crophealer.domain.Product;
-import com.crophealer.domain.ProductReseller;
-import com.crophealer.domain.ProductTranslation;
-import com.crophealer.domain.Reseller;
 
 public class ProductLoader extends GenericLoader 
 {
-	
+	/*
 	protected Integer activeSheetNum    = 6;
 	private Integer rowNumCountry 		= 2;
 	private Integer colNumGenericName   = 0;
@@ -157,7 +143,7 @@ public class ProductLoader extends GenericLoader
 		
 	}
 	
-	
+*/	
 	
 	
 	

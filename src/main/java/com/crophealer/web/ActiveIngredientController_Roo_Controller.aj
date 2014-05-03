@@ -4,10 +4,7 @@
 package com.crophealer.web;
 
 import com.crophealer.domain.ActiveIngredient;
-import com.crophealer.domain.ActiveIngredientProduct;
-import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Country;
-import com.crophealer.domain.ProblemActiveIngredient;
 import com.crophealer.web.ActiveIngredientController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -90,10 +87,7 @@ privileged aspect ActiveIngredientController_Roo_Controller {
     
     void ActiveIngredientController.populateEditForm(Model uiModel, ActiveIngredient activeIngredient) {
         uiModel.addAttribute("activeIngredient", activeIngredient);
-        uiModel.addAttribute("activeingredientproducts", ActiveIngredientProduct.findAllActiveIngredientProducts());
-        uiModel.addAttribute("activeingredienttranslations", ActiveIngredientTranslation.findAllActiveIngredientTranslations());
         uiModel.addAttribute("countrys", Country.findAllCountrys());
-        uiModel.addAttribute("problemactiveingredients", ProblemActiveIngredient.findAllProblemActiveIngredients());
     }
     
     String ActiveIngredientController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

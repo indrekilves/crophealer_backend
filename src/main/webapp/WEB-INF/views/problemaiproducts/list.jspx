@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_ProblemAIProduct" items="${problemaiproducts}" z="tb0SZ8SAULIVMglrd9aZ6QBQMg0=">
+        <table:table data="${problemaiproducts}" id="l_com_crophealer_domain_ProblemAIProduct" path="/problemaiproducts" z="PeHcsWofU5nT8+vNtcyFf/a0ZFs=">
+            <table:column id="c_com_crophealer_domain_ProblemAIProduct_problem" property="problem" z="BbgWX45BS6iEoQzwY0VTiUM/6Sk="/>
+            <table:column id="c_com_crophealer_domain_ProblemAIProduct_activeIngredient" property="activeIngredient" z="8rE5O3PPaQcsevyL+JMj3JkRYwI="/>
+            <table:column id="c_com_crophealer_domain_ProblemAIProduct_product" property="product" z="gP2Pj4Lns/a23XvzonAtq23c/N8="/>
+            <table:column id="c_com_crophealer_domain_ProblemAIProduct_comment" property="comment" z="Wg69ukNbEBLeA+gQrpbx56hZCPk="/>
+            <table:column id="c_com_crophealer_domain_ProblemAIProduct_aiEffect" property="aiEffect" z="ig8/DyqDeJJSnxJSx32mXekB2F8="/>
+            <table:column id="c_com_crophealer_domain_ProblemAIProduct_productEffect" property="productEffect" z="0eNv8cjqk7wkk3BWi51cWUdkhyM="/>
+        </table:table>
+    </page:list>
+</div>

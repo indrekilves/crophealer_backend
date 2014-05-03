@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_crophealer_domain_ProblemAIProduct" modelAttribute="problemAIProduct" path="/problemaiproducts" render="${empty dependencies}" z="Scj1W/PnASAoHXkFS7ArgWyXPoA=">
+        <field:select field="problem" id="c_com_crophealer_domain_ProblemAIProduct_problem" itemValue="id" items="${plantpartphaseproblems}" path="/plantpartphaseproblems" z="IZ3hC5L/YMPPmE3E+VKBQAW99Zg="/>
+        <field:select field="activeIngredient" id="c_com_crophealer_domain_ProblemAIProduct_activeIngredient" itemValue="id" items="${activeingredients}" path="/activeingredients" z="g8ikC3ce3k598vTNWoY1pzBjI3Q="/>
+        <field:select field="product" id="c_com_crophealer_domain_ProblemAIProduct_product" itemValue="id" items="${products}" path="/products" z="MvOQVyeGLbpItE8AK6gvikM8ifY="/>
+        <field:input field="comment" id="c_com_crophealer_domain_ProblemAIProduct_comment" z="6c7ASHQlLlonHSKEBZrLpWfC6lk="/>
+        <field:input field="aiEffect" id="c_com_crophealer_domain_ProblemAIProduct_aiEffect" validationMessageCode="field_invalid_integer" z="3GEPArstXCi+8eomWGeZu0gOWRc="/>
+        <field:input field="productEffect" id="c_com_crophealer_domain_ProblemAIProduct_productEffect" validationMessageCode="field_invalid_integer" z="Ap/X0k8UQQZIdDBy7h7Gswy6Ciw="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_ProblemAIProduct" render="${not empty dependencies}" z="sJ+LX1u1t74Ye8aPG7cWLCk7ixs="/>
+</div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_ProblemAIProduct" object="${problemaiproduct}" path="/problemaiproducts" z="jj82eyiCJiFPQNl9880zJt9FeoM=">
+        <field:display field="problem" id="s_com_crophealer_domain_ProblemAIProduct_problem" object="${problemaiproduct}" z="P3UZpajKOHY+WtpU2TnGJvMqVFQ="/>
+        <field:display field="activeIngredient" id="s_com_crophealer_domain_ProblemAIProduct_activeIngredient" object="${problemaiproduct}" z="5u1TSZ8OhVFlzl73CN19uti1NkI="/>
+        <field:display field="product" id="s_com_crophealer_domain_ProblemAIProduct_product" object="${problemaiproduct}" z="0XtBvLSjyGaL//70WFxFFJyj9As="/>
+        <field:display field="comment" id="s_com_crophealer_domain_ProblemAIProduct_comment" object="${problemaiproduct}" z="e6E3EfEApP0QwaTRILzLFkS+qe8="/>
+        <field:display field="aiEffect" id="s_com_crophealer_domain_ProblemAIProduct_aiEffect" object="${problemaiproduct}" z="6ZUdSSwAGzMgUYIpxVTVfgfBQQQ="/>
+        <field:display field="productEffect" id="s_com_crophealer_domain_ProblemAIProduct_productEffect" object="${problemaiproduct}" z="ochTznGyhUhtsYDUgKB7fFSMez0="/>
+    </page:show>
+</div>

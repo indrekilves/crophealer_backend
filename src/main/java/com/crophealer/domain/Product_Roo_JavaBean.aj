@@ -3,9 +3,9 @@
 
 package com.crophealer.domain;
 
-import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.GrowthPhaseProduct;
+import com.crophealer.domain.ProblemAIProduct;
 import com.crophealer.domain.Producer;
 import com.crophealer.domain.Product;
 import com.crophealer.domain.ProductReseller;
@@ -50,32 +50,16 @@ privileged aspect Product_Roo_JavaBean {
         return this.translations;
     }
     
-    public void Product.setTranslations(Set<ProductTranslation> translations) {
-        this.translations = translations;
-    }
-    
     public Set<ProductReseller> Product.getProductResellers() {
         return this.productResellers;
     }
     
-    public void Product.setProductResellers(Set<ProductReseller> productResellers) {
-        this.productResellers = productResellers;
-    }
-    
-    public Set<ActiveIngredientProduct> Product.getActiveIngredientProducts() {
-        return this.activeIngredientProducts;
-    }
-    
-    public void Product.setActiveIngredientProducts(Set<ActiveIngredientProduct> activeIngredientProducts) {
-        this.activeIngredientProducts = activeIngredientProducts;
+    public Set<ProblemAIProduct> Product.getActiveIngredientProblemLinks() {
+        return this.activeIngredientProblemLinks;
     }
     
     public Set<GrowthPhaseProduct> Product.getGrowthPhaseProducts() {
         return this.growthPhaseProducts;
-    }
-    
-    public void Product.setGrowthPhaseProducts(Set<GrowthPhaseProduct> growthPhaseProducts) {
-        this.growthPhaseProducts = growthPhaseProducts;
     }
     
     public Long Product.getEfficiency() {

@@ -7,10 +7,6 @@
         <field:input field="pictureUrl" id="c_com_crophealer_domain_Product_pictureUrl" z="L/q8AFTkuhaetUHMH5/eng+pirM="/>
         <field:select field="country" id="c_com_crophealer_domain_Product_country" itemValue="id" items="${countrys}" path="/countrys" z="rhtJh1pGjqedHQIppH1Ze70m8KQ="/>
         <field:select field="producer" id="c_com_crophealer_domain_Product_producer" itemValue="id" items="${producers}" path="/producers" z="6gIOoVvN+gUf6GwzdEXlNbVR3n8="/>
-        <field:simple field="translations" id="c_com_crophealer_domain_Product_translations" messageCode="entity_reference_not_managed" messageCodeAttribute="Product Translation" z="M+kSgaEh2mRF0c+yhYicUxJiesQ="/>
-        <field:simple field="productResellers" id="c_com_crophealer_domain_Product_productResellers" messageCode="entity_reference_not_managed" messageCodeAttribute="Product Reseller" z="W5DEBKas63XQrY+jRKEGKA9UT40="/>
-        <field:simple field="activeIngredientProducts" id="c_com_crophealer_domain_Product_activeIngredientProducts" messageCode="entity_reference_not_managed" messageCodeAttribute="Active Ingredient Product" z="FkR6ZYFlzCKaE2mBNzOnjrh9yTw="/>
-        <field:simple field="growthPhaseProducts" id="c_com_crophealer_domain_Product_growthPhaseProducts" messageCode="entity_reference_not_managed" messageCodeAttribute="Growth Phase Product" z="0UA7bvup7SVdrYqMTpe7uOYQ8rc="/>
         <field:input field="efficiency" id="c_com_crophealer_domain_Product_efficiency" validationMessageCode="field_invalid_integer" z="uGVlhGjK/lj0qRelwEYEsM+e5Eg="/>
         <field:input field="raintFastness" id="c_com_crophealer_domain_Product_raintFastness" z="ctTMi/4hPaJ//JTLudOyViyvAho="/>
     </form:update>

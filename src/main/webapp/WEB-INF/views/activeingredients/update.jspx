@@ -6,8 +6,5 @@
         <field:input field="latinName" id="c_com_crophealer_domain_ActiveIngredient_latinName" z="A08o0ArjFRSpb3CXrYuW99qIHoY="/>
         <field:input field="comment" id="c_com_crophealer_domain_ActiveIngredient_comment" z="7fuP+2ZAuX4UriIDCb9Fzf2Emno="/>
         <field:select field="country" id="c_com_crophealer_domain_ActiveIngredient_country" itemValue="id" items="${countrys}" path="/countrys" z="658zCO/R2HwiWYaO0tauQLs6h6E="/>
-        <field:simple field="translations" id="c_com_crophealer_domain_ActiveIngredient_translations" messageCode="entity_reference_not_managed" messageCodeAttribute="Active Ingredient Translation" z="pkMoKgDUHlLIguqgvo5E+3mZNBc="/>
-        <field:simple field="problemActiveIngredients" id="c_com_crophealer_domain_ActiveIngredient_problemActiveIngredients" messageCode="entity_reference_not_managed" messageCodeAttribute="Problem Active Ingredient" z="OruUA2bHrhPmjE+L6GkwGpYY4i4="/>
-        <field:simple field="activeIngredientProducts" id="c_com_crophealer_domain_ActiveIngredient_activeIngredientProducts" messageCode="entity_reference_not_managed" messageCodeAttribute="Active Ingredient Product" z="ciN9Ph6KoY+rJvREnR9PNL3le7g="/>
     </form:update>
 </div>

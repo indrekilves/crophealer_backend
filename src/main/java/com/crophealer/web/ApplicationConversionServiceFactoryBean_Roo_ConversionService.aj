@@ -4,7 +4,6 @@
 package com.crophealer.web;
 
 import com.crophealer.domain.ActiveIngredient;
-import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.DiagnosedProblem;
@@ -21,7 +20,7 @@ import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.PlantPartTranslation;
 import com.crophealer.domain.PlantTranslation;
 import com.crophealer.domain.Problem;
-import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.ProblemAIProduct;
 import com.crophealer.domain.ProblemPicture;
 import com.crophealer.domain.ProblemTranslation;
 import com.crophealer.domain.Producer;
@@ -64,30 +63,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ActiveIngredient>() {
             public com.crophealer.domain.ActiveIngredient convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), ActiveIngredient.class);
-            }
-        };
-    }
-    
-    public Converter<ActiveIngredientProduct, String> ApplicationConversionServiceFactoryBean.getActiveIngredientProductToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ActiveIngredientProduct, java.lang.String>() {
-            public String convert(ActiveIngredientProduct activeIngredientProduct) {
-                return new StringBuilder().append(activeIngredientProduct.getComment()).toString();
-            }
-        };
-    }
-    
-    public Converter<Long, ActiveIngredientProduct> ApplicationConversionServiceFactoryBean.getIdToActiveIngredientProductConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ActiveIngredientProduct>() {
-            public com.crophealer.domain.ActiveIngredientProduct convert(java.lang.Long id) {
-                return ActiveIngredientProduct.findActiveIngredientProduct(id);
-            }
-        };
-    }
-    
-    public Converter<String, ActiveIngredientProduct> ApplicationConversionServiceFactoryBean.getStringToActiveIngredientProductConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ActiveIngredientProduct>() {
-            public com.crophealer.domain.ActiveIngredientProduct convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), ActiveIngredientProduct.class);
             }
         };
     }
@@ -476,26 +451,26 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<ProblemActiveIngredient, String> ApplicationConversionServiceFactoryBean.getProblemActiveIngredientToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ProblemActiveIngredient, java.lang.String>() {
-            public String convert(ProblemActiveIngredient problemActiveIngredient) {
-                return new StringBuilder().append(problemActiveIngredient.getComment()).append(' ').append(problemActiveIngredient.getEffect()).toString();
+    public Converter<ProblemAIProduct, String> ApplicationConversionServiceFactoryBean.getProblemAIProductToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.ProblemAIProduct, java.lang.String>() {
+            public String convert(ProblemAIProduct problemAIProduct) {
+                return new StringBuilder().append(problemAIProduct.getComment()).append(' ').append(problemAIProduct.getAiEffect()).append(' ').append(problemAIProduct.getProductEffect()).toString();
             }
         };
     }
     
-    public Converter<Long, ProblemActiveIngredient> ApplicationConversionServiceFactoryBean.getIdToProblemActiveIngredientConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ProblemActiveIngredient>() {
-            public com.crophealer.domain.ProblemActiveIngredient convert(java.lang.Long id) {
-                return ProblemActiveIngredient.findProblemActiveIngredient(id);
+    public Converter<Long, ProblemAIProduct> ApplicationConversionServiceFactoryBean.getIdToProblemAIProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.ProblemAIProduct>() {
+            public com.crophealer.domain.ProblemAIProduct convert(java.lang.Long id) {
+                return ProblemAIProduct.findProblemAIProduct(id);
             }
         };
     }
     
-    public Converter<String, ProblemActiveIngredient> ApplicationConversionServiceFactoryBean.getStringToProblemActiveIngredientConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ProblemActiveIngredient>() {
-            public com.crophealer.domain.ProblemActiveIngredient convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), ProblemActiveIngredient.class);
+    public Converter<String, ProblemAIProduct> ApplicationConversionServiceFactoryBean.getStringToProblemAIProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.ProblemAIProduct>() {
+            public com.crophealer.domain.ProblemAIProduct convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ProblemAIProduct.class);
             }
         };
     }
@@ -816,9 +791,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getActiveIngredientToStringConverter());
         registry.addConverter(getIdToActiveIngredientConverter());
         registry.addConverter(getStringToActiveIngredientConverter());
-        registry.addConverter(getActiveIngredientProductToStringConverter());
-        registry.addConverter(getIdToActiveIngredientProductConverter());
-        registry.addConverter(getStringToActiveIngredientProductConverter());
         registry.addConverter(getActiveIngredientTranslationToStringConverter());
         registry.addConverter(getIdToActiveIngredientTranslationConverter());
         registry.addConverter(getStringToActiveIngredientTranslationConverter());
@@ -867,9 +839,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getProblemToStringConverter());
         registry.addConverter(getIdToProblemConverter());
         registry.addConverter(getStringToProblemConverter());
-        registry.addConverter(getProblemActiveIngredientToStringConverter());
-        registry.addConverter(getIdToProblemActiveIngredientConverter());
-        registry.addConverter(getStringToProblemActiveIngredientConverter());
+        registry.addConverter(getProblemAIProductToStringConverter());
+        registry.addConverter(getIdToProblemAIProductConverter());
+        registry.addConverter(getStringToProblemAIProductConverter());
         registry.addConverter(getProblemPictureToStringConverter());
         registry.addConverter(getIdToProblemPictureConverter());
         registry.addConverter(getStringToProblemPictureConverter());

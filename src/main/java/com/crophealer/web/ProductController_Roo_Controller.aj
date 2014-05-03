@@ -3,13 +3,9 @@
 
 package com.crophealer.web;
 
-import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.Country;
-import com.crophealer.domain.GrowthPhaseProduct;
 import com.crophealer.domain.Producer;
 import com.crophealer.domain.Product;
-import com.crophealer.domain.ProductReseller;
-import com.crophealer.domain.ProductTranslation;
 import com.crophealer.web.ProductController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -92,12 +88,8 @@ privileged aspect ProductController_Roo_Controller {
     
     void ProductController.populateEditForm(Model uiModel, Product product) {
         uiModel.addAttribute("product", product);
-        uiModel.addAttribute("activeingredientproducts", ActiveIngredientProduct.findAllActiveIngredientProducts());
         uiModel.addAttribute("countrys", Country.findAllCountrys());
-        uiModel.addAttribute("growthphaseproducts", GrowthPhaseProduct.findAllGrowthPhaseProducts());
         uiModel.addAttribute("producers", Producer.findAllProducers());
-        uiModel.addAttribute("productresellers", ProductReseller.findAllProductResellers());
-        uiModel.addAttribute("producttranslations", ProductTranslation.findAllProductTranslations());
     }
     
     String ProductController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

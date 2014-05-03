@@ -131,5 +131,9 @@
             <menu:item id="i_authorities_new" messageCode="global_menu_new" url="/authoritieses?form" z="2mmPz62GZozb3OilbywIxJnKcBc="/>
             <menu:item id="i_authorities_list" messageCode="global_menu_list" url="/authoritieses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="on1x7LkbV2LweGhXOBmPjrzwbMo="/>
         </menu:category>
+        <menu:category id="c_problemaiproduct" z="POEhMZHO8qMHv0zy9yKxtzh5Q3I=">
+            <menu:item id="i_problemaiproduct_new" messageCode="global_menu_new" url="/problemaiproducts?form" z="npP8IMKdJTLdo5IlINs0Btosibg="/>
+            <menu:item id="i_problemaiproduct_list" messageCode="global_menu_list" url="/problemaiproducts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="6YtWLbI0hDA9IVigfnqYx95k7JM="/>
+        </menu:category>
     </menu:menu>
 </div>

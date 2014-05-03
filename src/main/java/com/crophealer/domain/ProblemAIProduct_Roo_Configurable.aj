@@ -3,11 +3,11 @@
 
 package com.crophealer.domain;
 
-import com.crophealer.domain.ProblemActiveIngredient;
+import com.crophealer.domain.ProblemAIProduct;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect ProblemActiveIngredient_Roo_Configurable {
+privileged aspect ProblemAIProduct_Roo_Configurable {
     
-    declare @type: ProblemActiveIngredient: @Configurable;
+    declare @type: ProblemAIProduct: @Configurable;
     
 }

@@ -1,12 +1,14 @@
 package com.crophealer.domain;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-import javax.persistence.ManyToOne;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
@@ -34,22 +36,28 @@ public class Product {
     /**
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private Set<ProductTranslation> translations = new HashSet<ProductTranslation>();
+    private final Set<ProductTranslation> translations = new HashSet<ProductTranslation>();
 
     /**
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private Set<ProductReseller> productResellers = new HashSet<ProductReseller>();
+    private final Set<ProductReseller> productResellers = new HashSet<ProductReseller>();
 
     /**
-     */
+     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Set<ActiveIngredientProduct> activeIngredientProducts = new HashSet<ActiveIngredientProduct>();
-
+*/
     /**
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private Set<GrowthPhaseProduct> growthPhaseProducts = new HashSet<GrowthPhaseProduct>();
+    private final Set<ProblemAIProduct> activeIngredientProblemLinks = new HashSet<ProblemAIProduct>();
+
+    
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private final Set<GrowthPhaseProduct> growthPhaseProducts = new HashSet<GrowthPhaseProduct>();
 
     /**
      */

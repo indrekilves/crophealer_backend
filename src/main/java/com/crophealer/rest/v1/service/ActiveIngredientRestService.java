@@ -2,15 +2,16 @@ package com.crophealer.rest.v1.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
+import javax.persistence.TypedQuery;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.crophealer.domain.ActiveIngredient;
-import com.crophealer.domain.ActiveIngredientProduct;
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.ProblemAIProduct;
 import com.crophealer.domain.Product;
 import com.crophealer.rest.v1.ActiveIngredientResource;
 import com.crophealer.rest.v1.ActiveIngredientResourceAssembler;
@@ -77,13 +78,13 @@ public class ActiveIngredientRestService extends GenericRestService {
 			return response;
 		}
 		
-		// Get ActiveIngredientProducts	
-		Set<ActiveIngredientProduct> activeIngredientProducts = activeIngredient.getActiveIngredientProducts();
+		TypedQuery<ProblemAIProduct> problemAIProducts = ProblemAIProduct.findProblemAIProductsByActiveIngredient(activeIngredient);
+		List<ProblemAIProduct> paipList = problemAIProducts.getResultList();
 		
 		// Get Products
 		List <Product> products = new ArrayList<Product>();
-		for (ActiveIngredientProduct activeIngredientProduct : activeIngredientProducts) {
-			products.add(activeIngredientProduct.getProduct());
+		for (ProblemAIProduct problemAIProduct : paipList) {
+			products.add(problemAIProduct.getProduct());
 		}
 		
 		ProductResourceAssembler asm = new ProductResourceAssembler();
