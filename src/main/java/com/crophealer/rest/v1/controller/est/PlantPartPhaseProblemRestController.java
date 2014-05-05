@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.crophealer.rest.v1.ActiveIngredientResourceList;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResource;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResourceList;
+import com.crophealer.rest.v1.ProductResourceList;
 import com.crophealer.rest.v1.service.PlantPartPhaseProblemRestService;
 
 
@@ -59,6 +60,20 @@ public class PlantPartPhaseProblemRestController {
 	{   	
 	    return plantPartPhaseProblemRestService.getActiveIngredientsByLanguage(id, plantPartPhaseProblemRestService.getEstonian());		
 	}
+
+
+    @RequestMapping(method = RequestMethod.GET, value="/{pppID}/activeIngredients/{aID}/products")
+	public ResponseEntity<ProductResourceList> getProductsByPlantPhaseProblemAndActiveIngredient(@PathVariable("pppID") Long pppID, @PathVariable("aID") Long aID)
+	{   	
+	    return plantPartPhaseProblemRestService.getProductsByPlantPhaseProblemAndActiveIngredientAndLanguage(pppID, aID, plantPartPhaseProblemRestService.getEstonian());		
+	}
+
     
+    @RequestMapping(method = RequestMethod.GET, value="/{pppID}/products")
+	public ResponseEntity<ProductResourceList> getProductsByPlantPhaseProblem(@PathVariable("pppID") Long pppID)
+	{   	
+	    return plantPartPhaseProblemRestService.getProductsByPlantPhaseProblemAndLanguage(pppID, plantPartPhaseProblemRestService.getEstonian());		
+	}
+
 
 }

@@ -27,4 +27,14 @@ privileged aspect ProblemAIProduct_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<ProblemAIProduct> ProblemAIProduct.findProblemAIProductsByProblemAndActiveIngredient(PlantPartPhaseProblem problem, ActiveIngredient activeIngredient) {
+        if (problem == null) throw new IllegalArgumentException("The problem argument is required");
+        if (activeIngredient == null) throw new IllegalArgumentException("The activeIngredient argument is required");
+        EntityManager em = ProblemAIProduct.entityManager();
+        TypedQuery<ProblemAIProduct> q = em.createQuery("SELECT o FROM ProblemAIProduct AS o WHERE o.problem = :problem AND o.activeIngredient = :activeIngredient", ProblemAIProduct.class);
+        q.setParameter("problem", problem);
+        q.setParameter("activeIngredient", activeIngredient);
+        return q;
+    }
+    
 }

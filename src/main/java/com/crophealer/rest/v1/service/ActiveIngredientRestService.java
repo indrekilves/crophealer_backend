@@ -2,8 +2,7 @@ package com.crophealer.rest.v1.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.TypedQuery;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,12 +77,11 @@ public class ActiveIngredientRestService extends GenericRestService {
 			return response;
 		}
 		
-		TypedQuery<ProblemAIProduct> problemAIProducts = ProblemAIProduct.findProblemAIProductsByActiveIngredient(activeIngredient);
-		List<ProblemAIProduct> paipList = problemAIProducts.getResultList();
+		Set<ProblemAIProduct> paips = activeIngredient.getProblemProductLinks();
 		
 		// Get Products
 		List <Product> products = new ArrayList<Product>();
-		for (ProblemAIProduct problemAIProduct : paipList) {
+		for (ProblemAIProduct problemAIProduct : paips) {
 			products.add(problemAIProduct.getProduct());
 		}
 		
