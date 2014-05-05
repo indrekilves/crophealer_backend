@@ -3,6 +3,7 @@ package com.crophealer.rest.v1.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.TypedQuery;
 
@@ -16,12 +17,15 @@ import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.ProblemAIProduct;
+import com.crophealer.domain.Product;
 import com.crophealer.domain.Symptom;
 import com.crophealer.rest.v1.ActiveIngredientResourceAssembler;
 import com.crophealer.rest.v1.ActiveIngredientResourceList;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResource;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResourceAssembler;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResourceList;
+import com.crophealer.rest.v1.ProductResourceAssembler;
+import com.crophealer.rest.v1.ProductResourceList;
 
 @Service
 public class PlantPartPhaseProblemRestService extends GenericRestService {
@@ -120,11 +124,9 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		 }
 		 
 		 // Get AIs by pppProblem
-		 TypedQuery<ProblemAIProduct> paipQ = ProblemAIProduct.findProblemAIProductsByProblem(pppProblem);
-		 List<ProblemAIProduct> paipList = paipQ.getResultList();
-		 
+		 Set<ProblemAIProduct> paips = pppProblem.getActiveIngredientProductLinks();
 		 List <ActiveIngredient> activeIngredients = new ArrayList<ActiveIngredient>();
-		 for (ProblemAIProduct problemAIProduct : paipList) {
+		 for (ProblemAIProduct problemAIProduct : paips) {
 			 activeIngredients.add(problemAIProduct.getActiveIngredient());
 		}
 		
@@ -183,5 +185,90 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		
 		response = new ResponseEntity<>(drl, HttpStatus.OK);
 		return response;
+	}
+
+
+	public ResponseEntity<ProductResourceList> getProductsByPlantPhaseProblemAndActiveIngredientAndLanguage(Long pppID, Long aID, Languages language) {
+		System.out.println("getProductsByPlantPhaseProblemsAndActiveIngredientAndLanguage - try to get for pppId:" + pppID + " aID:" + aID + " lang:" + language);
+		
+		ResponseEntity<ProductResourceList> response; 
+	
+		if (pppID == null || aID == null || language == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+		
+		// Get PlantPartPhaseProblem
+		PlantPartPhaseProblem pppProblem = PlantPartPhaseProblem.findPlantPartPhaseProblem(pppID);
+		if (pppProblem == null){
+		 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		 return response;
+		}
+		
+			
+		// Get ActiveIngredient
+		ActiveIngredient activeIngredient = ActiveIngredient.findActiveIngredient(aID);
+		if (activeIngredient == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+		
+		 
+		// Get ProblemActiveIngredientProduct links 
+		TypedQuery<ProblemAIProduct> tq = ProblemAIProduct.findProblemAIProductsByProblemAndActiveIngredient(pppProblem, activeIngredient);
+		if (tq == null) {
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+
+		// Get Products
+		List<ProblemAIProduct> paips = tq.getResultList();
+		List <Product> products = new ArrayList<Product>();
+		for (ProblemAIProduct problemAIProduct : paips) {
+			products.add(problemAIProduct.getProduct());
+		}
+		
+		ProductResourceAssembler asm = new ProductResourceAssembler();
+		ProductResourceList prl = asm.toResource(products, language);
+
+		
+		response = new ResponseEntity<>(prl, HttpStatus.OK);
+		return response;	
+	}
+
+
+	public ResponseEntity<ProductResourceList> getProductsByPlantPhaseProblemAndLanguage(Long pppID, Languages language) {
+		System.out.println("getProductsByPlantPhaseProblemAndLanguage - try to get for pppId:" + pppID + " lang:" + language);
+		
+		ResponseEntity<ProductResourceList> response; 
+	
+		if (pppID == null || language == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+		
+		// Get PlantPartPhaseProblem
+		PlantPartPhaseProblem pppProblem = PlantPartPhaseProblem.findPlantPartPhaseProblem(pppID);
+		if (pppProblem == null){
+		 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		 return response;
+		}
+		
+		 
+		// Get ProblemActiveIngredientProduct links 
+		Set<ProblemAIProduct> paips = pppProblem.getActiveIngredientProductLinks();
+	
+		// Get Products		
+		List <Product> products = new ArrayList<Product>();
+		for (ProblemAIProduct problemAIProduct : paips) {
+			products.add(problemAIProduct.getProduct());
+		}
+		
+		ProductResourceAssembler asm = new ProductResourceAssembler();
+		ProductResourceList prl = asm.toResource(products, language);
+
+		
+		response = new ResponseEntity<>(prl, HttpStatus.OK);
+		return response;		
 	}
 }
