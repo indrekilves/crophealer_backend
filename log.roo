@@ -492,3 +492,10 @@ finder add findProblemAIProductsByProblem
 web mvc scaffold --class ~.web.ProblemAIProductController --backingType ~.domain.ProblemAIProduct
 web mvc all --package com.crophealer.domain
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-03 09:49:21
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-03 11:05:09
+focus --class com.crophealer.domain.Product
+finder list
+finder add findProductsByCommentEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-04 14:15:33
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-05 09:47:46
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-05 11:28:55
