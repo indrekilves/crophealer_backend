@@ -179,7 +179,7 @@ public class ProductLoader extends GenericLoader
 						System.out.println("ProblemPlant is null:" + plantPartPhaseProblem.getComment());
 					}
 					
-					if (plantPartPhaseProblem.getPlant().equals(plant)) {
+					if (problemPlant.equals(plant)) {
 						
 						TypedQuery<PlantPartPhaseSymptom> symptomsQ = PlantPartPhaseSymptom.findPlantPartPhaseSymptomsByProblem(plantPartPhaseProblem);
 						if (symptomsQ.getResultList().size() > 0) {
@@ -194,6 +194,7 @@ public class ProductLoader extends GenericLoader
 								
 								if (symptomPhase.equals(phase)) {
 									pppProblems.add(plantPartPhaseProblem);
+									break;
 								}
 							}
 						}
