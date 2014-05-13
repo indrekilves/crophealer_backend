@@ -48,7 +48,7 @@ public class DataLoader {
 		this.loadResellers();		
 		this.loadPlants();
 		this.loadProblems();
-		//this.loadActiveIngredientsAndProducts();
+		this.loadActiveIngredientsAndProducts();
 	}
 
 	private void loadProductsWithProblemLinks() {
