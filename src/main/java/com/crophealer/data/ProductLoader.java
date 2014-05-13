@@ -79,7 +79,7 @@ public class ProductLoader extends GenericLoader
 			if ( !productNameStr.isEmpty() )
 			{
 				int productSectorEndRow = this.ssReader.getNextFilledRowNum(this.colProductName, i + 1) - 1;
-				System.out.println("Loading product from row " + productSectorStartRow + " to " + productSectorEndRow + " - " + productNameStr);				
+				//System.out.println("Loading product from row " + productSectorStartRow + " to " + productSectorEndRow + " - " + productNameStr);				
 				this.processProductSector(productSectorStartRow, productSectorEndRow);			
 			}		
 		}
@@ -108,16 +108,16 @@ public class ProductLoader extends GenericLoader
 				if (pppProblems.size() < 1)
 					continue;
 				
-				int x = 1;
-				System.out.println("Found plant part problems: " + pppProblems.size());
+				//int x = 1;
+				//System.out.println("Found plant part problems: " + pppProblems.size());
 				
 				for (PlantPartPhaseProblem plantPartPhaseProblem : pppProblems) {
-					System.out.print(x++ + ", ");
+					//System.out.print(x++ + ", ");
 					this.addProblemAIProduct(product, ai, plantPartPhaseProblem, pDetails);			
 				}
 				
 				curRow++;
-				System.out.println("");
+				//System.out.println("");
 			}
 		} catch (Exception e) {
 			System.out.println("Failed to load problem: " + e.getMessage());
