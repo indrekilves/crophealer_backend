@@ -130,6 +130,7 @@ public class ProductLoader extends GenericLoader
 		paip.setActiveIngredient(ai);
 		paip.setProduct(product);
 		paip.setProblem(plantPartPhaseProblem);
+		paip.setComment(ai.getComment() + " - " + product.getComment() + " - " + plantPartPhaseProblem.getComment());
 		
 		Integer effectInt = this.getEffectFormatted(pDetails.get(this.colProductName + this.ofEffect));
 		paip.setAiEffect(effectInt );
