@@ -1,10 +1,17 @@
 package com.crophealer.data;
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+
 public class GenericLoader 
 {
     protected SpreadSheetReader ssReader;
     protected Integer activeSheetNum = 0;
-	
+    
+    protected FileHandler fileTxt;
+    protected static Logger LOGGER = Logger.getLogger(GenericLoader.class.getName());
+
     public GenericLoader(){}
     
 	
@@ -12,6 +19,15 @@ public class GenericLoader
 	{
     	this.ssReader = ssReader;
     	this.ssReader.setActiveSheetNum(this.getActiveSheetNum());
+    	try {
+    		
+			DataLoaderLogger.setup();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	LOGGER.info("Kapsauss");
+    	LOGGER.warning("Kapsauss");
 	}
 	
 	public void setSSReader(SpreadSheetReader ssr)

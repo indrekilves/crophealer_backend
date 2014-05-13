@@ -105,12 +105,44 @@ privileged aspect ProductTranslation_Roo_JavaBean {
         this.waterVolume = waterVolume;
     }
     
-    public String ProductTranslation.getLatestUsegeTimeSprayInterval() {
-        return this.latestUsegeTimeSprayInterval;
+    public String ProductTranslation.getSprinkleTime() {
+        return this.sprinkleTime;
     }
     
-    public void ProductTranslation.setLatestUsegeTimeSprayInterval(String latestUsegeTimeSprayInterval) {
-        this.latestUsegeTimeSprayInterval = latestUsegeTimeSprayInterval;
+    public void ProductTranslation.setSprinkleTime(String sprinkleTime) {
+        this.sprinkleTime = sprinkleTime;
+    }
+    
+    public String ProductTranslation.getWorkDelay() {
+        return this.workDelay;
+    }
+    
+    public void ProductTranslation.setWorkDelay(String workDelay) {
+        this.workDelay = workDelay;
+    }
+    
+    public String ProductTranslation.getHarvestDelay() {
+        return this.harvestDelay;
+    }
+    
+    public void ProductTranslation.setHarvestDelay(String harvestDelay) {
+        this.harvestDelay = harvestDelay;
+    }
+    
+    public String ProductTranslation.getEffectMechanism() {
+        return this.effectMechanism;
+    }
+    
+    public void ProductTranslation.setEffectMechanism(String effectMechanism) {
+        this.effectMechanism = effectMechanism;
+    }
+    
+    public String ProductTranslation.getSprinkleTimes() {
+        return this.sprinkleTimes;
+    }
+    
+    public void ProductTranslation.setSprinkleTimes(String sprinkleTimes) {
+        this.sprinkleTimes = sprinkleTimes;
     }
     
 }

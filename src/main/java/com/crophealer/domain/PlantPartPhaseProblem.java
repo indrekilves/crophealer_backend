@@ -49,12 +49,14 @@ public class PlantPartPhaseProblem {
     {
     	TypedQuery<PlantPartPhaseSymptom> symptomsQ = PlantPartPhaseSymptom.findPlantPartPhaseSymptomsByProblem(this);
     	List<PlantPartPhaseSymptom> symptomsTmp = symptomsQ.getResultList();
-    	//for (PlantPartPhaseSymptom ppps : this.symptoms) {
     	for (PlantPartPhaseSymptom ppps : symptomsTmp) {
 			Plant plant = ppps.getPlantPartPhase().getPlant();
 			if (plant != null)
 				return plant;
+			else
+				System.out.println("Did not find plant");
 		}
+    	System.out.println("Did not find plant");
     	return null;
     }
 

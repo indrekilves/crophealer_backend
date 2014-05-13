@@ -1,9 +1,9 @@
 package com.crophealer.domain;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-import javax.validation.constraints.Size;
-import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
@@ -12,7 +12,7 @@ public class ProductTranslation {
 
     /**
      */
-    private String name;
+    private String name; // toode
 
     /**
      */
@@ -36,33 +36,49 @@ public class ProductTranslation {
 
     /**
      */
-    private String type;
+    private String type; // toote liik
 
     /**
      */
-    private String usageRate;
+    private String usageRate; // kulunorm1 - kulunorm 2. (If kulunorm2=0 then just kulunorm1)
 
     /**
      */
-    private String activeIngredientRate;
+    private String activeIngredientRate; // sisaldus (toimeaine)
 
     /**
      */
-    private String ppc;
+    private String ppc; //TKT
 
     /**
      */
-    private String raintFastness;
+    private String raintFastness; // vihmakindlus
 
     /**
      */
-    private String formulation;
+    private String formulation; //Preparaadi vorm
 
     /**
      */
-    private String waterVolume;
+    private String waterVolume; // veekulu
 
     /**
      */
-    private String latestUsegeTimeSprayInterval;
+    private String sprinkleTime; // Pritsimise aeg
+
+    /**
+     */
+    private String workDelay; // Töö-oode
+
+    /**
+     */
+    private String harvestDelay; // Ooteaeg
+
+    /**
+     */
+    private String effectMechanism; // Toimemehhanism
+
+    /**
+     */
+    private String sprinkleTimes;
 }

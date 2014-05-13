@@ -60,11 +60,11 @@ public class Product {
 
     /**
      */
-    private Long efficiency;
+    private Long efficiency; // Effektiivsus
 
     /**
      */
-    private String raintFastness;
+    private String raintFastness; // Vihmakindlus
 
     public static boolean existsByName() {
         // TODO Auto-generated method stub

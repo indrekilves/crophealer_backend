@@ -145,7 +145,15 @@ public class ExcelReader implements SpreadSheetReader {
 
 		for (int i = 0; i < this.getLastColumn(); i++) {
 			Cell c = row.getCell(i, Row.CREATE_NULL_AS_BLANK);
-			rowArr.add(c.getStringCellValue());
+			if (c.getCellType() == Cell.CELL_TYPE_NUMERIC)
+			{
+				Double tmp = c.getNumericCellValue();
+				rowArr.add(tmp.toString());
+			}
+			else
+			{
+				rowArr.add(c.getStringCellValue());
+			}
 		}
 
 		return rowArr;

@@ -48,7 +48,7 @@ public class DataLoader {
 		this.loadResellers();		
 		this.loadPlants();
 		this.loadProblems();
-		this.loadActiveIngredientsAndProducts();
+		//this.loadActiveIngredientsAndProducts();
 	}
 
 	private void loadProductsWithProblemLinks() {
@@ -65,11 +65,16 @@ public class DataLoader {
 		PlantLoader pl = new PlantLoader(this.ssReader);
 		pl.loadPlants();
 	}
-
+	
+	/*
 	private void loadActiveIngredientsAndProducts() {
 		ActiveIngredientLoader ail = new ActiveIngredientLoader(this.ssReader);
 		ail.loadAIs();
 		//ail.loadAITranslations();
+	}*/
+	private void loadActiveIngredientsAndProducts() {
+		ProductLoader loader = new ProductLoader(this.ssReader);
+		loader.loadProducts();
 	}
 
 	private void loadResellers() {

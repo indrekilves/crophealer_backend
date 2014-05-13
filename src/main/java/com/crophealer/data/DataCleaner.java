@@ -69,6 +69,12 @@ public class DataCleaner
 			plantPartPhaseProblem.flush();
 		}
 		
+		List<ProblemAIProduct> paips = ProblemAIProduct.findAllProblemAIProducts();
+		for (ProblemAIProduct problemAIProduct : paips) {
+			problemAIProduct.remove();
+			problemAIProduct.flush();
+		}
+		
 		List<PlantPartPhaseSymptom> ppps = PlantPartPhaseSymptom.findAllPlantPartPhaseSymptoms();
 		for (PlantPartPhaseSymptom plantPartPhaseSymptom : ppps) {
 			plantPartPhaseSymptom.remove();

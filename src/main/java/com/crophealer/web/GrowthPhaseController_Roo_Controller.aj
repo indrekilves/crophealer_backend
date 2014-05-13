@@ -4,7 +4,6 @@
 package com.crophealer.web;
 
 import com.crophealer.domain.GrowthPhase;
-import com.crophealer.domain.GrowthPhaseTranslation;
 import com.crophealer.web.GrowthPhaseController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -87,7 +86,6 @@ privileged aspect GrowthPhaseController_Roo_Controller {
     
     void GrowthPhaseController.populateEditForm(Model uiModel, GrowthPhase growthPhase) {
         uiModel.addAttribute("growthPhase", growthPhase);
-        uiModel.addAttribute("growthphasetranslations", GrowthPhaseTranslation.findAllGrowthPhaseTranslations());
     }
     
     String GrowthPhaseController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

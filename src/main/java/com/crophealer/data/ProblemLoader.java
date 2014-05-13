@@ -29,6 +29,7 @@ public class ProblemLoader extends GenericLoader
 	private final Integer latinNameCol 	= 9;
 	private final Integer phaseCol 		= latinNameCol + 1;
 	private final Integer indexCol		= latinNameCol + 2;
+	private final Integer firstCountryCol = latinNameCol + 3;
 	private LinkedHashMap<String, Integer> countryCols;
 	
 	//private final Integer problemsStartRow 	= 162;
@@ -83,6 +84,11 @@ public class ProblemLoader extends GenericLoader
 			
 			if ( !pLatinName.isEmpty() )
 			{
+				if (pLatinName.equals("Puccinia hordei"))
+				{
+					int ih=0;
+					ih++;
+				}
 				System.out.println("Loading symptoms for " + realRowNum + " - " + pLatinName);
 				this.processProblemSector(pLatinName, realRowNum);
 			}		
@@ -106,10 +112,6 @@ public class ProblemLoader extends GenericLoader
 			problem = this.getProblemByLatin(problemLatin);
 		}
 		
-		if (pRow >=169)
-		{
-			int ih=0;
-		}
 		List<Plant>		plants	   = this.getPlantsForProblem(problem, pRow);
 		List<GrowthPhase> phases   = this.getPhasesForProblem(plants, problem, pRow);
 		List<PlantPart> plantParts = this.loadAndGetPlantPartsForProblem(pRow);
@@ -179,8 +181,11 @@ public class ProblemLoader extends GenericLoader
 		List<Symptom> symptomList = new ArrayList<Symptom>();
 		Integer nextProblemRow = this.getNextProblemRowNum(pRow);
 		
-		if (nextProblemRow == null) 
-			return symptomList;
+		if (nextProblemRow == null) {
+			nextProblemRow = getLastFilledRowBySymptoms(pRow);
+			if (nextProblemRow == null)
+				return symptomList;
+		}
 		
 		for (Map.Entry<String, Integer> countryCol : countryCols.entrySet()) 
 		{
@@ -367,6 +372,21 @@ public class ProblemLoader extends GenericLoader
 			{
 				return realRowNum; 
 			}		
+		}
+		return null;
+	}
+	
+	private Integer getLastFilledRowBySymptoms(Integer curProblemRow) {
+		// return last filled comment row + 1
+		List<String> symptomRows = this.ssReader.getColumnAsArray(this.firstCountryCol + this.symptomOS, curProblemRow+1);
+		for (int i = 0; i < symptomRows.size(); i++) {
+			Integer realRowNum = i+curProblemRow+1;
+			String symptomName = symptomRows.get(i);
+
+			if ( symptomName.isEmpty() )
+			{
+				return realRowNum; 
+			}	
 		}
 		return null;
 	}

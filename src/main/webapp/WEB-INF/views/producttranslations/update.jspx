@@ -15,6 +15,10 @@
         <field:input field="raintFastness" id="c_com_crophealer_domain_ProductTranslation_raintFastness" z="L9GxLqBTnoBFDc34E+okc8d/lYU="/>
         <field:input field="formulation" id="c_com_crophealer_domain_ProductTranslation_formulation" z="mHnyclyXeLc03/CwdpYSPGI9mUM="/>
         <field:input field="waterVolume" id="c_com_crophealer_domain_ProductTranslation_waterVolume" z="W27mBD12jcchgGuSC4bI/bxMQMc="/>
-        <field:input field="latestUsegeTimeSprayInterval" id="c_com_crophealer_domain_ProductTranslation_latestUsegeTimeSprayInterval" z="UBlXwKuLLFRwP9Wxo9xmWNmTMiM="/>
+        <field:input field="sprinkleTime" id="c_com_crophealer_domain_ProductTranslation_sprinkleTime" z="15BsykPdpDPNIprUplooCGdhmlc="/>
+        <field:input field="workDelay" id="c_com_crophealer_domain_ProductTranslation_workDelay" z="/ZOVXfy2+OtcqsBB16uEHr9ePlA="/>
+        <field:input field="harvestDelay" id="c_com_crophealer_domain_ProductTranslation_harvestDelay" z="ByGjpuzCV+lE2dYMj7pObn+/c+M="/>
+        <field:input field="effectMechanism" id="c_com_crophealer_domain_ProductTranslation_effectMechanism" z="mwZglY8bJ/KS2OM4wKczwS4KrWY="/>
+        <field:input field="sprinkleTimes" id="c_com_crophealer_domain_ProductTranslation_sprinkleTimes" z="ciYFEo5WSdT0B/6Dw9ynG2InyJU="/>
     </form:update>
 </div>

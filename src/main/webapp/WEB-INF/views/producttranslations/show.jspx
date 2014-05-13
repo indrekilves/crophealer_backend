@@ -15,6 +15,10 @@
         <field:display field="raintFastness" id="s_com_crophealer_domain_ProductTranslation_raintFastness" object="${producttranslation}" z="RVC0lYrdUASpaxIBkOf4bzLZUew="/>
         <field:display field="formulation" id="s_com_crophealer_domain_ProductTranslation_formulation" object="${producttranslation}" z="OFPOSpxqniQQOvpjZvBEmFZSYi0="/>
         <field:display field="waterVolume" id="s_com_crophealer_domain_ProductTranslation_waterVolume" object="${producttranslation}" z="44i5sQ5n4bDy7vGEH+K8lBsTacg="/>
-        <field:display field="latestUsegeTimeSprayInterval" id="s_com_crophealer_domain_ProductTranslation_latestUsegeTimeSprayInterval" object="${producttranslation}" z="7BKbqhyPSnQxtsfsgAUQp9w43Hk="/>
+        <field:display field="sprinkleTime" id="s_com_crophealer_domain_ProductTranslation_sprinkleTime" object="${producttranslation}" z="bUniUmlWNZ9Fmxk0uLTKQhaeB1U="/>
+        <field:display field="workDelay" id="s_com_crophealer_domain_ProductTranslation_workDelay" object="${producttranslation}" z="LbREJ3+gAXJE9oucOFZwYd85e4o="/>
+        <field:display field="harvestDelay" id="s_com_crophealer_domain_ProductTranslation_harvestDelay" object="${producttranslation}" z="KyjmIYaHw1MpBng3AAlKTz9kVyo="/>
+        <field:display field="effectMechanism" id="s_com_crophealer_domain_ProductTranslation_effectMechanism" object="${producttranslation}" z="9jLDZ5GDEqfewsCU3saM7hUoOp4="/>
+        <field:display field="sprinkleTimes" id="s_com_crophealer_domain_ProductTranslation_sprinkleTimes" object="${producttranslation}" z="rA+bVQUdM29Mz/jHBjxqnc18P8g="/>
     </page:show>
 </div>

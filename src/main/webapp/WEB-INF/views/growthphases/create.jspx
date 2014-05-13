@@ -5,7 +5,6 @@
     <form:create id="fc_com_crophealer_domain_GrowthPhase" modelAttribute="growthPhase" path="/growthphases" render="${empty dependencies}" z="Ci131HbpYLYAOn/lkIdSQhcZR+0=">
         <field:input field="comment" id="c_com_crophealer_domain_GrowthPhase_comment" z="aahqGv75jRZdwcpCLLnl4CQMyGU="/>
         <field:input field="iconUrl" id="c_com_crophealer_domain_GrowthPhase_iconUrl" z="poqiGK1rdNDRSV00zfr/Zadn7s0="/>
-        <field:simple field="translations" id="c_com_crophealer_domain_GrowthPhase_translations" messageCode="entity_reference_not_managed" messageCodeAttribute="Growth Phase Translation" z="Vmf9IGt2+agmkXxvqDMKEMTT9J4="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_GrowthPhase" render="${not empty dependencies}" z="cXs8FPmFBo26Dr1rfBxNjpqKXvw="/>
 </div>

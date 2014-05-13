@@ -1,7 +1,8 @@
 package com.crophealer.domain;
 
+import java.util.List;
+
 import javax.persistence.ManyToOne;
-import javax.persistence.TypedQuery;
 import javax.validation.constraints.Size;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -34,15 +35,21 @@ public class PlantTranslation {
 	@ManyToOne
 	private Languages lang;
 
-	public static PlantTranslation getSinglePlantTranslationByName(
-			String plantTransStr) {
+	
+	public static PlantTranslation getSinglePlantTranslationByName(String plantTransStr) {
 		try {
-			TypedQuery<PlantTranslation> plantQ = PlantTranslation
-					.findPlantTranslationsByNameEquals(plantTransStr);
+			List<PlantTranslation> all = PlantTranslation.findAllPlantTranslations();
+			for (PlantTranslation plantTranslation : all) {
+				if (plantTranslation.getName().compareToIgnoreCase(plantTransStr) == 0)
+					return plantTranslation;
+			}
+			return null;
+			/*TypedQuery<PlantTranslation> plantQ = PlantTranslation.findPlantTranslationsByNameEquals(plantTransStr);
 			if (plantQ.getResultList().size() > 0)
 				return plantQ.getSingleResult();
 			else
 				return null;
+				*/
 		} catch (Exception e) {
 			return null;
 		}

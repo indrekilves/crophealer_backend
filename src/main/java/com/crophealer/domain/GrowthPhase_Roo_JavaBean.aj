@@ -29,8 +29,4 @@ privileged aspect GrowthPhase_Roo_JavaBean {
         return this.translations;
     }
     
-    public void GrowthPhase.setTranslations(Set<GrowthPhaseTranslation> translations) {
-        this.translations = translations;
-    }
-    
 }

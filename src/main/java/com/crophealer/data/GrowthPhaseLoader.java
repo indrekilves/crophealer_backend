@@ -24,10 +24,12 @@ public class GrowthPhaseLoader extends GenericLoader
 		
 		for (int i = 2; i < codes.size(); i++) 
 		{
-			GrowthPhase gp = new GrowthPhase();
-			gp.setComment(codes.get(i));
-			gp.setIconUrl(urls.get(i));
-			gp.persist();
+			if ( !codes.get(i).isEmpty()) {
+				GrowthPhase gp = new GrowthPhase();
+				gp.setComment(codes.get(i));
+				gp.setIconUrl(urls.get(i));
+				gp.persist();
+			}
 		}
 		
 	}

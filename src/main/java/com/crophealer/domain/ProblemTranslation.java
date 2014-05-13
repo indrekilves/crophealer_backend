@@ -1,6 +1,7 @@
 package com.crophealer.domain;
+import java.util.List;
+
 import javax.persistence.ManyToOne;
-import javax.persistence.TypedQuery;
 import javax.validation.constraints.Size;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -38,9 +39,14 @@ public class ProblemTranslation {
     
     public static ProblemTranslation getSingleProblemTranslationByName(String name) {
         try {
-            TypedQuery<ProblemTranslation> q = ProblemTranslation.findProblemTranslationsByNameEquals(name);
-            if (q.getResultList().size() > 0) return q.getSingleResult(); else return null;
             
+            List<ProblemTranslation> allProbTrans = ProblemTranslation.findAllProblemTranslations();
+            for (ProblemTranslation problemTranslation : allProbTrans) {
+				if (problemTranslation.getName().trim().equalsIgnoreCase(name))
+					return problemTranslation;
+			}
+            
+            return null;
         } catch (Exception e) {
             return null;
         }

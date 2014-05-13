@@ -498,4 +498,24 @@ finder list
 finder add findProblemAIProductsByProblemAndActiveIngredient
 focus --class com.crophealer.domain.Product
 finder list
-finder add findProductsByCommentEquals
+finder add findProductsByCommentEquals// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-05 23:49:05
+focus --class com.crophealer.domain.Product
+focus --class com.crophealer.domain.ProductTranslation
+field string --fieldName workDelay --comment Töö-oode
+field string --fieldName harvestDelay
+field string --fieldName effectMechanism
+field string --fieldName sprinkleTimes
+focus --class com.crophealer.domain.ActiveIngredient
+finder list
+finder add findActiveIngredientsByCommentEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-06 12:40:35
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-08 23:27:28
+focus --class com.crophealer.domain.PlantPartPhaseProblem
+finder list
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-09 10:44:04
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-09 10:46:48
+focus --class com.crophealer.domain.PlantTranslation
+finder list
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-09 11:49:31
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-12 21:57:44
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-13 13:13:28
