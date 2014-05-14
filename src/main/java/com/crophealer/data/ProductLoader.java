@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 import com.crophealer.domain.ActiveIngredient;
+import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Country;
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.Languages;
@@ -331,9 +332,22 @@ public class ProductLoader extends GenericLoader
 		ai.setCountry(Country.getSingleCountryByName("Estonia"));
 		ai.setLatinName(ai.getComment());
 		ai.persist();
+		this.addNewAiTranslation(ai, productSectorStartRow);
 		return ai;
 	}
+	
+	
 
+
+	private void addNewAiTranslation(ActiveIngredient ai, Integer productSectorStartRow) {
+		ActiveIngredientTranslation ait = new ActiveIngredientTranslation();
+		ait.setLang(Languages.getSingleLanguageByName("Estonian"));
+		ait.setActiveIngredient(ai);
+		ait.setName(ai.getComment());
+		ait.persist();
+	}
+
+	
 
 	private Product loadAndGetProduct(Integer productSectorStartRow) {
 		try {
