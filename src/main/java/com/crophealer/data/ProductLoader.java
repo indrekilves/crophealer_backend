@@ -213,12 +213,18 @@ public class ProductLoader extends GenericLoader
 
 	private List<GrowthPhase> getPhasesByPlant(Plant plant, List<String> pDetails) {
 		try {
-			List<GrowthPhase> returnPhases = new ArrayList<GrowthPhase>(); 
-			int fromPhase;
-			int toPhase;
+			List<GrowthPhase> returnPhases   = new ArrayList<GrowthPhase>(); 
+			List<GrowthPhase> oneRangePhases = new ArrayList<GrowthPhase>();
 
 			String phaseRange = pDetails.get(this.ofPhase + this.colProductName);
-
+			
+			String[] splitRanges = phaseRange.split(",");
+			for (String range : splitRanges) {
+				oneRangePhases = this.getPhasesByPlantAndRange(plant, range, pDetails);
+				if (oneRangePhases.size() > 0)
+					returnPhases.addAll(oneRangePhases);
+			}
+			/*
 			if (phaseRange.contains("-")) {
 				String[] split = phaseRange.split("-");
 				fromPhase = Integer.parseInt(split[0]);
@@ -250,13 +256,53 @@ public class ProductLoader extends GenericLoader
 						returnPhases.add(growthPhase);
 					}
 				}
-			}
+			}*/
 
 			return returnPhases;
 		} catch (Exception e) {
 			System.out.println("bad [getPhasesByPlant]");
 			throw e;
 		}
+	}
+	
+	
+	private List<GrowthPhase> getPhasesByPlantAndRange(Plant plant, String phaseRange, List<String> pDetails) {
+		List<GrowthPhase> returnPhases = new ArrayList<GrowthPhase>();
+		List<GrowthPhase> allPhases = GrowthPhase.findAllGrowthPhases();
+		int fromPhase;
+		int toPhase;
+		
+		if (phaseRange.contains("-")) {
+			String[] split = phaseRange.split("-");
+			fromPhase = Integer.parseInt(split[0]);
+			toPhase = Integer.parseInt(split[1]);
+		} else if (phaseRange.contains("–")) {
+			String[] split = phaseRange.split("–");
+			fromPhase = Integer.parseInt(split[0]);
+			toPhase = Integer.parseInt(split[1]);
+		} else if (phaseRange.contains("A")) {
+			// all phases 
+			fromPhase 	= 0;
+			toPhase		= 99;
+		} else {
+			fromPhase = Integer.parseInt(phaseRange);
+			toPhase = fromPhase;
+		}
+		
+		for (GrowthPhase growthPhase : allPhases) {
+			if (plant.isOSR() == growthPhase.isOSRPhase() && !growthPhase.getComment().isEmpty())
+			{
+				String numeric = growthPhase.getComment();
+				numeric = numeric.replace("F", "");
+				numeric = numeric.replace("R", "");
+				int phaseNum = Integer.parseInt(numeric);
+
+				if (phaseNum >= fromPhase && phaseNum <= toPhase) {
+					returnPhases.add(growthPhase);
+				}
+			}
+		}
+		return returnPhases;
 	}
 
 
