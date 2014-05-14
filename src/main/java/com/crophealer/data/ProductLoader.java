@@ -121,7 +121,7 @@ public class ProductLoader extends GenericLoader
 				//System.out.println("");
 			}
 		} catch (Exception e) {
-			System.out.println("Failed to load problem: " + e.getMessage());
+			System.out.println("Failed to load problem. Sector start: " + productSectorStartRow + ", " + e.getMessage());
 		}
 	}
 	
@@ -220,43 +220,10 @@ public class ProductLoader extends GenericLoader
 			
 			String[] splitRanges = phaseRange.split(",");
 			for (String range : splitRanges) {
-				oneRangePhases = this.getPhasesByPlantAndRange(plant, range, pDetails);
+				oneRangePhases = this.getPhasesByPlantAndRange(plant, range.trim(), pDetails);
 				if (oneRangePhases.size() > 0)
 					returnPhases.addAll(oneRangePhases);
 			}
-			/*
-			if (phaseRange.contains("-")) {
-				String[] split = phaseRange.split("-");
-				fromPhase = Integer.parseInt(split[0]);
-				toPhase = Integer.parseInt(split[1]);
-			} else if (phaseRange.contains("–")) {
-				String[] split = phaseRange.split("–");
-				fromPhase = Integer.parseInt(split[0]);
-				toPhase = Integer.parseInt(split[1]);
-			} else if (phaseRange.contains("A")) {
-				// all phases 
-				fromPhase 	= 0;
-				toPhase		= 99;
-			} else {
-				fromPhase = Integer.parseInt(phaseRange);
-				toPhase = fromPhase;
-			}
-
-			List<GrowthPhase> allPhases = GrowthPhase.findAllGrowthPhases();
-
-			for (GrowthPhase growthPhase : allPhases) {
-				if (plant.isOSR() == growthPhase.isOSRPhase() && !growthPhase.getComment().isEmpty())
-				{
-					String numeric = growthPhase.getComment();
-					numeric = numeric.replace("F", "");
-					numeric = numeric.replace("R", "");
-					int phaseNum = Integer.parseInt(numeric);
-
-					if (phaseNum >= fromPhase && phaseNum <= toPhase) {
-						returnPhases.add(growthPhase);
-					}
-				}
-			}*/
 
 			return returnPhases;
 		} catch (Exception e) {
@@ -269,25 +236,10 @@ public class ProductLoader extends GenericLoader
 	private List<GrowthPhase> getPhasesByPlantAndRange(Plant plant, String phaseRange, List<String> pDetails) {
 		List<GrowthPhase> returnPhases = new ArrayList<GrowthPhase>();
 		List<GrowthPhase> allPhases = GrowthPhase.findAllGrowthPhases();
-		int fromPhase;
-		int toPhase;
 		
-		if (phaseRange.contains("-")) {
-			String[] split = phaseRange.split("-");
-			fromPhase = Integer.parseInt(split[0]);
-			toPhase = Integer.parseInt(split[1]);
-		} else if (phaseRange.contains("–")) {
-			String[] split = phaseRange.split("–");
-			fromPhase = Integer.parseInt(split[0]);
-			toPhase = Integer.parseInt(split[1]);
-		} else if (phaseRange.contains("A")) {
-			// all phases 
-			fromPhase 	= 0;
-			toPhase		= 99;
-		} else {
-			fromPhase = Integer.parseInt(phaseRange);
-			toPhase = fromPhase;
-		}
+		int[] phases = this.getPhaseRangeLimits(phaseRange);
+		int fromPhase = phases[0];
+		int toPhase	= phases[1];	
 		
 		for (GrowthPhase growthPhase : allPhases) {
 			if (plant.isOSR() == growthPhase.isOSRPhase() && !growthPhase.getComment().isEmpty())
@@ -304,6 +256,39 @@ public class ProductLoader extends GenericLoader
 		}
 		return returnPhases;
 	}
+	
+	
+	private int[] getPhaseRangeLimits(String phaseRange) {
+		int[] phases = new int[2];
+		int fromPhase;
+		int toPhase;
+		
+		if (phaseRange.contains("-")) {
+			String[] split = phaseRange.split("-");
+			fromPhase = Integer.parseInt(split[0]);
+			toPhase = Integer.parseInt(split[1]);
+		} else if (phaseRange.contains("–")) {
+			String[] split = phaseRange.split("–");
+			fromPhase = Integer.parseInt(split[0]);
+			toPhase = Integer.parseInt(split[1]);
+		} else if (phaseRange.contains("A")) {
+			// all phases 
+			fromPhase 	= 0;
+			toPhase		= 99;
+		} else if (phaseRange.isEmpty()) {
+			// all phases 
+			fromPhase 	= 0;
+			toPhase		= 99;
+		} else {
+			Double d = Double.parseDouble(phaseRange);
+			fromPhase = d.intValue();
+			toPhase = fromPhase;
+		}
+		phases[0] = fromPhase;
+		phases[1] = toPhase;
+		return phases;
+	}
+	
 
 
 	private Problem getProblem(List<String> pDetails) {
