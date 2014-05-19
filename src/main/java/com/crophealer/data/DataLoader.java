@@ -1,5 +1,9 @@
 package com.crophealer.data;
 
+import javax.persistence.TypedQuery;
+
+import com.crophealer.security.Authorities;
+
 
 
 public class DataLoader {
@@ -41,6 +45,7 @@ public class DataLoader {
 		dCleaner.truncateAllTables();
 
 		// load capsulated data: 
+		this.loadRoles();
 		this.loadCountries(); 
 		this.loadLanguages();
 		this.loadPhases();
@@ -50,6 +55,17 @@ public class DataLoader {
 		this.loadProblems();
 		this.loadActiveIngredientsAndProducts();
 	}
+
+	
+	private void loadRoles() {
+		TypedQuery<Authorities> authQ = Authorities.findAuthoritiesesByAuthorityEquals("ROLE_USER");
+		if (authQ.getResultList().size() <= 0) {
+			Authorities auth = new Authorities();
+			auth.setAuthority("ROLE_USER");
+			auth.persist();
+		}
+	}
+	
 
 	private void loadProductsWithProblemLinks() {
 
