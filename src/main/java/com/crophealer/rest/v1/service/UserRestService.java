@@ -94,7 +94,8 @@ public class UserRestService extends GenericRestService {
 		ResponseEntity<UserResource> response; 
 
 		if (id == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			response = new ResponseEntity<>(HttpStatus.CONFLICT);
+			//response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			return response;
 		}
 		
