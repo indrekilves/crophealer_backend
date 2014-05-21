@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.crophealer.domain.Languages;
 import com.crophealer.rest.v1.DiagnosedProblemResourceList;
@@ -32,10 +33,10 @@ public class UserRestController {
 //	}
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value="/{id}",  params="isLoginAllowed")
-	public ResponseEntity<Boolean> isLoginAllowed(@PathVariable("id") Long id)
+	@RequestMapping(method = RequestMethod.GET, params="isLoginAllowedForUser")
+	public ResponseEntity<Boolean> isLoginAllowed(@RequestParam("isLoginAllowedForUser") String userName)
 	{   	
-	    return userRestService.isLoginAllowed(id);		
+	    return userRestService.isLoginAllowed(userName);		
 	}    
 	
 	
