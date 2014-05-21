@@ -29,6 +29,8 @@ import com.crophealer.rest.v1.PlantPartPhaseProblemResourceAssembler;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResourceList;
 import com.crophealer.rest.v1.ProductResourceAssembler;
 import com.crophealer.rest.v1.ProductResourceList;
+import com.crophealer.rest.v1.SymptomResourceAssembler;
+import com.crophealer.rest.v1.SymptomResourceList;
 
 @Service
 public class PlantPartPhaseProblemRestService extends GenericRestService {
@@ -130,7 +132,7 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		 Set<ProblemAIProduct> paipsSet = pppProblem.getActiveIngredientProductLinks();
 		 List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
 		 	 
-		 Comparator comparator = new PaipsByAiEffectComparator();
+		 Comparator<ProblemAIProduct> comparator = new PaipsByAiEffectComparator();
 		 Collections.sort(paips, comparator);
 		 
 		 List <ActiveIngredient> activeIngredients = new ArrayList<ActiveIngredient>();
@@ -278,5 +280,45 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		
 		response = new ResponseEntity<>(prl, HttpStatus.OK);
 		return response;		
+	}
+
+
+	public ResponseEntity<SymptomResourceList> getSymptomsByLanguage(Long pppID, Languages language) {
+
+		System.out.println("getSymptomsByLanguage - try to get for pppId:" + pppID + " lang:" + language);
+		
+		ResponseEntity<SymptomResourceList> response; 
+	
+		if (pppID == null || language == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+		
+		// Get PlantPartPhaseProblem
+		PlantPartPhaseProblem pppProblem = PlantPartPhaseProblem.findPlantPartPhaseProblem(pppID);
+		if (pppProblem == null){
+		 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		 return response;
+		}
+		
+		// Get Symptoms 
+		List <Symptom> symptoms = new ArrayList<Symptom>();
+		for (PlantPartPhaseSymptom plantPartPhaseSymptom : pppProblem.getSymptoms()) {
+			if (plantPartPhaseSymptom != null){
+				Symptom symptom = plantPartPhaseSymptom.getSymptom();
+				if (symptom != null) {
+					if (!symptoms.contains(symptom)){
+						symptoms.add(symptom);
+					}
+				}
+			}
+		}
+		
+		SymptomResourceAssembler asm = new SymptomResourceAssembler();
+		SymptomResourceList srl = asm.toResource(symptoms, language);
+
+		response = new ResponseEntity<>(srl, HttpStatus.OK);
+		return response;		
+
 	}
 }
