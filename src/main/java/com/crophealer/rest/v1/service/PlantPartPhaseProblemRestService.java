@@ -2,6 +2,8 @@ package com.crophealer.rest.v1.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.PaipsByAiEffectComparator;
 import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
@@ -124,7 +127,12 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		 }
 		 
 		 // Get AIs by pppProblem
-		 Set<ProblemAIProduct> paips = pppProblem.getActiveIngredientProductLinks();
+		 Set<ProblemAIProduct> paipsSet = pppProblem.getActiveIngredientProductLinks();
+		 List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
+		 	 
+		 Comparator comparator = new PaipsByAiEffectComparator();
+		 Collections.sort(paips, comparator);
+		 
 		 List <ActiveIngredient> activeIngredients = new ArrayList<ActiveIngredient>();
 		 for (ProblemAIProduct problemAIProduct : paips) {
 			 activeIngredients.add(problemAIProduct.getActiveIngredient());
