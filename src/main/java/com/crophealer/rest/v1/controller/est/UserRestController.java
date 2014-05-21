@@ -26,11 +26,11 @@ public class UserRestController {
 	private UserRestService userRestService;
 	
 //  Not needed and too dangerous	
-//	@RequestMapping(method = RequestMethod.GET, value="/{id}")
-//	public ResponseEntity<UserResource> getUser(@PathVariable("id") Long id)
-//	{   	
-//	    return userRestService.getUser(id);		
-//	}
+	@RequestMapping(method = RequestMethod.GET, value="/{id}")
+	public ResponseEntity<UserResource> getUser(@PathVariable("id") Long id)
+	{   	
+	    return userRestService.getUser(id);		
+	}
 	
 	
 	@RequestMapping(method = RequestMethod.GET, params="isLoginAllowedForUser")
