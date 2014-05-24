@@ -13,6 +13,7 @@ import com.crophealer.rest.v1.ActiveIngredientResourceList;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResource;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResourceList;
 import com.crophealer.rest.v1.ProductResourceList;
+import com.crophealer.rest.v1.SymptomResourceList;
 import com.crophealer.rest.v1.service.PlantPartPhaseProblemRestService;
 
 
@@ -40,14 +41,7 @@ public class PlantPartPhaseProblemRestController {
 	    return plantPartPhaseProblemRestService.getPlantPartPhaseProblemByLanguage(id, plantPartPhaseProblemRestService.getEstonian());		
 	}
     
-    
-//    @RequestMapping(method = RequestMethod.GET, params="searchBySymptoms")
-//  	public ResponseEntity<PlantPartPhaseProblemResourceList> getPlantPartPhaseProblemByPPPSymptoms( @RequestParam(value = "searchBySymptoms", required = false) String symptomsCsv){
-//    	System.out.println("getPlantPartPhaseProblemBySymptoms: " + symptomsCsv);
-//    	return plantPartPhaseProblemRestService.getPlantPartPhaseProblemByPPPSymptomsAndLanguage(symptomsCsv, plantPartPhaseProblemRestService.getEstonian());
-//    }
-
-	
+    	
     @RequestMapping(method = RequestMethod.GET, params={"plantPartPhaseId", "searchBySymptoms"})
   	public ResponseEntity<PlantPartPhaseProblemResourceList> getPlantPartPhaseProblemBySymptoms(@RequestParam(value = "plantPartPhaseId", required = false) String idStr, 
   																								@RequestParam(value = "searchBySymptoms", required = false) String symptomsCsv){
@@ -74,6 +68,13 @@ public class PlantPartPhaseProblemRestController {
 	{   	
 	    return plantPartPhaseProblemRestService.getProductsByPlantPhaseProblemAndLanguage(pppID, plantPartPhaseProblemRestService.getEstonian());		
 	}
+    
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/symptoms")
+	public ResponseEntity<SymptomResourceList> getSymptoms(@PathVariable("id") Long id)
+	{   	
+	    return plantPartPhaseProblemRestService.getSymptomsByLanguage(id, plantPartPhaseProblemRestService.getEstonian());		
+	}
+
 
 
 }

@@ -26,17 +26,22 @@ public class UserRestService extends GenericRestService {
 
 	
 	
-	public ResponseEntity<Boolean> isLoginAllowed(Long id) {
-		System.out.println("getUser - try to get for id:" + id);
+	public ResponseEntity<Boolean> isLoginAllowed(String userName) {
+		System.out.println("getUser - try to get for id:" + userName);
 		
 		ResponseEntity<Boolean> response; 
 
-		if (id == null) {
+		if (userName == null) {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			return response;
 		}
 		
-		Users user = Users.findUsers(id);
+		Users user = null;
+		TypedQuery<Users> tq = Users.findUsersesByUsernameEquals(userName);
+		if (tq != null && tq.getResultList().size() > 0){
+			user = tq.getSingleResult();
+		}
+		
 		if (user == null){
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
@@ -89,7 +94,8 @@ public class UserRestService extends GenericRestService {
 		ResponseEntity<UserResource> response; 
 
 		if (id == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			response = new ResponseEntity<>(HttpStatus.CONFLICT);
+			//response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			return response;
 		}
 		
