@@ -169,7 +169,7 @@ public class ProblemLoader extends GenericLoader
 		if (probPicStr.isEmpty()) return;
 		
 		probPic.setName(probPicStr);
-		probPic.setPictureUrl(probPicStr);
+		probPic.setPictureUrl("resources/images/problems/" + probPicStr);
 		probPic.setProblem(problem);
 		probPic.persist();	
 	}
