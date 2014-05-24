@@ -99,6 +99,9 @@ public class ProblemLoader extends GenericLoader
 
 	private void processProblemSector(String problemLatin, int pRow) 
 	{
+		if ( !this.canLoadProblemSector(problemLatin, pRow) )
+			return;
+		
 		Problem problem = new Problem();
 	
 		if ( !this.problemExists(problemLatin) )
@@ -159,6 +162,29 @@ public class ProblemLoader extends GenericLoader
 	
 
 
+
+
+
+	private boolean canLoadProblemSector(String problemLatin, int pRow) {
+		if (problemLatin.isEmpty()) {
+			System.out.println("ERROR: Cannot load problem sector, latin name is empty.");
+			return false;
+		}
+		
+		List<String> sectionStartRow = ssReader.getRowAsArray(pRow);
+		
+		if (sectionStartRow.get(this.phaseCol).isEmpty()) {
+			System.out.println("ERROR: Cannot load problem sector, phase cell is empty.");
+			return false;
+		}
+		
+		if (sectionStartRow.get(this.firstCountryCol + this.plantPartOS).isEmpty()) {
+			System.out.println("ERROR: Cannot load problem sector, plantpart cell is empty.");
+			return false;
+		}
+		
+		return true;
+	}
 
 
 
