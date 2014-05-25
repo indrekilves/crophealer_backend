@@ -2,12 +2,14 @@ package com.crophealer.rest.v1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.crophealer.domain.GrowthPhase;
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Plant;
 import com.crophealer.domain.PlantPart;
 import com.crophealer.domain.PlantPartPhase;
+import com.crophealer.domain.PlantPartPhaseSymptom;
 
 public class PlantPartPhaseResourceAssembler {
 
@@ -17,10 +19,38 @@ public class PlantPartPhaseResourceAssembler {
 		PlantPartPhaseResource pppr = new PlantPartPhaseResource();
 		pppr.setId(ppp.getId());
 		pppr.setComment(ppp.getComment());
-//		pppr.setPlant(getPlantResource(ppp, l));
-//		pppr.setPlantPart(getPlantPartResource(ppp, l));
-//		pppr.setGrowthPhase(getGrowthPhaseResource(ppp, l));
 		
+		Plant p = ppp.getPlant();
+		if (p != null){
+			pppr.setPlantId(p.getId());
+		}
+		
+		GrowthPhase gp = ppp.getGrowthPhase();
+		if (gp != null){
+			pppr.setGrowthPhaseId(gp.getId());
+		}
+		
+		PlantPart pp = ppp.getPlantPart();
+		if (pp != null){
+			pppr.setPlantPartId(pp.getId());
+		}
+		
+		String symptomIDs = null;
+		Set<PlantPartPhaseSymptom> symptoms = ppp.getSymptoms();
+		if (symptoms != null && symptoms.size() > 0){
+			for (PlantPartPhaseSymptom symptom : symptoms) {
+				if (symptom != null){
+					if (symptomIDs == null){
+						symptomIDs = symptom.getId().toString();
+					}
+					else{
+						symptomIDs += ", " + symptom.getId().toString();
+					}
+				}
+			}
+		}
+		pppr.setSymptomsIDs(symptomIDs);
+			
 		return pppr;
 	}
 

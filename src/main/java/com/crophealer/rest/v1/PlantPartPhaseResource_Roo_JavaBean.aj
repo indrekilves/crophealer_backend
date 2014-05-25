@@ -3,11 +3,7 @@
 
 package com.crophealer.rest.v1;
 
-import com.crophealer.rest.v1.GrowthPhaseResource;
 import com.crophealer.rest.v1.PlantPartPhaseResource;
-import com.crophealer.rest.v1.PlantPartPhaseSymptomResourceList;
-import com.crophealer.rest.v1.PlantPartResource;
-import com.crophealer.rest.v1.PlantResource;
 
 privileged aspect PlantPartPhaseResource_Roo_JavaBean {
     
@@ -27,36 +23,36 @@ privileged aspect PlantPartPhaseResource_Roo_JavaBean {
         this.comment = comment;
     }
     
-    public PlantResource PlantPartPhaseResource.getPlant() {
-        return this.plant;
+    public Long PlantPartPhaseResource.getPlantId() {
+        return this.plantId;
     }
     
-    public void PlantPartPhaseResource.setPlant(PlantResource plant) {
-        this.plant = plant;
+    public void PlantPartPhaseResource.setPlantId(Long plantId) {
+        this.plantId = plantId;
     }
     
-    public PlantPartResource PlantPartPhaseResource.getPlantPart() {
-        return this.plantPart;
+    public Long PlantPartPhaseResource.getPlantPartId() {
+        return this.plantPartId;
     }
     
-    public void PlantPartPhaseResource.setPlantPart(PlantPartResource plantPart) {
-        this.plantPart = plantPart;
+    public void PlantPartPhaseResource.setPlantPartId(Long plantPartId) {
+        this.plantPartId = plantPartId;
     }
     
-    public GrowthPhaseResource PlantPartPhaseResource.getGrowthPhase() {
-        return this.growthPhase;
+    public Long PlantPartPhaseResource.getGrowthPhaseId() {
+        return this.growthPhaseId;
     }
     
-    public void PlantPartPhaseResource.setGrowthPhase(GrowthPhaseResource growthPhase) {
-        this.growthPhase = growthPhase;
+    public void PlantPartPhaseResource.setGrowthPhaseId(Long growthPhaseId) {
+        this.growthPhaseId = growthPhaseId;
     }
     
-    public PlantPartPhaseSymptomResourceList PlantPartPhaseResource.getSymptoms() {
-        return this.symptoms;
+    public String PlantPartPhaseResource.getSymptomsIDs() {
+        return this.symptomsIDs;
     }
     
-    public void PlantPartPhaseResource.setSymptoms(PlantPartPhaseSymptomResourceList symptoms) {
-        this.symptoms = symptoms;
+    public void PlantPartPhaseResource.setSymptomsIDs(String symptomsIDs) {
+        this.symptomsIDs = symptomsIDs;
     }
     
 }
