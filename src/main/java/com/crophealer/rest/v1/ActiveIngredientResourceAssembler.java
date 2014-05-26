@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.ActiveIngredientTranslation;
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.ProblemAIProduct;
 
 public class ActiveIngredientResourceAssembler {
 
@@ -43,5 +44,43 @@ public class ActiveIngredientResourceAssembler {
 		}
 		
 		return new ActiveIngredientResourceList(airl);
+	}
+
+
+	public ActiveIngredientResourceList paipsToResource(List<ProblemAIProduct> paips, Languages l) {
+		if (paips == null || l == null) return null;
+
+		List<ActiveIngredientResource> airl = new ArrayList<ActiveIngredientResource>();
+		
+		for ( ProblemAIProduct paip : paips) {
+			airl.add(paipToResource(paip, l));
+		}
+
+		return new ActiveIngredientResourceList(airl);
+	}
+
+
+	private ActiveIngredientResource paipToResource(ProblemAIProduct paip, Languages language) {
+		ActiveIngredient ai = paip.getActiveIngredient();
+		ActiveIngredientResource air = new ActiveIngredientResource();
+		air.setId(ai.getId());
+		air.setLatinName(ai.getLatinName());
+		if (language != null){
+			TypedQuery<ActiveIngredientTranslation> tq = ActiveIngredientTranslation.findActiveIngredientTranslationsByActiveIngredientAndLang(ai, language);
+			if (tq != null && tq.getResultList().size() > 0){
+				ActiveIngredientTranslation ait = tq.getSingleResult();
+				if (ait != null){
+					air.setName(ait.getName());
+					air.setDescription(ait.getDescription());
+					air.setWarning(ait.getWarning());
+				}
+			}
+		}
+
+		Integer effect = paip.getAiEffect();
+		if (effect != null){
+			air.setEffect(Long.valueOf(effect.longValue()));			
+		}
+		return air;
 	}
 }
