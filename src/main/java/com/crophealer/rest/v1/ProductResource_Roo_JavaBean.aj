@@ -48,6 +48,118 @@ privileged aspect ProductResource_Roo_JavaBean {
         this.pictureUrl = pictureUrl;
     }
     
+    public Long ProductResource.getEfficiency() {
+        return this.efficiency;
+    }
+    
+    public void ProductResource.setEfficiency(Long efficiency) {
+        this.efficiency = efficiency;
+    }
+    
+    public String ProductResource.getRaintFastness() {
+        return this.raintFastness;
+    }
+    
+    public void ProductResource.setRaintFastness(String raintFastness) {
+        this.raintFastness = raintFastness;
+    }
+    
+    public String ProductResource.getType() {
+        return this.type;
+    }
+    
+    public void ProductResource.setType(String type) {
+        this.type = type;
+    }
+    
+    public String ProductResource.getUsageRate() {
+        return this.usageRate;
+    }
+    
+    public void ProductResource.setUsageRate(String usageRate) {
+        this.usageRate = usageRate;
+    }
+    
+    public String ProductResource.getActiveIngredientRate() {
+        return this.activeIngredientRate;
+    }
+    
+    public void ProductResource.setActiveIngredientRate(String activeIngredientRate) {
+        this.activeIngredientRate = activeIngredientRate;
+    }
+    
+    public String ProductResource.getPpc() {
+        return this.ppc;
+    }
+    
+    public void ProductResource.setPpc(String ppc) {
+        this.ppc = ppc;
+    }
+    
+    public String ProductResource.getRaintFastness2() {
+        return this.raintFastness2;
+    }
+    
+    public void ProductResource.setRaintFastness2(String raintFastness2) {
+        this.raintFastness2 = raintFastness2;
+    }
+    
+    public String ProductResource.getFormulation() {
+        return this.formulation;
+    }
+    
+    public void ProductResource.setFormulation(String formulation) {
+        this.formulation = formulation;
+    }
+    
+    public String ProductResource.getWaterVolume() {
+        return this.waterVolume;
+    }
+    
+    public void ProductResource.setWaterVolume(String waterVolume) {
+        this.waterVolume = waterVolume;
+    }
+    
+    public String ProductResource.getSprinkleTime() {
+        return this.sprinkleTime;
+    }
+    
+    public void ProductResource.setSprinkleTime(String sprinkleTime) {
+        this.sprinkleTime = sprinkleTime;
+    }
+    
+    public String ProductResource.getWorkDelay() {
+        return this.workDelay;
+    }
+    
+    public void ProductResource.setWorkDelay(String workDelay) {
+        this.workDelay = workDelay;
+    }
+    
+    public String ProductResource.getHarvestDelay() {
+        return this.harvestDelay;
+    }
+    
+    public void ProductResource.setHarvestDelay(String harvestDelay) {
+        this.harvestDelay = harvestDelay;
+    }
+    
+    public String ProductResource.getEffectMechanism() {
+        return this.effectMechanism;
+    }
+    
+    public void ProductResource.setEffectMechanism(String effectMechanism) {
+        this.effectMechanism = effectMechanism;
+    }
+    
+    public String ProductResource.getSprinkleTimes() {
+        return this.sprinkleTimes;
+    }
+    
+    public void ProductResource.setSprinkleTimes(String sprinkleTimes) {
+        this.sprinkleTimes = sprinkleTimes;
+    }
+    
     public ProducerResource ProductResource.getProducer() {
         return this.producer;
     }
