@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.TypedQuery;
@@ -41,11 +42,20 @@ public class Plant {
 
     public static Plant getSinglePlantByName(String plantStr) {
         try {
-            TypedQuery<Plant> plantQ = Plant.findPlantsByCommentEquals(plantStr);
+            TypedQuery<Plant> plantQ = Plant.findPlantsByCommentEqualsCustom(plantStr);
             if (plantQ.getResultList().size() > 0) return plantQ.getSingleResult(); else return null;
         } catch (Exception e) {
             return null;
         }
+    }
+    
+    
+    public static TypedQuery<Plant> findPlantsByCommentEqualsCustom(String comment) {
+        if (comment == null || comment.length() == 0) throw new IllegalArgumentException("The comment argument is required");
+        EntityManager em = Plant.entityManager();
+        TypedQuery<Plant> q = em.createQuery("SELECT o FROM Plant AS o WHERE LOWER(o.comment) = LOWER(:comment)", Plant.class);
+        q.setParameter("comment", comment);
+        return q;
     }
     
     

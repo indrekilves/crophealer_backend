@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.TypedQuery;
@@ -72,17 +73,25 @@ public class Product {
     }
     
     
-    public static Product getSingleProductByComment(String comment)
-    {
-    	TypedQuery<Product> pQ = Product.findProductsByCommentEquals(comment);
+    public static Product getSingleProductByComment(String comment) {
+    	TypedQuery<Product> pQ = Product.findProductsByCommentEqualsCustom(comment);
 		
-		if (pQ.getResultList().size() > 0)
-		{
+		if (pQ.getResultList().size() > 0) {
 			return pQ.getSingleResult();
-		}
-		else
-		{
+		} else {
 			return null;
 		}
     }
+    
+    
+    /**  CUSTOM FINDERS  **/ 
+
+    public static TypedQuery<Product> findProductsByCommentEqualsCustom(String comment) {
+        if (comment == null || comment.length() == 0) throw new IllegalArgumentException("The comment argument is required");
+        EntityManager em = Product.entityManager();
+        TypedQuery<Product> q = em.createQuery("SELECT o FROM Product AS o WHERE LOWER(o.comment) = LOWER(:comment)", Product.class);
+        q.setParameter("comment", comment);
+        return q;
+    }
+    
 }

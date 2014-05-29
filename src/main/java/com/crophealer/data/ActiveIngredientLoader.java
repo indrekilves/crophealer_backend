@@ -64,7 +64,7 @@ public class ActiveIngredientLoader extends GenericLoader {
 			if (ais.get(i).isEmpty())
 				continue;
 
-			TypedQuery<ActiveIngredient> aiq = ActiveIngredient.findActiveIngredientsByLatinNameEquals(ais.get(i));
+			TypedQuery<ActiveIngredient> aiq = ActiveIngredient.findActiveIngredientsByCommentEqualsCustom(ais.get(i));
 			if (aiq.getResultList().size() > 0) 
 			{
 				ai = aiq.getSingleResult();

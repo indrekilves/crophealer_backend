@@ -4,8 +4,6 @@
 package com.crophealer.web;
 
 import com.crophealer.domain.PlantPart;
-import com.crophealer.domain.PlantPartPhase;
-import com.crophealer.domain.PlantPartTranslation;
 import com.crophealer.web.PlantPartController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -88,8 +86,6 @@ privileged aspect PlantPartController_Roo_Controller {
     
     void PlantPartController.populateEditForm(Model uiModel, PlantPart plantPart) {
         uiModel.addAttribute("plantPart", plantPart);
-        uiModel.addAttribute("plantpartphases", PlantPartPhase.findAllPlantPartPhases());
-        uiModel.addAttribute("plantparttranslations", PlantPartTranslation.findAllPlantPartTranslations());
     }
     
     String PlantPartController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

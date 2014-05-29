@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.TypedQuery;
@@ -46,35 +47,39 @@ public class Problem {
     private final Set<PlantPartPhaseSymptom> plantPartPhaseProblems = new HashSet<PlantPartPhaseSymptom>();
 
    
-    public static Problem getSingleProblemByLatinName(String latinName)
-    {
-    	TypedQuery<Problem> pQ = Problem.findProblemsByLatinNameEquals(latinName);
+    public static Problem getSingleProblemByLatinName(String latinName) {
+    	TypedQuery<Problem> pQ = Problem.findProblemsByLatinNameEqualsCustom(latinName);
 		
-		if (pQ.getResultList().size() > 0)
-		{
+		if (pQ.getResultList().size() > 0) {
 			return pQ.getSingleResult();
-		}
-		else
-		{
+		} else {
 			return null;
 		}
     }
     
     
-    public boolean isOSRProblem()
-    {
-    	try
-    	{
+    public boolean isOSRProblem() {
+    	try {
     		for (Iterator<PlantPartPhaseSymptom> iterator = this.plantPartPhaseProblems.iterator(); iterator.hasNext();) {
     			PlantPartPhaseSymptom ppps = iterator.next();
     			if(ppps.getPlantPartPhase().getPlant().isOSR()) return true;
     		} 
-    	}
-    	catch(Exception e)
-    	{
+    	} catch(Exception e) {
     		return false;
     	}
     	return false;
     }
+    
+
+    /**  CUSTOM FINDERS  **/ 
+    
+    public static TypedQuery<Problem> findProblemsByLatinNameEqualsCustom(String latinName) {
+        if (latinName == null || latinName.length() == 0) throw new IllegalArgumentException("The latinName argument is required");
+        EntityManager em = Problem.entityManager();
+        TypedQuery<Problem> q = em.createQuery("SELECT o FROM Problem AS o WHERE LOWER(o.latinName) = LOWER(:latinName)", Problem.class);
+        q.setParameter("latinName", latinName);
+        return q;
+    }
+    
     
 }

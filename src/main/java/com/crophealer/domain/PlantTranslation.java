@@ -1,8 +1,8 @@
 package com.crophealer.domain;
 
-import java.util.List;
-
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.Size;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -38,20 +38,31 @@ public class PlantTranslation {
 	
 	public static PlantTranslation getSinglePlantTranslationByName(String plantTransStr) {
 		try {
-			List<PlantTranslation> all = PlantTranslation.findAllPlantTranslations();
+			/*List<PlantTranslation> all = PlantTranslation.findAllPlantTranslations();
 			for (PlantTranslation plantTranslation : all) {
 				if (plantTranslation.getName().compareToIgnoreCase(plantTransStr) == 0)
 					return plantTranslation;
 			}
-			return null;
-			/*TypedQuery<PlantTranslation> plantQ = PlantTranslation.findPlantTranslationsByNameEquals(plantTransStr);
+			return null;*/
+			TypedQuery<PlantTranslation> plantQ = PlantTranslation.findPlantTranslationsByNameEqualsCustom(plantTransStr);
 			if (plantQ.getResultList().size() > 0)
 				return plantQ.getSingleResult();
 			else
 				return null;
-				*/
+				
 		} catch (Exception e) {
 			return null;
 		}
 	}
+	
+	
+    
+	public static TypedQuery<PlantTranslation> findPlantTranslationsByNameEqualsCustom(String name) {
+        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+        EntityManager em = PlantTranslation.entityManager();
+        TypedQuery<PlantTranslation> q = em.createQuery("SELECT o FROM PlantTranslation AS o WHERE LOWER(o.name) = LOWER(:name)", PlantTranslation.class);
+        q.setParameter("name", name);
+        return q;
+    }
+
 }
