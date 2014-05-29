@@ -47,4 +47,12 @@ privileged aspect ActiveIngredientResource_Roo_JavaBean {
         this.warning = warning;
     }
     
+    public Long ActiveIngredientResource.getEffect() {
+        return this.effect;
+    }
+    
+    public void ActiveIngredientResource.setEffect(Long effect) {
+        this.effect = effect;
+    }
+    
 }

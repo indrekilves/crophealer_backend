@@ -135,13 +135,13 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		 Comparator<ProblemAIProduct> comparator = new PaipsByAiEffectComparator();
 		 Collections.sort(paips, comparator);
 		 
-		 List <ActiveIngredient> activeIngredients = new ArrayList<ActiveIngredient>();
-		 for (ProblemAIProduct problemAIProduct : paips) {
-			 activeIngredients.add(problemAIProduct.getActiveIngredient());
-		}
+//		 List <ActiveIngredient> activeIngredients = new ArrayList<ActiveIngredient>();
+//		 for (ProblemAIProduct problemAIProduct : paips) {
+//			 activeIngredients.add(problemAIProduct.getActiveIngredient());
+//		}
 		
 		 ActiveIngredientResourceAssembler asm = new ActiveIngredientResourceAssembler();
-		 ActiveIngredientResourceList airl = asm.toResource(activeIngredients, language);
+		 ActiveIngredientResourceList airl = asm.paipsToResource(paips, language);
 		
 		 response = new ResponseEntity<>(airl, HttpStatus.OK);
 		 return response;

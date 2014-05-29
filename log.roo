@@ -521,8 +521,4 @@ finder list
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-13 13:13:28
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-21 14:35:20
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-25 11:48:59
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-29 19:06:03
-focus --class com.crophealer.domain.PlantPartPhaseProblem
-focus --class com.crophealer.domain.PlantPart
-finder list
-finder list
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-26 10:35:13
