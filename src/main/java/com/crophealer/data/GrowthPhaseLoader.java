@@ -44,7 +44,7 @@ public class GrowthPhaseLoader extends GenericLoader
 			{
 				try
 				{
-					Languages lang = Languages.findLanguagesesByNameEquals(languageRow.get(i)).getSingleResult();
+					Languages lang = Languages.findLanguagesesByNameEqualsCustom(languageRow.get(i)).getSingleResult();
 					List<String> names = ssReader.getColumnAsArray(i, 2);
 					List<String> descs = ssReader.getColumnAsArray(i + 1, 2);
 					this.loadTranslationsForLanguage(lang, names, descs);
