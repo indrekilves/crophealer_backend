@@ -54,6 +54,7 @@ public class DataLoader {
 		this.loadPlants();
 		this.loadProblems();
 		this.loadActiveIngredientsAndProducts();
+		System.out.println("DATA LOADER FINISHED");
 	}
 
 	

@@ -51,7 +51,7 @@ public class GrowthPhaseLoader extends GenericLoader
 				}
 				catch(Exception e)
 				{
-					//
+					System.out.println(e.getMessage());
 				}								
 			}
 		}
