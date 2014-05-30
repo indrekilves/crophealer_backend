@@ -42,7 +42,7 @@ public class GrowthPhaseLoader extends GenericLoader
 		{
 			if ( !languageRow.get(i).isEmpty() )
 			{
-				try
+				try 
 				{
 					Languages lang = Languages.findLanguagesesByNameEqualsCustom(languageRow.get(i)).getSingleResult();
 					List<String> names = ssReader.getColumnAsArray(i, 2);
