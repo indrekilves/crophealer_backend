@@ -20,6 +20,7 @@ import com.crophealer.domain.Problem;
 import com.crophealer.domain.ProblemPicture;
 import com.crophealer.domain.ProblemTranslation;
 import com.crophealer.domain.Symptom;
+import com.crophealer.domain.SymptomPicture;
 import com.crophealer.domain.SymptomTranslation;
 
 public class ProblemLoader extends GenericLoader
@@ -29,6 +30,7 @@ public class ProblemLoader extends GenericLoader
 	private final Integer latinNameCol 	= 9;
 	private final Integer phaseCol 		= latinNameCol + 1;
 	private final Integer indexCol		= latinNameCol + 2;
+	private final Integer sympIndexCol 	= latinNameCol + 5;
 	private final Integer firstCountryCol = latinNameCol + 3;
 	private LinkedHashMap<String, Integer> countryCols;
 	
@@ -39,8 +41,8 @@ public class ProblemLoader extends GenericLoader
 	
 	// offsets from Country column
 	private final Integer plantPartOS 	= 1;
-	private final Integer warningOS		= 3;
-	private final Integer symptomOS 	= 2;
+	private final Integer warningOS		= 4;
+	private final Integer symptomOS 	= 3;
 
 	
 	public ProblemLoader(SpreadSheetReader ssReader)
@@ -151,7 +153,8 @@ public class ProblemLoader extends GenericLoader
 						ppps.setPlantPartPhase(ppp);
 						ppps.setSymptom(symptom);
 						ppps.setProblem(pppp);
-						ppps.persist();							
+						ppps.persist();	
+						this.addSymptomPicture(symptom, pRow);
 					}
 
 				}
@@ -198,6 +201,20 @@ public class ProblemLoader extends GenericLoader
 		probPic.setPictureUrl("resources/images/problems/" + probPicStr);
 		probPic.setProblem(problem);
 		probPic.persist();	
+	}
+	
+	
+	private void addSymptomPicture(Symptom s, int pRow) {
+		SymptomPicture pic = new SymptomPicture();
+		String sympPicStr = ssReader.getCellContent(pRow, sympIndexCol);
+		
+		if (sympPicStr.isEmpty()) return;
+		
+		pic.setName(sympPicStr);
+		pic.setPictureUrl("resources/images/symptoms/" + sympPicStr);
+		pic.setSymptom(s);
+		pic.persist();	
+
 	}
 
 

@@ -22,6 +22,7 @@ import com.crophealer.domain.ProductReseller;
 import com.crophealer.domain.ProductTranslation;
 import com.crophealer.domain.Reseller;
 import com.crophealer.domain.Symptom;
+import com.crophealer.domain.SymptomPicture;
 import com.crophealer.domain.SymptomTranslation;
 
 public class DataCleaner 
@@ -97,7 +98,11 @@ public class DataCleaner
 			symptom.remove();
 			symptom.flush();
 		}
-		
+		List<SymptomPicture> symptomPics = SymptomPicture.findAllSymptomPictures();
+		for (SymptomPicture symptomPic : symptomPics) {
+			symptomPic.remove();
+			symptomPic.flush();
+		}
 		List<PlantPart> pp = PlantPart.findAllPlantParts();
 		for (PlantPart plantPart : pp) {
 			plantPart.remove();
