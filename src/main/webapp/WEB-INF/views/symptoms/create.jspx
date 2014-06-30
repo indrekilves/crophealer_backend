@@ -5,9 +5,6 @@
     <form:create id="fc_com_crophealer_domain_Symptom" modelAttribute="symptom" path="/symptoms" render="${empty dependencies}" z="0O2kvct4ZMYRbb/gC6na33m1Jdo=">
         <field:input field="comment" id="c_com_crophealer_domain_Symptom_comment" z="RQYhp3SMkq1GDnyXcgojgo/NWjM="/>
         <field:select field="country" id="c_com_crophealer_domain_Symptom_country" itemValue="id" items="${countrys}" path="/countrys" z="wpJw0M5caINyf9fauWxP600+/ds="/>
-        <field:simple field="translations" id="c_com_crophealer_domain_Symptom_translations" messageCode="entity_reference_not_managed" messageCodeAttribute="Symptom Translation" z="SAgAcYP+ABLccZJt47CdyIJjwYQ="/>
-        <field:simple field="pictures" id="c_com_crophealer_domain_Symptom_pictures" messageCode="entity_reference_not_managed" messageCodeAttribute="Symptom Picture" z="JGlHhlGjOQPO5BVeigGF7e4eDbw="/>
-        <field:simple field="plantPartPhaseSymptoms" id="c_com_crophealer_domain_Symptom_plantPartPhaseSymptoms" messageCode="entity_reference_not_managed" messageCodeAttribute="Plant Part Phase Symptom" z="emYmZNS56qiLmqXxQHmFDCg7te8="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_Symptom" render="${not empty dependencies}" z="gOGnkpAb/Fj4IBA0Ls/rc8FFjVQ="/>
 </div>

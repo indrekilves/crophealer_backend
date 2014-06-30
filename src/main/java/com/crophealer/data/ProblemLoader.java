@@ -242,7 +242,7 @@ public class ProblemLoader extends GenericLoader
 				symptomList.add(symp);	
 			}
 			
-			// only loop once
+			// only loop once - to load only estonian?
 			break;
 		}
 
@@ -254,8 +254,15 @@ public class ProblemLoader extends GenericLoader
 	private Symptom addSymptomByRowWithTrans(Integer sympRow, String symptomStr, Integer baseCountryCol)
 	{
 		// add new base rec
-		Symptom symptom = new Symptom();
-		symptom.setComment(symptomStr);
+
+		Symptom symptom = Symptom.getSingleSymptomByComment(symptomStr);
+		if (symptom == null) {
+			symptom = new Symptom();
+			symptom.setComment(symptomStr);
+		} else {
+			return symptom;
+		}
+		
 		Country country = this.getCountryByCountryCol(baseCountryCol);
 		if (country != null)
 			symptom.setCountry(country);
@@ -272,6 +279,7 @@ public class ProblemLoader extends GenericLoader
 
 			SymptomTranslation sympTrans = new SymptomTranslation();
 			sympTrans.setName(symptomTransStr);
+			sympTrans.setDescription(symptomTransStr);
 			sympTrans.setSymptom(symptom);
 
 			Languages lang = this.getLanguageByCountryCol(countryColNum);
@@ -383,6 +391,7 @@ public class ProblemLoader extends GenericLoader
 				ProblemTranslation pTrans = new ProblemTranslation();
 				pTrans.setProblem(problem);
 				pTrans.setName(problemTrans);
+				pTrans.setDescription(problemTrans);
 				
 				Languages language = this.getLanguageByCountryCol(countryColNum);
 				if (language != null)

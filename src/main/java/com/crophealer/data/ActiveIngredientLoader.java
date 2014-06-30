@@ -113,14 +113,12 @@ public class ActiveIngredientLoader extends GenericLoader {
 					String aiEff = ssReader.getCellContent(j+aiRow, probCol);
 					if (aiEff != "")
 					{			 
-						Double d = Double.parseDouble(aiEff);
-						Integer effInt = d.intValue();
 						Problem problem = this.problemsByCols.get(probCol);
 
 						System.out.println("Loading AIs, AI row " + aiRow + ":" + plant.getComment() + " - " + problem.getLatinName() + " - " + aiEff);
 
 						List<PlantPartPhaseProblem> pppps = this.getPlantPartPhaseProblems(plant, problem);
-						this.linkPlantPartPhaseProblemsToAIs(ai, pppps, effInt);
+						this.linkPlantPartPhaseProblemsToAIs(ai, pppps, aiEff);
 					} 
 				}		
 			}
@@ -132,7 +130,7 @@ public class ActiveIngredientLoader extends GenericLoader {
 	}
 	
 	
-	protected void linkPlantPartPhaseProblemsToAIs(ActiveIngredient ai, List<PlantPartPhaseProblem> pppps, Integer effect)
+	protected void linkPlantPartPhaseProblemsToAIs(ActiveIngredient ai, List<PlantPartPhaseProblem> pppps, String effect)
 	{
 		for (PlantPartPhaseProblem pppp : pppps) {
 			System.out.println("Creating ProblemAIProduct: " + ai.getLatinName() + " - "  + pppp.getComment());

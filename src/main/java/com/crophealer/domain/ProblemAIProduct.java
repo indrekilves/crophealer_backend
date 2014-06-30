@@ -1,5 +1,6 @@
 package com.crophealer.domain;
 import javax.persistence.ManyToOne;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -30,9 +31,9 @@ public class ProblemAIProduct {
 
     /**
      */
-    private Integer aiEffect;
+    private String aiEffect;
 
     /**
      */
-    private Integer productEffect;
+    private String productEffect;
 }

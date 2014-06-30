@@ -42,19 +42,19 @@ privileged aspect ProblemAIProduct_Roo_JavaBean {
         this.comment = comment;
     }
     
-    public Integer ProblemAIProduct.getAiEffect() {
+    public String ProblemAIProduct.getAiEffect() {
         return this.aiEffect;
     }
     
-    public void ProblemAIProduct.setAiEffect(Integer aiEffect) {
+    public void ProblemAIProduct.setAiEffect(String aiEffect) {
         this.aiEffect = aiEffect;
     }
     
-    public Integer ProblemAIProduct.getProductEffect() {
+    public String ProblemAIProduct.getProductEffect() {
         return this.productEffect;
     }
     
-    public void ProblemAIProduct.setProductEffect(Integer productEffect) {
+    public void ProblemAIProduct.setProductEffect(String productEffect) {
         this.productEffect = productEffect;
     }
     

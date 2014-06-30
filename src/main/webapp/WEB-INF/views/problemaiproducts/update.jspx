@@ -7,7 +7,7 @@
         <field:select field="activeIngredient" id="c_com_crophealer_domain_ProblemAIProduct_activeIngredient" itemValue="id" items="${activeingredients}" path="/activeingredients" z="g8ikC3ce3k598vTNWoY1pzBjI3Q="/>
         <field:select field="product" id="c_com_crophealer_domain_ProblemAIProduct_product" itemValue="id" items="${products}" path="/products" z="MvOQVyeGLbpItE8AK6gvikM8ifY="/>
         <field:input field="comment" id="c_com_crophealer_domain_ProblemAIProduct_comment" z="6c7ASHQlLlonHSKEBZrLpWfC6lk="/>
-        <field:input field="aiEffect" id="c_com_crophealer_domain_ProblemAIProduct_aiEffect" validationMessageCode="field_invalid_integer" z="3GEPArstXCi+8eomWGeZu0gOWRc="/>
-        <field:input field="productEffect" id="c_com_crophealer_domain_ProblemAIProduct_productEffect" validationMessageCode="field_invalid_integer" z="Ap/X0k8UQQZIdDBy7h7Gswy6Ciw="/>
+        <field:input field="aiEffect" id="c_com_crophealer_domain_ProblemAIProduct_aiEffect" z="gY7dwk5lJba5yDGiaoOouAh2Urw="/>
+        <field:input field="productEffect" id="c_com_crophealer_domain_ProblemAIProduct_productEffect" z="JXp/bvUmlPRGI04r15X2978UcIk="/>
     </form:update>
 </div>

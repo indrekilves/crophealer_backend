@@ -133,22 +133,20 @@ public class ProductLoader extends GenericLoader
 		paip.setProblem(plantPartPhaseProblem);
 		paip.setComment(ai.getComment() + " - " + product.getComment() + " - " + plantPartPhaseProblem.getComment());
 		
-		Integer effectInt = this.getEffectFormatted(pDetails.get(this.colProductName + this.ofEffect));
-		paip.setAiEffect(effectInt );
+		String effect = this.getEffectFormatted(pDetails.get(this.colProductName + this.ofEffect));
+		paip.setAiEffect(effect);
 		
-		paip.setProductEffect(effectInt );
+		paip.setProductEffect(effect);
 		paip.persist();
 	}
 	
 	
-	private Integer getEffectFormatted(String effectStr) {
+	private String getEffectFormatted(String effectStr) {
 		try {
 			if (effectStr.isEmpty()){
-				return 99;
-			}
-			Double d = Double.parseDouble(effectStr);
-			Integer effectInt = d.intValue();
-			return effectInt;
+				return "?";
+			}		
+			return effectStr;
 		} catch (Exception e) {	
 			System.out.println("bad [getEffectFormatted]");
 			throw e;
@@ -375,6 +373,8 @@ public class ProductLoader extends GenericLoader
 		ait.setLang(Languages.getSingleLanguageByName("Estonian"));
 		ait.setActiveIngredient(ai);
 		ait.setName(ai.getComment());
+		ait.setDescription(ai.getComment());
+		ait.setWarning("No warnings");
 		ait.persist();
 	}
 

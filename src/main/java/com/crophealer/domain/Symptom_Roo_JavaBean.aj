@@ -32,24 +32,12 @@ privileged aspect Symptom_Roo_JavaBean {
         return this.translations;
     }
     
-    public void Symptom.setTranslations(Set<SymptomTranslation> translations) {
-        this.translations = translations;
-    }
-    
     public Set<SymptomPicture> Symptom.getPictures() {
         return this.pictures;
     }
     
-    public void Symptom.setPictures(Set<SymptomPicture> pictures) {
-        this.pictures = pictures;
-    }
-    
     public Set<PlantPartPhaseSymptom> Symptom.getPlantPartPhaseSymptoms() {
         return this.plantPartPhaseSymptoms;
-    }
-    
-    public void Symptom.setPlantPartPhaseSymptoms(Set<PlantPartPhaseSymptom> plantPartPhaseSymptoms) {
-        this.plantPartPhaseSymptoms = plantPartPhaseSymptoms;
     }
     
 }

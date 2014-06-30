@@ -13,5 +13,5 @@ public class ActiveIngredientResource {
 	private String latinName;
     private String description;   
     private String warning;
-    private Long   effect; 
+    private String effect; 
 }

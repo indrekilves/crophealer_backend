@@ -77,9 +77,9 @@ public class ActiveIngredientResourceAssembler {
 			}
 		}
 
-		Integer effect = paip.getAiEffect();
+		String effect = paip.getAiEffect();
 		if (effect != null){
-			air.setEffect(Long.valueOf(effect.longValue()));			
+			air.setEffect(effect);			
 		}
 		return air;
 	}
