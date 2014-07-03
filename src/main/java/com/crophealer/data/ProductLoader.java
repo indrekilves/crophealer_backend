@@ -261,6 +261,8 @@ public class ProductLoader extends GenericLoader
 		int fromPhase;
 		int toPhase;
 		
+		phaseRange.replace(" ", "");
+		
 		if (phaseRange.contains("-")) {
 			String[] split = phaseRange.split("-");
 			fromPhase = Integer.parseInt(split[0]);
