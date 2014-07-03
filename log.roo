@@ -526,3 +526,4 @@ finder list
 focus --class com.crophealer.domain.Symptom
 finder list
 finder add findSymptomsByCommentEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-07-02 11:43:47

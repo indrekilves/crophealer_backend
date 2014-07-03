@@ -154,7 +154,6 @@ public class ProblemLoader extends GenericLoader
 						ppps.setSymptom(symptom);
 						ppps.setProblem(pppp);
 						ppps.persist();	
-						this.addSymptomPicture(symptom, pRow);
 					}
 
 				}
@@ -267,6 +266,7 @@ public class ProblemLoader extends GenericLoader
 		if (country != null)
 			symptom.setCountry(country);
 		symptom.persist();
+		this.addSymptomPicture(symptom, sympRow);
 
 		for (Map.Entry<String, Integer> countryCol : countryCols.entrySet()) 
 		{
