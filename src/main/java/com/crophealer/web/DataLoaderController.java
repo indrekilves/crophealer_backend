@@ -69,16 +69,19 @@ public class DataLoaderController {
     			dl.setInputFileName(destFullName);
     			//dl.setInputFileName(tempRunDir + incomingFileName);
     			
-    	    	dl.runDataLoad();                 
-    	    	return "file_upload_success";
+    	    	dl.runDataLoad();
+    	    	map.addAttribute("result", "Data successfully loaded");
+    	    	return "excel_upload_result";
     			
     		} catch (IllegalStateException e) {
     			e.printStackTrace();
+    			map.addAttribute("result", e.getMessage());
     		} catch (IOException e) {
     			e.printStackTrace();
+    			map.addAttribute("result", e.getMessage());
     		} 
     	}
-    	return "file_upload_success";
+    	return "excel_upload_result";
     }
 
     
