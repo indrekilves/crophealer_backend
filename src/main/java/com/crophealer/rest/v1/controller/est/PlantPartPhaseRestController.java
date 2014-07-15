@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.crophealer.rest.v1.PlantPartPhaseSymptomResourceList;
+import com.crophealer.rest.v1.SymptomResourceList;
 import com.crophealer.rest.v1.service.PlantPartPhaseRestService;
 
 
@@ -23,11 +25,18 @@ public class PlantPartPhaseRestController {
 
 	
     
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/symptoms")
+	public ResponseEntity<SymptomResourceList> getSymptoms(@PathVariable("id") Long id)
+	{   	
+	    return plantPartPhaseRestService.getSymptomsByLanguage(id, plantPartPhaseRestService.getEstonian());		
+	}
+    
+
+    @Deprecated
     @RequestMapping(method = RequestMethod.GET, value="/{id}/plantPartPhaseSymptoms")
 	public ResponseEntity<PlantPartPhaseSymptomResourceList> getPlantPartPhaseSymptoms(@PathVariable("id") Long id)
 	{   	
 	    return plantPartPhaseRestService.getPlantPartPhaseSymptomsByLanguage(id, plantPartPhaseRestService.getEstonian());		
 	}
-    
 
 }

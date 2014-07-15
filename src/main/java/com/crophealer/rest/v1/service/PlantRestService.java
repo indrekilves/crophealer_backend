@@ -178,7 +178,7 @@ public class PlantRestService extends GenericRestService{
 		return response;		
 	}
 
-	
+	@Deprecated
 	public ResponseEntity<SymptomResourceList> getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(Long pId, Long gpId, Long ppId, Languages language) 
 	{
     	System.out.println("getAllSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage plantID: " + pId + " growthPhaseId: " + gpId + " plantPart: " + ppId + " Lang: " + language);
@@ -250,6 +250,7 @@ public class PlantRestService extends GenericRestService{
 	}
 
 
+	@Deprecated
 	public ResponseEntity<PlantPartPhaseSymptomResourceList> getAllPlantPartPhaseSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage(
 			Long pId, Long gpId, Long ppId, Languages language) {
     	System.out.println("getAllPlantPartPhaseSymptomsForPlantPartAndGrowthPhaseAndPlantByLanguage plantID: " + pId + " growthPhaseId: " + gpId + " plantPart: " + ppId + " Lang: " + language);
