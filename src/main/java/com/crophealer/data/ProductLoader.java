@@ -77,6 +77,8 @@ public class ProductLoader extends GenericLoader
 			Integer productSectorStartRow = i+this.problemsStartRow;
 			String productNameStr = productNames.get(i).trim();
 			
+			System.out.println("Loading product row " + productSectorStartRow);
+			
 			if ( !productNameStr.isEmpty() )
 			{
 				int productSectorEndRow = this.ssReader.getNextFilledRowNum(this.colProductName, i + 1) - 1;

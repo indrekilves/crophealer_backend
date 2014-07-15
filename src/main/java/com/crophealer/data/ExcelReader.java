@@ -12,7 +12,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
 public class ExcelReader implements SpreadSheetReader {
-
+	
+	/** Accepts files in Excel  **/
+	
 	private String fileName;
 	// private FileInputStream stream;
 	private InputStream stream;

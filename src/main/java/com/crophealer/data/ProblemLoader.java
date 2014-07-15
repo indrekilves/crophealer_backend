@@ -237,8 +237,15 @@ public class ProblemLoader extends GenericLoader
 			// loop symptoms for problem and add translations
 			for (int i = 0; i < symptomStrs.size(); i++) 
 			{
-				Symptom symp = this.addSymptomByRowWithTrans(i+pRow, symptomStrs.get(i), countryColNum);
-				symptomList.add(symp);	
+				int realRow = i+pRow;
+				if ( !symptomStrs.get(i).isEmpty() ) {
+					Symptom symp = this.addSymptomByRowWithTrans(realRow, symptomStrs.get(i), countryColNum);
+					symptomList.add(symp);
+				} else {
+					System.out.println("Symptom was empty on row " + realRow);
+				}
+					
+				
 			}
 			
 			// only loop once - to load only estonian?

@@ -3,6 +3,9 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
+            <menu:item id="i_controller__dataloaderindex_id" messageCode="global_generic" url="/dataLoader/index" z="4dKZnE7B+++BmCwev7f7xRt9Mj8="/>
+        </menu:category>
         <menu:category id="c_country" z="+9IFFFqXHr5bWdYjx7upDibmQfo=">
             <menu:item id="i_country_new" messageCode="global_menu_new" url="/countrys?form" z="OnEHsuvR46cQji6jmcBL0pJOBMc="/>
             <menu:item id="i_country_list" messageCode="global_menu_list" url="/countrys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="AwKhjnZH+dOj0X4glIoj4SVuHNY="/>

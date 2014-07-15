@@ -13,6 +13,11 @@ public class DataLoader {
 	public DataLoader() {
 		this.loadFileName();
 	}
+	
+	public void setInputFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
 
 	public void loadFileName() {
 		this.fileName = this.getDatafileRelativePath();
@@ -41,8 +46,8 @@ public class DataLoader {
 		this.ssReader.setFileName(this.fileName);
 		this.ssReader.loadWorkBook();
 
-		DataCleaner dCleaner = new DataCleaner();
-		dCleaner.truncateAllTables();
+		//DataCleaner dCleaner = new DataCleaner();
+		//dCleaner.truncateAllTables();
 
 		// load capsulated data: 
 		this.loadRoles();
