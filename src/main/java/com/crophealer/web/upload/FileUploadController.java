@@ -30,7 +30,7 @@ public class FileUploadController {
                     Model map) {
          
         List<MultipartFile> files = uploadForm.getFiles();
-        //String userId = "loll";
+        String userId = "loll";
         String saveDirectory = FileManagementRestService.getUserPictureDirectoryByUsername(userId);       
         
         List<String> fileNames = new ArrayList<String>();
