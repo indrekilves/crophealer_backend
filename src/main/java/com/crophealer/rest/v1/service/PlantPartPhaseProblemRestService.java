@@ -76,7 +76,7 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 	}
 
 	
-	
+	@Deprecated
 	public ResponseEntity<PlantPartPhaseProblemResourceList> getPlantPartPhaseProblemByPPPSymptomsAndLanguage(String pppSymptomsCsv, Languages language) {
 
 		System.out.println("getProblemsBySymptomsAndLanguage - try to get for symptoms:" + pppSymptomsCsv + " lang:" + language);
