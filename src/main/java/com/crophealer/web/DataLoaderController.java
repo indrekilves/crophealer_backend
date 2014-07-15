@@ -52,21 +52,32 @@ public class DataLoaderController {
     public String save(@ModelAttribute("uploadForm") ExcelUploadForm uploadForm, Model map) {
     	MultipartFile incomingFile = uploadForm.getExcelFile();
     	String comment = uploadForm.getUploadComment();
-      
+    	
+    	//String destinationDir = "/excelfiles/";
+    	  	
     	//String destinationDir = "d:/PROJECTS/CropHealer/crophealer/src/main/resources/data/temp/";
-    	String destinationDir = "/var/excelData/";
+    	//String destinationDir = "/var/excelData/";
     	String tempRunDir = "/data/temp/";
     	
     	String incomingFileName = incomingFile.getOriginalFilename();
     	if(!"".equalsIgnoreCase(incomingFileName)){    	 
     		try {
+    	    	String rootPath = System.getProperty("catalina.home");
+    	        File dir = new File(rootPath + File.separator + "tmpFiles");
+    	        if (!dir.exists())
+    	            dir.mkdirs();
     			
-    			String destFullName = destinationDir + incomingFileName; 			
+    			String destFullName = dir.getAbsolutePath() + "\\" + incomingFileName;
+    			File f = new File(destFullName);
+    			
     			incomingFile.transferTo(new File(destFullName));
     			
+    			String absPath = f.getAbsolutePath();
+    			
     			DataLoader dl = new DataLoader();
-    	    	
-    			dl.setInputFileName(destFullName);
+    			
+    			dl.setInputFileName(absPath);
+    			//dl.setInputFileName(destFullName);
     			//dl.setInputFileName(tempRunDir + incomingFileName);
     			
     	    	dl.runDataLoad();

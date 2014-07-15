@@ -1,5 +1,7 @@
 package com.crophealer.data;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -101,8 +103,8 @@ public class ExcelReader implements SpreadSheetReader {
 	@Override
 	public void loadWorkBook() {
 		try {
-			// this.stream = new FileInputStream(new File(this.fileName));
-			this.stream = DataLoader.class.getResourceAsStream(this.fileName);
+			 this.stream = new FileInputStream(new File(this.fileName));
+			//this.stream = DataLoader.class.getResourceAsStream(this.fileName);
 
 			//this.workBook = new HSSFWorkbook(this.stream);
 			this.workBook = new HSSFWorkbook(this.stream);
