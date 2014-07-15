@@ -25,6 +25,13 @@ public class DataLoaderController {
     @RequestMapping(method = RequestMethod.POST, value = "{id}")
     public void post(@PathVariable Long id, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
     }
+    
+    
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String displayForm() {
+        return "excel_upload_form";
+    }
+    
 
     @RequestMapping
     public String index() {
