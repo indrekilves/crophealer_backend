@@ -57,7 +57,6 @@ public class DataLoaderController {
     	  	
     	//String destinationDir = "d:/PROJECTS/CropHealer/crophealer/src/main/resources/data/temp/";
     	//String destinationDir = "/var/excelData/";
-    	String tempRunDir = "/data/temp/";
     	
     	String incomingFileName = incomingFile.getOriginalFilename();
     	if(!"".equalsIgnoreCase(incomingFileName)){    	 
@@ -68,7 +67,7 @@ public class DataLoaderController {
     	        if (!dir.exists())
     	            dir.mkdirs();
     			
-    			String destFullName = dir.getAbsolutePath() + "\\" + incomingFileName;
+    			String destFullName = dir.getAbsolutePath() + "/" + incomingFileName;
     	    	System.out.println("destFullName is " + destFullName);
     			File f = new File(destFullName);
     			
