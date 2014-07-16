@@ -81,7 +81,11 @@ public class ProductLoader extends GenericLoader
 			
 			if ( !productNameStr.isEmpty() )
 			{
-				int productSectorEndRow = this.ssReader.getNextFilledRowNum(this.colProductName, i + 1) - 1;
+				Integer tmp = this.ssReader.getNextFilledRowNum(this.colProductName, i + 1);
+				if (tmp == null)
+					continue;
+				
+				Integer productSectorEndRow = tmp - 1;
 				//System.out.println("Loading product from row " + productSectorStartRow + " to " + productSectorEndRow + " - " + productNameStr);				
 				this.processProductSector(productSectorStartRow, productSectorEndRow);			
 			}		
@@ -90,7 +94,7 @@ public class ProductLoader extends GenericLoader
 	}
 
 
-	private void processProductSector(Integer productSectorStartRow, int productSectorEndRow) {
+	private void processProductSector(Integer productSectorStartRow, Integer productSectorEndRow) {
 		try {
 			Product product 	= loadAndGetProduct(productSectorStartRow);
 			ActiveIngredient ai = loadAndGetAI(productSectorStartRow);
