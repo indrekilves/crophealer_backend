@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>Excel data loading / deleting</h1>
-
+<pre> ${result} </pre>>
 <form:form method="post"  action="truncate"
 		modelAttribute="truncateForm" enctype="multipart/form-data">	
 	<br/><input type="submit" name="button_2" value="Clear DB" />

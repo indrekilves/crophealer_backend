@@ -1,7 +1,4 @@
 package com.crophealer.web;
-import java.io.File;
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.crophealer.data.DataCleaner;
-import com.crophealer.data.DataLoader;
 import com.crophealer.model.upload.ExcelUploadForm;
+import com.crophealer.web.service.DataLoaderWebService;
 
 @RequestMapping("/dataLoader/**")
 @Controller
@@ -52,47 +49,11 @@ public class DataLoaderController {
     public String save(@ModelAttribute("uploadForm") ExcelUploadForm uploadForm, Model map) {
     	MultipartFile incomingFile = uploadForm.getExcelFile();
     	String comment = uploadForm.getUploadComment();
+
+    	DataLoaderWebService loaderService = new DataLoaderWebService();
+   		String result = loaderService.uploadDataFileAndStartDataLoad(incomingFile, comment);
     	
-    	String resultMsg = "";
-    	  	
-    	//String destinationDir = "d:/PROJECTS/CropHealer/crophealer/src/main/resources/data/temp/";
-    	//String destinationDir = "/var/excelData/";
-    	
-    	String incomingFileName = incomingFile.getOriginalFilename();
-    	if(!"".equalsIgnoreCase(incomingFileName)){    	 
-    		try {
-    	    	String rootPath = System.getProperty("catalina.home");
-    	    	System.out.println("rootpath is " + rootPath);
-    	        File dir = new File(rootPath + File.separator + "tmpFiles");
-    	        if (!dir.exists())
-    	            dir.mkdirs();
-    			
-    			String destFullName = dir.getAbsolutePath() + "/" + incomingFileName;
-    	    	System.out.println("destFullName is " + destFullName);
-    			File f = new File(destFullName);
-    			
-    			incomingFile.transferTo(new File(destFullName));
-    			
-    			String absPath = f.getAbsolutePath();
-    			System.out.println("absPath is " + absPath);
-    			DataLoader dl = new DataLoader();
-    			
-    			dl.setInputFileName(absPath);
-    			//dl.setInputFileName(destFullName);
-    			//dl.setInputFileName(tempRunDir + incomingFileName);
-    			
-    	    	dl.runDataLoad();
-    	    	map.addAttribute("result", "Data successfully loaded");
-    	    	return "excel_upload_result";
-    			
-    		} catch (IllegalStateException e) {
-    			e.printStackTrace();
-    			map.addAttribute("result", e.getMessage());
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    			map.addAttribute("result", e.getMessage());
-    		} 
-    	}
+    	map.addAttribute("result", result);  	 
     	return "excel_upload_result";
     }
 
