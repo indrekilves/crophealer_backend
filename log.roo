@@ -530,3 +530,6 @@ finder add findSymptomsByCommentEquals
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-07-15 11:29:05
 controller class --class ~.web.DataLoaderController --preferredMapping /dataLoader
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-07-15 15:59:02
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-07-16 20:13:32
+focus --class com.crophealer.rest.v1.ProductResource
+field string --fieldName aiName

@@ -168,4 +168,12 @@ privileged aspect ProductResource_Roo_JavaBean {
         this.producer = producer;
     }
     
+    public String ProductResource.getAiName() {
+        return this.aiName;
+    }
+    
+    public void ProductResource.setAiName(String aiName) {
+        this.aiName = aiName;
+    }
+    
 }
