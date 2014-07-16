@@ -43,6 +43,7 @@ public class ProductResourceAssembler {
 					pr.setHarvestDelay(pt.getHarvestDelay());
 					pr.setEffectMechanism(pt.getEffectMechanism());
 					pr.setSprinkleTimes(pt.getSprinkleTimes());
+					pr.setAiName("kanakaka");
 				}
 			}	
 		}
