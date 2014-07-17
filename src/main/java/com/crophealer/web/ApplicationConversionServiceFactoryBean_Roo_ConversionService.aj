@@ -550,7 +550,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Product, String> ApplicationConversionServiceFactoryBean.getProductToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.Product, java.lang.String>() {
             public String convert(Product product) {
-                return new StringBuilder().append(product.getComment()).append(' ').append(product.getPictureUrl()).append(' ').append(product.getEfficiency()).append(' ').append(product.getRaintFastness()).toString();
+                return new StringBuilder().append(product.getComment()).append(' ').append(product.getPictureUrl()).toString();
             }
         };
     }

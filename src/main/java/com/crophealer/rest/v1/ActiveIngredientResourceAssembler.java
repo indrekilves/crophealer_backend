@@ -60,9 +60,13 @@ public class ActiveIngredientResourceAssembler {
 	}
 
 
-	private ActiveIngredientResource paipToResource(ProblemAIProduct paip, Languages language) {
+	public ActiveIngredientResource paipToResource(ProblemAIProduct paip, Languages language) {
+		if (paip == null || language == null) return null;
 		ActiveIngredient ai = paip.getActiveIngredient();
 		ActiveIngredientResource air = new ActiveIngredientResource();
+
+		if (ai == null) return air;
+		
 		air.setId(ai.getId());
 		air.setLatinName(ai.getLatinName());
 		if (language != null){

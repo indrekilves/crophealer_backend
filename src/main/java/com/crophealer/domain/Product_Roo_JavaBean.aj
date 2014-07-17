@@ -62,20 +62,4 @@ privileged aspect Product_Roo_JavaBean {
         return this.growthPhaseProducts;
     }
     
-    public Long Product.getEfficiency() {
-        return this.efficiency;
-    }
-    
-    public void Product.setEfficiency(Long efficiency) {
-        this.efficiency = efficiency;
-    }
-    
-    public String Product.getRaintFastness() {
-        return this.raintFastness;
-    }
-    
-    public void Product.setRaintFastness(String raintFastness) {
-        this.raintFastness = raintFastness;
-    }
-    
 }

@@ -16,11 +16,11 @@ import org.springframework.stereotype.Service;
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.PaipsByAiEffectComparator;
+import com.crophealer.domain.PaipsByProductEffectComparator;
 import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.ProblemAIProduct;
-import com.crophealer.domain.Product;
 import com.crophealer.domain.Symptom;
 import com.crophealer.rest.v1.ActiveIngredientResourceAssembler;
 import com.crophealer.rest.v1.ActiveIngredientResourceList;
@@ -226,21 +226,19 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		 
 		// Get ProblemActiveIngredientProduct links 
 		TypedQuery<ProblemAIProduct> tq = ProblemAIProduct.findProblemAIProductsByProblemAndActiveIngredient(pppProblem, activeIngredient);
-		if (tq == null) {
+		if (tq == null || tq.getResultList().size() <= 0) {
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
 		}
 
 		// Get Products
 		List<ProblemAIProduct> paips = tq.getResultList();
-		List <Product> products = new ArrayList<Product>();
-		for (ProblemAIProduct problemAIProduct : paips) {
-			products.add(problemAIProduct.getProduct());
-		}
-		
-		ProductResourceAssembler asm = new ProductResourceAssembler();
-		ProductResourceList prl = asm.toResource(products, language);
+		Comparator<ProblemAIProduct> comparator = new PaipsByProductEffectComparator();
+		Collections.sort(paips, comparator);
 
+		ProductResourceAssembler asm = new ProductResourceAssembler();
+		ProductResourceList prl = asm.paipsToResource(paips, language);
+		
 		
 		response = new ResponseEntity<>(prl, HttpStatus.OK);
 		return response;	
@@ -266,20 +264,18 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		
 		 
 		// Get ProblemActiveIngredientProduct links 
-		Set<ProblemAIProduct> paips = pppProblem.getActiveIngredientProductLinks();
-	
-		// Get Products		
-		List <Product> products = new ArrayList<Product>();
-		for (ProblemAIProduct problemAIProduct : paips) {
-			products.add(problemAIProduct.getProduct());
-		}
-		
-		ProductResourceAssembler asm = new ProductResourceAssembler();
-		ProductResourceList prl = asm.toResource(products, language);
+		Set<ProblemAIProduct> paipsSet = pppProblem.getActiveIngredientProductLinks();
+		List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
 
+		Comparator<ProblemAIProduct> comparator = new PaipsByProductEffectComparator();
+		Collections.sort(paips, comparator);
+
+		ProductResourceAssembler asm = new ProductResourceAssembler();
+		ProductResourceList prl = asm.paipsToResource(paips, language);
+		
 		
 		response = new ResponseEntity<>(prl, HttpStatus.OK);
-		return response;		
+		return response;	
 	}
 
 

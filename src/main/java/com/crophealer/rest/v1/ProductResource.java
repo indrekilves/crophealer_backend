@@ -16,7 +16,7 @@ public class ProductResource {
 
     private String pictureUrl;
 
-    private Long efficiency; // Effektiivsus
+    private String effect; // Effektiivsus
 
     private String raintFastness; // Vihmakindlus
 
@@ -27,8 +27,6 @@ public class ProductResource {
     private String activeIngredientRate; // sisaldus (toimeaine)
 
     private String ppc; //TKT
-
-    private String raintFastness2; // vihmakindlus
 
     private String formulation; //Preparaadi vorm
 
@@ -46,7 +44,5 @@ public class ProductResource {
 
     private ProducerResource producer;
 
-    /**
-     */
-    private String aiName;
+    private ActiveIngredientResource activeIngredient;
 }

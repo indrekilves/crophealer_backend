@@ -8,8 +8,6 @@
             <table:column id="c_com_crophealer_domain_Product_pictureUrl" property="pictureUrl" z="1qHHTHheelM9zdxBJq7aMW/l7fQ="/>
             <table:column id="c_com_crophealer_domain_Product_country" property="country" z="3fWIKdckCdq6cqBIh4mLu8pV4xk="/>
             <table:column id="c_com_crophealer_domain_Product_producer" property="producer" z="gH78g5eeapae7Ica8qtfxNP9tB4="/>
-            <table:column id="c_com_crophealer_domain_Product_efficiency" property="efficiency" z="hAOHuoCv6LEPqRZcVhdNSR3kgu8="/>
-            <table:column id="c_com_crophealer_domain_Product_raintFastness" property="raintFastness" z="S7VSGFCOCoIxZ2LTV4/KUJp5jNg="/>
         </table:table>
     </page:list>
 </div>
