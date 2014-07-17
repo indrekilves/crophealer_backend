@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class PaipsByAiEffectComparator implements Comparator<ProblemAIProduct> {
 
-	/* Not comparable values will push o2 always to end */
+	/* Not comparable values will push o2 always to end bla*/
 	@Override
 	public int compare(ProblemAIProduct o1, ProblemAIProduct o2) {
 		try {
