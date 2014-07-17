@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.crophealer.rest.v1.PaipResourceList;
 import com.crophealer.rest.v1.ProductResource;
 import com.crophealer.rest.v1.ProductResourceList;
 import com.crophealer.rest.v1.ResellerResourceList;
@@ -42,6 +43,13 @@ public class ProductRestController {
 	public ResponseEntity<ResellerResourceList> getResellerForProduct(@PathVariable("id") Long id)
 	{   	
 	    return productRestService.getResellerForProductByLanguage(id, productRestService.getEstonian());		
+	}
+    
+    
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/paips")
+	public ResponseEntity<PaipResourceList> getPaips(@PathVariable("id") Long id)
+	{   	
+	    return productRestService.getPaipsById(id);		
 	}
     
 

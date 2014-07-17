@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.crophealer.rest.v1.ActiveIngredientResourceList;
+import com.crophealer.rest.v1.PaipResourceList;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResource;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResourceList;
 import com.crophealer.rest.v1.ProductResourceList;
@@ -75,6 +76,12 @@ public class PlantPartPhaseProblemRestController {
 	    return plantPartPhaseProblemRestService.getSymptomsByLanguage(id, plantPartPhaseProblemRestService.getEstonian());		
 	}
 
+
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/paips")
+	public ResponseEntity<PaipResourceList> getPaips(@PathVariable("id") Long id)
+	{   	
+	    return plantPartPhaseProblemRestService.getPaipsById(id);		
+	}
 
 
 }

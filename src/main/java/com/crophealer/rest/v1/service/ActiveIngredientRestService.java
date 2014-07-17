@@ -15,6 +15,8 @@ import com.crophealer.domain.Product;
 import com.crophealer.rest.v1.ActiveIngredientResource;
 import com.crophealer.rest.v1.ActiveIngredientResourceAssembler;
 import com.crophealer.rest.v1.ActiveIngredientResourceList;
+import com.crophealer.rest.v1.PaipResourceAssembler;
+import com.crophealer.rest.v1.PaipResourceList;
 import com.crophealer.rest.v1.ProductResourceAssembler;
 import com.crophealer.rest.v1.ProductResourceList;
 
@@ -88,6 +90,34 @@ public class ActiveIngredientRestService extends GenericRestService {
 		ProductResourceAssembler asm = new ProductResourceAssembler();
 		ProductResourceList prl = asm.toResource(products, language);
 				
+		response = new ResponseEntity<>(prl, HttpStatus.OK);
+		return response;	
+	}
+
+
+	public ResponseEntity<PaipResourceList> getPaipsById(Long aiID) {
+		System.out.println("getPaipsById - try to get for aiId:" + aiID);
+		
+		ResponseEntity<PaipResourceList> response; 
+	
+		if (aiID == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+		
+		ActiveIngredient activeIngredient = ActiveIngredient.findActiveIngredient(aiID);
+		if (activeIngredient == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+						 
+		// Get ProblemActiveIngredientProduct links 
+		Set<ProblemAIProduct> paipsSet = activeIngredient.getProblemProductLinks();
+		List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
+		
+		PaipResourceAssembler asm = new PaipResourceAssembler();
+		PaipResourceList prl = asm.toResource(paips);
+
 		response = new ResponseEntity<>(prl, HttpStatus.OK);
 		return response;	
 	}
