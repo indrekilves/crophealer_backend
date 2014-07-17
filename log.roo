@@ -534,3 +534,4 @@ controller class --class ~.web.DataLoaderController --preferredMapping /dataLoad
 focus --class com.crophealer.rest.v1.ProductResource
 field string --fieldName aiName
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-07-16 20:28:58
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-07-17 11:40:57

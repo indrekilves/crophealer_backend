@@ -9,9 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.ProblemAIProduct;
 import com.crophealer.domain.Product;
 import com.crophealer.domain.ProductReseller;
 import com.crophealer.domain.Reseller;
+import com.crophealer.rest.v1.PaipResourceAssembler;
+import com.crophealer.rest.v1.PaipResourceList;
 import com.crophealer.rest.v1.ProductResource;
 import com.crophealer.rest.v1.ProductResourceAssembler;
 import com.crophealer.rest.v1.ProductResourceList;
@@ -89,6 +92,34 @@ public class ProductRestService extends GenericRestService {
 		ResellerResourceAssembler asm = new ResellerResourceAssembler();
 		ResellerResourceList prl = asm.toResource(resellers, language);
 				
+		response = new ResponseEntity<>(prl, HttpStatus.OK);
+		return response;	
+	}
+
+
+	public ResponseEntity<PaipResourceList> getPaipsById(Long prodID) {
+		System.out.println("getPaipsById - try to get for prodId:" + prodID);
+		
+		ResponseEntity<PaipResourceList> response; 
+	
+		if (prodID == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+		
+		Product product = Product.findProduct(prodID);
+		if (product == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+						 
+		// Get ProblemActiveIngredientProduct links 
+		Set<ProblemAIProduct> paipsSet = product.getActiveIngredientProblemLinks();
+		List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
+		
+		PaipResourceAssembler asm = new PaipResourceAssembler();
+		PaipResourceList prl = asm.toResource(paips);
+
 		response = new ResponseEntity<>(prl, HttpStatus.OK);
 		return response;	
 	}

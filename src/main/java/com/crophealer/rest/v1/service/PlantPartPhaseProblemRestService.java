@@ -16,14 +16,16 @@ import org.springframework.stereotype.Service;
 import com.crophealer.domain.ActiveIngredient;
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.PaipsByAiEffectComparator;
+import com.crophealer.domain.PaipsByProductEffectComparator;
 import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.ProblemAIProduct;
-import com.crophealer.domain.Product;
 import com.crophealer.domain.Symptom;
 import com.crophealer.rest.v1.ActiveIngredientResourceAssembler;
 import com.crophealer.rest.v1.ActiveIngredientResourceList;
+import com.crophealer.rest.v1.PaipResourceAssembler;
+import com.crophealer.rest.v1.PaipResourceList;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResource;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResourceAssembler;
 import com.crophealer.rest.v1.PlantPartPhaseProblemResourceList;
@@ -135,11 +137,6 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		 Comparator<ProblemAIProduct> comparator = new PaipsByAiEffectComparator();
 		 Collections.sort(paips, comparator);
 		 
-//		 List <ActiveIngredient> activeIngredients = new ArrayList<ActiveIngredient>();
-//		 for (ProblemAIProduct problemAIProduct : paips) {
-//			 activeIngredients.add(problemAIProduct.getActiveIngredient());
-//		}
-		
 		 ActiveIngredientResourceAssembler asm = new ActiveIngredientResourceAssembler();
 		 ActiveIngredientResourceList airl = asm.paipsToResource(paips, language);
 		
@@ -226,21 +223,19 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		 
 		// Get ProblemActiveIngredientProduct links 
 		TypedQuery<ProblemAIProduct> tq = ProblemAIProduct.findProblemAIProductsByProblemAndActiveIngredient(pppProblem, activeIngredient);
-		if (tq == null) {
+		if (tq == null || tq.getResultList().size() <= 0) {
 			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			return response;
 		}
 
 		// Get Products
 		List<ProblemAIProduct> paips = tq.getResultList();
-		List <Product> products = new ArrayList<Product>();
-		for (ProblemAIProduct problemAIProduct : paips) {
-			products.add(problemAIProduct.getProduct());
-		}
-		
-		ProductResourceAssembler asm = new ProductResourceAssembler();
-		ProductResourceList prl = asm.toResource(products, language);
+		Comparator<ProblemAIProduct> comparator = new PaipsByProductEffectComparator();
+		Collections.sort(paips, comparator);
 
+		ProductResourceAssembler asm = new ProductResourceAssembler();
+		ProductResourceList prl = asm.paipsToResource(paips, language);
+		
 		
 		response = new ResponseEntity<>(prl, HttpStatus.OK);
 		return response;	
@@ -266,20 +261,18 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		
 		 
 		// Get ProblemActiveIngredientProduct links 
-		Set<ProblemAIProduct> paips = pppProblem.getActiveIngredientProductLinks();
-	
-		// Get Products		
-		List <Product> products = new ArrayList<Product>();
-		for (ProblemAIProduct problemAIProduct : paips) {
-			products.add(problemAIProduct.getProduct());
-		}
-		
-		ProductResourceAssembler asm = new ProductResourceAssembler();
-		ProductResourceList prl = asm.toResource(products, language);
+		Set<ProblemAIProduct> paipsSet = pppProblem.getActiveIngredientProductLinks();
+		List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
 
+		Comparator<ProblemAIProduct> comparator = new PaipsByProductEffectComparator();
+		Collections.sort(paips, comparator);
+
+		ProductResourceAssembler asm = new ProductResourceAssembler();
+		ProductResourceList prl = asm.paipsToResource(paips, language);
+		
 		
 		response = new ResponseEntity<>(prl, HttpStatus.OK);
-		return response;		
+		return response;	
 	}
 
 
@@ -320,5 +313,34 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 		response = new ResponseEntity<>(srl, HttpStatus.OK);
 		return response;		
 
+	}
+
+
+	public ResponseEntity<PaipResourceList> getPaipsById(Long pppID) {
+		System.out.println("getPaipsById - try to get for pppId:" + pppID);
+		
+		ResponseEntity<PaipResourceList> response; 
+	
+		if (pppID == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+		
+		// Get PlantPartPhaseProblem
+		PlantPartPhaseProblem pppProblem = PlantPartPhaseProblem.findPlantPartPhaseProblem(pppID);
+		if (pppProblem == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+				 
+		// Get ProblemActiveIngredientProduct links 
+		Set<ProblemAIProduct> paipsSet = pppProblem.getActiveIngredientProductLinks();
+		List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
+		
+		PaipResourceAssembler asm = new PaipResourceAssembler();
+		PaipResourceList prl = asm.toResource(paips);
+
+		response = new ResponseEntity<>(prl, HttpStatus.OK);
+		return response;	
 	}
 }

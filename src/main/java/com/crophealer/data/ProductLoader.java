@@ -417,7 +417,6 @@ public class ProductLoader extends GenericLoader
 			Product p = new Product();
 			List<String> pDetails = this.ssReader.getRowAsArray(productSectorStartRow);
 			p.setComment(pDetails.get(this.colProductName));
-			p.setRaintFastness(pDetails.get(this.ofRainfastness + this.colProductName));
 			p.setCountry(Country.getSingleCountryByName("Estonia"));
 			p.persist();
 
@@ -462,7 +461,7 @@ public class ProductLoader extends GenericLoader
 			ptrans.setHarvestDelay(pDetails.get(this.ofHarvestDelay + this.colProductName));
 			ptrans.setEffectMechanism(pDetails.get(this.ofAgentMech + this.colProductName));
 
-			ptrans.setRaintFastness(p.getRaintFastness());
+			ptrans.setRaintFastness(pDetails.get(this.ofRainfastness + this.colProductName));
 
 			// not in table yet
 			ptrans.setWarning("");

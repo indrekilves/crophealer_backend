@@ -59,14 +59,6 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private final Set<GrowthPhaseProduct> growthPhaseProducts = new HashSet<GrowthPhaseProduct>();
 
-    /**
-     */
-    private Long efficiency; // Effektiivsus
-
-    /**
-     */
-    private String raintFastness; // Vihmakindlus
-
     public static boolean existsByName() {
         // TODO Auto-generated method stub
         return false;

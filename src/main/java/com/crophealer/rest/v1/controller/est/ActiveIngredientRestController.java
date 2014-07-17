@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.crophealer.rest.v1.ActiveIngredientResource;
 import com.crophealer.rest.v1.ActiveIngredientResourceList;
+import com.crophealer.rest.v1.PaipResourceList;
 import com.crophealer.rest.v1.ProductResourceList;
 import com.crophealer.rest.v1.service.ActiveIngredientRestService;
 
@@ -43,5 +44,11 @@ public class ActiveIngredientRestController {
 	    return activeIngredientRestService.getProductsForActiveIngrediensByLanguage(id, activeIngredientRestService.getEstonian());		
 	}
     
+    
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/paips")
+	public ResponseEntity<PaipResourceList> getPaips(@PathVariable("id") Long id)
+	{   	
+	    return activeIngredientRestService.getPaipsById(id);		
+	}
 
 }

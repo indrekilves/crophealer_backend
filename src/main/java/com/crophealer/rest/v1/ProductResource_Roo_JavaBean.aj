@@ -3,6 +3,7 @@
 
 package com.crophealer.rest.v1;
 
+import com.crophealer.rest.v1.ActiveIngredientResource;
 import com.crophealer.rest.v1.ProducerResource;
 import com.crophealer.rest.v1.ProductResource;
 
@@ -48,12 +49,12 @@ privileged aspect ProductResource_Roo_JavaBean {
         this.pictureUrl = pictureUrl;
     }
     
-    public Long ProductResource.getEfficiency() {
-        return this.efficiency;
+    public String ProductResource.getEffect() {
+        return this.effect;
     }
     
-    public void ProductResource.setEfficiency(Long efficiency) {
-        this.efficiency = efficiency;
+    public void ProductResource.setEffect(String effect) {
+        this.effect = effect;
     }
     
     public String ProductResource.getRaintFastness() {
@@ -94,14 +95,6 @@ privileged aspect ProductResource_Roo_JavaBean {
     
     public void ProductResource.setPpc(String ppc) {
         this.ppc = ppc;
-    }
-    
-    public String ProductResource.getRaintFastness2() {
-        return this.raintFastness2;
-    }
-    
-    public void ProductResource.setRaintFastness2(String raintFastness2) {
-        this.raintFastness2 = raintFastness2;
     }
     
     public String ProductResource.getFormulation() {
@@ -168,12 +161,12 @@ privileged aspect ProductResource_Roo_JavaBean {
         this.producer = producer;
     }
     
-    public String ProductResource.getAiName() {
-        return this.aiName;
+    public ActiveIngredientResource ProductResource.getActiveIngredient() {
+        return this.activeIngredient;
     }
     
-    public void ProductResource.setAiName(String aiName) {
-        this.aiName = aiName;
+    public void ProductResource.setActiveIngredient(ActiveIngredientResource activeIngredient) {
+        this.activeIngredient = activeIngredient;
     }
     
 }
