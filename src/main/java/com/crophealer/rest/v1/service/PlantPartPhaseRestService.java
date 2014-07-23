@@ -1,6 +1,8 @@
 package com.crophealer.rest.v1.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ import com.crophealer.domain.Languages;
 import com.crophealer.domain.PlantPartPhase;
 import com.crophealer.domain.PlantPartPhaseSymptom;
 import com.crophealer.domain.Symptom;
+import com.crophealer.domain.SymptomsByTranslationsComparator;
 import com.crophealer.rest.v1.PlantPartPhaseSymptomResourceAssembler;
 import com.crophealer.rest.v1.PlantPartPhaseSymptomResourceList;
 import com.crophealer.rest.v1.SymptomResourceAssembler;
@@ -55,7 +58,11 @@ public class PlantPartPhaseRestService extends GenericRestService {
 			}	
 		}
 		
-		
+
+		Comparator<Symptom> comparator = new SymptomsByTranslationsComparator(language);
+		Collections.sort(symptoms, comparator);
+
+
 		SymptomResourceAssembler asm = new SymptomResourceAssembler();
     	SymptomResourceList srl = asm.toResource(symptoms, language);
 		
