@@ -537,3 +537,76 @@ field string --fieldName aiName
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-07-17 11:40:57
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-08-07 21:44:47
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-09-01 23:47:16
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-09-02 13:06:02
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-01 22:51:38
+// [failed] script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
+entity jpa --class ~.domain.Message
+field string --fieldName subject
+field string --fieldName comment
+field string --fieldName status
+field reference --fieldName sender --type ~.security.Users --cardinality MANY_TO_ONE
+field reference --fieldName receiver --type ~.security.Users --cardinality MANY_TO_ONE
+field reference --fieldName diagnosedProblem --type ~.domain.DiagnosedProblem --cardinality MANY_TO_ONE
+focus --class ~.domain.DiagnosedProblem
+field set --fieldName messages --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy diagnosedProblem
+focus --class ~.security.Users
+field set --fieldName sentMessages --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy sender
+field set --fieldName receivedMessages --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy receiver
+focus --class ~.domain.Message
+field reference --fieldName parent --type ~.domain.Message --cardinality MANY_TO_ONE
+field set --fieldName children --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy parent
+// script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+web mvc scaffold --class ~.web.MessageController --backingType ~.domain.Message
+
+focus --class ~.domain.Message
+field date --fieldName createdTimestamp --type java.util.Date
+
+field date --fieldName modifiedTimestamp --type java.util.Date
+
+entity jpa --class ~.domain.Field
+field string --fieldName name
+field string --fieldName coordinates
+field string --fieldName priaID
+// [failed] field reference --fieldName user --type ~.security.Users --cardinality MANY_TO_ONE
+// [failed] script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+entity jpa --class ~.domain.Field
+field string --fieldName name
+field string --fieldName coordinates
+field string --fieldName priaID
+field reference --fieldName owner --type ~.security.Users --cardinality MANY_TO_ONE
+// [failed] field reference --fieldName company --type ~.domain.Company --cardinality MANY_TO_ONE
+// [failed] script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+entity jpa --class ~.domain.Company
+field string --fieldName name
+field string --fieldName address
+field string --fieldName phone
+field string --fieldName email
+field string --fieldName contactPerson
+// [failed] field string --fieldName size
+// [failed] script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+entity jpa --class ~.domain.Company
+field string --fieldName name
+field string --fieldName address
+field string --fieldName phone
+field string --fieldName email
+field string --fieldName contactPerson
+field string --fieldName fieldSize
+entity jpa --class ~.domain.Field
+field string --fieldName name
+field string --fieldName coordinates
+field string --fieldName priaID
+field reference --fieldName owner --type ~.security.Users --cardinality MANY_TO_ONE
+field reference --fieldName company --type ~.domain.Company --cardinality MANY_TO_ONE
+focus --class ~.security.Users
+field reference --fieldName company --type ~.domain.Company --cardinality MANY_TO_ONE
+field reference --fieldName advisor --type ~.security.Users --cardinality MANY_TO_ONE
+field set --fieldName advisorClients --type ~.security.Users --cardinality ONE_TO_MANY --mappedBy advisor
+field set --fieldName fields --type ~.domain.Field --cardinality ONE_TO_MANY --mappedBy owner
+focus --class ~.domain.Company
+field set --fieldName users --type ~.security.Users --cardinality ONE_TO_MANY --mappedBy company
+field set --fieldName fields --type ~.domain.Field --cardinality ONE_TO_MANY --mappedBy company
+// script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+web mvc scaffold --class ~.web.FieldController --backingType ~.domain.Field
+
+web mvc scaffold --class ~.web.CompanyController --backingType ~.domain.Company
+
