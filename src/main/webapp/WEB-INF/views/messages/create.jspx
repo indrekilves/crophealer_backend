@@ -10,7 +10,6 @@
         <field:select field="receiver" id="c_com_crophealer_domain_Message_receiver" itemValue="id" items="${userses}" path="/userses" z="aq9zGhZZxE0bG9TEgqLOMxKoK88="/>
         <field:select field="diagnosedProblem" id="c_com_crophealer_domain_Message_diagnosedProblem" itemValue="id" items="${diagnosedproblems}" path="/diagnosedproblems" z="cOzBYTZwAO4L08V+FT0BxdDdt6A="/>
         <field:select field="parent" id="c_com_crophealer_domain_Message_parent" itemValue="id" items="${messages}" path="/messages" z="NNBr/r2nZ1rovjTizNmhyLoeAX0="/>
-        <field:simple field="children" id="c_com_crophealer_domain_Message_children" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="2VJoFivfRqb0VIJKXGTgN/6L2Qk="/>
         <field:datetime dateTimePattern="${message_createdtimestamp_date_format}" field="createdTimestamp" id="c_com_crophealer_domain_Message_createdTimestamp" z="iTyqcQGpRoY2Al83+AyC7TN+ONg="/>
         <field:datetime dateTimePattern="${message_modifiedtimestamp_date_format}" field="modifiedTimestamp" id="c_com_crophealer_domain_Message_modifiedTimestamp" z="ppVYJKdDoDkBgphWz/XnqG2mJ8A="/>
     </form:create>

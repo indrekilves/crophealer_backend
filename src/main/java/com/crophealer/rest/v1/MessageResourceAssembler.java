@@ -1,7 +1,10 @@
 package com.crophealer.rest.v1;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.domain.Message;
@@ -34,8 +37,16 @@ public class MessageResourceAssembler {
 		if (parent != null) {
 			mr.setParentID(parent.getId());
 		}
-		mr.setCreatedTimestamp(m.getCreatedTimestamp());
-		mr.setModifiedTimestamp(m.getModifiedTimestamp());;
+		
+		Date created = m.getCreatedTimestamp();
+		if (created != null) {
+			mr.setCreatedTimestamp(DateFormatUtils.format(created, "yyyy-MM-dd HH:mm:SS"));			
+		}
+		
+		Date modified = m.getModifiedTimestamp();
+		if (modified != null) {
+			mr.setModifiedTimestamp(DateFormatUtils.format(modified, "yyyy-MM-dd HH:mm:SS"));			
+		}
 		
 		return mr;		
 		
@@ -53,4 +64,5 @@ public class MessageResourceAssembler {
 		
 		return new MessageResourceList(mrl);
 	}
-}
+}	
+

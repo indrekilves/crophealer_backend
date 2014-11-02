@@ -2,6 +2,10 @@ package com.crophealer.rest.v1.service;
 
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.TypedQuery;
 
@@ -12,8 +16,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.Message;
 import com.crophealer.rest.v1.DiagnosedProblemResourceAssembler;
 import com.crophealer.rest.v1.DiagnosedProblemResourceList;
+import com.crophealer.rest.v1.MessageResourceAssembler;
+import com.crophealer.rest.v1.MessageResourceList;
 import com.crophealer.rest.v1.RequestError;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.rest.v1.UserResourceAssembler;
@@ -139,6 +146,79 @@ public class UserRestService extends GenericRestService {
 		return response;	
 	}
 
+
+	public ResponseEntity<MessageResourceList> getMessagesForUser(Long id, String type, String status) {
+		System.out.println("getMessagesByUserID - try to get for id:" + id);
+		
+		ResponseEntity<MessageResourceList> response; 
+
+		if (id == null || type == null) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return response;
+		}
+		
+		Users user = Users.findUsers(id);
+		if (user == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+		
+		List<Message> messages = findMessages(type, status, user);
+			
+		MessageResourceAssembler asm = new MessageResourceAssembler();
+		MessageResourceList mrl = asm.toResource(messages);
+		
+		response = new ResponseEntity<>(mrl, HttpStatus.OK);
+		return response;	
+	}
+
+
+	private List<Message> findMessages(String type, String status, Users user) {
+		List<Message> messages = new ArrayList<Message>();
+		Set<Message> msgSet = new HashSet<Message>();
+		switch (type.toUpperCase()) {
+		case "ALL":
+			Set<Message> msgSentSet = user.getSentMessages();
+			Set<Message> msgReceivedSet = user.getReceivedMessages();
+			if (msgSentSet != null && !msgSentSet.isEmpty()){
+				msgSet.addAll(msgSentSet);
+			}
+			if (msgReceivedSet != null && !msgReceivedSet.isEmpty()){
+				msgSet.addAll(msgReceivedSet);
+			}
+			break;
+			
+		case "SENT":
+			msgSet = user.getSentMessages();			
+			break;
+			
+		default:
+            // Received
+			msgSet = user.getReceivedMessages();
+			
+			break;
+		}
+		if (msgSet != null && !msgSet.isEmpty()){
+			messages = new ArrayList<Message>(msgSet);
+		}
+		
+		if (status != null && ! status.isEmpty()){
+			messages = filterMessagesByStatus(messages, status);
+		}
+	
+		return messages;
+	}
+
+
+	private List<Message> filterMessagesByStatus(List<Message> origMessages, String status) {
+		List<Message> filteredMessages = new ArrayList<Message>();
+		for (Message message : origMessages) {
+			if (message != null && message.getStatus().equalsIgnoreCase(status)){
+				filteredMessages.add(message);
+			}
+		}
+		return filteredMessages;
+	}
 
 
 
