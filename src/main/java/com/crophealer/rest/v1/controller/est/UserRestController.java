@@ -14,6 +14,7 @@ import com.crophealer.rest.v1.DiagnosedProblemResourceList;
 import com.crophealer.rest.v1.MessageResource;
 import com.crophealer.rest.v1.MessageResourceList;
 import com.crophealer.rest.v1.UserResource;
+import com.crophealer.rest.v1.UserResourceList;
 import com.crophealer.rest.v1.service.MessageRestService;
 import com.crophealer.rest.v1.service.UserRestService;
 
@@ -27,9 +28,9 @@ public class UserRestController {
 	
 	@Autowired
 	private UserRestService userRestService;
-
 	
-//  Not needed and too dangerous	
+	// View / Create user
+	
 	@RequestMapping(method = RequestMethod.GET, value="/{id}")
 	public ResponseEntity<UserResource> getUser(@PathVariable("id") Long id)
 	{   	
@@ -51,6 +52,7 @@ public class UserRestController {
 	}    
 	
 	
+	// User diagnosed problems
 	
 	
     @RequestMapping(method = RequestMethod.GET, value="/{id}/diagnosedProblems")
@@ -61,6 +63,8 @@ public class UserRestController {
 	}
     
 
+    // User messages 
+    
 
     @RequestMapping(method = RequestMethod.GET, value="/{id}/messages")
 	public ResponseEntity<MessageResourceList> getMessagesForUser(@PathVariable("id") Long id)
@@ -123,4 +127,21 @@ public class UserRestController {
     	MessageRestService messageRestService = new MessageRestService();
 	    return messageRestService.updateMessageById(messageID, mr);		
 	}    
+    
+    
+    // User role
+    
+    
+    @RequestMapping(method = RequestMethod.GET, params="role")
+    public ResponseEntity<UserResourceList> getUsersByRole(@RequestParam(value = "role", required = true) String role)
+	{   	
+	    return userRestService.getUsersByRole(role);		
+	}
+    
+    
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/advisors")
+    public ResponseEntity<UserResourceList> getAdvisorsForUser(@PathVariable("id") Long id)
+	{   	
+	    return userRestService.getAdvisorsForUser(id);		
+	}
 }

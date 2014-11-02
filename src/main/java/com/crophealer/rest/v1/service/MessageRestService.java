@@ -107,5 +107,28 @@ public class MessageRestService extends GenericRestService {
 	}
 
 
+	public ResponseEntity<String> updateMessageStatusById(Long id, String status) {
+		System.out.println("updateMessageStatusById - try to update id:" + id + " status: " + status);
+		
+		ResponseEntity<String> response;
+		if (id == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	
+		Message message = Message.findMessage(id);
+		if (message == null){
+			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return response;
+		}
+				
+		message.setStatus(status);
+		message.persist();
+		
+		HttpHeaders headers = new HttpHeaders();
+		response = new ResponseEntity<>(headers,HttpStatus.ACCEPTED);
+		return response;
+	}
+
+
 
  }
