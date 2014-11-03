@@ -65,16 +65,8 @@ privileged aspect Users_Roo_JavaBean {
         return this.sentMessages;
     }
     
-    public void Users.setSentMessages(Set<Message> sentMessages) {
-        this.sentMessages = sentMessages;
-    }
-    
     public Set<Message> Users.getReceivedMessages() {
         return this.receivedMessages;
-    }
-    
-    public void Users.setReceivedMessages(Set<Message> receivedMessages) {
-        this.receivedMessages = receivedMessages;
     }
     
     public Company Users.getCompany() {
@@ -85,28 +77,8 @@ privileged aspect Users_Roo_JavaBean {
         this.company = company;
     }
     
-    public Users Users.getAdvisor() {
-        return this.advisor;
-    }
-    
-    public void Users.setAdvisor(Users advisor) {
-        this.advisor = advisor;
-    }
-    
-    public Set<Users> Users.getAdvisorClients() {
-        return this.advisorClients;
-    }
-    
-    public void Users.setAdvisorClients(Set<Users> advisorClients) {
-        this.advisorClients = advisorClients;
-    }
-    
     public Set<Field> Users.getFields() {
         return this.fields;
-    }
-    
-    public void Users.setFields(Set<Field> fields) {
-        this.fields = fields;
     }
     
 }

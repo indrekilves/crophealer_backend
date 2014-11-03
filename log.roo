@@ -619,3 +619,20 @@ focus --class ~.security.Assignments
 finder list
 finder add findAssignmentsesByUsrAndAuthority
 finder add findAssignmentsesByAuthority
+entity jpa --class ~.domain.UserAdvisor
+field boolean --fieldName enabled
+field date --fieldName effectiveFrom --type java.util.Date
+field date --fieldName effectiveTo --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName modifiedDate --type java.util.Date
+field reference --fieldName client --type ~.security.Users --cardinality MANY_TO_ONE
+field reference --fieldName advisor --type ~.security.Users --cardinality MANY_TO_ONE
+// script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+web mvc scaffold --class ~.web.UserAdvisorController --backingType ~.domain.UserAdvisor
+finder list
+finder add findUserAdvisorsByClientAndEnabled
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-03 10:33:25
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-03 10:34:01
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-03 10:34:29
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-03 10:37:59
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-03 12:41:40

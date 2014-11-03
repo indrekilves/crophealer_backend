@@ -150,5 +150,9 @@
             <menu:item id="i_company_new" messageCode="global_menu_new" url="/companys?form" z="SWjXbZ96+4L3yJZ+Q7yyqEFQPV4="/>
             <menu:item id="i_company_list" messageCode="global_menu_list" url="/companys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vk1qspgPYbGCO4tYu2Ikm8DhmbY="/>
         </menu:category>
+        <menu:category id="c_useradvisor" z="4mh//JTIAGurXefzrTGwv49p+cE=">
+            <menu:item id="i_useradvisor_new" messageCode="global_menu_new" url="/useradvisors?form" z="WnHCE0BKLTF1nlfzucVMGDTUtXE="/>
+            <menu:item id="i_useradvisor_list" messageCode="global_menu_list" url="/useradvisors?page=1&amp;size=${empty param.size ? 10 : param.size}" z="zVaOo0Mdco7C7pVl2txvUqMextM="/>
+        </menu:category>
     </menu:menu>
 </div>

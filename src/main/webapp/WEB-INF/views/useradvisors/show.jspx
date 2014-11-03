@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_UserAdvisor" object="${useradvisor}" path="/useradvisors" z="yZKSIIhQrXCM7D1m6qTzJ09cHgA=">
+        <field:display field="enabled" id="s_com_crophealer_domain_UserAdvisor_enabled" object="${useradvisor}" z="s2jYNVRaigRZl2TQX0CDo4h3yjU="/>
+        <field:display date="true" dateTimePattern="${userAdvisor_effectivefrom_date_format}" field="effectiveFrom" id="s_com_crophealer_domain_UserAdvisor_effectiveFrom" object="${useradvisor}" z="wC3Tw9O0M2+FjTXXEIHSzVlDFZA="/>
+        <field:display date="true" dateTimePattern="${userAdvisor_effectiveto_date_format}" field="effectiveTo" id="s_com_crophealer_domain_UserAdvisor_effectiveTo" object="${useradvisor}" z="sBJlVMwHugg1qyxfQX7FXVOZ6/w="/>
+        <field:display date="true" dateTimePattern="${userAdvisor_createddate_date_format}" field="createdDate" id="s_com_crophealer_domain_UserAdvisor_createdDate" object="${useradvisor}" z="aLDILW9ki3pZahVN9pxISg67/ns="/>
+        <field:display date="true" dateTimePattern="${userAdvisor_modifieddate_date_format}" field="modifiedDate" id="s_com_crophealer_domain_UserAdvisor_modifiedDate" object="${useradvisor}" z="MgWaeecjlyJg1YAtem5aRFweZac="/>
+        <field:display field="client" id="s_com_crophealer_domain_UserAdvisor_client" object="${useradvisor}" z="NdW7yw0waV8U6mibXrNwT9gSjyU="/>
+        <field:display field="advisor" id="s_com_crophealer_domain_UserAdvisor_advisor" object="${useradvisor}" z="4EUC1LQLXDOEM5NapxRMTptnJZs="/>
+    </page:show>
+</div>

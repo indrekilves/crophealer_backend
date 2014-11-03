@@ -10,6 +10,5 @@
         <field:display field="email" id="s_com_crophealer_security_Users_email" object="${users}" z="gbSlykFGMIjboLVAZsJqfQcXdbU="/>
         <field:display date="true" dateTimePattern="${users_expirationdate_date_format}" field="expirationDate" id="s_com_crophealer_security_Users_expirationDate" object="${users}" z="AHUdv3E39+I0ozt2RuPabmU5x0k="/>
         <field:display field="company" id="s_com_crophealer_security_Users_company" object="${users}" z="09jwOshIN7y+or/Tta84bzN2oc0="/>
-        <field:display field="advisor" id="s_com_crophealer_security_Users_advisor" object="${users}" z="8AB62ya6/i/yP4/PQ6TQrZu9USc="/>
     </page:show>
 </div>

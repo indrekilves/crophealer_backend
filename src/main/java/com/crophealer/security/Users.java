@@ -1,28 +1,31 @@
 package com.crophealer.security;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.crophealer.domain.Company;
 import com.crophealer.domain.DiagnosedProblem;
+import com.crophealer.domain.Field;
+import com.crophealer.domain.Message;
 import com.crophealer.rest.v1.RequestError;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.utils.EmailValidator;
-import java.util.Date;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import org.springframework.format.annotation.DateTimeFormat;
-import com.crophealer.domain.Message;
-import com.crophealer.domain.Company;
-import javax.persistence.ManyToOne;
-import com.crophealer.domain.Field;
 
 @RooJavaBean
 @RooToString
@@ -99,14 +102,15 @@ public class Users {
 
     public static Users createFromResource(UserResource ur) {
         if (ur == null) return null;
-        Users u = new Users();
-        u.setUsername(ur.getUsername());
+        Users u = new Users();   
+		u.setUsername(ur.getUsername());
         u.setPassword(ur.getPassword());
         u.setEmail(ur.getEmail());
         u.setPhone(ur.getPhone());
-        u.setEnabled(true);
         u.setExpirationDate(getTrialPeriodEndDate());
+        u.setEnabled(true);
         u.persist();
+
         // TODO: Send verification email.
         return u;
     }
@@ -119,15 +123,25 @@ public class Users {
         return c.getTime();
     }
 
+    
+	public void updateFromResource(UserResource ur) {
+        if (ur == null) return;
+	    this.setPassword(ur.getPassword());
+        this.setEmail(ur.getEmail());
+        this.setPhone(ur.getPhone());
+		this.persist();   	
+	}
+
+	
     /**
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
-    private Set<Message> sentMessages = new HashSet<Message>();
+    private final Set<Message> sentMessages = new HashSet<Message>();
 
     /**
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "receiver")
-    private Set<Message> receivedMessages = new HashSet<Message>();
+    private final Set<Message> receivedMessages = new HashSet<Message>();
 
     /**
      */
@@ -136,16 +150,8 @@ public class Users {
 
     /**
      */
-    @ManyToOne
-    private Users advisor;
-
-    /**
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "advisor")
-    private Set<Users> advisorClients = new HashSet<Users>();
-
-    /**
-     */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-    private Set<Field> fields = new HashSet<Field>();
+    private final Set<Field> fields = new HashSet<Field>();
+
+
 }
