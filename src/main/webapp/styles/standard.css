@@ -16,9 +16,9 @@ body {
 }
 
 #wrapper {
-	width:1200px;
-	min-width: 1200px;
-	max-width: 1200px;
+	width:1300px;
+	min-width: 800px;
+	max-width: 1300px;
 	margin-right: auto;
 	margin-left: auto;
 

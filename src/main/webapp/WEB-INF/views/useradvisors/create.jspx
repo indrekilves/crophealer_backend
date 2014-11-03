@@ -3,13 +3,13 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_com_crophealer_domain_UserAdvisor" modelAttribute="userAdvisor" path="/useradvisors" render="${empty dependencies}" z="6talmuaY0rMtQoaEFvqcsIDxiUg=">
-        <field:checkbox field="enabled" id="c_com_crophealer_domain_UserAdvisor_enabled" z="lErb9/R8LiTk8iwQAOs4loaEi60="/>
         <field:datetime dateTimePattern="${userAdvisor_effectivefrom_date_format}" field="effectiveFrom" id="c_com_crophealer_domain_UserAdvisor_effectiveFrom" z="+lNAHg/w5p32J6icxgIOtbQSZMQ="/>
         <field:datetime dateTimePattern="${userAdvisor_effectiveto_date_format}" field="effectiveTo" id="c_com_crophealer_domain_UserAdvisor_effectiveTo" z="t57pZ6gYVNjdfv9zY2EEyDaxRbI="/>
         <field:datetime dateTimePattern="${userAdvisor_createddate_date_format}" field="createdDate" id="c_com_crophealer_domain_UserAdvisor_createdDate" z="kzDcBlOees9yJSiIiNTqIvqtRL8="/>
         <field:datetime dateTimePattern="${userAdvisor_modifieddate_date_format}" field="modifiedDate" id="c_com_crophealer_domain_UserAdvisor_modifiedDate" z="ShUJarbb5aMMY7smLD2RcURPyTw="/>
         <field:select field="client" id="c_com_crophealer_domain_UserAdvisor_client" itemValue="id" items="${userses}" path="/userses" z="na75Fravn8Mtuj/nHre3sk/xXJs="/>
         <field:select field="advisor" id="c_com_crophealer_domain_UserAdvisor_advisor" itemValue="id" items="${userses}" path="/userses" z="UsvIMYMMMb9N/sDtMyshoC4YToo="/>
+        <field:input field="status" id="c_com_crophealer_domain_UserAdvisor_status" z="FIE01fPsQf3h7TNtN4HAHu8EnNQ="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_UserAdvisor" render="${not empty dependencies}" z="UXYaWGlxpEPvqJM9mFecrNUTRG8="/>
 </div>

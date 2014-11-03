@@ -22,7 +22,7 @@ public class UserAdvisorResourceAssembler {
 		if (advisor != null){
 			uar.setAdvisorId(advisor.getId());
 		}
-		uar.setEnabled(ua.getEnabled());
+		uar.setStatus(ua.getStatus());
 		return uar;
 	}
 

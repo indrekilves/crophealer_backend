@@ -15,6 +15,7 @@ public class UserAdvisorResourceList {
 	}
 
 	public UserAdvisorResourceList(List<UserAdvisorResource> userAdvisors) {
+		this.setUserAdvisors(userAdvisors);
 	}
 
 }

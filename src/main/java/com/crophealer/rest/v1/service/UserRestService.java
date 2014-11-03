@@ -269,7 +269,7 @@ public class UserRestService extends GenericRestService {
 		Users user = Users.findUsers(id);
 		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
 		
-		TypedQuery<UserAdvisor> tq = UserAdvisor.findUserAdvisorsByClientAndEnabled(user, true);
+		TypedQuery<UserAdvisor> tq = UserAdvisor.findUserAdvisorsByClientAndStatusEquals(user, "Accepted");
 		if (tq != null && tq.getResultList().isEmpty()) throw new ResourceNotFoundException("User Advisors not found for user: " + id);	
 
 		List<Users> advisors = new ArrayList<Users>();
@@ -305,7 +305,7 @@ public class UserRestService extends GenericRestService {
 		UserAdvisor ua = new UserAdvisor();
 		ua.setAdvisor(advisor);
 		ua.setClient(user);
-		ua.setEnabled(false);
+		ua.setStatus("PENDING");
 		ua.persist();
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -313,6 +313,42 @@ public class UserRestService extends GenericRestService {
 		headers.setLocation(location);
 
 		return new ResponseEntity<>(headers,HttpStatus.CREATED);
+	}
+
+
+
+	public ResponseEntity<UserResourceList> getClientsForUser(Long id, String status) {
+		System.out.println("getClientsForUser - try to get for id:" + id);
+
+		if (id == null) throw new BadRequestException("ID is missing");
+			
+		Users user = Users.findUsers(id);
+		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
+	
+		TypedQuery<UserAdvisor> tq = null;
+		if (status.isEmpty() || status.equals("ALL")){
+			tq = UserAdvisor.findUserAdvisorsByAdvisor(user);					
+		} else {
+			tq = UserAdvisor.findUserAdvisorsByAdvisorAndStatusEquals(user, status.toUpperCase());							
+		}
+		
+		if (tq != null && tq.getResultList().isEmpty()) throw new ResourceNotFoundException("User Advisors not found for user: " + id + " by status: " + status);	
+
+		List<Users> clients = new ArrayList<Users>();
+		List<UserAdvisor> userAdvisors = tq.getResultList();
+		
+		for (UserAdvisor userAdvisor : userAdvisors) {
+			if (userAdvisor != null){
+				Users client = userAdvisor.getClient();
+				if (client != null){
+					clients.add(client);
+				}
+			}
+		}
+				
+		UserResourceAssembler asm = new UserResourceAssembler();
+		UserResourceList url = asm.toResource(clients);
+		return new ResponseEntity<>(url, HttpStatus.OK);
 	}
 
 
