@@ -25,6 +25,6 @@ public class DeleteTest {
 
 	public void getAllRequests() {
 		Query query = em.createQuery("DELETE FROM Country c");
-		int i = query.executeUpdate();
+		query.executeUpdate();
 	}
 }

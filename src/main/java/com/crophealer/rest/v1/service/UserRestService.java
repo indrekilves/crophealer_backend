@@ -20,6 +20,7 @@ import com.crophealer.domain.Message;
 import com.crophealer.domain.UserAdvisor;
 import com.crophealer.rest.v1.DiagnosedProblemResourceAssembler;
 import com.crophealer.rest.v1.DiagnosedProblemResourceList;
+import com.crophealer.rest.v1.FieldResourceList;
 import com.crophealer.rest.v1.MessageResourceAssembler;
 import com.crophealer.rest.v1.MessageResourceList;
 import com.crophealer.rest.v1.RequestError;
@@ -269,7 +270,7 @@ public class UserRestService extends GenericRestService {
 		Users user = Users.findUsers(id);
 		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
 		
-		TypedQuery<UserAdvisor> tq = UserAdvisor.findUserAdvisorsByClientAndStatusEquals(user, "Accepted");
+		TypedQuery<UserAdvisor> tq = UserAdvisor.findUserAdvisorsByClientAndStatusEquals(user, "ACCEPTED");
 		if (tq != null && tq.getResultList().isEmpty()) throw new ResourceNotFoundException("User Advisors not found for user: " + id);	
 
 		List<Users> advisors = new ArrayList<Users>();
@@ -349,6 +350,37 @@ public class UserRestService extends GenericRestService {
 		UserResourceAssembler asm = new UserResourceAssembler();
 		UserResourceList url = asm.toResource(clients);
 		return new ResponseEntity<>(url, HttpStatus.OK);
+	}
+
+
+
+	public ResponseEntity<FieldResourceList> getFieldsForUser(Long id) {
+		if (id == null) throw new BadRequestException("ID is missing");
+		
+	
+		Users user = Users.findUsers(id);
+		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
+//		
+//		TypedQuery<UserAdvisor> tq = UserAdvisor.findUserAdvisorsByClientAndStatusEquals(user, "ACCEPTED");
+//		if (tq != null && tq.getResultList().isEmpty()) throw new ResourceNotFoundException("User Advisors not found for user: " + id);	
+//
+//		List<Users> advisors = new ArrayList<Users>();
+//		List<UserAdvisor> userAdvisors = tq.getResultList();
+//		
+//		for (UserAdvisor userAdvisor : userAdvisors) {
+//			if (userAdvisor != null){
+//				Users advisor = userAdvisor.getAdvisor();
+//				if (advisor != null){
+//					advisors.add(advisor);
+//				}
+//			}
+//		}
+//				
+//		UserResourceAssembler asm = new UserResourceAssembler();
+//		UserResourceList url = asm.toResource(advisors);
+//		return new ResponseEntity<>(url, HttpStatus.OK);
+
+		return null;
 	}
 
 

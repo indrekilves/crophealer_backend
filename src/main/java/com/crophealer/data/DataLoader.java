@@ -73,9 +73,9 @@ public class DataLoader {
 	}
 	
 
-	private void loadProductsWithProblemLinks() {
-
-	}
+//	private void loadProductsWithProblemLinks() {
+//
+//	}
 
 
 	private void loadProblems() {
