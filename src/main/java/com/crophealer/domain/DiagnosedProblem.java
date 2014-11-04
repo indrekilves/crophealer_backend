@@ -64,4 +64,9 @@ public class DiagnosedProblem {
     /**
      */
     private String symptomIDsCSV;
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosedProblem")
+    private Set<Message> messages = new HashSet<Message>();
 }

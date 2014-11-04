@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crophealer_domain_Company" object="${company}" path="/companys" z="mc/NI3Cv6nAwlzN10cT6N1HEXmY=">
+        <field:display field="name" id="s_com_crophealer_domain_Company_name" object="${company}" z="Oqb0qJafO4MGs3CuLg5PxW0wJLM="/>
+        <field:display field="address" id="s_com_crophealer_domain_Company_address" object="${company}" z="/NRB0GziQ8aadO4KdWq04bSfwqQ="/>
+        <field:display field="phone" id="s_com_crophealer_domain_Company_phone" object="${company}" z="V9NAonElv7ABjByJzrHsBlRxx0U="/>
+        <field:display field="email" id="s_com_crophealer_domain_Company_email" object="${company}" z="rdIdatsJ/j4zWSkJC12wwZ1dHoI="/>
+        <field:display field="contactPerson" id="s_com_crophealer_domain_Company_contactPerson" object="${company}" z="5XeDLsx8RGNvsJVg7N6HiC0hTaU="/>
+        <field:display field="fieldSize" id="s_com_crophealer_domain_Company_fieldSize" object="${company}" z="xSu/YPzZdAmQbfS+yGYKDTQ+WNA="/>
+    </page:show>
+</div>

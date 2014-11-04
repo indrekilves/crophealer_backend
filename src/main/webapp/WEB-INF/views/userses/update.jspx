@@ -9,5 +9,6 @@
         <field:checkbox field="enabled" id="c_com_crophealer_security_Users_enabled" z="+jDtIAO5dHU021icThUoewalPZw="/>
         <field:input field="email" id="c_com_crophealer_security_Users_email" validationMessageCode="field_invalid_email" z="zGMILTKQjBrqlqWBRgBwFem0DJE="/>
         <field:datetime dateTimePattern="${users_expirationdate_date_format}" field="expirationDate" id="c_com_crophealer_security_Users_expirationDate" z="4M9fGKg3pAycyrl9nON0m+s165E="/>
+        <field:select field="company" id="c_com_crophealer_security_Users_company" itemValue="id" items="${companys}" path="/companys" z="LKd3HmDSuegTJs3cV/ecEq55/js="/>
     </form:update>
 </div>

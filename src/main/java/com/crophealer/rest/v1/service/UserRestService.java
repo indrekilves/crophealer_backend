@@ -2,6 +2,10 @@ package com.crophealer.rest.v1.service;
 
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.TypedQuery;
 
@@ -12,11 +16,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.domain.Message;
+import com.crophealer.domain.UserAdvisor;
 import com.crophealer.rest.v1.DiagnosedProblemResourceAssembler;
 import com.crophealer.rest.v1.DiagnosedProblemResourceList;
+import com.crophealer.rest.v1.MessageResourceAssembler;
+import com.crophealer.rest.v1.MessageResourceList;
 import com.crophealer.rest.v1.RequestError;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.rest.v1.UserResourceAssembler;
+import com.crophealer.rest.v1.UserResourceList;
+import com.crophealer.rest.v1.controller.est.BadRequestException;
+import com.crophealer.rest.v1.controller.est.ConflictException;
+import com.crophealer.rest.v1.controller.est.ResourceNotFoundException;
 import com.crophealer.security.Assignments;
 import com.crophealer.security.Authorities;
 import com.crophealer.security.Users;
@@ -26,15 +38,27 @@ public class UserRestService extends GenericRestService {
 
 	
 	
+
+	public ResponseEntity<UserResource> getUser(Long id) {
+		System.out.println("getUser - try to get for id:" + id);
+		if (id == null) throw new BadRequestException("ID is missng");
+		
+		Users user = Users.findUsers(id);
+		if (user == null) throw new ResourceNotFoundException("User not found for ID: " + id);		
+		
+		UserResourceAssembler asm = new UserResourceAssembler();
+		UserResource ur = asm.toResource(user);
+		// ur.setPassword(user.getPassword());// ??? is really needed ???
+
+		return new ResponseEntity<>(ur, HttpStatus.OK);
+	}
+	
+	
+	
 	public ResponseEntity<Boolean> isLoginAllowed(String userName) {
 		System.out.println("getUser - try to get for id:" + userName);
 		
-		ResponseEntity<Boolean> response; 
-
-		if (userName == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
+		if (userName == null) throw new BadRequestException("Username is missing");
 		
 		Users user = null;
 		TypedQuery<Users> tq = Users.findUsersesByUsernameEquals(userName);
@@ -42,105 +66,290 @@ public class UserRestService extends GenericRestService {
 			user = tq.getSingleResult();
 		}
 		
-		if (user == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
+		if (user == null) throw new ResourceNotFoundException("User not found for username: " + userName);
 				
-		response = new ResponseEntity<>(user.getEnabled(), HttpStatus.OK);
-		return response;	
+		return new ResponseEntity<>(user.getEnabled(), HttpStatus.OK);
 	}
 
 
-	public ResponseEntity<String> createUser(UserResource ur) {
-		ResponseEntity<String> response;
-		if (ur == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
+	public ResponseEntity<String> createUser(UserResource ur, String role) {
+		if (ur == null) throw new BadRequestException("User resource is missing");
 		
 		RequestError re = Users.validateUserResource(ur);
-		if (re != null){
-			// TODO: use requestError
-			response = new ResponseEntity<>(re.getValue(), HttpStatus.CONFLICT);
-			return response;
-		}
+		if (re != null) throw new ConflictException(re.getValue());
 				
 		Users user = Users.createFromResource(ur);
-		Authorities authority = getUserRole();				
+		Authorities authority = getRole(role);				
 		Assignments.assignAuthorityToUser(authority, user);
 
 		HttpHeaders headers = new HttpHeaders();
 		URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().pathSegment(user.getId().toString()).build().toUri();
 		headers.setLocation(location);
 
-		response = new ResponseEntity<>(headers,HttpStatus.CREATED);
-		return response;
+		return new ResponseEntity<>(headers,HttpStatus.CREATED);
 	}
 	
-	
-	private Authorities getUserRole() {
-		TypedQuery<Authorities> tq = Authorities.findAuthoritiesesByAuthorityEquals("ROLE_USER");
-		if (tq == null){
-			return null;
-		}
- 		return tq.getSingleResult();
-	}
 
+	public ResponseEntity<String> updateUser(Long id, UserResource ur) {
+		if (id == null) throw new BadRequestException("ID is missng");
+		if (ur == null) throw new BadRequestException("User resource is missing");
 
-	public ResponseEntity<UserResource> getUser(Long id) {
-		System.out.println("getUser - try to get for id:" + id);
-		
-		ResponseEntity<UserResource> response; 
-
-		if (id == null) {
-			response = new ResponseEntity<>(HttpStatus.CONFLICT);
-			//response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-		
 		Users user = Users.findUsers(id);
-		if (user == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
+		if (user == null) throw new ResourceNotFoundException("User not found for ID: " + id);		
 		
+		RequestError re = Users.validateUserResource(ur);
+		if (re != null) throw new ConflictException(re.getValue());
 		
-		UserResourceAssembler asm = new UserResourceAssembler();
-		UserResource ur = asm.toResource(user);
+		user.updateFromResource(ur);
+
+		HttpHeaders headers = new HttpHeaders();
+		URI location = URI.create("/rest/v1/est/users/" + user.getId().toString());
+		headers.setLocation(location);
+
+		return new ResponseEntity<>(headers,HttpStatus.ACCEPTED);
 		
-		response = new ResponseEntity<>(ur, HttpStatus.OK);
-		return response;	
-			
 	}
+
+
+
+	
+	
+	private Authorities getRole(String role) {
+		TypedQuery<Authorities> tq = Authorities.findAuthoritiesesByAuthorityEquals(role);
+		if (tq != null && tq.getResultList().size() > 0){
+	 		return tq.getSingleResult();
+		}
+		return createRole(role);
+	}
+
+
+	private Authorities createRole(String authority) {
+		Authorities role = new Authorities();
+		role.setAuthority(authority);
+		role.persist();
+		return role;
+	}
+
+	
+	
+	// diags 
 	
 
 	public ResponseEntity<DiagnosedProblemResourceList> getDiagnosedProblemsForUserByLanguage(Long id, Languages language) {
 		System.out.println("getDiagnosedProblemsForUserByLanguage - try to get for id:" + id + " lang:" + language);
-		
-		ResponseEntity<DiagnosedProblemResourceList> response; 
 
-		if (id == null || language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
+		if (id == null) throw new BadRequestException("ID is missng");
+		if (language == null) throw new BadRequestException("Language is missng");
 		
 		Users user = Users.findUsers(id);
-		if (user == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
+		if (user == null) throw new ResourceNotFoundException("User not found for ID: " + id);		
+
 		
 		
 		DiagnosedProblemResourceAssembler dprAsm = new DiagnosedProblemResourceAssembler();
 		DiagnosedProblemResourceList dprl = dprAsm.toResource(user.getDiagnosedProblems(), language);
 		
-		response = new ResponseEntity<>(dprl, HttpStatus.OK);
-		return response;	
+		return new ResponseEntity<>(dprl, HttpStatus.OK);
+	}
+
+	// messages
+
+	public ResponseEntity<MessageResourceList> getMessagesForUser(Long id, String type, String status) {
+		System.out.println("getMessagesByUserID - try to get for id:" + id);
+
+		if (id == null) throw new BadRequestException("ID is missng");
+		if (type == null) throw new BadRequestException("Type is missng");
+
+		
+		Users user = Users.findUsers(id);
+		if (user == null) throw new ResourceNotFoundException("User not found for ID: " + id);		
+		
+		List<Message> messages = findMessages(type, status, user);
+			
+		MessageResourceAssembler asm = new MessageResourceAssembler();
+		MessageResourceList mrl = asm.toResource(messages);
+		
+		return new ResponseEntity<>(mrl, HttpStatus.OK);
+	}
+
+
+	
+	private List<Message> findMessages(String type, String status, Users user) {
+		List<Message> messages = new ArrayList<Message>();
+		Set<Message> msgSet = new HashSet<Message>();
+		switch (type.toUpperCase()) {
+		case "ALL":
+			Set<Message> msgSentSet = user.getSentMessages();
+			Set<Message> msgReceivedSet = user.getReceivedMessages();
+			if (msgSentSet != null && !msgSentSet.isEmpty()){
+				msgSet.addAll(msgSentSet);
+			}
+			if (msgReceivedSet != null && !msgReceivedSet.isEmpty()){
+				msgSet.addAll(msgReceivedSet);
+			}
+			break;
+			
+		case "SENT":
+			msgSet = user.getSentMessages();			
+			break;
+			
+		default:
+            // Received
+			msgSet = user.getReceivedMessages();
+			
+			break;
+		}
+		if (msgSet != null && !msgSet.isEmpty()){
+			messages = new ArrayList<Message>(msgSet);
+		}
+		
+		if (status != null && ! status.isEmpty()){
+			messages = filterMessagesByStatus(messages, status);
+		}
+	
+		return messages;
+	}
+
+
+	private List<Message> filterMessagesByStatus(List<Message> origMessages, String status) {
+		List<Message> filteredMessages = new ArrayList<Message>();
+		for (Message message : origMessages) {
+			if (message != null && message.getStatus().equalsIgnoreCase(status)){
+				filteredMessages.add(message);
+			}
+		}
+		return filteredMessages;
+	}
+
+	// roles / advisors
+	
+	public ResponseEntity<UserResourceList> getUsersByRole(String role) {
+		System.out.println("getUsersByRole - try to get for role:" + role);
+
+		if (role == null) throw new BadRequestException("Role is missng");
+		
+		Authorities auth = null;
+		TypedQuery<Authorities> authTQ = Authorities.findAuthoritiesesByAuthorityEquals(role);
+		if (authTQ != null && authTQ.getResultList().size() > 0){
+			auth = authTQ.getSingleResult();
+		}
+		if (auth == null) throw new ResourceNotFoundException("Authority not found for role: " + role);		
+
+		List<Users> users = new ArrayList<Users>();
+
+		TypedQuery<Assignments> assignementsTQ = Assignments.findAssignmentsesByAuthority(auth);
+		if (assignementsTQ != null && assignementsTQ.getResultList().size() > 0){
+			List<Assignments> assignments = assignementsTQ.getResultList();
+			if (assignments != null){
+				for (Assignments assignment : assignments) {
+					if (assignment != null){
+						users.add(assignment.getUsr());
+					}
+				}
+			}
+		}
+
+		if (users == null || users.isEmpty()){
+			throw new ResourceNotFoundException("User not found for role: " + role);		
+		}
+		
+		UserResourceAssembler asm = new UserResourceAssembler();
+		UserResourceList url = asm.toResource(users);
+		
+		return new ResponseEntity<>(url, HttpStatus.OK);	
+	}
+
+
+	public ResponseEntity<UserResourceList> getAdvisorsForUser(Long id) {
+		System.out.println("getAdvisorsForUser - try to get for id:" + id);
+
+		if (id == null) throw new BadRequestException("ID is missing");
+		
+	
+		Users user = Users.findUsers(id);
+		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
+		
+		TypedQuery<UserAdvisor> tq = UserAdvisor.findUserAdvisorsByClientAndStatusEquals(user, "Accepted");
+		if (tq != null && tq.getResultList().isEmpty()) throw new ResourceNotFoundException("User Advisors not found for user: " + id);	
+
+		List<Users> advisors = new ArrayList<Users>();
+		List<UserAdvisor> userAdvisors = tq.getResultList();
+		
+		for (UserAdvisor userAdvisor : userAdvisors) {
+			if (userAdvisor != null){
+				Users advisor = userAdvisor.getAdvisor();
+				if (advisor != null){
+					advisors.add(advisor);
+				}
+			}
+		}
+				
+		UserResourceAssembler asm = new UserResourceAssembler();
+		UserResourceList url = asm.toResource(advisors);
+		return new ResponseEntity<>(url, HttpStatus.OK);
+	}
+
+
+	public ResponseEntity<String> addAdvisorsToUser(Long userId, Long advisorId) {
+		System.out.println("getAdvisorsForUser - try to get for id: " + userId + " and advisor: " + advisorId);
+
+		if (userId == null) throw new BadRequestException("User ID is missing");
+		if (advisorId == null) throw new BadRequestException("Advisor ID is missing");
+			
+		Users user = Users.findUsers(userId);
+		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + userId);		
+
+		Users advisor = Users.findUsers(advisorId);
+		if (advisor == null) throw new ResourceNotFoundException("Advisor not found by ID: " + advisorId);		
+		
+		UserAdvisor ua = new UserAdvisor();
+		ua.setAdvisor(advisor);
+		ua.setClient(user);
+		ua.setStatus("PENDING");
+		ua.persist();
+		
+		HttpHeaders headers = new HttpHeaders();
+		URI location = URI.create("/rest/v1/est/userAdvisors/" + ua.getId().toString());
+		headers.setLocation(location);
+
+		return new ResponseEntity<>(headers,HttpStatus.CREATED);
 	}
 
 
 
+	public ResponseEntity<UserResourceList> getClientsForUser(Long id, String status) {
+		System.out.println("getClientsForUser - try to get for id:" + id);
+
+		if (id == null) throw new BadRequestException("ID is missing");
+			
+		Users user = Users.findUsers(id);
+		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
+	
+		TypedQuery<UserAdvisor> tq = null;
+		if (status.isEmpty() || status.equals("ALL")){
+			tq = UserAdvisor.findUserAdvisorsByAdvisor(user);					
+		} else {
+			tq = UserAdvisor.findUserAdvisorsByAdvisorAndStatusEquals(user, status.toUpperCase());							
+		}
+		
+		if (tq != null && tq.getResultList().isEmpty()) throw new ResourceNotFoundException("User Advisors not found for user: " + id + " by status: " + status);	
+
+		List<Users> clients = new ArrayList<Users>();
+		List<UserAdvisor> userAdvisors = tq.getResultList();
+		
+		for (UserAdvisor userAdvisor : userAdvisors) {
+			if (userAdvisor != null){
+				Users client = userAdvisor.getClient();
+				if (client != null){
+					clients.add(client);
+				}
+			}
+		}
+				
+		UserResourceAssembler asm = new UserResourceAssembler();
+		UserResourceList url = asm.toResource(clients);
+		return new ResponseEntity<>(url, HttpStatus.OK);
+	}
 
 
 
