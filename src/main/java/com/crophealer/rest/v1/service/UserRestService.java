@@ -13,7 +13,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Message;
@@ -33,6 +32,7 @@ import com.crophealer.rest.v1.controller.est.ResourceNotFoundException;
 import com.crophealer.security.Assignments;
 import com.crophealer.security.Authorities;
 import com.crophealer.security.Users;
+import com.crophealer.utils.ResponseEntityUtil;
 
 @Service
 public class UserRestService extends GenericRestService {
@@ -105,11 +105,8 @@ public class UserRestService extends GenericRestService {
 		Authorities authority = getRole(role);				
 		Assignments.assignAuthorityToUser(authority, user);
 
-		HttpHeaders headers = new HttpHeaders();
-		URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().pathSegment(user.getId().toString()).build().toUri();
-		headers.setLocation(location);
+		return ResponseEntityUtil.CreatedFromCurrentResourceId(user.getId());
 
-		return new ResponseEntity<>(headers,HttpStatus.CREATED);
 	}
 	
 
@@ -124,13 +121,8 @@ public class UserRestService extends GenericRestService {
 		if (re != null) throw new ConflictException(re.getValue());
 		
 		user.updateFromResource(ur);
-
-		HttpHeaders headers = new HttpHeaders();
-		URI location = URI.create("/rest/v1/est/users/" + user.getId().toString());
-		headers.setLocation(location);
-
-		return new ResponseEntity<>(headers,HttpStatus.ACCEPTED);
 		
+		return ResponseEntityUtil.AcceptedWithCurrentUri();
 	}
 
 
