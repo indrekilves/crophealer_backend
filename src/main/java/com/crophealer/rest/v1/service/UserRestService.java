@@ -40,6 +40,28 @@ public class UserRestService extends GenericRestService {
 	
 	
 
+
+	public ResponseEntity<UserResource> getUserByName(String userName) {
+		System.out.println("getUserByName - try to get for name: " + userName);
+		
+		if (userName == null) throw new BadRequestException("Username is missing");
+
+		Users user = null;
+		TypedQuery<Users> tq = Users.findUsersesByUsernameEquals(userName);
+		if (tq != null && tq.getResultList().size() > 0){
+			user = tq.getSingleResult();
+		}
+		
+		if (user == null) throw new ResourceNotFoundException("User not found for username: " + userName);
+		
+		UserResourceAssembler asm = new UserResourceAssembler();
+		UserResource ur = asm.toResource(user);
+
+		return new ResponseEntity<>(ur, HttpStatus.OK);
+	}
+
+
+	
 	public ResponseEntity<UserResource> getUser(Long id) {
 		System.out.println("getUser - try to get for id:" + id);
 		if (id == null) throw new BadRequestException("ID is missng");
