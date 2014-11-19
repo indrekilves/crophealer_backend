@@ -9,8 +9,6 @@
         <field:input field="email" id="c_com_crophealer_domain_Company_email" validationMessageCode="field_invalid_email" z="1u6zBSILznmEZy0eSyYDxWURrm0="/>
         <field:input field="contactPerson" id="c_com_crophealer_domain_Company_contactPerson" z="XsCkRM3mtqsqvtOTQaFp1J85bno="/>
         <field:input field="fieldSize" id="c_com_crophealer_domain_Company_fieldSize" z="/VKM63M69G3VTBP29rtLkoJ4MNU="/>
-        <field:simple field="users" id="c_com_crophealer_domain_Company_users" messageCode="entity_reference_not_managed" messageCodeAttribute="Users" z="sJLOCtPWfINNabbA7FkbX3fI53Y="/>
-        <field:simple field="fields" id="c_com_crophealer_domain_Company_fields" messageCode="entity_reference_not_managed" messageCodeAttribute="Field" z="Fu9FyxdIP/AZC8eCxMTIMsZ6kdw="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_Company" render="${not empty dependencies}" z="R5B79u1Zjaw94cLVwQSPHmo5DGQ="/>
 </div>

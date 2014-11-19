@@ -17,7 +17,7 @@ import com.crophealer.utils.ResponseEntityUtil;
 @Controller
 @RequestMapping("/rest/v1/est/fields")
 
-public class FieldRestController {
+public class FieldRestController extends GenericController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<String> createField(@RequestBody FieldResource fr)
@@ -57,28 +57,5 @@ public class FieldRestController {
 		
 		return ResponseEntityUtil.AcceptedWithCurrentUri();		
 	}
-	
-	
-	
-//	 	
-//	@RequestMapping(method = RequestMethod.POST, consumes="application/json")
-//	public ResponseEntity<String> createMessage(@RequestBody MessageResource mr)
-//	{   	
-//	    return messageRestService.createMessage(mr);		
-//	}    
-//	
-//
-//	@RequestMapping(method = RequestMethod.POST, value="/{id}", consumes="application/json")
-//	public ResponseEntity<String> updateMessage(@PathVariable("id") Long id, @RequestBody MessageResource mr)
-//	{   	
-//	    return messageRestService.updateMessageById(id, mr);		
-//	}    
-//	
-//	@RequestMapping(method = RequestMethod.POST, value="/{id}/status", consumes="application/json")
-//	public ResponseEntity<String> updateMessageStatus(@PathVariable("id") Long id, @RequestBody MessageResource mr)
-//	{   	
-//		String status = mr.getStatus();
-//	    return messageRestService.updateMessageStatusById(id, status);		
-//	}    
 
 }

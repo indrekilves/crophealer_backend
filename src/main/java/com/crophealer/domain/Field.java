@@ -48,9 +48,17 @@ public class Field {
 	}
 
 	private void fillFromResource(FieldResource fr) {
-		this.setCoordinates(fr.getCoordinates());
-		this.setName(fr.getName());
-		this.setPriaID(fr.getPriaID());
+		if (fr.getCoordinates() != null){
+			this.setCoordinates(fr.getCoordinates());
+		}
+		
+		if (fr.getName() != null){
+			this.setName(fr.getName());
+		}
+		
+		if (fr.getPriaID() != null){
+			this.setPriaID(fr.getPriaID());
+		}
 		
 		if (fr.getCompanyID() != null){
 			Company company = Company.findCompany(fr.getCompanyID());
