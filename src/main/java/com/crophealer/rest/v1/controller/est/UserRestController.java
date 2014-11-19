@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.rest.v1.CompanyResourceList;
 import com.crophealer.rest.v1.DiagnosedProblemResourceList;
 import com.crophealer.rest.v1.FieldResourceList;
 import com.crophealer.rest.v1.MessageResource;
@@ -168,7 +169,7 @@ public class UserRestController extends GenericController{
 	}
     
     
-    // field
+    // field / company
     
     
     @RequestMapping(method = RequestMethod.GET, value="/{id}/fields")
@@ -179,6 +180,12 @@ public class UserRestController extends GenericController{
     
     
 
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/companies")
+    public ResponseEntity<CompanyResourceList> getCompaniesForUser(@PathVariable("id") Long id)
+	{   	
+	    return userRestService.getCompaniesForUser(id);		
+	}
+    
     
     
 }
