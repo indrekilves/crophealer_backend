@@ -13,5 +13,6 @@
         <field:select field="plantPartPhaseProblem" id="c_com_crophealer_domain_DiagnosedProblem_plantPartPhaseProblem" itemValue="id" items="${plantpartphaseproblems}" path="/plantpartphaseproblems" z="G0WrIE+PA67VebBsKNz21nvexMQ="/>
         <field:input field="symptomIDsCSV" id="c_com_crophealer_domain_DiagnosedProblem_symptomIDsCSV" z="qdtkXAjzHEKtP1cFATynhQxOUL0="/>
         <field:simple field="messages" id="c_com_crophealer_domain_DiagnosedProblem_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="24v0cAiYSS+gNFeLhNFH9w8CoEQ="/>
+        <field:select field="field" id="c_com_crophealer_domain_DiagnosedProblem_field" itemValue="id" items="${fields}" path="/fields" z="0dJCmTobAjbrqi9E08BVHavE20E="/>
     </form:update>
 </div>

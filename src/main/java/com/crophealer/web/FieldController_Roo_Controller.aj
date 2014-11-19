@@ -4,7 +4,9 @@
 package com.crophealer.web;
 
 import com.crophealer.domain.Company;
+import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.domain.Field;
+import com.crophealer.domain.Message;
 import com.crophealer.security.Users;
 import com.crophealer.web.FieldController;
 import java.io.UnsupportedEncodingException;
@@ -89,6 +91,8 @@ privileged aspect FieldController_Roo_Controller {
     void FieldController.populateEditForm(Model uiModel, Field field) {
         uiModel.addAttribute("field", field);
         uiModel.addAttribute("companys", Company.findAllCompanys());
+        uiModel.addAttribute("diagnosedproblems", DiagnosedProblem.findAllDiagnosedProblems());
+        uiModel.addAttribute("messages", Message.findAllMessages());
         uiModel.addAttribute("userses", Users.findAllUserses());
     }
     

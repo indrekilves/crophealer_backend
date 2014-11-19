@@ -12,5 +12,6 @@
         <field:select field="parent" id="c_com_crophealer_domain_Message_parent" itemValue="id" items="${messages}" path="/messages" z="NNBr/r2nZ1rovjTizNmhyLoeAX0="/>
         <field:datetime dateTimePattern="${message_createdtimestamp_date_format}" field="createdTimestamp" id="c_com_crophealer_domain_Message_createdTimestamp" z="iTyqcQGpRoY2Al83+AyC7TN+ONg="/>
         <field:datetime dateTimePattern="${message_modifiedtimestamp_date_format}" field="modifiedTimestamp" id="c_com_crophealer_domain_Message_modifiedTimestamp" z="ppVYJKdDoDkBgphWz/XnqG2mJ8A="/>
+        <field:select field="field" id="c_com_crophealer_domain_Message_field" itemValue="id" items="${fields}" path="/fields" z="arlcf5eMmhW9u07KCaU9VPZPSs0="/>
     </form:update>
 </div>

@@ -98,8 +98,8 @@ public class Message {
     }
 
     private void fillFromRecource(MessageResource mr) {
-        this.setSubject(mr.getSubject());
-        this.setComment(mr.getComment());
+        if (mr.getSubject() != null) this.setSubject(mr.getSubject());
+        if (mr.getComment() != null) this.setComment(mr.getComment());
         Users sender = Users.findUsers(mr.getSenderID());
         if (sender != null) {
             this.setSender(sender);
@@ -124,4 +124,9 @@ public class Message {
         }
         this.setModifiedTimestamp(new Date());
     }
+
+    /**
+     */
+    @ManyToOne
+    private Field field;
 }

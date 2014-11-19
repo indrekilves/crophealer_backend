@@ -8,5 +8,7 @@
         <field:input field="priaID" id="c_com_crophealer_domain_Field_priaID" z="AU0ysVcKzLBLdHQujCLj5d4kotc="/>
         <field:select field="owner" id="c_com_crophealer_domain_Field_owner" itemValue="id" items="${userses}" path="/userses" z="LHdeCAhHDaZ9YkDbUQ9oHzcVbUs="/>
         <field:select field="company" id="c_com_crophealer_domain_Field_company" itemValue="id" items="${companys}" path="/companys" z="V2H3eic5KNNeY+A4WTQydezNwnI="/>
+        <field:simple field="messages" id="c_com_crophealer_domain_Field_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="9ggDuhFyVY4TFcsDAtD2KzhSkvk="/>
+        <field:simple field="diagnosedProblems" id="c_com_crophealer_domain_Field_diagnosedProblems" messageCode="entity_reference_not_managed" messageCodeAttribute="Diagnosed Problem" z="cSLNIyyTd/5wxsAz+S46t5fCq24="/>
     </form:update>
 </div>
