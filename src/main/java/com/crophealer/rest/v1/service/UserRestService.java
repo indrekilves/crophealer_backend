@@ -14,11 +14,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.crophealer.domain.Field;
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Message;
 import com.crophealer.domain.UserAdvisor;
 import com.crophealer.rest.v1.DiagnosedProblemResourceAssembler;
 import com.crophealer.rest.v1.DiagnosedProblemResourceList;
+import com.crophealer.rest.v1.FieldResourceAssembler;
 import com.crophealer.rest.v1.FieldResourceList;
 import com.crophealer.rest.v1.MessageResourceAssembler;
 import com.crophealer.rest.v1.MessageResourceList;
@@ -322,7 +324,7 @@ public class UserRestService extends GenericRestService {
 		ua.setClient(user);
 		ua.setStatus("PENDING");
 		ua.persist();
-		
+
 		HttpHeaders headers = new HttpHeaders();
 		URI location = URI.create("/rest/v1/est/userAdvisors/" + ua.getId().toString());
 		headers.setLocation(location);
@@ -374,27 +376,18 @@ public class UserRestService extends GenericRestService {
 	
 		Users user = Users.findUsers(id);
 		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
-//		
-//		TypedQuery<UserAdvisor> tq = UserAdvisor.findUserAdvisorsByClientAndStatusEquals(user, "ACCEPTED");
-//		if (tq != null && tq.getResultList().isEmpty()) throw new ResourceNotFoundException("User Advisors not found for user: " + id);	
-//
-//		List<Users> advisors = new ArrayList<Users>();
-//		List<UserAdvisor> userAdvisors = tq.getResultList();
-//		
-//		for (UserAdvisor userAdvisor : userAdvisors) {
-//			if (userAdvisor != null){
-//				Users advisor = userAdvisor.getAdvisor();
-//				if (advisor != null){
-//					advisors.add(advisor);
-//				}
-//			}
-//		}
-//				
-//		UserResourceAssembler asm = new UserResourceAssembler();
-//		UserResourceList url = asm.toResource(advisors);
-//		return new ResponseEntity<>(url, HttpStatus.OK);
+		
+		Set<Field> fieldsSet = user.getFields();
+		if (fieldsSet.isEmpty()) throw new ResourceNotFoundException("Fields not found for user: " + id);	
 
-		return null;
+		List<Field> fields = new ArrayList<Field>();
+		fields.addAll(fieldsSet);
+		
+		FieldResourceAssembler asm = new FieldResourceAssembler();
+		FieldResourceList frl = asm.toResource(fields);
+
+		return new ResponseEntity<>(frl, HttpStatus.OK);
+
 	}
 
 
