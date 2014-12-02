@@ -152,10 +152,6 @@ public class ProductLoader extends GenericLoader
 			if (effectStr.isEmpty()){
 				return "?";
 			}		
-			effectStr = effectStr.replace("0", "");
-			effectStr = effectStr.replace(",", "");
-			effectStr = effectStr.replace(".", "");
-			
 			return effectStr;
 		} catch (Exception e) {	
 			System.out.println("bad [getEffectFormatted]");
@@ -468,7 +464,7 @@ public class ProductLoader extends GenericLoader
 			ptrans.setRaintFastness(pDetails.get(this.ofRainfastness + this.colProductName));
 
 			// not in table yet
-			ptrans.setWarning(pDetails.get(this.ofComment + this.colProductName));
+			ptrans.setWarning("");
 
 			ptrans.persist();
 		} catch (Exception e) {
