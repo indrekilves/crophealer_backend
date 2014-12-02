@@ -4,6 +4,7 @@
 package com.crophealer.rest.v1;
 
 import com.crophealer.rest.v1.MessageResource;
+import java.util.Date;
 
 privileged aspect MessageResource_Roo_JavaBean {
     
@@ -71,19 +72,19 @@ privileged aspect MessageResource_Roo_JavaBean {
         this.parentID = parentID;
     }
     
-    public String MessageResource.getCreatedTimestamp() {
+    public Date MessageResource.getCreatedTimestamp() {
         return this.createdTimestamp;
     }
     
-    public void MessageResource.setCreatedTimestamp(String createdTimestamp) {
+    public void MessageResource.setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
     
-    public String MessageResource.getModifiedTimestamp() {
+    public Date MessageResource.getModifiedTimestamp() {
         return this.modifiedTimestamp;
     }
     
-    public void MessageResource.setModifiedTimestamp(String modifiedTimestamp) {
+    public void MessageResource.setModifiedTimestamp(Date modifiedTimestamp) {
         this.modifiedTimestamp = modifiedTimestamp;
     }
     

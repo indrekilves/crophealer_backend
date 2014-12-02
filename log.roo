@@ -610,8 +610,3 @@ web mvc scaffold --class ~.web.FieldController --backingType ~.domain.Field
 
 web mvc scaffold --class ~.web.CompanyController --backingType ~.domain.Company
 
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-02 07:54:47
-focus --class ~.domain.Message
-finder list
-finder add findMessagesByStatusEquals
-

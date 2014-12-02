@@ -71,6 +71,10 @@ privileged aspect Message_Roo_JavaBean {
         return this.children;
     }
     
+    public void Message.setChildren(Set<Message> children) {
+        this.children = children;
+    }
+    
     public Date Message.getCreatedTimestamp() {
         return this.createdTimestamp;
     }
