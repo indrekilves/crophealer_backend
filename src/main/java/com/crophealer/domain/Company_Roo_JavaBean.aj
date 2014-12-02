@@ -62,8 +62,16 @@ privileged aspect Company_Roo_JavaBean {
         return this.users;
     }
     
+    public void Company.setUsers(Set<Users> users) {
+        this.users = users;
+    }
+    
     public Set<Field> Company.getFields() {
         return this.fields;
+    }
+    
+    public void Company.setFields(Set<Field> fields) {
+        this.fields = fields;
     }
     
 }

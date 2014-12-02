@@ -4,6 +4,8 @@
 package com.crophealer.web;
 
 import com.crophealer.domain.Company;
+import com.crophealer.domain.Field;
+import com.crophealer.security.Users;
 import com.crophealer.web.CompanyController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -86,6 +88,8 @@ privileged aspect CompanyController_Roo_Controller {
     
     void CompanyController.populateEditForm(Model uiModel, Company company) {
         uiModel.addAttribute("company", company);
+        uiModel.addAttribute("fields", Field.findAllFields());
+        uiModel.addAttribute("userses", Users.findAllUserses());
     }
     
     String CompanyController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
