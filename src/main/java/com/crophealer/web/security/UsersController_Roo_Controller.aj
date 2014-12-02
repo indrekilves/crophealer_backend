@@ -4,6 +4,8 @@
 package com.crophealer.web.security;
 
 import com.crophealer.domain.Company;
+import com.crophealer.domain.Field;
+import com.crophealer.domain.Message;
 import com.crophealer.security.Users;
 import com.crophealer.web.security.UsersController;
 import java.io.UnsupportedEncodingException;
@@ -97,6 +99,9 @@ privileged aspect UsersController_Roo_Controller {
         uiModel.addAttribute("users", users);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("companys", Company.findAllCompanys());
+        uiModel.addAttribute("fields", Field.findAllFields());
+        uiModel.addAttribute("messages", Message.findAllMessages());
+        uiModel.addAttribute("userses", Users.findAllUserses());
     }
     
     String UsersController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

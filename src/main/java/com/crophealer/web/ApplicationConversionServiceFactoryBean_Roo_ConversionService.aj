@@ -34,7 +34,6 @@ import com.crophealer.domain.Reseller;
 import com.crophealer.domain.Symptom;
 import com.crophealer.domain.SymptomPicture;
 import com.crophealer.domain.SymptomTranslation;
-import com.crophealer.domain.UserAdvisor;
 import com.crophealer.security.Assignments;
 import com.crophealer.security.Authorities;
 import com.crophealer.security.Users;
@@ -791,30 +790,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<UserAdvisor, String> ApplicationConversionServiceFactoryBean.getUserAdvisorToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.UserAdvisor, java.lang.String>() {
-            public String convert(UserAdvisor userAdvisor) {
-                return new StringBuilder().append(userAdvisor.getEffectiveFrom()).append(' ').append(userAdvisor.getEffectiveTo()).append(' ').append(userAdvisor.getCreatedDate()).append(' ').append(userAdvisor.getModifiedDate()).toString();
-            }
-        };
-    }
-    
-    public Converter<Long, UserAdvisor> ApplicationConversionServiceFactoryBean.getIdToUserAdvisorConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.crophealer.domain.UserAdvisor>() {
-            public com.crophealer.domain.UserAdvisor convert(java.lang.Long id) {
-                return UserAdvisor.findUserAdvisor(id);
-            }
-        };
-    }
-    
-    public Converter<String, UserAdvisor> ApplicationConversionServiceFactoryBean.getStringToUserAdvisorConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.crophealer.domain.UserAdvisor>() {
-            public com.crophealer.domain.UserAdvisor convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), UserAdvisor.class);
-            }
-        };
-    }
-    
     public Converter<Assignments, String> ApplicationConversionServiceFactoryBean.getAssignmentsToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.security.Assignments, java.lang.String>() {
             public String convert(Assignments assignments) {
@@ -981,9 +956,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getSymptomTranslationToStringConverter());
         registry.addConverter(getIdToSymptomTranslationConverter());
         registry.addConverter(getStringToSymptomTranslationConverter());
-        registry.addConverter(getUserAdvisorToStringConverter());
-        registry.addConverter(getIdToUserAdvisorConverter());
-        registry.addConverter(getStringToUserAdvisorConverter());
         registry.addConverter(getAssignmentsToStringConverter());
         registry.addConverter(getIdToAssignmentsConverter());
         registry.addConverter(getStringToAssignmentsConverter());

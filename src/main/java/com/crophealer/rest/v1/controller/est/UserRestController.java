@@ -22,7 +22,7 @@ import com.crophealer.rest.v1.service.UserRestService;
 @Controller
 @RequestMapping("/rest/v1/est/users")
 
-public class UserRestController extends GenericController{
+public class UserRestController {
 
 
 	
@@ -48,15 +48,9 @@ public class UserRestController extends GenericController{
 	@RequestMapping(method = RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<String> createUser(@RequestBody UserResource ur)
 	{   	
-	    return userRestService.createUser(ur, "ROLE_USER");		
+	    return userRestService.createUser(ur);		
 	}    
 	
-	
-	@RequestMapping(method = RequestMethod.POST, value="/{id}", consumes="application/json")
-	public ResponseEntity<String> updateUser(@PathVariable("id") Long id, @RequestBody UserResource ur)
-	{   	
-	    return userRestService.updateUser(id, ur);		
-	}    
 	
 	// User diagnosed problems
 	
@@ -150,15 +144,4 @@ public class UserRestController extends GenericController{
 	{   	
 	    return userRestService.getAdvisorsForUser(id);		
 	}
-    
-    
-
-    @RequestMapping(method = RequestMethod.POST, value="/{id}/advisors")
-    public ResponseEntity<String> addAdvisorsToUser(@PathVariable("id") Long userId, UserResource advisorResource)
-	{   	
-    	Long advisorId = advisorResource.getId();
-	    return userRestService.addAdvisorsToUser(userId, advisorId);		
-	}
-    
-   
 }

@@ -9,7 +9,12 @@
         <field:checkbox field="enabled" id="c_com_crophealer_security_Users_enabled" z="+jDtIAO5dHU021icThUoewalPZw="/>
         <field:input field="email" id="c_com_crophealer_security_Users_email" validationMessageCode="field_invalid_email" z="zGMILTKQjBrqlqWBRgBwFem0DJE="/>
         <field:datetime dateTimePattern="${users_expirationdate_date_format}" field="expirationDate" id="c_com_crophealer_security_Users_expirationDate" z="4M9fGKg3pAycyrl9nON0m+s165E="/>
+        <field:simple field="sentMessages" id="c_com_crophealer_security_Users_sentMessages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="avuHctuq4azx2vM6tfGv1bYxqEM="/>
+        <field:simple field="receivedMessages" id="c_com_crophealer_security_Users_receivedMessages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="Rkqdz+4mOUztZDbbIr9XPHYMMlM="/>
         <field:select field="company" id="c_com_crophealer_security_Users_company" itemValue="id" items="${companys}" path="/companys" z="LKd3HmDSuegTJs3cV/ecEq55/js="/>
+        <field:select field="advisor" id="c_com_crophealer_security_Users_advisor" itemValue="id" items="${userses}" path="/userses" z="FZ8LUCZSBO0vDREt7Mes9aPCPyA="/>
+        <field:simple field="advisorClients" id="c_com_crophealer_security_Users_advisorClients" messageCode="entity_reference_not_managed" messageCodeAttribute="Users" z="jPz8GZDlK/qYAkA1B+7eRCCUcWc="/>
+        <field:simple field="fields" id="c_com_crophealer_security_Users_fields" messageCode="entity_reference_not_managed" messageCodeAttribute="Field" z="EzrMs/TOkqah3uxxlbyx3h7jIzQ="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_security_Users" render="${not empty dependencies}" z="l+MbJTJ+qnGIZhm/w4ppptIZXIA="/>
 </div>
