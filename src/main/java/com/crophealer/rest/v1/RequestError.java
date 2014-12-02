@@ -14,10 +14,7 @@ public enum RequestError {
 	E0008("ReceiverID is missing."),
 	E0009("Subject is missing."),
 	E0010("Sender is unknown."),
-	E0011("Receiver is unknown."),
-	
-	// Role / User / Security
-	E0012("Role is unknown.");
+	E0011("Receiver is unknown.");
 	
 	
     private final String value;

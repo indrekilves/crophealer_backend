@@ -615,7 +615,3 @@ focus --class ~.domain.Message
 finder list
 finder add findMessagesByStatusEquals
 
-focus --class ~.security.Assignments
-finder list
-finder add findAssignmentsesByUsrAndAuthority
-finder add findAssignmentsesByAuthority

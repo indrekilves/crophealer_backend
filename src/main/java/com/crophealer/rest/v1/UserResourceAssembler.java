@@ -14,7 +14,7 @@ public class UserResourceAssembler {
 		UserResource ur = new UserResource();
 		ur.setId(u.getId());
 		ur.setUsername(u.getUsername());
-		//ur.setPassword(u.getPassword());
+		ur.setPassword(u.getPassword());
 		ur.setEmail(u.getEmail());
 		ur.setEnabled(u.getEnabled());
 		return ur;

@@ -42,11 +42,5 @@ public class MessageRestController {
 	    return messageRestService.updateMessageById(id, mr);		
 	}    
 	
-	@RequestMapping(method = RequestMethod.POST, value="/{id}/status", consumes="application/json")
-	public ResponseEntity<String> updateMessageStatus(@PathVariable("id") Long id, @RequestBody MessageResource mr)
-	{   	
-		String status = mr.getStatus();
-	    return messageRestService.updateMessageStatusById(id, status);		
-	}    
 
 }

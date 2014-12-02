@@ -24,7 +24,6 @@ import com.crophealer.rest.v1.MessageResourceList;
 import com.crophealer.rest.v1.RequestError;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.rest.v1.UserResourceAssembler;
-import com.crophealer.rest.v1.UserResourceList;
 import com.crophealer.security.Assignments;
 import com.crophealer.security.Authorities;
 import com.crophealer.security.Users;
@@ -89,10 +88,10 @@ public class UserRestService extends GenericRestService {
 	
 	private Authorities getUserRole() {
 		TypedQuery<Authorities> tq = Authorities.findAuthoritiesesByAuthorityEquals("ROLE_USER");
-		if (tq != null && tq.getResultList().size() > 0){
-	 		return tq.getSingleResult();
+		if (tq == null){
+			return null;
 		}
-		return null;
+ 		return tq.getSingleResult();
 	}
 
 
@@ -116,7 +115,7 @@ public class UserRestService extends GenericRestService {
 		
 		UserResourceAssembler asm = new UserResourceAssembler();
 		UserResource ur = asm.toResource(user);
-		// ur.setPassword(user.getPassword());// ??? is really needed ???
+		
 		response = new ResponseEntity<>(ur, HttpStatus.OK);
 		return response;	
 			
@@ -219,76 +218,6 @@ public class UserRestService extends GenericRestService {
 			}
 		}
 		return filteredMessages;
-	}
-
-
-	public ResponseEntity<UserResourceList> getUsersByRole(String role) {
-		System.out.println("getUsersByRole - try to get for role:" + role);
-		
-		ResponseEntity<UserResourceList> response; 
-
-		if (role == null) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		
-		Authorities auth = null;
-		TypedQuery<Authorities> authTQ = Authorities.findAuthoritiesesByAuthorityEquals(role);
-		if (authTQ != null && authTQ.getResultList().size() > 0){
-			auth = authTQ.getSingleResult();
-		}
-
-		if (auth == null) {
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
-		}
-
-		List<Users> users = new ArrayList<Users>();
-
-		TypedQuery<Assignments> assignementsTQ = Assignments.findAssignmentsesByAuthority(auth);
-		if (assignementsTQ != null && assignementsTQ.getResultList().size() > 0){
-			List<Assignments> assignments = assignementsTQ.getResultList();
-			if (assignments != null){
-				for (Assignments assignment : assignments) {
-					if (assignment != null){
-						users.add(assignment.getUsr());
-					}
-				}
-			}
-		}
-
-		if (users == null || users.isEmpty()){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
-		
-		UserResourceAssembler asm = new UserResourceAssembler();
-		UserResourceList url = asm.toResource(users);
-		
-		response = new ResponseEntity<>(url, HttpStatus.OK);
-		return response;	
-		
-	}
-
-
-	public ResponseEntity<UserResourceList> getAdvisorsForUser(Long id) {
-		System.out.println("getAdvisorsForUser - try to get for id:" + id);
-		
-		ResponseEntity<UserResourceList> response; 
-
-		if (id == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		
-	
-		Users user = Users.findUsers(id);
-		if (user == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		
-		Users advisor = user.getAdvisor(); // FAULTY - should be MANY-TO-MANY but is ONE-TO-MANY
-		
-		List<Users> advisors = new ArrayList<Users>();
-		advisors.add(advisor);
-		
-		UserResourceAssembler asm = new UserResourceAssembler();
-		UserResourceList url = asm.toResource(advisors);
-		response = new ResponseEntity<>(url, HttpStatus.OK);
-		return response;	
 	}
 
 
