@@ -9,6 +9,7 @@ public class UserAdvisorResource {
 
 	private Long    id; 
 	private Long    clientId;
-	private Long    advisorId; 
-	private String  status;	
+	private Long    advisorId;
+	private boolean enabled;  
+	
 }

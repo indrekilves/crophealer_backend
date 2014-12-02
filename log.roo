@@ -636,12 +636,3 @@ finder add findUserAdvisorsByClientAndEnabled
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-03 10:34:29
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-03 10:37:59
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-03 12:41:40
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-03 22:04:01
-focus --class ~.domain.UserAdvisor
-finder list
-finder add findUserAdvisorsByAdvisor
-finder add findUserAdvisorsByAdvisorAndEnabled
-field string --fieldName status
-finder list
-finder add findUserAdvisorsByAdvisorAndStatusEquals
-finder add findUserAdvisorsByClientAndStatusEquals

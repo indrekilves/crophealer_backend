@@ -117,18 +117,5 @@ public class AdvisorRestController extends GenericController{
 	}    
     
     
-    
-    @RequestMapping(method = RequestMethod.GET, value="/{id}/clients")
-  	public ResponseEntity<UserResourceList> getClientsForUser(@PathVariable("id") Long id)
-  	{   	
-  	    return userRestService.getClientsForUser(id, "APPROVED");		
-  	}
-    
-    
-    @RequestMapping(method = RequestMethod.GET, value="/{id}/clients", params="status")
-  	public ResponseEntity<UserResourceList> getClientsForUserByStatus(@PathVariable("id") Long id, @RequestParam(value = "status", required = false) String status)
-  	{   	
-  	    return userRestService.getClientsForUser(id, status);		
-  	}
-    
+       
 }

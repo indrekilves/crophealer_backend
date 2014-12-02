@@ -9,6 +9,14 @@ import java.util.Date;
 
 privileged aspect UserAdvisor_Roo_JavaBean {
     
+    public Boolean UserAdvisor.getEnabled() {
+        return this.enabled;
+    }
+    
+    public void UserAdvisor.setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+    
     public Date UserAdvisor.getEffectiveFrom() {
         return this.effectiveFrom;
     }
@@ -55,14 +63,6 @@ privileged aspect UserAdvisor_Roo_JavaBean {
     
     public void UserAdvisor.setAdvisor(Users advisor) {
         this.advisor = advisor;
-    }
-    
-    public String UserAdvisor.getStatus() {
-        return this.status;
-    }
-    
-    public void UserAdvisor.setStatus(String status) {
-        this.status = status;
     }
     
 }

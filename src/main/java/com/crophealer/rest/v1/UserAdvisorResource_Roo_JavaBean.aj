@@ -31,12 +31,12 @@ privileged aspect UserAdvisorResource_Roo_JavaBean {
         this.advisorId = advisorId;
     }
     
-    public String UserAdvisorResource.getStatus() {
-        return this.status;
+    public boolean UserAdvisorResource.isEnabled() {
+        return this.enabled;
     }
     
-    public void UserAdvisorResource.setStatus(String status) {
-        this.status = status;
+    public void UserAdvisorResource.setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
     
 }

@@ -1,22 +1,22 @@
 package com.crophealer.domain;
-import java.util.Date;
-
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
+import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 import com.crophealer.security.Users;
+import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findUserAdvisorsByAdvisor",  "findUserAdvisorsByAdvisorAndStatusEquals", "findUserAdvisorsByClientAndStatusEquals" })
+@RooJpaActiveRecord(finders = { "findUserAdvisorsByClientAndEnabled" })
 public class UserAdvisor {
 
+    /**
+     */
+    private Boolean enabled;
 
     /**
      */
@@ -51,8 +51,4 @@ public class UserAdvisor {
      */
     @ManyToOne
     private Users advisor;
-
-    /**
-     */
-    private String status;
 }
