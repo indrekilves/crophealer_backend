@@ -48,7 +48,6 @@ public class DataLoader {
 
 		//DataCleaner dCleaner = new DataCleaner();
 		//dCleaner.truncateAllTables();
-		// bla
 
 		// load capsulated data: 
 		this.loadRoles();
