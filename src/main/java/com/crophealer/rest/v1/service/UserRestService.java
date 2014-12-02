@@ -14,13 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.crophealer.domain.Company;
 import com.crophealer.domain.Field;
 import com.crophealer.domain.Languages;
 import com.crophealer.domain.Message;
 import com.crophealer.domain.UserAdvisor;
-import com.crophealer.rest.v1.CompanyResourceAssembler;
-import com.crophealer.rest.v1.CompanyResourceList;
 import com.crophealer.rest.v1.DiagnosedProblemResourceAssembler;
 import com.crophealer.rest.v1.DiagnosedProblemResourceList;
 import com.crophealer.rest.v1.FieldResourceAssembler;
@@ -375,7 +372,8 @@ public class UserRestService extends GenericRestService {
 
 	public ResponseEntity<FieldResourceList> getFieldsForUser(Long id) {
 		if (id == null) throw new BadRequestException("ID is missing");
-			
+		
+	
 		Users user = Users.findUsers(id);
 		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
 		
@@ -389,26 +387,7 @@ public class UserRestService extends GenericRestService {
 		FieldResourceList frl = asm.toResource(fields);
 
 		return new ResponseEntity<>(frl, HttpStatus.OK);
-	}
 
-
-
-	public ResponseEntity<CompanyResourceList> getCompaniesForUser(Long id) {
-		if (id == null) throw new BadRequestException("ID is missing");
-		
-		Users user = Users.findUsers(id);
-		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
-		
-		Company company = user.getCompany();
-		if (company == null) throw new ResourceNotFoundException("Companies not found for user: " + id);	
-
-		List<Company> companies = new ArrayList<Company>();
-		companies.add(company);
-		
-		CompanyResourceAssembler asm = new CompanyResourceAssembler();
-		CompanyResourceList crl = asm.toResource(companies);
-
-		return new ResponseEntity<>(crl, HttpStatus.OK);
 	}
 
 
