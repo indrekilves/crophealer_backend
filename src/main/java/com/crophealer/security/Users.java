@@ -3,33 +3,35 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.persistence.TypedQuery;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.rest.v1.RequestError;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.utils.EmailValidator;
+
 import java.util.Date;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.springframework.format.annotation.DateTimeFormat;
-import com.crophealer.domain.Message;
-import com.crophealer.domain.Company;
-import javax.persistence.ManyToOne;
-import com.crophealer.domain.Field;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findUsersesByUsernameEquals" })
 public class Users {
 
-    /**
+	/**
      */
     private String username;
 
@@ -49,7 +51,7 @@ public class Users {
     /**
      */
     private String email;
-
+    
     /**
      */
     @Temporal(TemporalType.TIMESTAMP)
@@ -59,16 +61,25 @@ public class Users {
     /**
      */
     private String phone;
+    
+    
+    
 
-    @Override
-    public String toString() {
-        return "User [username=" + username + ", expirationDate=" + expirationDate + "]";
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", expirationDate="
+				+ expirationDate + "]";
+	}
+
+
+
+	public void setPassword(String password) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
+        this.password = passwordEncoder.encode(password); 
     }
 
-    public void setPassword(String password) {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(password);
-    }
+    
 
     public static RequestError validateUserResource(UserResource ur) {
         if (ur.getUsername().isEmpty()) return RequestError.E0001;
@@ -105,47 +116,22 @@ public class Users {
         u.setEmail(ur.getEmail());
         u.setPhone(ur.getPhone());
         u.setEnabled(true);
-        u.setExpirationDate(getTrialPeriodEndDate());
+		u.setExpirationDate(getTrialPeriodEndDate()) ;
         u.persist();
+        
         // TODO: Send verification email.
         return u;
     }
 
-    private static Date getTrialPeriodEndDate() {
-        int trialPeriodLength = 30;
-        Calendar c = Calendar.getInstance();
-        c.setTime(new Date());
-        c.add(Calendar.DATE, trialPeriodLength);
-        return c.getTime();
-    }
 
-    /**
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
-    private Set<Message> sentMessages = new HashSet<Message>();
 
-    /**
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "receiver")
-    private Set<Message> receivedMessages = new HashSet<Message>();
+	private static Date getTrialPeriodEndDate() {
+		int trialPeriodLength = 30;
 
-    /**
-     */
-    @ManyToOne
-    private Company company;
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date()); 
+		c.add(Calendar.DATE, trialPeriodLength);
+		return c.getTime(); 
+	}
 
-    /**
-     */
-    @ManyToOne
-    private Users advisor;
-
-    /**
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "advisor")
-    private Set<Users> advisorClients = new HashSet<Users>();
-
-    /**
-     */
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-    private Set<Field> fields = new HashSet<Field>();
 }

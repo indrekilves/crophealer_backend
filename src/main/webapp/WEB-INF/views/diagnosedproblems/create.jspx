@@ -12,7 +12,6 @@
         <field:simple field="pictures" id="c_com_crophealer_domain_DiagnosedProblem_pictures" messageCode="entity_reference_not_managed" messageCodeAttribute="Diagnosed Problem Picture" z="izNDuPnhGKHjJDA8J/I488477Gg="/>
         <field:select field="plantPartPhaseProblem" id="c_com_crophealer_domain_DiagnosedProblem_plantPartPhaseProblem" itemValue="id" items="${plantpartphaseproblems}" path="/plantpartphaseproblems" z="G0WrIE+PA67VebBsKNz21nvexMQ="/>
         <field:input field="symptomIDsCSV" id="c_com_crophealer_domain_DiagnosedProblem_symptomIDsCSV" z="qdtkXAjzHEKtP1cFATynhQxOUL0="/>
-        <field:simple field="messages" id="c_com_crophealer_domain_DiagnosedProblem_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="24v0cAiYSS+gNFeLhNFH9w8CoEQ="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_DiagnosedProblem" render="${not empty dependencies}" z="OnUmgTiwzipSjKGiMfIvhbYsAio="/>
 </div>

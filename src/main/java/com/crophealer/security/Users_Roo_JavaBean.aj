@@ -3,10 +3,7 @@
 
 package com.crophealer.security;
 
-import com.crophealer.domain.Company;
 import com.crophealer.domain.DiagnosedProblem;
-import com.crophealer.domain.Field;
-import com.crophealer.domain.Message;
 import com.crophealer.security.Users;
 import java.util.Date;
 import java.util.Set;
@@ -59,54 +56,6 @@ privileged aspect Users_Roo_JavaBean {
     
     public void Users.setPhone(String phone) {
         this.phone = phone;
-    }
-    
-    public Set<Message> Users.getSentMessages() {
-        return this.sentMessages;
-    }
-    
-    public void Users.setSentMessages(Set<Message> sentMessages) {
-        this.sentMessages = sentMessages;
-    }
-    
-    public Set<Message> Users.getReceivedMessages() {
-        return this.receivedMessages;
-    }
-    
-    public void Users.setReceivedMessages(Set<Message> receivedMessages) {
-        this.receivedMessages = receivedMessages;
-    }
-    
-    public Company Users.getCompany() {
-        return this.company;
-    }
-    
-    public void Users.setCompany(Company company) {
-        this.company = company;
-    }
-    
-    public Users Users.getAdvisor() {
-        return this.advisor;
-    }
-    
-    public void Users.setAdvisor(Users advisor) {
-        this.advisor = advisor;
-    }
-    
-    public Set<Users> Users.getAdvisorClients() {
-        return this.advisorClients;
-    }
-    
-    public void Users.setAdvisorClients(Set<Users> advisorClients) {
-        this.advisorClients = advisorClients;
-    }
-    
-    public Set<Field> Users.getFields() {
-        return this.fields;
-    }
-    
-    public void Users.setFields(Set<Field> fields) {
-        this.fields = fields;
     }
     
 }

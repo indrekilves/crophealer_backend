@@ -5,7 +5,6 @@ package com.crophealer.domain;
 
 import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.domain.DiagnosedProblemPicture;
-import com.crophealer.domain.Message;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.security.Users;
 import java.util.Date;
@@ -83,14 +82,6 @@ privileged aspect DiagnosedProblem_Roo_JavaBean {
     
     public void DiagnosedProblem.setSymptomIDsCSV(String symptomIDsCSV) {
         this.symptomIDsCSV = symptomIDsCSV;
-    }
-    
-    public Set<Message> DiagnosedProblem.getMessages() {
-        return this.messages;
-    }
-    
-    public void DiagnosedProblem.setMessages(Set<Message> messages) {
-        this.messages = messages;
     }
     
 }
