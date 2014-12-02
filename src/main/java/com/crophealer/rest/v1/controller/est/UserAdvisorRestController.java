@@ -1,7 +1,9 @@
 package com.crophealer.rest.v1.controller.est;
 
+import java.net.URI;
 import java.util.List;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,12 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.crophealer.domain.UserAdvisor;
 import com.crophealer.rest.v1.UserAdvisorResource;
 import com.crophealer.rest.v1.UserAdvisorResourceAssembler;
 import com.crophealer.rest.v1.UserAdvisorResourceList;
-import com.crophealer.utils.ResponseEntityUtil;
 
 
 @Controller
@@ -61,6 +63,10 @@ public class UserAdvisorRestController extends GenericController{
 		
 		ua.setStatus(uar.getStatus());
 		
-		return ResponseEntityUtil.AcceptedWithCurrentUri();
+		HttpHeaders headers = new HttpHeaders();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().pathSegment(ua.getId().toString()).build().toUri();
+		headers.setLocation(location);
+
+		return new ResponseEntity<>(headers,HttpStatus.ACCEPTED);
 	}
 }
