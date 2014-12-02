@@ -9,6 +9,6 @@ h1 { font-size: 1.5em; }
 </head>
 <body>
 	<h1>Data loading result:</h1>
-	<pre> ${result} </pre>
+	<pre> ${result} </pre>>
 </body>
 </html>

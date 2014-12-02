@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.crophealer.domain.Languages;
 import com.crophealer.rest.v1.DiagnosedProblemResourceList;
-import com.crophealer.rest.v1.FieldResourceList;
 import com.crophealer.rest.v1.MessageResource;
 import com.crophealer.rest.v1.MessageResourceList;
 import com.crophealer.rest.v1.UserResource;
@@ -161,18 +160,5 @@ public class UserRestController extends GenericController{
 	    return userRestService.addAdvisorsToUser(userId, advisorId);		
 	}
     
-    
-    // field
-    
-    
-    @RequestMapping(method = RequestMethod.GET, value="/{id}/fields")
-    public ResponseEntity<FieldResourceList> getFieldsForUser(@PathVariable("id") Long id)
-	{   	
-	    return userRestService.getFieldsForUser(id);		
-	}
-    
-    
-
-    
-    
+   
 }

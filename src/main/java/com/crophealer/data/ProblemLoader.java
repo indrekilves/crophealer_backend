@@ -88,8 +88,8 @@ public class ProblemLoader extends GenericLoader
 			{
 				if (pLatinName.equals("Puccinia hordei"))
 				{
-					//int ih=0;
-					//ih++;
+					int ih=0;
+					ih++;
 				}
 				System.out.println("Loading symptoms for " + realRowNum + " - " + pLatinName);
 				this.processProblemSector(pLatinName, realRowNum);
@@ -545,20 +545,20 @@ public class ProblemLoader extends GenericLoader
 	}
 	
 	
-//	private Boolean plantPartExistsByName(String ppName)
-//	{
-//		if (ppName.isEmpty())
-//			return false;
-//		
-//		PlantPart existingPP = PlantPart.getSinglePlantPartByName(ppName);
-//		if (existingPP != null)
-//		{
-//			return true;
-//		}
-//		else
-//			return false;
-//				
-//	}
+	private Boolean plantPartExistsByName(String ppName)
+	{
+		if (ppName.isEmpty())
+			return false;
+		
+		PlantPart existingPP = PlantPart.getSinglePlantPartByName(ppName);
+		if (existingPP != null)
+		{
+			return true;
+		}
+		else
+			return false;
+				
+	}
 	
 	
 	private Integer getFirstTypeColumn(Integer offSet)
