@@ -115,46 +115,33 @@ public class PlantPartPhaseProblemRestService extends GenericRestService {
 	
 	
 	public ResponseEntity<ActiveIngredientResourceList> getActiveIngredientsByLanguage(Long id, Languages language) {
-		System.out.println("getActiveIngredientsByLanguage - try to get for id:" + id + " lang:" + language);
+		 System.out.println("getActiveIngredientsByLanguage - try to get for id:" + id + " lang:" + language);
 		
-		ResponseEntity<ActiveIngredientResourceList> response;
+		 ResponseEntity<ActiveIngredientResourceList> response;
 		
-		if (id == null || language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
+		 if (id == null || language == null) {
+			 response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			 return response;
+		 }
 		
-		PlantPartPhaseProblem pppProblem = PlantPartPhaseProblem.findPlantPartPhaseProblem(id);
-		if (pppProblem == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
+		 PlantPartPhaseProblem pppProblem = PlantPartPhaseProblem.findPlantPartPhaseProblem(id);
+		 if (pppProblem == null){
+			 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			 return response;
+		 }
 		 
-		// Get AIs by pppProblem
-		Set<ProblemAIProduct> paipsSet = pppProblem.getActiveIngredientProductLinks();
-		List<ProblemAIProduct>allPaips = new ArrayList<ProblemAIProduct>(paipsSet);
+		 // Get AIs by pppProblem
+		 Set<ProblemAIProduct> paipsSet = pppProblem.getActiveIngredientProductLinks();
+		 List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
 		 	 
-		Comparator<ProblemAIProduct> comparator = new PaipsByAiEffectComparator();
-		Collections.sort(allPaips, comparator);
+		 Comparator<ProblemAIProduct> comparator = new PaipsByAiEffectComparator();
+		 Collections.sort(paips, comparator);
 		 
-		List<ProblemAIProduct>sortedPaips = new ArrayList<ProblemAIProduct>();
-		List<ActiveIngredient>uniqueAIs = new ArrayList<ActiveIngredient>();
-		for (ProblemAIProduct paip : allPaips) {
-			ActiveIngredient ai = paip.getActiveIngredient(); 
-			if (ai != null){
-				if (!uniqueAIs.contains(ai)){
-					uniqueAIs.add(ai);
-					sortedPaips.add(paip);
-				}
-			}
-		}
-		 
+		 ActiveIngredientResourceAssembler asm = new ActiveIngredientResourceAssembler();
+		 ActiveIngredientResourceList airl = asm.paipsToResource(paips, language);
 		
-		ActiveIngredientResourceAssembler asm = new ActiveIngredientResourceAssembler();
-		ActiveIngredientResourceList airl = asm.paipsToResource(sortedPaips, language);
-		
-		response = new ResponseEntity<>(airl, HttpStatus.OK);
-		return response;
+		 response = new ResponseEntity<>(airl, HttpStatus.OK);
+		 return response;
 	}
 	
 
