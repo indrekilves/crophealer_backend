@@ -645,8 +645,3 @@ field string --fieldName status
 finder list
 finder add findUserAdvisorsByAdvisorAndStatusEquals
 finder add findUserAdvisorsByClientAndStatusEquals
-// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-18 09:59:16
-jpa setup --database POSTGRES --provider HIBERNATE --databaseName crophealer --hostName localhost --userName crophealer --password ssc
-
-jpa setup --database POSTGRES --provider HIBERNATE --databaseName crophealer --hostName localhost --userName crophealer --password ssc
-

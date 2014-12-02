@@ -46,12 +46,6 @@ public class UserRestController extends GenericController{
 	}    
 	
 	
-	@RequestMapping(method = RequestMethod.GET, params="getUserByName")
-	public ResponseEntity<UserResource> getUserByName(@RequestParam("getUserByName") String userName)
-	{   	
-	    return userRestService.getUserByName(userName);		
-	}    
-	
 	@RequestMapping(method = RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<String> createUser(@RequestBody UserResource ur)
 	{   	
