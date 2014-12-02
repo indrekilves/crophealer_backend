@@ -126,9 +126,9 @@ public class Users {
     
 	public void updateFromResource(UserResource ur) {
         if (ur == null) return;
-        if (ur.getPassword() != null) this.setPassword(ur.getPassword());
-        if (ur.getEmail()    != null) this.setEmail(ur.getEmail());
-        if (ur.getPhone()    != null) this.setPhone(ur.getPhone());
+	    this.setPassword(ur.getPassword());
+        this.setEmail(ur.getEmail());
+        this.setPhone(ur.getPhone());
 		this.persist();   	
 	}
 

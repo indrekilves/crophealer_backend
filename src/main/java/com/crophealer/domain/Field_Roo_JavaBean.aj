@@ -4,11 +4,8 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.Company;
-import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.domain.Field;
-import com.crophealer.domain.Message;
 import com.crophealer.security.Users;
-import java.util.Set;
 
 privileged aspect Field_Roo_JavaBean {
     
@@ -50,22 +47,6 @@ privileged aspect Field_Roo_JavaBean {
     
     public void Field.setCompany(Company company) {
         this.company = company;
-    }
-    
-    public Set<Message> Field.getMessages() {
-        return this.messages;
-    }
-    
-    public void Field.setMessages(Set<Message> messages) {
-        this.messages = messages;
-    }
-    
-    public Set<DiagnosedProblem> Field.getDiagnosedProblems() {
-        return this.diagnosedProblems;
-    }
-    
-    public void Field.setDiagnosedProblems(Set<DiagnosedProblem> diagnosedProblems) {
-        this.diagnosedProblems = diagnosedProblems;
     }
     
 }

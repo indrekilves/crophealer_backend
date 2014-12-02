@@ -11,6 +11,5 @@
         <field:display field="usr" id="s_com_crophealer_domain_DiagnosedProblem_usr" object="${diagnosedproblem}" z="k61ouK42aO/m2/LIBMzC2RVCRUo="/>
         <field:display field="plantPartPhaseProblem" id="s_com_crophealer_domain_DiagnosedProblem_plantPartPhaseProblem" object="${diagnosedproblem}" z="qaV95mjKvr8CYQ9pjITaJxz8NJY="/>
         <field:display field="symptomIDsCSV" id="s_com_crophealer_domain_DiagnosedProblem_symptomIDsCSV" object="${diagnosedproblem}" z="+O0n2FJm36ExRVSjJWtlH6RnW48="/>
-        <field:display field="field" id="s_com_crophealer_domain_DiagnosedProblem_field" object="${diagnosedproblem}" z="FQVWMvg+u1US/+XXFV/OFd8QrlA="/>
     </page:show>
 </div>

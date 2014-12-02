@@ -4,7 +4,6 @@
 package com.crophealer.domain;
 
 import com.crophealer.domain.DiagnosedProblem;
-import com.crophealer.domain.Field;
 import com.crophealer.domain.Message;
 import com.crophealer.security.Users;
 import java.util.Date;
@@ -86,14 +85,6 @@ privileged aspect Message_Roo_JavaBean {
     
     public void Message.setModifiedTimestamp(Date modifiedTimestamp) {
         this.modifiedTimestamp = modifiedTimestamp;
-    }
-    
-    public Field Message.getField() {
-        return this.field;
-    }
-    
-    public void Message.setField(Field field) {
-        this.field = field;
     }
     
 }

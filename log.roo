@@ -650,18 +650,3 @@ jpa setup --database POSTGRES --provider HIBERNATE --databaseName crophealer --h
 
 jpa setup --database POSTGRES --provider HIBERNATE --databaseName crophealer --hostName localhost --userName crophealer --password ssc
 
-focus --class ~.domain.Message
-field reference --fieldName field --type ~.domain.Field --cardinality MANY_TO_ONE
-
-focus --class ~.domain.Field
-
-field set --fieldName messages --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy field
-
-focus --class ~.domain.DiagnosedProblem
-
-field reference --fieldName field --type ~.domain.Field --cardinality MANY_TO_ONE
-
-focus --class ~.domain.Field
-
-field set --fieldName diagnosedProblems --type ~.domain.DiagnosedProblem --cardinality ONE_TO_MANY --mappedBy field
-

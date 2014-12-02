@@ -12,6 +12,5 @@
         <field:display field="parent" id="s_com_crophealer_domain_Message_parent" object="${message}" z="JTs2VxzEONuYTc72G/cphFn605g="/>
         <field:display date="true" dateTimePattern="${message_createdtimestamp_date_format}" field="createdTimestamp" id="s_com_crophealer_domain_Message_createdTimestamp" object="${message}" z="MkA+O2g1wWZ46Mqkxf5jN5bSWnI="/>
         <field:display date="true" dateTimePattern="${message_modifiedtimestamp_date_format}" field="modifiedTimestamp" id="s_com_crophealer_domain_Message_modifiedTimestamp" object="${message}" z="hS0T9bmCSaPpR8WiTrWha4fAjnA="/>
-        <field:display field="field" id="s_com_crophealer_domain_Message_field" object="${message}" z="JU76CXEiOmxTtepaj82Csdq4glQ="/>
     </page:show>
 </div>

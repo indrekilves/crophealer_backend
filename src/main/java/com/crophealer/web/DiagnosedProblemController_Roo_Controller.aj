@@ -5,7 +5,6 @@ package com.crophealer.web;
 
 import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.domain.DiagnosedProblemPicture;
-import com.crophealer.domain.Field;
 import com.crophealer.domain.Message;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.security.Users;
@@ -103,7 +102,6 @@ privileged aspect DiagnosedProblemController_Roo_Controller {
         uiModel.addAttribute("diagnosedProblem", diagnosedProblem);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("diagnosedproblempictures", DiagnosedProblemPicture.findAllDiagnosedProblemPictures());
-        uiModel.addAttribute("fields", Field.findAllFields());
         uiModel.addAttribute("messages", Message.findAllMessages());
         uiModel.addAttribute("plantpartphaseproblems", PlantPartPhaseProblem.findAllPlantPartPhaseProblems());
         uiModel.addAttribute("userses", Users.findAllUserses());

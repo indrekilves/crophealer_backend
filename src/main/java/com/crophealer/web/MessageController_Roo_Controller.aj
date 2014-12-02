@@ -4,7 +4,6 @@
 package com.crophealer.web;
 
 import com.crophealer.domain.DiagnosedProblem;
-import com.crophealer.domain.Field;
 import com.crophealer.domain.Message;
 import com.crophealer.security.Users;
 import com.crophealer.web.MessageController;
@@ -100,7 +99,6 @@ privileged aspect MessageController_Roo_Controller {
         uiModel.addAttribute("message", message);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("diagnosedproblems", DiagnosedProblem.findAllDiagnosedProblems());
-        uiModel.addAttribute("fields", Field.findAllFields());
         uiModel.addAttribute("messages", Message.findAllMessages());
         uiModel.addAttribute("userses", Users.findAllUserses());
     }

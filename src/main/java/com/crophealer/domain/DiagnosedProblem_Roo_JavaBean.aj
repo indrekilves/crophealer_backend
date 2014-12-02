@@ -5,7 +5,6 @@ package com.crophealer.domain;
 
 import com.crophealer.domain.DiagnosedProblem;
 import com.crophealer.domain.DiagnosedProblemPicture;
-import com.crophealer.domain.Field;
 import com.crophealer.domain.Message;
 import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.security.Users;
@@ -92,14 +91,6 @@ privileged aspect DiagnosedProblem_Roo_JavaBean {
     
     public void DiagnosedProblem.setMessages(Set<Message> messages) {
         this.messages = messages;
-    }
-    
-    public Field DiagnosedProblem.getField() {
-        return this.field;
-    }
-    
-    public void DiagnosedProblem.setField(Field field) {
-        this.field = field;
     }
     
 }
