@@ -48,6 +48,7 @@ public class DataLoader {
 
 		//DataCleaner dCleaner = new DataCleaner();
 		//dCleaner.truncateAllTables();
+		// bla
 
 		// load capsulated data: 
 		this.loadRoles();
@@ -73,9 +74,9 @@ public class DataLoader {
 	}
 	
 
-	private void loadProductsWithProblemLinks() {
-
-	}
+//	private void loadProductsWithProblemLinks() {
+//
+//	}
 
 
 	private void loadProblems() {

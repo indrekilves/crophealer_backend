@@ -25,7 +25,7 @@ public class ProductLoader extends GenericLoader
 {
 	
 	protected Integer activeSheetNum    		= 6;
-	private final Integer rowNumCountry 		= 2;
+	//private final Integer rowNumCountry 		= 2;
 	private final Integer colProductName   	 	= 0;
 	//private final Integer colNumProductsStart 	= 0;
 	
@@ -50,7 +50,7 @@ public class ProductLoader extends GenericLoader
 	private final Integer ofAgentMech     	= 18; // Toimemehhanism
 	private final Integer ofRainfastness	= 19; // vihmakindlus
 	private final Integer ofComment			= 20; // kommentaar
-	private final Integer ofProducerDetails = 21; 
+	//private final Integer ofProducerDetails = 21; 
 	
 	private final Integer problemsStartRow 	= 1;
 
@@ -64,7 +64,7 @@ public class ProductLoader extends GenericLoader
 		this.setActiveSheetNum(this.activeSheetNum);
 		//Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	    //logger.setLevel(Level.INFO);
-		this.LOGGER.info("Started ProductLoader");
+		//this.LOGGER.info("Started ProductLoader");
 	}
 	
 	
@@ -152,6 +152,10 @@ public class ProductLoader extends GenericLoader
 			if (effectStr.isEmpty()){
 				return "?";
 			}		
+			effectStr = effectStr.replace("0", "");
+			effectStr = effectStr.replace(",", "");
+			effectStr = effectStr.replace(".", "");
+			
 			return effectStr;
 		} catch (Exception e) {	
 			System.out.println("bad [getEffectFormatted]");
@@ -464,7 +468,7 @@ public class ProductLoader extends GenericLoader
 			ptrans.setRaintFastness(pDetails.get(this.ofRainfastness + this.colProductName));
 
 			// not in table yet
-			ptrans.setWarning("");
+			ptrans.setWarning(pDetails.get(this.ofComment + this.colProductName));
 
 			ptrans.persist();
 		} catch (Exception e) {

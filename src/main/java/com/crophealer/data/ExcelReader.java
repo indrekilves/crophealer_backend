@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,8 +153,10 @@ public class ExcelReader implements SpreadSheetReader {
 			Cell c = row.getCell(i, Row.CREATE_NULL_AS_BLANK);
 			if (c.getCellType() == Cell.CELL_TYPE_NUMERIC)
 			{
-				Double tmp = c.getNumericCellValue();
+				Double tmp = round(c.getNumericCellValue(), 1);			
 				rowArr.add(tmp.toString());
+				//c.setCellType(1);
+				//rowArr.add(c.getStringCellValue());
 			}
 			else
 			{
@@ -161,6 +165,14 @@ public class ExcelReader implements SpreadSheetReader {
 		}
 
 		return rowArr;
+	}
+	
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
 	}
 
 	@Override

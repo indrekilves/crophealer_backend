@@ -18,7 +18,6 @@ public class SymptomsByTranslationsComparator implements Comparator<Symptom> {
 			SymptomTranslation t1 = getSymptomTranslationBySymptom(o1);
 			SymptomTranslation t2 = getSymptomTranslationBySymptom(o2);
 			
-			System.out.println("loll: " + t1.getName());
 			if (t1 != null && t2 != null){
 				return t1.getName().compareTo(t2.getName());
 			}

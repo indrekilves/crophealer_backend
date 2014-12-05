@@ -535,3 +535,134 @@ focus --class com.crophealer.rest.v1.ProductResource
 field string --fieldName aiName
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-07-16 20:28:58
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-07-17 11:40:57
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-08-07 21:44:47
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-09-01 23:47:16
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-09-02 13:06:02
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-01 22:51:38
+// [failed] script --file /Users/indrekilves/projects/stsWorkspace/crophealer/dataEntryTemp.roo
+entity jpa --class ~.domain.Message
+field string --fieldName subject
+field string --fieldName comment
+field string --fieldName status
+field reference --fieldName sender --type ~.security.Users --cardinality MANY_TO_ONE
+field reference --fieldName receiver --type ~.security.Users --cardinality MANY_TO_ONE
+field reference --fieldName diagnosedProblem --type ~.domain.DiagnosedProblem --cardinality MANY_TO_ONE
+focus --class ~.domain.DiagnosedProblem
+field set --fieldName messages --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy diagnosedProblem
+focus --class ~.security.Users
+field set --fieldName sentMessages --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy sender
+field set --fieldName receivedMessages --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy receiver
+focus --class ~.domain.Message
+field reference --fieldName parent --type ~.domain.Message --cardinality MANY_TO_ONE
+field set --fieldName children --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy parent
+// script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+web mvc scaffold --class ~.web.MessageController --backingType ~.domain.Message
+
+focus --class ~.domain.Message
+field date --fieldName createdTimestamp --type java.util.Date
+
+field date --fieldName modifiedTimestamp --type java.util.Date
+
+entity jpa --class ~.domain.Field
+field string --fieldName name
+field string --fieldName coordinates
+field string --fieldName priaID
+// [failed] field reference --fieldName user --type ~.security.Users --cardinality MANY_TO_ONE
+// [failed] script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+entity jpa --class ~.domain.Field
+field string --fieldName name
+field string --fieldName coordinates
+field string --fieldName priaID
+field reference --fieldName owner --type ~.security.Users --cardinality MANY_TO_ONE
+// [failed] field reference --fieldName company --type ~.domain.Company --cardinality MANY_TO_ONE
+// [failed] script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+entity jpa --class ~.domain.Company
+field string --fieldName name
+field string --fieldName address
+field string --fieldName phone
+field string --fieldName email
+field string --fieldName contactPerson
+// [failed] field string --fieldName size
+// [failed] script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+entity jpa --class ~.domain.Company
+field string --fieldName name
+field string --fieldName address
+field string --fieldName phone
+field string --fieldName email
+field string --fieldName contactPerson
+field string --fieldName fieldSize
+entity jpa --class ~.domain.Field
+field string --fieldName name
+field string --fieldName coordinates
+field string --fieldName priaID
+field reference --fieldName owner --type ~.security.Users --cardinality MANY_TO_ONE
+field reference --fieldName company --type ~.domain.Company --cardinality MANY_TO_ONE
+focus --class ~.security.Users
+field reference --fieldName company --type ~.domain.Company --cardinality MANY_TO_ONE
+field reference --fieldName advisor --type ~.security.Users --cardinality MANY_TO_ONE
+field set --fieldName advisorClients --type ~.security.Users --cardinality ONE_TO_MANY --mappedBy advisor
+field set --fieldName fields --type ~.domain.Field --cardinality ONE_TO_MANY --mappedBy owner
+focus --class ~.domain.Company
+field set --fieldName users --type ~.security.Users --cardinality ONE_TO_MANY --mappedBy company
+field set --fieldName fields --type ~.domain.Field --cardinality ONE_TO_MANY --mappedBy company
+// script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+web mvc scaffold --class ~.web.FieldController --backingType ~.domain.Field
+
+web mvc scaffold --class ~.web.CompanyController --backingType ~.domain.Company
+
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-02 07:54:47
+focus --class ~.domain.Message
+finder list
+finder add findMessagesByStatusEquals
+
+focus --class ~.security.Assignments
+finder list
+finder add findAssignmentsesByUsrAndAuthority
+finder add findAssignmentsesByAuthority
+entity jpa --class ~.domain.UserAdvisor
+field boolean --fieldName enabled
+field date --fieldName effectiveFrom --type java.util.Date
+field date --fieldName effectiveTo --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName modifiedDate --type java.util.Date
+field reference --fieldName client --type ~.security.Users --cardinality MANY_TO_ONE
+field reference --fieldName advisor --type ~.security.Users --cardinality MANY_TO_ONE
+// script --file /Developer/stsWorkspace/crophealerbackend/dataEntryTemp.roo
+web mvc scaffold --class ~.web.UserAdvisorController --backingType ~.domain.UserAdvisor
+finder list
+finder add findUserAdvisorsByClientAndEnabled
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-03 10:33:25
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-03 10:34:01
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-03 10:34:29
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-03 10:37:59
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-03 12:41:40
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-03 22:04:01
+focus --class ~.domain.UserAdvisor
+finder list
+finder add findUserAdvisorsByAdvisor
+finder add findUserAdvisorsByAdvisorAndEnabled
+field string --fieldName status
+finder list
+finder add findUserAdvisorsByAdvisorAndStatusEquals
+finder add findUserAdvisorsByClientAndStatusEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-11-18 09:59:16
+jpa setup --database POSTGRES --provider HIBERNATE --databaseName crophealer --hostName localhost --userName crophealer --password ssc
+
+jpa setup --database POSTGRES --provider HIBERNATE --databaseName crophealer --hostName localhost --userName crophealer --password ssc
+
+focus --class ~.domain.Message
+field reference --fieldName field --type ~.domain.Field --cardinality MANY_TO_ONE
+
+focus --class ~.domain.Field
+
+field set --fieldName messages --type ~.domain.Message --cardinality ONE_TO_MANY --mappedBy field
+
+focus --class ~.domain.DiagnosedProblem
+
+field reference --fieldName field --type ~.domain.Field --cardinality MANY_TO_ONE
+
+focus --class ~.domain.Field
+
+field set --fieldName diagnosedProblems --type ~.domain.DiagnosedProblem --cardinality ONE_TO_MANY --mappedBy field
+
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-20 22:23:27

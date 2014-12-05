@@ -1,11 +1,8 @@
-
-entity jpa --class ~.domain.DiagnosedProblemPicture
-field string --fieldName name
-field string --fieldName pictureUrl
-field reference --fieldName diagnosedProblem --type ~.domain.DiagnosedProblem --cardinality MANY_TO_ONE
-
-focus --class ~.domain.DiagnosedProblem
-field set --fieldName pictures --type ~.domain.DiagnosedProblemPicture --cardinality ONE_TO_MANY --mappedBy diagnosedProblem
-field reference --fieldName plantPartPhaseProblem --type ~.domain.PlantPartPhaseProblem --cardinality MANY_TO_ONE
-
-
+entity jpa --class ~.domain.UserAdvisor
+field boolean --fieldName enabled
+field date --fieldName effectiveFrom --type java.util.Date
+field date --fieldName effectiveTo --type java.util.Date
+field date --fieldName createdDate --type java.util.Date
+field date --fieldName modifiedDate --type java.util.Date
+field reference --fieldName client --type ~.security.Users --cardinality MANY_TO_ONE
+field reference --fieldName advisor --type ~.security.Users --cardinality MANY_TO_ONE

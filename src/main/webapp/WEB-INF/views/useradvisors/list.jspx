@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_UserAdvisor" items="${useradvisors}" z="17ZWdk0EWrBJxPUN/S+JI+VlUfk=">
+        <table:table data="${useradvisors}" id="l_com_crophealer_domain_UserAdvisor" path="/useradvisors" z="DoojC1rADsQhhodTGT43E17ngjs=">
+            <table:column id="c_com_crophealer_domain_UserAdvisor_status" property="status"/>
+            <table:column id="c_com_crophealer_domain_UserAdvisor_client" property="client" z="ExaQRgaeV7hvuKXFT2t5lX7pn+M="/>
+            <table:column id="c_com_crophealer_domain_UserAdvisor_advisor" property="advisor" z="h+9Yr5R6SCYgxv9BVdF/wnzHrow="/>
+            <table:column date="true" dateTimePattern="${userAdvisor_effectivefrom_date_format}" id="c_com_crophealer_domain_UserAdvisor_effectiveFrom" property="effectiveFrom" z="Jg6ZWy2Bvey76kaJHI+nvyFE6dY="/>
+            <table:column date="true" dateTimePattern="${userAdvisor_effectiveto_date_format}" id="c_com_crophealer_domain_UserAdvisor_effectiveTo" property="effectiveTo" z="Q07Fl0uQ+cS4hjegLMj5py0D5vE="/>
+            <table:column date="true" dateTimePattern="${userAdvisor_createddate_date_format}" id="c_com_crophealer_domain_UserAdvisor_createdDate" property="createdDate" z="YZPHyZc6Kimlv6Rq+hC22ZJsxao="/>
+            <table:column date="true" dateTimePattern="${userAdvisor_modifieddate_date_format}" id="c_com_crophealer_domain_UserAdvisor_modifiedDate" property="modifiedDate" z="x3N19vztmgkZb3J5iU6YltvJViw="/>
+        </table:table>
+    </page:list>
+</div>

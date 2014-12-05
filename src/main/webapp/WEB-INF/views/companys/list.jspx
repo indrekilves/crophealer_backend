@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crophealer_domain_Company" items="${companys}" z="2IeeCatXNs8DDnwiHq7ZGhT584k=">
+        <table:table data="${companys}" id="l_com_crophealer_domain_Company" path="/companys" z="HCSBWdKAZxdyNxjAGRgzAv9Za6s=">
+            <table:column id="c_com_crophealer_domain_Company_name" property="name" z="PNJDVa1TpKHVQuKfNcbnmD1yWYM="/>
+            <table:column id="c_com_crophealer_domain_Company_address" property="address" z="QCfoYyl9vmi/TMsIX0sUvJXQpLA="/>
+            <table:column id="c_com_crophealer_domain_Company_phone" property="phone" z="2W0GqGAuPfMdsTpoFE1Ccc6xNWY="/>
+            <table:column id="c_com_crophealer_domain_Company_email" property="email" z="GjYu77IzDsBCnkyQmsJyZoExJKE="/>
+            <table:column id="c_com_crophealer_domain_Company_contactPerson" property="contactPerson" z="lKEHJMOQRYTLLr4ZBprvBArPmek="/>
+            <table:column id="c_com_crophealer_domain_Company_fieldSize" property="fieldSize" z="RKg7n1Wgs84I8IuhRfFGzIuDSsI="/>
+        </table:table>
+    </page:list>
+</div>
