@@ -7,7 +7,7 @@
 	<version>0.1.0.BUILD-SNAPSHOT</version>
 	<name>crophealer</name>
 	<properties>
-		<aspectj.version>1.7.2</aspectj.version>
+		<aspectj.version>1.8.4</aspectj.version>
 		<java.version>7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<roo.version>1.2.4.RELEASE</roo.version>
