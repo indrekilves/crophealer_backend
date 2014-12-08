@@ -12,7 +12,9 @@ public class MessageResource {
 	private String subject;
 	private String comment;
     private Long   senderID;  
+    private String senderName;
     private Long   receiverID;
+    private String receiverName;    
     private Long   diagnosedProblemID;
     private Long   fieldID;
     private Long   parentID;

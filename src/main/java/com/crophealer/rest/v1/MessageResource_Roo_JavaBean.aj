@@ -47,12 +47,28 @@ privileged aspect MessageResource_Roo_JavaBean {
         this.senderID = senderID;
     }
     
+    public String MessageResource.getSenderName() {
+        return this.senderName;
+    }
+    
+    public void MessageResource.setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+    
     public Long MessageResource.getReceiverID() {
         return this.receiverID;
     }
     
     public void MessageResource.setReceiverID(Long receiverID) {
         this.receiverID = receiverID;
+    }
+    
+    public String MessageResource.getReceiverName() {
+        return this.receiverName;
+    }
+    
+    public void MessageResource.setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
     }
     
     public Long MessageResource.getDiagnosedProblemID() {

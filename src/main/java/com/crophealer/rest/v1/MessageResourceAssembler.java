@@ -25,10 +25,12 @@ public class MessageResourceAssembler {
 		Users sender = m.getSender(); 
 		if (sender != null){
 			mr.setSenderID(sender.getId());
+			mr.setSenderName(sender.getUsername());
 		}
 		Users receiver = m.getReceiver(); 
 		if (receiver != null){
 			mr.setReceiverID(receiver.getId());
+			mr.setReceiverName(receiver.getUsername());
 		}
 		DiagnosedProblem dp = m.getDiagnosedProblem();
 		if (dp != null) {
