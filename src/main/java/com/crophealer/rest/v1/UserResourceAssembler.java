@@ -17,6 +17,7 @@ public class UserResourceAssembler {
 		//ur.setPassword(u.getPassword());
 		ur.setEmail(u.getEmail());
 		ur.setEnabled(u.getEnabled());
+		ur.setPhone(u.getPhone());
 		return ur;
 	}
 
