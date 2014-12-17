@@ -18,6 +18,16 @@ privileged aspect UserAdvisor_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<UserAdvisor> UserAdvisor.findUserAdvisorsByAdvisorAndClient(Users advisor, Users client) {
+        if (advisor == null) throw new IllegalArgumentException("The advisor argument is required");
+        if (client == null) throw new IllegalArgumentException("The client argument is required");
+        EntityManager em = UserAdvisor.entityManager();
+        TypedQuery<UserAdvisor> q = em.createQuery("SELECT o FROM UserAdvisor AS o WHERE o.advisor = :advisor AND o.client = :client", UserAdvisor.class);
+        q.setParameter("advisor", advisor);
+        q.setParameter("client", client);
+        return q;
+    }
+    
     public static TypedQuery<UserAdvisor> UserAdvisor.findUserAdvisorsByAdvisorAndStatusEquals(Users advisor, String status) {
         if (advisor == null) throw new IllegalArgumentException("The advisor argument is required");
         if (status == null || status.length() == 0) throw new IllegalArgumentException("The status argument is required");

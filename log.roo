@@ -679,3 +679,6 @@ finder add findMessagesBySender
 focus --class ~security.Assignments
 finder list
 finder add findAssignmentsesByUsr
+focus --class ~domain.UserAdvisor
+finder list
+finder add findUserAdvisorsByAdvisorAndClient

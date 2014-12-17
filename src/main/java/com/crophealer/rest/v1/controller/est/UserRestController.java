@@ -15,6 +15,7 @@ import com.crophealer.rest.v1.DiagnosedProblemResourceList;
 import com.crophealer.rest.v1.FieldResourceList;
 import com.crophealer.rest.v1.MessageResource;
 import com.crophealer.rest.v1.MessageResourceList;
+import com.crophealer.rest.v1.UserAdvisorResourceList;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.rest.v1.UserResourceList;
 import com.crophealer.rest.v1.UserRoleResourceList;
@@ -179,6 +180,19 @@ public class UserRestController extends GenericController{
 	}
     
     
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/roles")
+    public ResponseEntity<UserRoleResourceList> getRolesForUser(@PathVariable("id") Long id)
+	{   	
+	    return userRestService.getRolesForUser(id);		
+	}
+    
+    
+    @RequestMapping(method = RequestMethod.GET, value="/{uid}/advisors/{aid}/userAdvisors")
+    public ResponseEntity<UserAdvisorResourceList> getUserAdvisorsForUserAndAdvisor(@PathVariable("uid") Long userId, @PathVariable("aid") Long advisorId)
+	{   	
+	    return userRestService.getUserAdvisorsForUserAndAdvisor(userId, advisorId);		
+	}
+    
     // field / company
     
     
@@ -195,14 +209,7 @@ public class UserRestController extends GenericController{
 	{   	
 	    return userRestService.getCompaniesForUser(id);		
 	}
-    
-    
-    // Roles 
-    @RequestMapping(method = RequestMethod.GET, value="/{id}/roles")
-    public ResponseEntity<UserRoleResourceList> getRolesForUser(@PathVariable("id") Long id)
-	{   	
-	    return userRestService.getRolesForUser(id);		
-	}
+ 
     
     
 }

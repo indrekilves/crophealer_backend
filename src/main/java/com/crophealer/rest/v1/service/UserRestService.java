@@ -28,6 +28,8 @@ import com.crophealer.rest.v1.FieldResourceList;
 import com.crophealer.rest.v1.MessageResourceAssembler;
 import com.crophealer.rest.v1.MessageResourceList;
 import com.crophealer.rest.v1.RequestError;
+import com.crophealer.rest.v1.UserAdvisorResourceAssembler;
+import com.crophealer.rest.v1.UserAdvisorResourceList;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.rest.v1.UserResourceAssembler;
 import com.crophealer.rest.v1.UserResourceList;
@@ -362,6 +364,28 @@ public class UserRestService extends GenericRestService {
 		return new ResponseEntity<>(headers,HttpStatus.CREATED);
 	}
 
+	
+
+	public ResponseEntity<UserAdvisorResourceList> getUserAdvisorsForUserAndAdvisor(Long userId, Long advisorId) {
+		if (userId == null) throw new BadRequestException("User ID is missing");
+		if (advisorId == null) throw new BadRequestException("Advisor ID is missing");
+
+		Users user = Users.findUsers(userId);		
+		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + userId);
+
+		Users advisor = Users.findUsers(advisorId);		
+		if (advisor == null) throw new ResourceNotFoundException("Advisor not found by ID: " + advisorId);
+
+		TypedQuery<UserAdvisor> tq = UserAdvisor.findUserAdvisorsByAdvisorAndClient(advisor, user);
+		if (tq != null && tq.getResultList().isEmpty()) throw new ResourceNotFoundException("User Advisors not found for user: " + userId + " advisor: " + advisorId);	
+
+		List<UserAdvisor> userAdvisors = tq.getResultList();
+
+		UserAdvisorResourceAssembler asm = new UserAdvisorResourceAssembler();
+		UserAdvisorResourceList list = asm.toResource(userAdvisors);
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
 
 
 	public ResponseEntity<UserResourceList> getClientsForUser(Long id, String status) {
@@ -398,6 +422,8 @@ public class UserRestService extends GenericRestService {
 		return new ResponseEntity<>(url, HttpStatus.OK);
 	}
 
+
+	
 
 
 	public ResponseEntity<FieldResourceList> getFieldsForUser(Long id) {
@@ -467,5 +493,8 @@ public class UserRestService extends GenericRestService {
 
 		return new ResponseEntity<>(urrl, HttpStatus.OK);
 	}
+
+
+
 
  }
