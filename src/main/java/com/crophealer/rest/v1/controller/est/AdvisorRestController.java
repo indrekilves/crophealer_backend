@@ -57,7 +57,7 @@ public class AdvisorRestController extends GenericController{
     @RequestMapping(method = RequestMethod.GET, value="/{id}/messages")
 	public ResponseEntity<MessageResourceList> getMessagesForUser(@PathVariable("id") Long id)
 	{   	
-	    return userRestService.getMessagesForUser(id, "", "");		
+	    return userRestService.getAllMessagesForUser(id, "", "");		
 	}
     
     @RequestMapping(method = RequestMethod.GET, value="/{userID}/messages/{messageID}")
@@ -71,7 +71,7 @@ public class AdvisorRestController extends GenericController{
 	public ResponseEntity<MessageResourceList> getMessagesForUserWithType(@PathVariable("id") Long id,
 															              @RequestParam(value = "type", required = false) String type)
 	{   	
-	    return userRestService.getMessagesForUser(id, type, "");		
+	    return userRestService.getAllMessagesForUser(id, type, "");		
 	}
 
     
@@ -79,7 +79,7 @@ public class AdvisorRestController extends GenericController{
 	public ResponseEntity<MessageResourceList> getMessagesForUserWithStatus(@PathVariable("id") Long id,
 															              @RequestParam(value = "status", required = false) String status)
 	{   	
-	    return userRestService.getMessagesForUser(id, "", status);		
+	    return userRestService.getAllMessagesForUser(id, "", status);		
 	}
 
     @RequestMapping(method = RequestMethod.GET, value="/{id}/messages", params={"type", "status"})
@@ -87,7 +87,7 @@ public class AdvisorRestController extends GenericController{
 															            	@RequestParam(value = "type", required = false) String type,
 																            @RequestParam(value = "status", required = false) String status)
 	{   	
-	    return userRestService.getMessagesForUser(id, type, status);		
+	    return userRestService.getAllMessagesForUser(id, type, status);		
 	}
     
  

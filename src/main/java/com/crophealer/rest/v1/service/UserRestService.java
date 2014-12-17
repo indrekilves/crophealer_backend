@@ -173,28 +173,32 @@ public class UserRestService extends GenericRestService {
 	}
 
 	// messages
+	
 
-	public ResponseEntity<MessageResourceList> getMessagesForUser(Long id, String type, String status) {
+
+	public ResponseEntity<MessageResourceList> getAllMessagesForUser(Long id, String type, String status) {
+		return this.getMessagesForUser(id, type, status, 0, Integer.MAX_VALUE);
+	}
+
+
+	public ResponseEntity<MessageResourceList> getMessagesForUser(Long id, String type, String status, Integer offset, Integer limit) {
 		System.out.println("getMessagesByUserID - try to get for id:" + id);
 
-		if (id == null) throw new BadRequestException("ID is missng");
-		if (type == null) throw new BadRequestException("Type is missng");
-
+		if (id == null) throw new BadRequestException("ID is missing");
+		if (type == null) throw new BadRequestException("Type is missing");
 		
 		Users user = Users.findUsers(id);
 		if (user == null) throw new ResourceNotFoundException("User not found for ID: " + id);		
 		
-		List<Message> messages = findMessages(type, status, user);
+		List<Message> messages = findMessages(type, status, user, offset, limit);
 			
 		MessageResourceAssembler asm = new MessageResourceAssembler();
 		MessageResourceList mrl = asm.toResource(messages);
 		
 		return new ResponseEntity<>(mrl, HttpStatus.OK);
 	}
-
-
 	
-	private List<Message> findMessages(String type, String status, Users user) {
+	private List<Message> findMessages(String type, String status, Users user, Integer offset, Integer limit) {
 		List<Message> messages = new ArrayList<Message>();
 		Set<Message> msgSet = new HashSet<Message>();
 		switch (type.toUpperCase()) {
@@ -222,14 +226,35 @@ public class UserRestService extends GenericRestService {
 		if (msgSet != null && !msgSet.isEmpty()){
 			messages = new ArrayList<Message>(msgSet);
 		}
-		
 		if (status != null && ! status.isEmpty()){
 			messages = filterMessagesByStatus(messages, status);
 		}
 	
 		return messages;
 	}
+/*
 
+	private List<Message> getSentMessages(Users user, Integer offset, Integer limit) {
+		int firstResult = offset == null ? 0 : offset;
+		int maxResults  = limit  == null ? Integer.MAX_VALUE : limit;
+		TypedQuery<Message> tq = Message.findMessagesBySender(user).setFirstResult(firstResult).setMaxResults(maxResults);
+		if (tq != null && tq.getResultList().size() > 0){
+			return tq.getResultList();			
+		}
+		return null;
+	}
+
+
+	private List<Message> getReceivedMessages(Users user, Integer offset, Integer limit) {
+		int firstResult = offset == null ? 0 : offset;
+		int maxResults  = limit  == null ? Integer.MAX_VALUE : limit;
+		TypedQuery<Message> tq = Message.findMessagesByReceiver(user).setFirstResult(firstResult).setMaxResults(maxResults);
+		if (tq != null && tq.getResultList().size() > 0){
+			return tq.getResultList();			
+		}
+		return null;
+	}
+*/
 
 	private List<Message> filterMessagesByStatus(List<Message> origMessages, String status) {
 		List<Message> filteredMessages = new ArrayList<Message>();
@@ -410,6 +435,9 @@ public class UserRestService extends GenericRestService {
 
 		return new ResponseEntity<>(crl, HttpStatus.OK);
 	}
+
+
+
 
 
 

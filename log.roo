@@ -667,3 +667,10 @@ field set --fieldName diagnosedProblems --type ~.domain.DiagnosedProblem --cardi
 
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-11-20 22:23:27
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-12-08 10:01:30
+focus --class ~.security.Users
+finder list
+focus --class ~.domain.Message
+finder list
+finder add findMessagesByReceiver
+finder add findMessagesBySender
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-12-08 12:38:03

@@ -5,10 +5,10 @@
     <page:list id="pl_com_crophealer_domain_Message" items="${messages}" z="Jki6q4mVH1Fplv6+YgE3bVBkczM=">
         <table:table data="${messages}" id="l_com_crophealer_domain_Message" path="/messages" z="1mu0I2p2lzQDNCaNUbXn5JRrQSY=">
             <table:column id="c_com_crophealer_domain_Message_subject" property="subject" z="joe8pDJXHsnR6UqYV3eZmyKT3EA="/>
-            <table:column id="c_com_crophealer_domain_Message_comment" property="comment" z="TxujJJEbNmLDvD4nx93lx4kNOXI="/>
+            <table:column id="c_com_crophealer_domain_Message_comment" property="comment" maxLength="25" z="TxujJJEbNmLDvD4nx93lx4kNOXI="/>
             <table:column id="c_com_crophealer_domain_Message_status" property="status" z="UlweBpUUdfqE4SRNzq7Xmm5dOZo="/>
-            <table:column id="c_com_crophealer_domain_Message_sender" property="sender" z="YIBebWUhZc1jjV9AuufCT/G3/Js="/>
-            <table:column id="c_com_crophealer_domain_Message_receiver" property="receiver" z="lrjtmQ8aNoCg5zUW8wbGd/RAegI="/>
+            <table:column id="c_com_crophealer_domain_Message_sender" property="sender" maxLength="25" z="YIBebWUhZc1jjV9AuufCT/G3/Js="/>
+            <table:column id="c_com_crophealer_domain_Message_receiver" property="receiver" maxLength="25" z="lrjtmQ8aNoCg5zUW8wbGd/RAegI="/>
             <table:column id="c_com_crophealer_domain_Message_diagnosedProblem" property="diagnosedProblem" z="ysVpGgEtFvBtHmjZ5xzFjXOKoPU="/>
         </table:table>
     </page:list>
