@@ -31,6 +31,8 @@ import com.crophealer.rest.v1.RequestError;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.rest.v1.UserResourceAssembler;
 import com.crophealer.rest.v1.UserResourceList;
+import com.crophealer.rest.v1.UserRoleResourceAssembler;
+import com.crophealer.rest.v1.UserRoleResourceList;
 import com.crophealer.rest.v1.controller.est.BadRequestException;
 import com.crophealer.rest.v1.controller.est.ConflictException;
 import com.crophealer.rest.v1.controller.est.ResourceNotFoundException;
@@ -438,7 +440,32 @@ public class UserRestService extends GenericRestService {
 
 
 
+	public ResponseEntity<UserRoleResourceList> getRolesForUser(Long id) {
+		if (id == null) throw new BadRequestException("ID is missing");
+		
+		Users user = Users.findUsers(id);
+		if (user == null) throw new ResourceNotFoundException("User not found by ID: " + id);
+		
+		List <Authorities> roles = new ArrayList<Authorities>();
+		
+		TypedQuery<Assignments> assignmentsTQ = Assignments.findAssignmentsesByUsr(user);
+		if (assignmentsTQ != null && assignmentsTQ.getResultList().size() > 0){
+			List<Assignments> assignments = assignmentsTQ.getResultList();
+			if (assignments != null){
+				for (Assignments assignment : assignments) {
+					if (assignment != null){
+						roles.add(assignment.getAuthority());
+					}
+				}
+			}
+		}	
+		
+		if (roles.isEmpty()) throw new ResourceNotFoundException("Roles not found for user: " + id);
 
+		UserRoleResourceAssembler asm = new UserRoleResourceAssembler();
+		UserRoleResourceList urrl = asm.toResource(roles);
 
+		return new ResponseEntity<>(urrl, HttpStatus.OK);
+	}
 
  }

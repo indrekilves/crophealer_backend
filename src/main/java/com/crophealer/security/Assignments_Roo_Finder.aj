@@ -19,6 +19,14 @@ privileged aspect Assignments_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<Assignments> Assignments.findAssignmentsesByUsr(Users usr) {
+        if (usr == null) throw new IllegalArgumentException("The usr argument is required");
+        EntityManager em = Assignments.entityManager();
+        TypedQuery<Assignments> q = em.createQuery("SELECT o FROM Assignments AS o WHERE o.usr = :usr", Assignments.class);
+        q.setParameter("usr", usr);
+        return q;
+    }
+    
     public static TypedQuery<Assignments> Assignments.findAssignmentsesByUsrAndAuthority(Users usr, Authorities authority) {
         if (usr == null) throw new IllegalArgumentException("The usr argument is required");
         if (authority == null) throw new IllegalArgumentException("The authority argument is required");

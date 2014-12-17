@@ -17,6 +17,7 @@ import com.crophealer.rest.v1.MessageResource;
 import com.crophealer.rest.v1.MessageResourceList;
 import com.crophealer.rest.v1.UserResource;
 import com.crophealer.rest.v1.UserResourceList;
+import com.crophealer.rest.v1.UserRoleResourceList;
 import com.crophealer.rest.v1.service.MessageRestService;
 import com.crophealer.rest.v1.service.UserRestService;
 
@@ -195,6 +196,13 @@ public class UserRestController extends GenericController{
 	    return userRestService.getCompaniesForUser(id);		
 	}
     
+    
+    // Roles 
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/roles")
+    public ResponseEntity<UserRoleResourceList> getRolesForUser(@PathVariable("id") Long id)
+	{   	
+	    return userRestService.getRolesForUser(id);		
+	}
     
     
 }

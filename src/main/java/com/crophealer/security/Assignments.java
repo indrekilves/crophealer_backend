@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findAssignmentsesByUsrAndAuthority", "findAssignmentsesByAuthority" })
+@RooJpaActiveRecord(finders = { "findAssignmentsesByUsrAndAuthority", "findAssignmentsesByAuthority", "findAssignmentsesByUsr" })
 public class Assignments {
 
     /**
