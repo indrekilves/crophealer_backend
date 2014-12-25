@@ -173,11 +173,11 @@ public class UserRestController extends GenericController
         return userRestService.getAdvisorsForUser( id );
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/{id}/advisors")
-    public ResponseEntity < String > addAdvisorsToUser( @PathVariable("id")
-    Long userId, UserResource advisorResource )
+    @RequestMapping(method = RequestMethod.POST, value = "/{uid}/advisors/{aid}")
+    public ResponseEntity < String > addAdvisorsToUser( @PathVariable("uid")
+    Long userId, @PathVariable("aid")
+    Long advisorId )
     {
-        Long advisorId = advisorResource.getId();
         return userRestService.addAdvisorsToUser( userId, advisorId );
     }
 
