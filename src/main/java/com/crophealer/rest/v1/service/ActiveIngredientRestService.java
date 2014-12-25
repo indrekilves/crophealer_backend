@@ -21,108 +21,112 @@ import com.crophealer.rest.v1.ProductResourceAssembler;
 import com.crophealer.rest.v1.ProductResourceList;
 
 @Service
-public class ActiveIngredientRestService extends GenericRestService {
+public class ActiveIngredientRestService extends GenericRestService
+{
 
-	
-	public ResponseEntity<ActiveIngredientResourceList> getAllActiveIngredientsByLanguage(Languages language) {
-		ResponseEntity<ActiveIngredientResourceList> response; 
-		if (language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
+    public ResponseEntity < ActiveIngredientResourceList > getAllActiveIngredientsByLanguage( Languages language )
+    {
+        ResponseEntity < ActiveIngredientResourceList > response;
+        if ( language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
-		ActiveIngredientResourceAssembler asm = new ActiveIngredientResourceAssembler();
-		ActiveIngredientResourceList airl = asm.toResource(ActiveIngredient.findAllActiveIngredients(), language);
-		
-		response = new ResponseEntity<>(airl, HttpStatus.OK);
-		return response;		
-	}
-	
-	
-	public ResponseEntity<ActiveIngredientResource> getActiveIngredientByLanguage(Long id, Languages language)
-	{   	
-		ResponseEntity<ActiveIngredientResource> response; 
-		
-		if (id == null || language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-			
-		ActiveIngredient activeIngredient = ActiveIngredient.findActiveIngredient(id);
-		if (activeIngredient == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
-			
-		ActiveIngredientResourceAssembler asm = new ActiveIngredientResourceAssembler();
-		ActiveIngredientResource air = asm.toResource(activeIngredient, language);
-				
-		response = new ResponseEntity<>(air, HttpStatus.OK);
-		return response;		
-	}
+        ActiveIngredientResourceAssembler asm = new ActiveIngredientResourceAssembler();
+        ActiveIngredientResourceList airl = asm.toResource( ActiveIngredient.findAllActiveIngredients(), language );
 
+        response = new ResponseEntity <>( airl, HttpStatus.OK );
+        return response;
+    }
 
+    public ResponseEntity < ActiveIngredientResource > getActiveIngredientByLanguage( Long id, Languages language )
+    {
+        ResponseEntity < ActiveIngredientResource > response;
 
-	public ResponseEntity<ProductResourceList> getProductsForActiveIngrediensByLanguage(Long id, Languages language) {
-		System.out.println("getProductsForActiveIngrediensByLanguage - try to get for id:" + id + " lang:" + language);
-		
-		ResponseEntity<ProductResourceList> response; 
+        if ( id == null || language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
-		if (id == null || language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-			
-		ActiveIngredient activeIngredient = ActiveIngredient.findActiveIngredient(id);
-		if (activeIngredient == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
-		
-		Set<ProblemAIProduct> paips = activeIngredient.getProblemProductLinks();
-		
-		// Get Products
-		List <Product> products = new ArrayList<Product>();
-		for (ProblemAIProduct problemAIProduct : paips) {
-			products.add(problemAIProduct.getProduct());
-		}
-		
-		ProductResourceAssembler asm = new ProductResourceAssembler();
-		ProductResourceList prl = asm.toResource(products, language);
-				
-		response = new ResponseEntity<>(prl, HttpStatus.OK);
-		return response;	
-	}
+        ActiveIngredient activeIngredient = ActiveIngredient.findActiveIngredient( id );
+        if ( activeIngredient == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
 
+        ActiveIngredientResourceAssembler asm = new ActiveIngredientResourceAssembler();
+        ActiveIngredientResource air = asm.toResource( activeIngredient, language );
 
-	public ResponseEntity<PaipResourceList> getPaipsById(Long aiID) {
-		System.out.println("getPaipsById - try to get for aiId:" + aiID);
-		
-		ResponseEntity<PaipResourceList> response; 
-	
-		if (aiID == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-		
-		ActiveIngredient activeIngredient = ActiveIngredient.findActiveIngredient(aiID);
-		if (activeIngredient == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
-						 
-		// Get ProblemActiveIngredientProduct links 
-		Set<ProblemAIProduct> paipsSet = activeIngredient.getProblemProductLinks();
-		List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
-		
-		PaipResourceAssembler asm = new PaipResourceAssembler();
-		PaipResourceList prl = asm.toResource(paips);
+        response = new ResponseEntity <>( air, HttpStatus.OK );
+        return response;
+    }
 
-		response = new ResponseEntity<>(prl, HttpStatus.OK);
-		return response;	
-	}
+    public ResponseEntity < ProductResourceList > getProductsForActiveIngrediensByLanguage( Long id, Languages language )
+    {
+        System.out.println( "getProductsForActiveIngrediensByLanguage - try to get for id:" + id + " lang:" + language );
 
+        ResponseEntity < ProductResourceList > response;
 
+        if ( id == null || language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
+        ActiveIngredient activeIngredient = ActiveIngredient.findActiveIngredient( id );
+        if ( activeIngredient == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
 
- }
+        Set < ProblemAIProduct > paips = activeIngredient.getProblemProductLinks();
+
+        // Get Products
+        List < Product > products = new ArrayList < Product >();
+        for ( ProblemAIProduct problemAIProduct : paips )
+        {
+            products.add( problemAIProduct.getProduct() );
+        }
+
+        ProductResourceAssembler asm = new ProductResourceAssembler();
+        ProductResourceList prl = asm.toResource( products, language );
+
+        response = new ResponseEntity <>( prl, HttpStatus.OK );
+        return response;
+    }
+
+    public ResponseEntity < PaipResourceList > getPaipsById( Long aiID )
+    {
+        System.out.println( "getPaipsById - try to get for aiId:" + aiID );
+
+        ResponseEntity < PaipResourceList > response;
+
+        if ( aiID == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
+
+        ActiveIngredient activeIngredient = ActiveIngredient.findActiveIngredient( aiID );
+        if ( activeIngredient == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
+
+        // Get ProblemActiveIngredientProduct links
+        Set < ProblemAIProduct > paipsSet = activeIngredient.getProblemProductLinks();
+        List < ProblemAIProduct > paips = new ArrayList < ProblemAIProduct >( paipsSet );
+
+        PaipResourceAssembler asm = new PaipResourceAssembler();
+        PaipResourceList prl = asm.toResource( paips );
+
+        response = new ResponseEntity <>( prl, HttpStatus.OK );
+        return response;
+    }
+
+}

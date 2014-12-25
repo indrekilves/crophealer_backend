@@ -4,45 +4,55 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class FileUploadForm {
-	
-	private String pppProblemId;
-	private String location;	
-	private String symptoms;
-	private List<MultipartFile> files;
-	
+public class FileUploadForm
+{
 
-	
-	public String getPppProblemId() {
-		return pppProblemId;
-	}
+    private String pppProblemId;
 
-	public void setPppProblemId(String pppProblemId) {
-		this.pppProblemId = pppProblemId;
-	}
+    private String location;
 
-	public String getLocation() {
-		return location;
-	}
+    private String symptoms;
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    private List < MultipartFile > files;
 
-	public String getSymptoms() {
-		return symptoms;
-	}
+    public String getPppProblemId()
+    {
+        return pppProblemId;
+    }
 
-	public void setSymptoms(String symptoms) {
-		this.symptoms = symptoms;
-	}
+    public void setPppProblemId( String pppProblemId )
+    {
+        this.pppProblemId = pppProblemId;
+    }
 
-	public List<MultipartFile> getFiles() {
-		return files;
-	}
+    public String getLocation()
+    {
+        return location;
+    }
 
-	public void setFiles(List<MultipartFile> files) {
-		this.files = files;
-	}
+    public void setLocation( String location )
+    {
+        this.location = location;
+    }
+
+    public String getSymptoms()
+    {
+        return symptoms;
+    }
+
+    public void setSymptoms( String symptoms )
+    {
+        this.symptoms = symptoms;
+    }
+
+    public List < MultipartFile > getFiles()
+    {
+        return files;
+    }
+
+    public void setFiles( List < MultipartFile > files )
+    {
+        this.files = files;
+    }
 
 }

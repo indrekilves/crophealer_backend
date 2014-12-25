@@ -1,4 +1,5 @@
 package com.crophealer.domain;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -11,7 +12,8 @@ import javax.persistence.OneToMany;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findProducersByNameEquals" })
-public class Producer {
+public class Producer
+{
 
     /**
      */
@@ -37,5 +39,5 @@ public class Producer {
     /**
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producer")
-    private Set<Product> products = new HashSet<Product>();
+    private Set < Product > products = new HashSet < Product >();
 }

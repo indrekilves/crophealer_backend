@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "products")
-public class ProductResourceList {
+public class ProductResourceList
+{
 
-	private List<ProductResource> products;
+    private List < ProductResource > products;
 
-	public ProductResourceList() {
-	}
+    public ProductResourceList()
+    {
+    }
 
-	public ProductResourceList(List<ProductResource> products) {
-		this.setProducts(products);
-	}
+    public ProductResourceList( List < ProductResource > products )
+    {
+        this.setProducts( products );
+    }
 
 }

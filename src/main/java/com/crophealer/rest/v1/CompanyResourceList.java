@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "companies")
-public class CompanyResourceList {
+public class CompanyResourceList
+{
 
-	private List<CompanyResource> companies;
+    private List < CompanyResource > companies;
 
-	public CompanyResourceList() {
-	}
+    public CompanyResourceList()
+    {
+    }
 
-	public CompanyResourceList(List<CompanyResource> companies) {
-		this.setCompanies(companies);
-	}
+    public CompanyResourceList( List < CompanyResource > companies )
+    {
+        this.setCompanies( companies );
+    }
 
 }

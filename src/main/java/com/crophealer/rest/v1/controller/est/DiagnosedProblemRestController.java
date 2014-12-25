@@ -12,45 +12,45 @@ import com.crophealer.model.upload.FileUploadForm;
 import com.crophealer.rest.v1.DiagnosedProblemResource;
 import com.crophealer.rest.v1.service.DiagnosedProblemRestService;
 
-
 @Controller
 @RequestMapping("/rest/v1/est/diagnosedProblems")
+public class DiagnosedProblemRestController
+{
 
-public class DiagnosedProblemRestController {
+    @Autowired
+    private DiagnosedProblemRestService diagnosedProblemRestService;
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ResponseEntity < DiagnosedProblemResource > getDiagnoseProblem( @PathVariable("id")
+    Long id )
+    {
+        return diagnosedProblemRestService
+                .getDiagnosedProblemByLanguage( id, diagnosedProblemRestService.getEstonian() );
+    }
 
-	
-	@Autowired
-	private DiagnosedProblemRestService diagnosedProblemRestService;
-	
-	
-	@RequestMapping(method = RequestMethod.GET, value="/{id}")
-	public ResponseEntity<DiagnosedProblemResource> getDiagnoseProblem(@PathVariable("id") Long id)
-	{   	
-	    return diagnosedProblemRestService.getDiagnosedProblemByLanguage(id, diagnosedProblemRestService.getEstonian());		
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity < Void > saveDiagnosedProblem( @ModelAttribute("uploadForm")
+    FileUploadForm uploadForm )
+    {
+        return diagnosedProblemRestService.saveDiagnosedProblemByLanguage( uploadForm,
+                diagnosedProblemRestService.getEstonian() );
+    }
 
-	
-	
-	@RequestMapping(method = RequestMethod.POST)	
-	public ResponseEntity<Void> saveDiagnosedProblem(@ModelAttribute("uploadForm") FileUploadForm uploadForm){
-	    return diagnosedProblemRestService.saveDiagnosedProblemByLanguage(uploadForm, diagnosedProblemRestService.getEstonian());		
-	}
-	
-	
     @RequestMapping(value = "/show", method = RequestMethod.GET)
-    public String displayForm() {
+    public String displayForm()
+    {
         return "file_upload_form";
     }
-	
-	
-    @RequestMapping(value = "/save", method = RequestMethod.POST)	
-	public String saveAndShowDiagnosedProblem(@ModelAttribute("uploadForm") FileUploadForm uploadForm){
-    	ResponseEntity<Void> re = diagnosedProblemRestService.saveDiagnosedProblemByLanguage(uploadForm, diagnosedProblemRestService.getEstonian());		
-    	
-    	String url = re.getHeaders().getLocation().toString();
-    	return "redirect:" + url.replace("/save/", "/");
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveAndShowDiagnosedProblem( @ModelAttribute("uploadForm")
+    FileUploadForm uploadForm )
+    {
+        ResponseEntity < Void > re = diagnosedProblemRestService.saveDiagnosedProblemByLanguage( uploadForm,
+                diagnosedProblemRestService.getEstonian() );
+
+        String url = re.getHeaders().getLocation().toString();
+        return "redirect:" + url.replace( "/save/", "/" );
     }
-	
 
 }

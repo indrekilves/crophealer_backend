@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "producers")
-public class ProducerResourceList {
+public class ProducerResourceList
+{
 
-	private List<ProducerResource> producers;
+    private List < ProducerResource > producers;
 
-	public ProducerResourceList() {
-	}
+    public ProducerResourceList()
+    {
+    }
 
-	public ProducerResourceList(List<ProducerResource> producers) {
-		this.setProducers(producers);
-	}
+    public ProducerResourceList( List < ProducerResource > producers )
+    {
+        this.setProducers( producers );
+    }
 
 }

@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "resellers")
-public class ResellerResourceList {
+public class ResellerResourceList
+{
 
-	private List<ResellerResource> resellers;
+    private List < ResellerResource > resellers;
 
-	public ResellerResourceList() {
-	}
+    public ResellerResourceList()
+    {
+    }
 
-	public ResellerResourceList(List<ResellerResource> resellers) {
-		this.setResellers(resellers);
-	}
+    public ResellerResourceList( List < ResellerResource > resellers )
+    {
+        this.setResellers( resellers );
+    }
 
 }

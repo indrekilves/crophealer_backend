@@ -10,44 +10,47 @@ import com.crophealer.rest.v1.PaipResource;
 import com.crophealer.rest.v1.PaipResourceAssembler;
 import com.crophealer.rest.v1.PaipResourceList;
 
-public class PaipRestService {
+public class PaipRestService
+{
 
-	public ResponseEntity<PaipResourceList> getAllPaips() {
-		System.out.println("getAllPaips");
-		
-		ResponseEntity<PaipResourceList> response; 
-		List<ProblemAIProduct>paips = ProblemAIProduct.findAllProblemAIProducts();
-	
-		PaipResourceAssembler asm = new PaipResourceAssembler();
-		PaipResourceList prl = asm.toResource(paips);
+    public ResponseEntity < PaipResourceList > getAllPaips()
+    {
+        System.out.println( "getAllPaips" );
 
-		response = new ResponseEntity<>(prl, HttpStatus.OK);
-		return response;	
-	}
+        ResponseEntity < PaipResourceList > response;
+        List < ProblemAIProduct > paips = ProblemAIProduct.findAllProblemAIProducts();
 
-	
-	
-	public ResponseEntity<PaipResource> getPaipByID(Long id) {
-		System.out.println("getPaipByID: " + id);
+        PaipResourceAssembler asm = new PaipResourceAssembler();
+        PaipResourceList prl = asm.toResource( paips );
 
-		ResponseEntity<PaipResource> response; 
+        response = new ResponseEntity <>( prl, HttpStatus.OK );
+        return response;
+    }
 
-		if (id == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-		
-		ProblemAIProduct paip = ProblemAIProduct.findProblemAIProduct(id);
-		if (paip == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
-		
-		PaipResourceAssembler asm = new PaipResourceAssembler();
-		PaipResource pr = asm.toResource(paip);
+    public ResponseEntity < PaipResource > getPaipByID( Long id )
+    {
+        System.out.println( "getPaipByID: " + id );
 
-		response = new ResponseEntity<>(pr, HttpStatus.OK);
-		return response;	
-	}
+        ResponseEntity < PaipResource > response;
+
+        if ( id == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
+
+        ProblemAIProduct paip = ProblemAIProduct.findProblemAIProduct( id );
+        if ( paip == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
+
+        PaipResourceAssembler asm = new PaipResourceAssembler();
+        PaipResource pr = asm.toResource( paip );
+
+        response = new ResponseEntity <>( pr, HttpStatus.OK );
+        return response;
+    }
 
 }

@@ -6,29 +6,31 @@ import java.util.Set;
 
 import com.crophealer.domain.ProblemPicture;
 
-public class ProblemPictureResourceAssembler {
+public class ProblemPictureResourceAssembler
+{
 
-	
+    public ProblemPictureResource toResource( ProblemPicture pp )
+    {
 
-	public ProblemPictureResource toResource(ProblemPicture pp) {
-		
-		ProblemPictureResource spr = new ProblemPictureResource();
-		spr.setId(pp.getId());
-		spr.setName(pp.getName());
-		spr.setPictureUrl(pp.getPictureUrl());
-		
-		return spr;
-	}
+        ProblemPictureResource spr = new ProblemPictureResource();
+        spr.setId( pp.getId() );
+        spr.setName( pp.getName() );
+        spr.setPictureUrl( pp.getPictureUrl() );
 
-	
-	public ProblemPictureResourceList toResource(Set<ProblemPicture> ppl) {
-		if (ppl == null) return null;
+        return spr;
+    }
 
-		List<ProblemPictureResource> prl = new ArrayList<ProblemPictureResource>();
-		for (ProblemPicture sp : ppl) {
-			prl.add(toResource(sp));
-		}
-		
-		return new ProblemPictureResourceList(prl);
-	}
+    public ProblemPictureResourceList toResource( Set < ProblemPicture > ppl )
+    {
+        if ( ppl == null )
+            return null;
+
+        List < ProblemPictureResource > prl = new ArrayList < ProblemPictureResource >();
+        for ( ProblemPicture sp : ppl )
+        {
+            prl.add( toResource( sp ) );
+        }
+
+        return new ProblemPictureResourceList( prl );
+    }
 }

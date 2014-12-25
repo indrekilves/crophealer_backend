@@ -13,42 +13,42 @@ import com.crophealer.rest.v1.PaipResourceList;
 import com.crophealer.rest.v1.ProductResourceList;
 import com.crophealer.rest.v1.service.ActiveIngredientRestService;
 
-
 @Controller
 @RequestMapping("/rest/v1/est/activeIngredients")
+public class ActiveIngredientRestController
+{
 
-public class ActiveIngredientRestController {
+    @Autowired
+    private ActiveIngredientRestService activeIngredientRestService;
 
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity < ActiveIngredientResourceList > getAllActiveIngredients()
+    {
+        return activeIngredientRestService
+                .getAllActiveIngredientsByLanguage( activeIngredientRestService.getEstonian() );
+    }
 
-	
-	@Autowired
-	private ActiveIngredientRestService activeIngredientRestService;
-	
-	@RequestMapping(method = RequestMethod.GET)	
-	public ResponseEntity<ActiveIngredientResourceList> getAllActiveIngredients(){
-	    return activeIngredientRestService.getAllActiveIngredientsByLanguage(activeIngredientRestService.getEstonian());		
-	}
-	
-	
-    @RequestMapping(method = RequestMethod.GET, value="/{id}")
-	public ResponseEntity<ActiveIngredientResource> getActiveIngredient(@PathVariable("id") Long id)
-	{   	
-	    return activeIngredientRestService.getActiveIngredientByLanguage(id, activeIngredientRestService.getEstonian());		
-	}
-    
-    
-    
-    @RequestMapping(method = RequestMethod.GET, value="/{id}/products")
-	public ResponseEntity<ProductResourceList> getProductsForActiveIngrediens(@PathVariable("id") Long id)
-	{   	
-	    return activeIngredientRestService.getProductsForActiveIngrediensByLanguage(id, activeIngredientRestService.getEstonian());		
-	}
-    
-    
-    @RequestMapping(method = RequestMethod.GET, value="/{id}/paips")
-	public ResponseEntity<PaipResourceList> getPaips(@PathVariable("id") Long id)
-	{   	
-	    return activeIngredientRestService.getPaipsById(id);		
-	}
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ResponseEntity < ActiveIngredientResource > getActiveIngredient( @PathVariable("id")
+    Long id )
+    {
+        return activeIngredientRestService
+                .getActiveIngredientByLanguage( id, activeIngredientRestService.getEstonian() );
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/products")
+    public ResponseEntity < ProductResourceList > getProductsForActiveIngrediens( @PathVariable("id")
+    Long id )
+    {
+        return activeIngredientRestService.getProductsForActiveIngrediensByLanguage( id,
+                activeIngredientRestService.getEstonian() );
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/paips")
+    public ResponseEntity < PaipResourceList > getPaips( @PathVariable("id")
+    Long id )
+    {
+        return activeIngredientRestService.getPaipsById( id );
+    }
 
 }

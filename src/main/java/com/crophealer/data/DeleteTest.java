@@ -10,21 +10,24 @@ import org.springframework.transaction.annotation.Transactional;
 import com.crophealer.domain.Country;
 
 @Component
-public class DeleteTest {
+public class DeleteTest
+{
 
-	// Injected database connection:
-	@PersistenceContext
-	private EntityManager em;
+    // Injected database connection:
+    @PersistenceContext
+    private EntityManager em;
 
-	// TODO rewrite the persistance/db functions
+    // TODO rewrite the persistance/db functions
 
-	@Transactional
-	public void persist(Country form) {
-		em.persist(form);
-	}
+    @Transactional
+    public void persist( Country form )
+    {
+        em.persist( form );
+    }
 
-	public void getAllRequests() {
-		Query query = em.createQuery("DELETE FROM Country c");
-		query.executeUpdate();
-	}
+    public void getAllRequests()
+    {
+        Query query = em.createQuery( "DELETE FROM Country c" );
+        query.executeUpdate();
+    }
 }

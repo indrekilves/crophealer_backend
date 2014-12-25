@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "diagnosedProblemPictures")
-public class DiagnosedProblemPictureResourceList {
+public class DiagnosedProblemPictureResourceList
+{
 
-	private List<DiagnosedProblemPictureResource> diagnosedProblemPictures;
+    private List < DiagnosedProblemPictureResource > diagnosedProblemPictures;
 
-	public DiagnosedProblemPictureResourceList() {
-	}
+    public DiagnosedProblemPictureResourceList()
+    {
+    }
 
-	public DiagnosedProblemPictureResourceList(List<DiagnosedProblemPictureResource> diagnosedProblemPictures) {
-		this.setDiagnosedProblemPictures(diagnosedProblemPictures);
-	}
+    public DiagnosedProblemPictureResourceList( List < DiagnosedProblemPictureResource > diagnosedProblemPictures )
+    {
+        this.setDiagnosedProblemPictures( diagnosedProblemPictures );
+    }
 
 }

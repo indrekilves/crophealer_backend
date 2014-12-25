@@ -21,88 +21,92 @@ import com.crophealer.rest.v1.SymptomResourceAssembler;
 import com.crophealer.rest.v1.SymptomResourceList;
 
 @Service
-public class PlantPartPhaseRestService extends GenericRestService {
+public class PlantPartPhaseRestService extends GenericRestService
+{
 
-	
-	public ResponseEntity<SymptomResourceList> getSymptomsByLanguage(Long id, Languages language) {
-		System.out.println("getSymptomsByLanguage - try to get for PPPID: " + id + " lang:" + language);
-		ResponseEntity<SymptomResourceList> response;
-	
-		if (id == null || language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-		
-		
-		// Get PlantPartPhase
-		PlantPartPhase ppp = PlantPartPhase.findPlantPartPhase(id);
-		if (ppp == null){
-			 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			 return response;
-		 }
-		
-		Set<PlantPartPhaseSymptom> pppSymptomsSet = ppp.getSymptoms();
-		if (pppSymptomsSet == null){
-			 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			 return response;
-		 }
-		
-		List<Symptom> symptoms = new ArrayList<Symptom>();
-		for (PlantPartPhaseSymptom plantPartPhaseSymptom : pppSymptomsSet) {
-			Symptom symptom = plantPartPhaseSymptom.getSymptom();
-			if (symptom != null){
-				if (!symptoms.contains(symptom))
-				{
-					symptoms.add(symptom);
-				}
-			}	
-		}
-		
+    public ResponseEntity < SymptomResourceList > getSymptomsByLanguage( Long id, Languages language )
+    {
+        System.out.println( "getSymptomsByLanguage - try to get for PPPID: " + id + " lang:" + language );
+        ResponseEntity < SymptomResourceList > response;
 
-		Comparator<Symptom> comparator = new SymptomsByTranslationsComparator(language);
-		Collections.sort(symptoms, comparator);
+        if ( id == null || language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
+        // Get PlantPartPhase
+        PlantPartPhase ppp = PlantPartPhase.findPlantPartPhase( id );
+        if ( ppp == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
 
-		SymptomResourceAssembler asm = new SymptomResourceAssembler();
-    	SymptomResourceList srl = asm.toResource(symptoms, language);
-		
-		response = new ResponseEntity<>(srl, HttpStatus.OK);
-		return response;
-	}
-	
-	
-	
-	@Deprecated
-	public ResponseEntity<PlantPartPhaseSymptomResourceList> getPlantPartPhaseSymptomsByLanguage(Long id, Languages language) {
-		System.out.println("getPlantPartPhaseSymptomsByLanguage - try to get for PPPID: " + id + " lang:" + language);
-		ResponseEntity<PlantPartPhaseSymptomResourceList> response;
-	
-		if (id == null || language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-		
-		
-		// Get PlantPartPhase
-		PlantPartPhase ppp = PlantPartPhase.findPlantPartPhase(id);
-		if (ppp == null){
-			 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			 return response;
-		 }
-		
-		Set<PlantPartPhaseSymptom> pppSymptomsSet = ppp.getSymptoms();
-		if (pppSymptomsSet == null){
-			 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			 return response;
-		 }
-		List<PlantPartPhaseSymptom> pppSymptoms = new ArrayList<PlantPartPhaseSymptom>(pppSymptomsSet);
-		
-		PlantPartPhaseSymptomResourceAssembler asm = new PlantPartPhaseSymptomResourceAssembler();
-		PlantPartPhaseSymptomResourceList pppsrl = asm.toResource(pppSymptoms, language);
-		
-		response = new ResponseEntity<>(pppsrl, HttpStatus.OK);
-		return response;
-	}
+        Set < PlantPartPhaseSymptom > pppSymptomsSet = ppp.getSymptoms();
+        if ( pppSymptomsSet == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
 
+        List < Symptom > symptoms = new ArrayList < Symptom >();
+        for ( PlantPartPhaseSymptom plantPartPhaseSymptom : pppSymptomsSet )
+        {
+            Symptom symptom = plantPartPhaseSymptom.getSymptom();
+            if ( symptom != null )
+            {
+                if ( !symptoms.contains( symptom ) )
+                {
+                    symptoms.add( symptom );
+                }
+            }
+        }
+
+        Comparator < Symptom > comparator = new SymptomsByTranslationsComparator( language );
+        Collections.sort( symptoms, comparator );
+
+        SymptomResourceAssembler asm = new SymptomResourceAssembler();
+        SymptomResourceList srl = asm.toResource( symptoms, language );
+
+        response = new ResponseEntity <>( srl, HttpStatus.OK );
+        return response;
+    }
+
+    @Deprecated
+    public ResponseEntity < PlantPartPhaseSymptomResourceList > getPlantPartPhaseSymptomsByLanguage( Long id,
+            Languages language )
+    {
+        System.out.println( "getPlantPartPhaseSymptomsByLanguage - try to get for PPPID: " + id + " lang:" + language );
+        ResponseEntity < PlantPartPhaseSymptomResourceList > response;
+
+        if ( id == null || language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
+
+        // Get PlantPartPhase
+        PlantPartPhase ppp = PlantPartPhase.findPlantPartPhase( id );
+        if ( ppp == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
+
+        Set < PlantPartPhaseSymptom > pppSymptomsSet = ppp.getSymptoms();
+        if ( pppSymptomsSet == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
+        List < PlantPartPhaseSymptom > pppSymptoms = new ArrayList < PlantPartPhaseSymptom >( pppSymptomsSet );
+
+        PlantPartPhaseSymptomResourceAssembler asm = new PlantPartPhaseSymptomResourceAssembler();
+        PlantPartPhaseSymptomResourceList pppsrl = asm.toResource( pppSymptoms, language );
+
+        response = new ResponseEntity <>( pppsrl, HttpStatus.OK );
+        return response;
+    }
 
 }

@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "activeIngredients")
-public class ActiveIngredientResourceList {
+public class ActiveIngredientResourceList
+{
 
-	private List<ActiveIngredientResource> activeIngredients;
+    private List < ActiveIngredientResource > activeIngredients;
 
-	public ActiveIngredientResourceList() {
-	}
+    public ActiveIngredientResourceList()
+    {
+    }
 
-	public ActiveIngredientResourceList(List<ActiveIngredientResource> activeIngredients) {
-		this.setActiveIngredients(activeIngredients);
-	}
+    public ActiveIngredientResourceList( List < ActiveIngredientResource > activeIngredients )
+    {
+        this.setActiveIngredients( activeIngredients );
+    }
 
 }

@@ -17,158 +17,172 @@ import com.crophealer.domain.Problem;
 import com.crophealer.domain.ProblemAIProduct;
 import com.crophealer.domain.ProblemTranslation;
 
-public class ActiveIngredientLoader extends GenericLoader {
-	protected Integer activeSheetNum = 1;
-	protected Integer plantColNum = 2;
-	protected Integer problemStartColNum = 3;
-	protected Integer lastRow = 0;
-	private HashMap<Integer, Problem> problemsByCols;
+public class ActiveIngredientLoader extends GenericLoader
+{
+    protected Integer activeSheetNum = 1;
 
-	
-	public ActiveIngredientLoader(SpreadSheetReader ssReader) {
-		super(ssReader);
-		this.setActiveSheetNum(this.activeSheetNum);
-		this.loadProblemsByCols();
-		this.lastRow = ssReader.getColumnAsArray(2).size() - 1;
-	}
-	
-	
-	protected void loadProblemsByCols()
-	{
-		this.problemsByCols = new HashMap<Integer, Problem>();
-		List<String> probsInEst = this.ssReader.getRowAsArray(0, this.problemStartColNum);
+    protected Integer plantColNum = 2;
 
-		for (int i = 0; i < probsInEst.size(); i++) {			
-			ProblemTranslation probTrans = ProblemTranslation.getSingleProblemTranslationByName(probsInEst.get(i));			
-			if (probTrans != null) 
-			{
-				System.out.println("Loading AI problems, loaded " + probTrans.getName());
-				this.problemsByCols.put(i+this.problemStartColNum, probTrans.getProblem());			
-			}
-		}	
-	}
-	
-	
-	// testing auto deployment23456
+    protected Integer problemStartColNum = 3;
 
-	public void loadAIs() {
-		
-		Country country = Country.getSingleCountryByName("Estonia");
-		Languages language = Languages.getSingleLanguageByName("Estonian");
+    protected Integer lastRow = 0;
 
-		List<String> ais    = this.ssReader.getColumnAsArray(0);
-		List<String> aisEst = this.ssReader.getColumnAsArray(1);
+    private HashMap < Integer, Problem > problemsByCols;
 
-		for (int i = 1; i < ais.size(); i++) {
-			ActiveIngredient ai;
-			if (ais.get(i).isEmpty())
-				continue;
+    public ActiveIngredientLoader( SpreadSheetReader ssReader )
+    {
+        super( ssReader );
+        this.setActiveSheetNum( this.activeSheetNum );
+        this.loadProblemsByCols();
+        this.lastRow = ssReader.getColumnAsArray( 2 ).size() - 1;
+    }
 
-			TypedQuery<ActiveIngredient> aiq = ActiveIngredient.findActiveIngredientsByCommentEqualsCustom(ais.get(i));
-			if (aiq.getResultList().size() > 0) 
-			{
-				ai = aiq.getSingleResult();
-			} 
-			else 
-			{
-				ai = new ActiveIngredient();
-				ai.setLatinName(ais.get(i));
-				ai.setComment(aisEst.get(i));
-				ai.setCountry(country);
-				ai.persist();
+    protected void loadProblemsByCols()
+    {
+        this.problemsByCols = new HashMap < Integer, Problem >();
+        List < String > probsInEst = this.ssReader.getRowAsArray( 0, this.problemStartColNum );
 
-				ActiveIngredientTranslation ait = new ActiveIngredientTranslation();
-				ait.setLang(language);
-				ait.setActiveIngredient(ai);
-				ait.setName(aisEst.get(i));
-				ait.persist();
-				System.out.println("Loading AIs, saved " + ait.getName());
-			}
+        for ( int i = 0; i < probsInEst.size(); i++ )
+        {
+            ProblemTranslation probTrans = ProblemTranslation.getSingleProblemTranslationByName( probsInEst.get( i ) );
+            if ( probTrans != null )
+            {
+                System.out.println( "Loading AI problems, loaded " + probTrans.getName() );
+                this.problemsByCols.put( i + this.problemStartColNum, probTrans.getProblem() );
+            }
+        }
+    }
 
-			this.loadCropsAndProblems(ai, i);
+    // testing auto deployment23456
 
-		}
-		System.out.println("Finished loading AIs");
-	}
+    public void loadAIs()
+    {
 
-	private void loadCropsAndProblems(ActiveIngredient ai, int aiRow) {
-		try
-		{
-			Integer nextAiRow = this.ssReader.getNextFilledRowNum(0, aiRow);
+        Country country = Country.getSingleCountryByName( "Estonia" );
+        Languages language = Languages.getSingleLanguageByName( "Estonian" );
 
-			if (nextAiRow == null) nextAiRow = this.lastRow + 1;
+        List < String > ais = this.ssReader.getColumnAsArray( 0 );
+        List < String > aisEst = this.ssReader.getColumnAsArray( 1 );
 
-			List<String> plants = this.ssReader.getColumnAsArray(this.plantColNum, aiRow, nextAiRow-1);
+        for ( int i = 1; i < ais.size(); i++ )
+        {
+            ActiveIngredient ai;
+            if ( ais.get( i ).isEmpty() )
+                continue;
 
-			for (int j = 0; j < plants.size(); j++) {
-				PlantTranslation plantTrans = PlantTranslation.getSinglePlantTranslationByName(plants.get(j));
-				if (plantTrans == null)
-				{
-					System.out.println("Could not find match for plant: " + plants.get(j));
-					continue;
-				}
-				Plant plant = plantTrans.getPlant();
+            TypedQuery < ActiveIngredient > aiq = ActiveIngredient.findActiveIngredientsByCommentEqualsCustom( ais
+                    .get( i ) );
+            if ( aiq.getResultList().size() > 0 )
+            {
+                ai = aiq.getSingleResult();
+            }
+            else
+            {
+                ai = new ActiveIngredient();
+                ai.setLatinName( ais.get( i ) );
+                ai.setComment( aisEst.get( i ) );
+                ai.setCountry( country );
+                ai.persist();
 
-				for (Integer probCol : this.problemsByCols.keySet()) {
-					String aiEff = ssReader.getCellContent(j+aiRow, probCol);
-					if (aiEff != "")
-					{			 
-						Problem problem = this.problemsByCols.get(probCol);
+                ActiveIngredientTranslation ait = new ActiveIngredientTranslation();
+                ait.setLang( language );
+                ait.setActiveIngredient( ai );
+                ait.setName( aisEst.get( i ) );
+                ait.persist();
+                System.out.println( "Loading AIs, saved " + ait.getName() );
+            }
 
-						System.out.println("Loading AIs, AI row " + aiRow + ":" + plant.getComment() + " - " + problem.getLatinName() + " - " + aiEff);
+            this.loadCropsAndProblems( ai, i );
 
-						List<PlantPartPhaseProblem> pppps = this.getPlantPartPhaseProblems(plant, problem);
-						this.linkPlantPartPhaseProblemsToAIs(ai, pppps, aiEff);
-					} 
-				}		
-			}
-		}
-		catch (Exception e)
-		{
-			System.out.println("loadCropsAndProblems exception: " + e.getMessage());	
-		}
-	}
-	
-	
-	protected void linkPlantPartPhaseProblemsToAIs(ActiveIngredient ai, List<PlantPartPhaseProblem> pppps, String effect)
-	{
-		for (PlantPartPhaseProblem pppp : pppps) {
-			System.out.println("Creating ProblemAIProduct: " + ai.getLatinName() + " - "  + pppp.getComment());
-			ProblemAIProduct paip = new ProblemAIProduct();
-			paip.setActiveIngredient(ai);
-			paip.setProblem(pppp);
-			paip.setComment(ai.getComment() + pppp.getComment());
-			paip.setAiEffect(effect);
-			paip.persist();
-		}
-		/*for (PlantPartPhaseProblem pppp : pppps) {
-			System.out.println("Creating ProblemActiveIngredient: " + ai.getLatinName() + " - "  + pppp.getComment());
-			ProblemActiveIngredient pai = new ProblemActiveIngredient();
-			pai.setActiveIngredient(ai);
-			pai.setPlantPartPhaseProblem(pppp);
-			pai.setComment(ai.getComment() + " - " + pppp.getComment());
-			pai.setEffect(effect);
-			pai.persist();
-		}*/
-	}
-	
-	
+        }
+        System.out.println( "Finished loading AIs" );
+    }
 
-	public List<PlantPartPhaseProblem> getPlantPartPhaseProblems(Plant plant, Problem problem)
-	{
-		TypedQuery<PlantPartPhaseProblem> ppppQ = PlantPartPhaseProblem.findPlantPartPhaseProblemsByProblem(problem);
-		List<PlantPartPhaseProblem> fullList = ppppQ.getResultList();
-		List<PlantPartPhaseProblem> resultList = new ArrayList<PlantPartPhaseProblem>();
-		
-		PlantPartPhaseProblem pppp;
-		Plant pppPlant;
-		for (int i = 0; i < fullList.size(); i++) {
-			pppp = fullList.get(i);
-			pppPlant = pppp.getPlant();
-			if (pppPlant.equals(plant)) {
-				resultList.add(fullList.get(i));
-			}			
-		}
-		return resultList;
-	}
+    private void loadCropsAndProblems( ActiveIngredient ai, int aiRow )
+    {
+        try
+        {
+            Integer nextAiRow = this.ssReader.getNextFilledRowNum( 0, aiRow );
+
+            if ( nextAiRow == null )
+                nextAiRow = this.lastRow + 1;
+
+            List < String > plants = this.ssReader.getColumnAsArray( this.plantColNum, aiRow, nextAiRow - 1 );
+
+            for ( int j = 0; j < plants.size(); j++ )
+            {
+                PlantTranslation plantTrans = PlantTranslation.getSinglePlantTranslationByName( plants.get( j ) );
+                if ( plantTrans == null )
+                {
+                    System.out.println( "Could not find match for plant: " + plants.get( j ) );
+                    continue;
+                }
+                Plant plant = plantTrans.getPlant();
+
+                for ( Integer probCol : this.problemsByCols.keySet() )
+                {
+                    String aiEff = ssReader.getCellContent( j + aiRow, probCol );
+                    if ( aiEff != "" )
+                    {
+                        Problem problem = this.problemsByCols.get( probCol );
+
+                        System.out.println( "Loading AIs, AI row " + aiRow + ":" + plant.getComment() + " - "
+                                + problem.getLatinName() + " - " + aiEff );
+
+                        List < PlantPartPhaseProblem > pppps = this.getPlantPartPhaseProblems( plant, problem );
+                        this.linkPlantPartPhaseProblemsToAIs( ai, pppps, aiEff );
+                    }
+                }
+            }
+        }
+        catch ( Exception e )
+        {
+            System.out.println( "loadCropsAndProblems exception: " + e.getMessage() );
+        }
+    }
+
+    protected void linkPlantPartPhaseProblemsToAIs( ActiveIngredient ai, List < PlantPartPhaseProblem > pppps,
+            String effect )
+    {
+        for ( PlantPartPhaseProblem pppp : pppps )
+        {
+            System.out.println( "Creating ProblemAIProduct: " + ai.getLatinName() + " - " + pppp.getComment() );
+            ProblemAIProduct paip = new ProblemAIProduct();
+            paip.setActiveIngredient( ai );
+            paip.setProblem( pppp );
+            paip.setComment( ai.getComment() + pppp.getComment() );
+            paip.setAiEffect( effect );
+            paip.persist();
+        }
+        /*
+         * for (PlantPartPhaseProblem pppp : pppps) {
+         * System.out.println("Creating ProblemActiveIngredient: " +
+         * ai.getLatinName() + " - " + pppp.getComment());
+         * ProblemActiveIngredient pai = new ProblemActiveIngredient();
+         * pai.setActiveIngredient(ai); pai.setPlantPartPhaseProblem(pppp);
+         * pai.setComment(ai.getComment() + " - " + pppp.getComment());
+         * pai.setEffect(effect); pai.persist(); }
+         */
+    }
+
+    public List < PlantPartPhaseProblem > getPlantPartPhaseProblems( Plant plant, Problem problem )
+    {
+        TypedQuery < PlantPartPhaseProblem > ppppQ = PlantPartPhaseProblem
+                .findPlantPartPhaseProblemsByProblem( problem );
+        List < PlantPartPhaseProblem > fullList = ppppQ.getResultList();
+        List < PlantPartPhaseProblem > resultList = new ArrayList < PlantPartPhaseProblem >();
+
+        PlantPartPhaseProblem pppp;
+        Plant pppPlant;
+        for ( int i = 0; i < fullList.size(); i++ )
+        {
+            pppp = fullList.get( i );
+            pppPlant = pppp.getPlant();
+            if ( pppPlant.equals( plant ) )
+            {
+                resultList.add( fullList.get( i ) );
+            }
+        }
+        return resultList;
+    }
 }

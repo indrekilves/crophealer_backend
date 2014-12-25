@@ -1,10 +1,12 @@
 package com.crophealer.rest.v1;
+
 import org.codehaus.jackson.map.annotate.JsonRootName;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName("product")
-public class ProductResource {
+public class ProductResource
+{
 
     private Long id;
 
@@ -22,13 +24,14 @@ public class ProductResource {
 
     private String type; // toote liik
 
-    private String usageRate; // kulunorm1 - kulunorm 2. (If kulunorm2=0 then just kulunorm1)
+    private String usageRate; // kulunorm1 - kulunorm 2. (If kulunorm2=0 then
+                              // just kulunorm1)
 
     private String activeIngredientRate; // sisaldus (toimeaine)
 
-    private String ppc; //TKT
+    private String ppc; // TKT
 
-    private String formulation; //Preparaadi vorm
+    private String formulation; // Preparaadi vorm
 
     private String waterVolume; // veekulu
 

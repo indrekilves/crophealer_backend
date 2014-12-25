@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "messages")
-public class MessageResourceList {
+public class MessageResourceList
+{
 
-	private List<MessageResource> messages;
+    private List < MessageResource > messages;
 
-	public MessageResourceList() {
-	}
+    public MessageResourceList()
+    {
+    }
 
-	public MessageResourceList(List<MessageResource> messages) {
-		this.setMessages(messages);
-	}
+    public MessageResourceList( List < MessageResource > messages )
+    {
+        this.setMessages( messages );
+    }
 
 }

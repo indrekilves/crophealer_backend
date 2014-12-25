@@ -22,110 +22,113 @@ import com.crophealer.rest.v1.ResellerResourceAssembler;
 import com.crophealer.rest.v1.ResellerResourceList;
 
 @Service
-public class ProductRestService extends GenericRestService {
+public class ProductRestService extends GenericRestService
+{
 
-	
-	public ResponseEntity<ProductResourceList> getAllProductsByLanguage(Languages language) {
-		ResponseEntity<ProductResourceList> response; 
-		if (language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
+    public ResponseEntity < ProductResourceList > getAllProductsByLanguage( Languages language )
+    {
+        ResponseEntity < ProductResourceList > response;
+        if ( language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
-		ProductResourceAssembler asm = new ProductResourceAssembler();
-		ProductResourceList prl = asm.toResource(Product.findAllProducts(), language);
-		
-		response = new ResponseEntity<>(prl, HttpStatus.OK);
-		return response;		
-	}
-	
-	
-	public ResponseEntity<ProductResource> getProductByLanguage(Long id, Languages language)
-	{   	
-		ResponseEntity<ProductResource> response; 
-		
-		if (id == null || language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-			
-		Product product = Product.findProduct(id);
-		if (product == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
-			
-		ProductResourceAssembler asm = new ProductResourceAssembler();
-		ProductResource pr = asm.toResource(product, language);
-				
-		response = new ResponseEntity<>(pr, HttpStatus.OK);
-		return response;		
-	}
+        ProductResourceAssembler asm = new ProductResourceAssembler();
+        ProductResourceList prl = asm.toResource( Product.findAllProducts(), language );
 
+        response = new ResponseEntity <>( prl, HttpStatus.OK );
+        return response;
+    }
 
+    public ResponseEntity < ProductResource > getProductByLanguage( Long id, Languages language )
+    {
+        ResponseEntity < ProductResource > response;
 
-	public ResponseEntity<ResellerResourceList> getResellerForProductByLanguage(Long id, Languages language) {
-		System.out.println("getResellerForProductByLanguage - try to get for id:" + id + " lang:" + language);
-		
-		ResponseEntity<ResellerResourceList> response; 
+        if ( id == null || language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
-		if (id == null || language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-			
-		Product product = Product.findProduct(id);
-		if (product == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
-		
-		// Get ProductResellers	
-		Set<ProductReseller> productResellers = product.getProductResellers();
-		
-		// Get Resellers
-		List <Reseller> resellers = new ArrayList<Reseller>();
-		for (ProductReseller productReseller : productResellers) {
-			resellers.add(productReseller.getReseller());
-		}
-		
-		ResellerResourceAssembler asm = new ResellerResourceAssembler();
-		ResellerResourceList prl = asm.toResource(resellers, language);
-				
-		response = new ResponseEntity<>(prl, HttpStatus.OK);
-		return response;	
-	}
+        Product product = Product.findProduct( id );
+        if ( product == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
 
+        ProductResourceAssembler asm = new ProductResourceAssembler();
+        ProductResource pr = asm.toResource( product, language );
 
-	public ResponseEntity<PaipResourceList> getPaipsById(Long prodID) {
-		System.out.println("getPaipsById - try to get for prodId:" + prodID);
-		
-		ResponseEntity<PaipResourceList> response; 
-	
-		if (prodID == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-		
-		Product product = Product.findProduct(prodID);
-		if (product == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
-						 
-		// Get ProblemActiveIngredientProduct links 
-		Set<ProblemAIProduct> paipsSet = product.getActiveIngredientProblemLinks();
-		List<ProblemAIProduct>paips = new ArrayList<ProblemAIProduct>(paipsSet);
-		
-		PaipResourceAssembler asm = new PaipResourceAssembler();
-		PaipResourceList prl = asm.toResource(paips);
+        response = new ResponseEntity <>( pr, HttpStatus.OK );
+        return response;
+    }
 
-		response = new ResponseEntity<>(prl, HttpStatus.OK);
-		return response;	
-	}
+    public ResponseEntity < ResellerResourceList > getResellerForProductByLanguage( Long id, Languages language )
+    {
+        System.out.println( "getResellerForProductByLanguage - try to get for id:" + id + " lang:" + language );
 
+        ResponseEntity < ResellerResourceList > response;
 
+        if ( id == null || language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
+        Product product = Product.findProduct( id );
+        if ( product == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
 
+        // Get ProductResellers
+        Set < ProductReseller > productResellers = product.getProductResellers();
 
- }
+        // Get Resellers
+        List < Reseller > resellers = new ArrayList < Reseller >();
+        for ( ProductReseller productReseller : productResellers )
+        {
+            resellers.add( productReseller.getReseller() );
+        }
+
+        ResellerResourceAssembler asm = new ResellerResourceAssembler();
+        ResellerResourceList prl = asm.toResource( resellers, language );
+
+        response = new ResponseEntity <>( prl, HttpStatus.OK );
+        return response;
+    }
+
+    public ResponseEntity < PaipResourceList > getPaipsById( Long prodID )
+    {
+        System.out.println( "getPaipsById - try to get for prodId:" + prodID );
+
+        ResponseEntity < PaipResourceList > response;
+
+        if ( prodID == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
+
+        Product product = Product.findProduct( prodID );
+        if ( product == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
+
+        // Get ProblemActiveIngredientProduct links
+        Set < ProblemAIProduct > paipsSet = product.getActiveIngredientProblemLinks();
+        List < ProblemAIProduct > paips = new ArrayList < ProblemAIProduct >( paipsSet );
+
+        PaipResourceAssembler asm = new PaipResourceAssembler();
+        PaipResourceList prl = asm.toResource( paips );
+
+        response = new ResponseEntity <>( prl, HttpStatus.OK );
+        return response;
+    }
+
+}

@@ -1,4 +1,5 @@
 package com.crophealer.domain;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -10,8 +11,10 @@ import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findPlantPartPhasesByPlantAndGrowthPhase", "findPlantPartPhasesByPlantAndGrowthPhaseAndPlantPart" })
-public class PlantPartPhase {
+@RooJpaActiveRecord(finders = { "findPlantPartPhasesByPlantAndGrowthPhase",
+        "findPlantPartPhasesByPlantAndGrowthPhaseAndPlantPart" })
+public class PlantPartPhase
+{
 
     /**
      */
@@ -35,5 +38,5 @@ public class PlantPartPhase {
     /**
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "plantPartPhase")
-    private Set<PlantPartPhaseSymptom> symptoms = new HashSet<PlantPartPhaseSymptom>();
+    private Set < PlantPartPhaseSymptom > symptoms = new HashSet < PlantPartPhaseSymptom >();
 }

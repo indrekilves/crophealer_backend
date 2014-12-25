@@ -682,3 +682,4 @@ finder add findAssignmentsesByUsr
 focus --class ~domain.UserAdvisor
 finder list
 finder add findUserAdvisorsByAdvisorAndClient
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-12-25 23:22:38

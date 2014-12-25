@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "symptoms")
-public class SymptomResourceList {
+public class SymptomResourceList
+{
 
-	private List<SymptomResource> symptoms;
+    private List < SymptomResource > symptoms;
 
-	public SymptomResourceList() {
-	}
+    public SymptomResourceList()
+    {
+    }
 
-	public SymptomResourceList(List<SymptomResource> symptoms) {
-		this.setSymptoms(symptoms);
-	}
+    public SymptomResourceList( List < SymptomResource > symptoms )
+    {
+        this.setSymptoms( symptoms );
+    }
 
 }

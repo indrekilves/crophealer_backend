@@ -7,17 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "plantPartPhases")
+public class PlantPartPhaseResourceList
+{
 
-public class PlantPartPhaseResourceList {
+    private List < PlantPartPhaseResource > plantPartPhases;
 
-	private List<PlantPartPhaseResource> plantPartPhases;
+    public PlantPartPhaseResourceList()
+    {
+    }
 
-	public PlantPartPhaseResourceList() {
-	}
+    public PlantPartPhaseResourceList( List < PlantPartPhaseResource > plantPartPhases )
+    {
+        this.setPlantPartPhases( plantPartPhases );
+    }
 
-	public PlantPartPhaseResourceList(List<PlantPartPhaseResource> plantPartPhases) {
-		this.setPlantPartPhases(plantPartPhases);
-	}
-
-	
 }

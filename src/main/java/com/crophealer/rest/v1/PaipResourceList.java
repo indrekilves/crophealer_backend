@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "paips")
-public class PaipResourceList {
+public class PaipResourceList
+{
 
-	private List<PaipResource> paips;
+    private List < PaipResource > paips;
 
-	public PaipResourceList() {
-	}
+    public PaipResourceList()
+    {
+    }
 
-	public PaipResourceList(List<PaipResource> paips) {
-		this.setPaips(paips);
-	}
+    public PaipResourceList( List < PaipResource > paips )
+    {
+        this.setPaips( paips );
+    }
 
 }

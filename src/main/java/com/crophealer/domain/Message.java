@@ -1,4 +1,5 @@
 package com.crophealer.domain;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +22,8 @@ import com.crophealer.security.Users;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findMessagesByStatusEquals" })
-public class Message {
+public class Message
+{
 
     /**
      */
@@ -49,7 +51,7 @@ public class Message {
      */
     @ManyToOne
     private DiagnosedProblem diagnosedProblem;
-    
+
     /**
      */
     @ManyToOne
@@ -63,7 +65,7 @@ public class Message {
     /**
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
-    private final Set<Message> children = new HashSet<Message>();
+    private final Set < Message > children = new HashSet < Message >();
 
     /**
      */
@@ -78,71 +80,91 @@ public class Message {
     private Date modifiedTimestamp;
 
     // from resource
-    public static RequestError validateResource(MessageResource mr) {
-        if (mr.getSubject().isEmpty()) return RequestError.E0009;
-        if (mr.getSenderID() == null) return RequestError.E0007;
-        if (mr.getReceiverID() == null) return RequestError.E0008;
-        Users sender = Users.findUsers(mr.getSenderID());
-        if (sender == null) return RequestError.E0010;
-        Users receiver = Users.findUsers(mr.getSenderID());
-        if (receiver == null) return RequestError.E0011;
+    public static RequestError validateResource( MessageResource mr )
+    {
+        if ( mr.getSubject().isEmpty() )
+            return RequestError.E0009;
+        if ( mr.getSenderID() == null )
+            return RequestError.E0007;
+        if ( mr.getReceiverID() == null )
+            return RequestError.E0008;
+        Users sender = Users.findUsers( mr.getSenderID() );
+        if ( sender == null )
+            return RequestError.E0010;
+        Users receiver = Users.findUsers( mr.getSenderID() );
+        if ( receiver == null )
+            return RequestError.E0011;
         return null;
     }
 
-    public static Message createFromResource(MessageResource mr) {
-        if (mr == null) return null;
+    public static Message createFromResource( MessageResource mr )
+    {
+        if ( mr == null )
+            return null;
         Message m = new Message();
-        m.fillFromRecource(mr);
-        m.setStatus("Received");
-        m.setCreatedTimestamp(new Date());
+        m.fillFromRecource( mr );
+        m.setStatus( "Received" );
+        m.setCreatedTimestamp( new Date() );
         m.persist();
         return m;
     }
 
-    public void updateFromResource(MessageResource mr) {
-        fillFromRecource(mr);
-        this.setStatus("Updated");
+    public void updateFromResource( MessageResource mr )
+    {
+        fillFromRecource( mr );
+        this.setStatus( "Updated" );
         this.persist();
     }
 
-    private void fillFromRecource(MessageResource mr) {
-        if (mr.getSubject() != null) this.setSubject(mr.getSubject());
-        if (mr.getComment() != null) this.setComment(mr.getComment());
-        
-        Users sender = Users.findUsers(mr.getSenderID());
-        if (sender != null) {
-            this.setSender(sender);
+    private void fillFromRecource( MessageResource mr )
+    {
+        if ( mr.getSubject() != null )
+            this.setSubject( mr.getSubject() );
+        if ( mr.getComment() != null )
+            this.setComment( mr.getComment() );
+
+        Users sender = Users.findUsers( mr.getSenderID() );
+        if ( sender != null )
+        {
+            this.setSender( sender );
         }
-        
-        Users receiver = Users.findUsers(mr.getReceiverID());
-        if (receiver != null) {
-            this.setReceiver(receiver);
+
+        Users receiver = Users.findUsers( mr.getReceiverID() );
+        if ( receiver != null )
+        {
+            this.setReceiver( receiver );
         }
-        
+
         Long dpID = mr.getDiagnosedProblemID();
-        if (dpID != null) {
-            DiagnosedProblem dp = DiagnosedProblem.findDiagnosedProblem(dpID);
-            if (dp != null) {
-                this.setDiagnosedProblem(dp);
+        if ( dpID != null )
+        {
+            DiagnosedProblem dp = DiagnosedProblem.findDiagnosedProblem( dpID );
+            if ( dp != null )
+            {
+                this.setDiagnosedProblem( dp );
             }
         }
-        
+
         Long fieldID = mr.getFieldID();
-        if (fieldID != null){
-        	Field field = Field.findField(fieldID);
-        	if (field != null){
-        		this.setField(field);
-        	}
-        }
-        
-        Long parentID = mr.getParentID();
-        if (parentID != null) {
-            Message parent = Message.findMessage(parentID);
-            if (parent != null) {
-                this.setParent(parent);
+        if ( fieldID != null )
+        {
+            Field field = Field.findField( fieldID );
+            if ( field != null )
+            {
+                this.setField( field );
             }
         }
-        this.setModifiedTimestamp(new Date());
+
+        Long parentID = mr.getParentID();
+        if ( parentID != null )
+        {
+            Message parent = Message.findMessage( parentID );
+            if ( parent != null )
+            {
+                this.setParent( parent );
+            }
+        }
+        this.setModifiedTimestamp( new Date() );
     }
 
 }

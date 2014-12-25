@@ -18,107 +18,118 @@ import com.crophealer.rest.v1.ProblemResourceAssembler;
 import com.crophealer.rest.v1.ProblemResourceList;
 
 @Service
-public class ProblemRestService extends GenericRestService {
+public class ProblemRestService extends GenericRestService
+{
 
-	
-	public ResponseEntity<ProblemResourceList> getAllProblemByLanguage(Languages language){
-		ResponseEntity<ProblemResourceList> response; 
-		if (language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
+    public ResponseEntity < ProblemResourceList > getAllProblemByLanguage( Languages language )
+    {
+        ResponseEntity < ProblemResourceList > response;
+        if ( language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
-		ProblemResourceAssembler asm = new ProblemResourceAssembler();
-		ProblemResourceList prl = asm.toResource(Problem.findAllProblems(), language);
-		
-		response = new ResponseEntity<>(prl, HttpStatus.OK);
-		return response;		
-	}
-	
-	
-	public ResponseEntity<ProblemResource> getProblemByLanguage(Long id, Languages language)
-	{   	
-		ResponseEntity<ProblemResource> response; 
-		
-		if (id == null || language == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
-			
-		Problem problem = Problem.findProblem(id);
-		if (problem == null){
-			response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			return response;
-		}
-			
-		ProblemResourceAssembler asm = new ProblemResourceAssembler();
-		ProblemResource pr = asm.toResource(problem, language);
-				
-		response = new ResponseEntity<>(pr, HttpStatus.OK);
-		return response;		
-	}
+        ProblemResourceAssembler asm = new ProblemResourceAssembler();
+        ProblemResourceList prl = asm.toResource( Problem.findAllProblems(), language );
 
+        response = new ResponseEntity <>( prl, HttpStatus.OK );
+        return response;
+    }
 
-	public ResponseEntity<ProblemResourceList> getProblemsBySymptomsAndLanguage(String symptomsCsv, Languages language) {
-		System.out
-				.println("getProblemsBySymptomsAndLanguage - try to get for symptoms:"
-						+ symptomsCsv + " lang:" + language);
-		ResponseEntity<ProblemResourceList> response;
+    public ResponseEntity < ProblemResource > getProblemByLanguage( Long id, Languages language )
+    {
+        ResponseEntity < ProblemResource > response;
 
-		if (symptomsCsv == null) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			return response;
-		}
+        if ( id == null || language == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
-		List<String> symptomIdStings = Arrays.asList(symptomsCsv
-				.split("\\s*,\\s*"));
-		List<Problem> problems = new ArrayList<Problem>();
+        Problem problem = Problem.findProblem( id );
+        if ( problem == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
+            return response;
+        }
 
-		for (String symptomIdStr : symptomIdStings) {
-			if (symptomIdStr != null) {
-				Symptom s = Symptom.findSymptom(Long.parseLong(symptomIdStr));
-				if (s != null) {
-					List<Problem> symptomProblems = this
-							.getProblemsBySymptom(s);
-					if (!symptomProblems.isEmpty()) {
-						for (Problem problem : symptomProblems) {
-							if (!problems.contains(problem)) {
-								problems.add(problem);
-							}
-						}
-					}
-				}
-			}
-		}
+        ProblemResourceAssembler asm = new ProblemResourceAssembler();
+        ProblemResource pr = asm.toResource( problem, language );
 
-		ProblemResourceAssembler asm = new ProblemResourceAssembler();
-		ProblemResourceList drl = asm.toResource(problems, language);
+        response = new ResponseEntity <>( pr, HttpStatus.OK );
+        return response;
+    }
 
-		response = new ResponseEntity<>(drl, HttpStatus.OK);
-		return response;
-	}
+    public ResponseEntity < ProblemResourceList > getProblemsBySymptomsAndLanguage( String symptomsCsv,
+            Languages language )
+    {
+        System.out.println( "getProblemsBySymptomsAndLanguage - try to get for symptoms:" + symptomsCsv + " lang:"
+                + language );
+        ResponseEntity < ProblemResourceList > response;
 
+        if ( symptomsCsv == null )
+        {
+            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
+            return response;
+        }
 
-	private List<Problem> getProblemsBySymptom(Symptom s) {
-		List<PlantPartPhaseSymptom> plantPartPhaseSymptoms = PlantPartPhaseSymptom.findPlantPartPhaseSymptomsBySymptom(s).getResultList();
-    	List<Problem> problems = new ArrayList<Problem>();
-        	
-    	for (PlantPartPhaseSymptom pppSymptom : plantPartPhaseSymptoms) 
-		{
-    		PlantPartPhaseProblem pppProblem = pppSymptom.getProblem();
-    		if (pppProblem != null) {
-	    		Problem problem = pppProblem.getProblem();
-	    		if (problem != null){
-					if ( !problems.contains(problem))
-					{
-						problems.add(problem);
-					}
-	    		}
-    		}
+        List < String > symptomIdStings = Arrays.asList( symptomsCsv.split( "\\s*,\\s*" ) );
+        List < Problem > problems = new ArrayList < Problem >();
 
-		}
-    	
-    	return problems;    	
-	}
+        for ( String symptomIdStr : symptomIdStings )
+        {
+            if ( symptomIdStr != null )
+            {
+                Symptom s = Symptom.findSymptom( Long.parseLong( symptomIdStr ) );
+                if ( s != null )
+                {
+                    List < Problem > symptomProblems = this.getProblemsBySymptom( s );
+                    if ( !symptomProblems.isEmpty() )
+                    {
+                        for ( Problem problem : symptomProblems )
+                        {
+                            if ( !problems.contains( problem ) )
+                            {
+                                problems.add( problem );
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
- }
+        ProblemResourceAssembler asm = new ProblemResourceAssembler();
+        ProblemResourceList drl = asm.toResource( problems, language );
+
+        response = new ResponseEntity <>( drl, HttpStatus.OK );
+        return response;
+    }
+
+    private List < Problem > getProblemsBySymptom( Symptom s )
+    {
+        List < PlantPartPhaseSymptom > plantPartPhaseSymptoms = PlantPartPhaseSymptom
+                .findPlantPartPhaseSymptomsBySymptom( s ).getResultList();
+        List < Problem > problems = new ArrayList < Problem >();
+
+        for ( PlantPartPhaseSymptom pppSymptom : plantPartPhaseSymptoms )
+        {
+            PlantPartPhaseProblem pppProblem = pppSymptom.getProblem();
+            if ( pppProblem != null )
+            {
+                Problem problem = pppProblem.getProblem();
+                if ( problem != null )
+                {
+                    if ( !problems.contains( problem ) )
+                    {
+                        problems.add( problem );
+                    }
+                }
+            }
+
+        }
+
+        return problems;
+    }
+
+}

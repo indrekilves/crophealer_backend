@@ -1,4 +1,5 @@
 package com.crophealer.domain;
+
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.TypedQuery;
@@ -10,8 +11,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findProblemTranslationsByLang", "findProblemTranslationsByProblemAndLang", "findProblemTranslationsByNameEquals" })
-public class ProblemTranslation {
+@RooJpaActiveRecord(finders = { "findProblemTranslationsByLang", "findProblemTranslationsByProblemAndLang",
+        "findProblemTranslationsByNameEquals" })
+public class ProblemTranslation
+{
 
     /**
      */
@@ -37,25 +40,31 @@ public class ProblemTranslation {
     @ManyToOne
     private Languages lang;
 
-    public static ProblemTranslation getSingleProblemTranslationByName(String name) {
-    	TypedQuery<ProblemTranslation> ptransQ = ProblemTranslation.findProblemTranslationsByNameEqualsCustom(name);
+    public static ProblemTranslation getSingleProblemTranslationByName( String name )
+    {
+        TypedQuery < ProblemTranslation > ptransQ = ProblemTranslation.findProblemTranslationsByNameEqualsCustom( name );
 
-    	if (ptransQ.getResultList().size() > 0) {
-    		return ptransQ.getSingleResult();
-    	} else {
-    		return null;
-    	}
+        if ( ptransQ.getResultList().size() > 0 )
+        {
+            return ptransQ.getSingleResult();
+        }
+        else
+        {
+            return null;
+        }
 
     }
-    
 
-    /**  CUSTOM FINDERS  **/ 
-    
-    public static TypedQuery<ProblemTranslation> findProblemTranslationsByNameEqualsCustom(String name) {
-        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+    /** CUSTOM FINDERS **/
+
+    public static TypedQuery < ProblemTranslation > findProblemTranslationsByNameEqualsCustom( String name )
+    {
+        if ( name == null || name.length() == 0 )
+            throw new IllegalArgumentException( "The name argument is required" );
         EntityManager em = ProblemTranslation.entityManager();
-        TypedQuery<ProblemTranslation> q = em.createQuery("SELECT o FROM ProblemTranslation AS o WHERE LOWER(o.name) = LOWER(:name)", ProblemTranslation.class);
-        q.setParameter("name", name);
+        TypedQuery < ProblemTranslation > q = em.createQuery(
+                "SELECT o FROM ProblemTranslation AS o WHERE LOWER(o.name) = LOWER(:name)", ProblemTranslation.class );
+        q.setParameter( "name", name );
         return q;
     }
 }

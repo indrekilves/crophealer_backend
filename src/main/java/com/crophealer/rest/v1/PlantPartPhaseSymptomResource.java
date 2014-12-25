@@ -3,15 +3,19 @@ package com.crophealer.rest.v1;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 
-
-@RooJavaBean 
+@RooJavaBean
 @JsonRootName(value = "plantPartPhaseSymptom")
-public class PlantPartPhaseSymptomResource {
+public class PlantPartPhaseSymptomResource
+{
 
-	private Long            id; 
-	private String          comment;
-	private Long            plantPartPhaseId;
-	private Long            plantPartPhaseProblemId;
+    private Long id;
+
+    private String comment;
+
+    private Long plantPartPhaseId;
+
+    private Long plantPartPhaseProblemId;
+
     private SymptomResource symptom;
 
 }

@@ -1,4 +1,5 @@
 package com.crophealer.domain;
+
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -7,8 +8,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findProductTranslationsByLang", "findProductTranslationsByNameEquals", "findProductTranslationsByProductAndLang" })
-public class ProductTranslation {
+@RooJpaActiveRecord(finders = { "findProductTranslationsByLang", "findProductTranslationsByNameEquals",
+        "findProductTranslationsByProductAndLang" })
+public class ProductTranslation
+{
 
     /**
      */
@@ -40,7 +43,8 @@ public class ProductTranslation {
 
     /**
      */
-    private String usageRate; // kulunorm1 - kulunorm 2. (If kulunorm2=0 then just kulunorm1)
+    private String usageRate; // kulunorm1 - kulunorm 2. (If kulunorm2=0 then
+                              // just kulunorm1)
 
     /**
      */
@@ -48,7 +52,7 @@ public class ProductTranslation {
 
     /**
      */
-    private String ppc; //TKT
+    private String ppc; // TKT
 
     /**
      */
@@ -56,7 +60,7 @@ public class ProductTranslation {
 
     /**
      */
-    private String formulation; //Preparaadi vorm
+    private String formulation; // Preparaadi vorm
 
     /**
      */

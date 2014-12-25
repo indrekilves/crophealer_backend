@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "plants")
-public class PlantResourceList {
+public class PlantResourceList
+{
 
-	private List<PlantResource> plants;
+    private List < PlantResource > plants;
 
-	public PlantResourceList() {
-	}
+    public PlantResourceList()
+    {
+    }
 
-	public PlantResourceList(List<PlantResource> plants) {
-		this.setPlants(plants);
-	}
+    public PlantResourceList( List < PlantResource > plants )
+    {
+        this.setPlants( plants );
+    }
 
 }

@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "users")
-public class UserResourceList {
+public class UserResourceList
+{
 
-	private List<UserResource> users;
+    private List < UserResource > users;
 
-	public UserResourceList() {
-	}
+    public UserResourceList()
+    {
+    }
 
-	public UserResourceList(List<UserResource> users) {
-		this.setUsers(users);
-	}
+    public UserResourceList( List < UserResource > users )
+    {
+        this.setUsers( users );
+    }
 
 }

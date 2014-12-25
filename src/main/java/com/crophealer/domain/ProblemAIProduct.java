@@ -1,4 +1,5 @@
 package com.crophealer.domain;
+
 import javax.persistence.ManyToOne;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -7,8 +8,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findProblemAIProductsByActiveIngredient", "findProblemAIProductsByProblem", "findProblemAIProductsByProblemAndActiveIngredient" })
-public class ProblemAIProduct {
+@RooJpaActiveRecord(finders = { "findProblemAIProductsByActiveIngredient", "findProblemAIProductsByProblem",
+        "findProblemAIProductsByProblemAndActiveIngredient" })
+public class ProblemAIProduct
+{
 
     /**
      */

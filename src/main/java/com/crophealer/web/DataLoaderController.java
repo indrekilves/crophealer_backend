@@ -1,4 +1,5 @@
 package com.crophealer.web;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,47 +18,50 @@ import com.crophealer.web.service.DataLoaderWebService;
 
 @RequestMapping("/dataLoader/**")
 @Controller
-public class DataLoaderController {
+public class DataLoaderController
+{
 
     @RequestMapping(method = RequestMethod.POST, value = "{id}")
-    public void post(@PathVariable Long id, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+    public void post( @PathVariable
+    Long id, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response )
+    {
     }
-    
-    
+
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String displayForm() {
+    public String displayForm()
+    {
         return "excel_upload_form";
     }
-    
 
     @RequestMapping
-    public String index() {
-        //return "dataLoader/index";
-    	return "excel_upload_form";
+    public String index()
+    {
+        // return "dataLoader/index";
+        return "excel_upload_form";
     }
-    
+
     @RequestMapping(value = "/truncate", method = RequestMethod.POST)
-    public String truncate(@ModelAttribute("truncateForm") ExcelUploadForm truncateForm, Model map) {               
-    	DataCleaner dCleaner = new DataCleaner();
-		dCleaner.truncateAllTables();
-		
-    	return "database_truncate_result";
+    public String truncate( @ModelAttribute("truncateForm")
+    ExcelUploadForm truncateForm, Model map )
+    {
+        DataCleaner dCleaner = new DataCleaner();
+        dCleaner.truncateAllTables();
+
+        return "database_truncate_result";
     }
-    
-    
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("uploadForm") ExcelUploadForm uploadForm, Model map) {
-    	MultipartFile incomingFile = uploadForm.getExcelFile();
-    	String comment = uploadForm.getUploadComment();
+    public String save( @ModelAttribute("uploadForm")
+    ExcelUploadForm uploadForm, Model map )
+    {
+        MultipartFile incomingFile = uploadForm.getExcelFile();
+        String comment = uploadForm.getUploadComment();
 
-    	DataLoaderWebService loaderService = new DataLoaderWebService();
-   		String result = loaderService.uploadDataFileAndStartDataLoad(incomingFile, comment);
-    	
-    	map.addAttribute("result", result);  	 
-    	return "excel_upload_result";
+        DataLoaderWebService loaderService = new DataLoaderWebService();
+        String result = loaderService.uploadDataFileAndStartDataLoad( incomingFile, comment );
+
+        map.addAttribute( "result", result );
+        return "excel_upload_result";
     }
 
-    
-    
-    
 }

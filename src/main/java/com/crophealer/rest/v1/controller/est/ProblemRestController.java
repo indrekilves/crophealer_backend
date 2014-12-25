@@ -12,36 +12,33 @@ import com.crophealer.rest.v1.ProblemResource;
 import com.crophealer.rest.v1.ProblemResourceList;
 import com.crophealer.rest.v1.service.ProblemRestService;
 
-
 @Controller
 @RequestMapping("/rest/v1/est/problems")
+public class ProblemRestController
+{
 
-public class ProblemRestController {
+    @Autowired
+    private ProblemRestService problemRestService;
 
-
-	
-	@Autowired
-	private ProblemRestService problemRestService;
-
-	
-	@RequestMapping(method = RequestMethod.GET)	
-	public ResponseEntity<ProblemResourceList> getAllProblems(){
-	    return problemRestService.getAllProblemByLanguage(problemRestService.getEstonian());		
-	}
-
-	
-    
-	@RequestMapping(method = RequestMethod.GET, value="/{id}")
-	public ResponseEntity<ProblemResource> getProblem(@PathVariable("id") Long id)
-	{   	
-	    return problemRestService.getProblemByLanguage(id, problemRestService.getEstonian());		
-	}
-    
-    
-    @RequestMapping(method = RequestMethod.GET, params="searchBySymptoms")
-  	public ResponseEntity<ProblemResourceList> getProblemsBySymptoms( @RequestParam(value = "searchBySymptoms", required = false) String symptomsCsv){
-    	return problemRestService.getProblemsBySymptomsAndLanguage(symptomsCsv, problemRestService.getEstonian());
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity < ProblemResourceList > getAllProblems()
+    {
+        return problemRestService.getAllProblemByLanguage( problemRestService.getEstonian() );
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ResponseEntity < ProblemResource > getProblem( @PathVariable("id")
+    Long id )
+    {
+        return problemRestService.getProblemByLanguage( id, problemRestService.getEstonian() );
+    }
+
+    @RequestMapping(method = RequestMethod.GET, params = "searchBySymptoms")
+    public ResponseEntity < ProblemResourceList > getProblemsBySymptoms(
+            @RequestParam(value = "searchBySymptoms", required = false)
+            String symptomsCsv )
+    {
+        return problemRestService.getProblemsBySymptomsAndLanguage( symptomsCsv, problemRestService.getEstonian() );
+    }
 
 }

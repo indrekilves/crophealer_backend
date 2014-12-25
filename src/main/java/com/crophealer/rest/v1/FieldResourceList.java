@@ -7,15 +7,18 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 
 @RooJavaBean
 @JsonRootName(value = "fields")
-public class FieldResourceList {
+public class FieldResourceList
+{
 
-	private List<FieldResource> fields;
+    private List < FieldResource > fields;
 
-	public FieldResourceList() {
-	}
+    public FieldResourceList()
+    {
+    }
 
-	public FieldResourceList(List<FieldResource> fields) {
-		this.setFields(fields);
-	}
+    public FieldResourceList( List < FieldResource > fields )
+    {
+        this.setFields( fields );
+    }
 
 }

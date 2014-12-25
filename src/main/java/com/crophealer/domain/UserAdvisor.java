@@ -1,4 +1,5 @@
 package com.crophealer.domain;
+
 import java.util.Date;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -11,8 +12,10 @@ import com.crophealer.security.Users;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findUserAdvisorsByAdvisor", "findUserAdvisorsByAdvisorAndStatusEquals", "findUserAdvisorsByClientAndStatusEquals", "findUserAdvisorsByAdvisorAndClient" })
-public class UserAdvisor {
+@RooJpaActiveRecord(finders = { "findUserAdvisorsByAdvisor", "findUserAdvisorsByAdvisorAndStatusEquals",
+        "findUserAdvisorsByClientAndStatusEquals", "findUserAdvisorsByAdvisorAndClient" })
+public class UserAdvisor
+{
 
     /**
      */
