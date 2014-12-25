@@ -7,7 +7,7 @@
             <table:column id="c_com_crophealer_domain_Field_name" property="name" z="NVxgQhLBsQAriqAwULBae5VMNPw="/>
             <table:column id="c_com_crophealer_domain_Field_coordinates" property="coordinates" z="G1m16hLgwVnBqCH+fXA6gPYrcrA="/>
             <table:column id="c_com_crophealer_domain_Field_priaID" property="priaID" z="l6QzZSR2smQPDo8JHkCdxc9LiVc="/>
-            <table:column id="c_com_crophealer_domain_Field_owner" property="owner" z="/iqsP0eWGUhtX/ra2PZPo8MknJo="/>
+            <table:column id="c_com_crophealer_domain_Field_owner" maxLength="25" property="owner" z="user-managed"/>
             <table:column id="c_com_crophealer_domain_Field_company" property="company" z="mvQuZnmn7t4BdfhhjhYYBUswocQ="/>
         </table:table>
     </page:list>
