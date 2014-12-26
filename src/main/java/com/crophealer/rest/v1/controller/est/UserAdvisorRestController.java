@@ -66,6 +66,7 @@ public class UserAdvisorRestController extends GenericController
             throw new ResourceNotFoundException( "UserAdvisor not found for ID: " + id );
 
         ua.setStatus( uar.getStatus() );
+        ua.persist();
 
         return ResponseEntityUtil.AcceptedWithCurrentUri();
     }
