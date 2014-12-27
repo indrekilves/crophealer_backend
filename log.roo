@@ -683,3 +683,4 @@ focus --class ~domain.UserAdvisor
 finder list
 finder add findUserAdvisorsByAdvisorAndClient
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-12-25 23:22:38
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-12-26 21:21:38

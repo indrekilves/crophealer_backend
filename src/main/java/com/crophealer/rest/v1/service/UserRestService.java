@@ -345,7 +345,7 @@ public class UserRestService extends GenericRestService
         if ( user == null )
             throw new ResourceNotFoundException( "User not found by ID: " + id );
 
-        TypedQuery < UserAdvisor > tq = UserAdvisor.findUserAdvisorsByClientAndStatusEquals( user, "ACCEPTED" );
+        TypedQuery < UserAdvisor > tq = UserAdvisor.findUserAdvisorsByClientAndStatusEquals( user, "APPROVED" );
         if ( tq != null && tq.getResultList().isEmpty() )
             throw new ResourceNotFoundException( "User Advisors not found for user: " + id );
 
