@@ -21,7 +21,7 @@ public class PlantResourceAssembler
         if ( l != null )
         {
             TypedQuery < PlantTranslation > tq = PlantTranslation.findPlantTranslationsByPlantAndLang( p, l );
-            if ( tq != null )
+            if ( tq != null && tq.getResultList().size() > 0 )
             {
                 PlantTranslation pt = tq.getSingleResult();
                 if ( pt != null )

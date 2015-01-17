@@ -5,6 +5,7 @@
     <page:list id="pl_com_crophealer_domain_PlantPart" items="${plantparts}" z="tLdy5wkWHPr4qBzAUarREl8ZXzY=">
         <table:table data="${plantparts}" id="l_com_crophealer_domain_PlantPart" path="/plantparts" z="EQdGx3ncb7gF6dMrX0ls8HUz5/E=">
             <table:column id="c_com_crophealer_domain_PlantPart_comment" property="comment" z="b8YhM5CqAM/2AFQS5pClk/IP3iU="/>
+            <table:column id="c_com_crophealer_domain_PlantPart_iconUrl" property="iconUrl" z="97BZggYRb8furLcp4pBKAWNG7cE="/>
         </table:table>
     </page:list>
 </div>

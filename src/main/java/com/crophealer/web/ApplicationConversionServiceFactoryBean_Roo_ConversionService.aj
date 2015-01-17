@@ -362,7 +362,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<PlantPart, String> ApplicationConversionServiceFactoryBean.getPlantPartToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.PlantPart, java.lang.String>() {
             public String convert(PlantPart plantPart) {
-                return new StringBuilder().append(plantPart.getComment()).toString();
+                return new StringBuilder().append(plantPart.getComment()).append(' ').append(plantPart.getIconUrl()).toString();
             }
         };
     }
@@ -458,7 +458,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<PlantPartTranslation, String> ApplicationConversionServiceFactoryBean.getPlantPartTranslationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.crophealer.domain.PlantPartTranslation, java.lang.String>() {
             public String convert(PlantPartTranslation plantPartTranslation) {
-                return new StringBuilder().append(plantPartTranslation.getName()).toString();
+                return new StringBuilder().append(plantPartTranslation.getName()).append(' ').append(plantPartTranslation.getDescription()).toString();
             }
         };
     }

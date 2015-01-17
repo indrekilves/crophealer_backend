@@ -33,4 +33,12 @@ privileged aspect PlantPartTranslation_Roo_JavaBean {
         this.lang = lang;
     }
     
+    public String PlantPartTranslation.getDescription() {
+        return this.description;
+    }
+    
+    public void PlantPartTranslation.setDescription(String description) {
+        this.description = description;
+    }
+    
 }

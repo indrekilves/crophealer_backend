@@ -22,7 +22,7 @@ public class GrowthPhaseResourceAssembler
         {
             TypedQuery < GrowthPhaseTranslation > tq = GrowthPhaseTranslation
                     .findGrowthPhaseTranslationsByGrowthPhaseAndLang( gp, l );
-            if ( tq != null )
+            if ( tq != null && tq.getResultList().size() > 0 )
             {
                 GrowthPhaseTranslation gpt = tq.getSingleResult();
                 if ( gpt != null )

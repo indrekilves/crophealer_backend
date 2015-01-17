@@ -26,4 +26,12 @@ privileged aspect PlantPart_Roo_JavaBean {
         return this.phases;
     }
     
+    public String PlantPart.getIconUrl() {
+        return this.iconUrl;
+    }
+    
+    public void PlantPart.setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+    
 }

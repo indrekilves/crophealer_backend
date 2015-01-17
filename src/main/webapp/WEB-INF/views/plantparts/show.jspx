@@ -4,5 +4,6 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_crophealer_domain_PlantPart" object="${plantpart}" path="/plantparts" z="Xi2lYYZbDgVn/NvHT0O1P4twv2A=">
         <field:display field="comment" id="s_com_crophealer_domain_PlantPart_comment" object="${plantpart}" z="vZ7OqVBa7zHirSCPdbkxXhbDjNA="/>
+        <field:display field="iconUrl" id="s_com_crophealer_domain_PlantPart_iconUrl" object="${plantpart}" z="nEqHoEN0cYIpihMNm3PIiwJz1j8="/>
     </page:show>
 </div>
