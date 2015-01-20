@@ -18,7 +18,7 @@ import com.crophealer.rest.v1.service.PlantRestService;
 
 @Controller
 @RequestMapping("/rest/v1/est/plants")
-public class PlantRestController
+public class PlantRestController extends GenericController
 {
 
     @Autowired

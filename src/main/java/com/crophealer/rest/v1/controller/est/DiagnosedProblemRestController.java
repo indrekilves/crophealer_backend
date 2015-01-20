@@ -14,7 +14,7 @@ import com.crophealer.rest.v1.service.DiagnosedProblemRestService;
 
 @Controller
 @RequestMapping("/rest/v1/est/diagnosedProblems")
-public class DiagnosedProblemRestController
+public class DiagnosedProblemRestController extends GenericController
 {
 
     @Autowired

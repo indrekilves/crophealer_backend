@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.crophealer.domain.Languages;
+import com.crophealer.rest.v1.controller.est.ResourceNotFoundException;
 import com.crophealer.security.Users;
 
 public class GenericRestService
@@ -13,8 +14,19 @@ public class GenericRestService
 
     public Languages getEstonian()
     {
-        TypedQuery < Languages > languages = Languages.findLanguagesesByNameEquals( "Estonian" );
-        return languages != null ? languages.getSingleResult() : null;
+        Languages lang = null;
+
+        TypedQuery < Languages > tq = Languages.findLanguagesesByNameEquals( "Estonian" );
+        if ( tq != null && tq.getResultList().size() > 0 )
+        {
+            lang = tq.getSingleResult();
+        }
+        else
+        {
+            throw new ResourceNotFoundException( "Language: Estonian not found." );
+        }
+
+        return lang;
     }
 
     public Users getUserFromAuth()
@@ -24,11 +36,16 @@ public class GenericRestService
 
         Users user = null;
 
-        TypedQuery < Users > result = Users.findUsersesByUsernameEquals( name );
-        if ( result != null )
+        TypedQuery < Users > tq = Users.findUsersesByUsernameEquals( name );
+        if ( tq != null && tq.getResultList().size() > 0 )
         {
-            user = result.getSingleResult();
+            user = tq.getSingleResult();
         }
+        else
+        {
+            throw new ResourceNotFoundException( "User not found for username: " + name );
+        }
+
         return user;
     }
 
