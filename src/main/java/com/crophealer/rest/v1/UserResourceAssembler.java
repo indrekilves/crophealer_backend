@@ -1,6 +1,7 @@
 package com.crophealer.rest.v1;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.crophealer.security.Users;
@@ -14,10 +15,16 @@ public class UserResourceAssembler
         UserResource ur = new UserResource();
         ur.setId( u.getId() );
         ur.setUsername( u.getUsername() );
-        ur.setPassword( u.getPassword() );
+        // ur.setPassword( u.getPassword() );
         ur.setEmail( u.getEmail() );
         ur.setEnabled( u.getEnabled() );
         ur.setPhone( u.getPhone() );
+
+        Date expirationDate = u.getExpirationDate();
+        if ( expirationDate != null )
+        {
+            ur.setExpirationDate( expirationDate.toString() );
+        }
         return ur;
     }
 

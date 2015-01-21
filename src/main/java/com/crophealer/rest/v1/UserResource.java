@@ -19,4 +19,6 @@ public class UserResource
     private String email;
 
     private String phone;
+
+    private String expirationDate;
 }
