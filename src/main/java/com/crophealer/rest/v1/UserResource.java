@@ -21,4 +21,5 @@ public class UserResource
     private String phone;
 
     private String expirationDate;
+
 }
