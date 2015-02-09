@@ -55,4 +55,12 @@ privileged aspect UserResource_Roo_JavaBean {
         this.phone = phone;
     }
     
+    public String UserResource.getExpirationDate() {
+        return this.expirationDate;
+    }
+    
+    public void UserResource.setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+    
 }

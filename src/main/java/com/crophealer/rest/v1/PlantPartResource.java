@@ -12,4 +12,8 @@ public class PlantPartResource
 
     private String name;
 
+    private String description;
+
+    private String iconUrl;
+
 }

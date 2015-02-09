@@ -15,7 +15,7 @@ import com.crophealer.rest.v1.service.ActiveIngredientRestService;
 
 @Controller
 @RequestMapping("/rest/v1/est/activeIngredients")
-public class ActiveIngredientRestController
+public class ActiveIngredientRestController extends GenericController
 {
 
     @Autowired

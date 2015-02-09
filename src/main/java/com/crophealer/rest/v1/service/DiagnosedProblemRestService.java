@@ -21,6 +21,8 @@ import com.crophealer.domain.PlantPartPhaseProblem;
 import com.crophealer.model.upload.FileUploadForm;
 import com.crophealer.rest.v1.DiagnosedProblemResource;
 import com.crophealer.rest.v1.DiagnosedProblemResourceAssembler;
+import com.crophealer.rest.v1.controller.est.BadRequestException;
+import com.crophealer.rest.v1.controller.est.ResourceNotFoundException;
 import com.crophealer.security.Users;
 
 @Service
@@ -39,26 +41,22 @@ public class DiagnosedProblemRestService extends GenericRestService
     {
         System.out.println( "getDiagnosedProblemByLanguage - try to get for id:" + id + " lang:" + language );
 
-        ResponseEntity < DiagnosedProblemResource > response;
-
         if ( id == null || language == null )
         {
-            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
-            return response;
+            throw new BadRequestException( "ID or Language missing" );
         }
 
         DiagnosedProblem dp = DiagnosedProblem.findDiagnosedProblem( id );
         if ( dp == null )
         {
-            response = new ResponseEntity <>( HttpStatus.NOT_FOUND );
-            return response;
+            throw new ResourceNotFoundException( "DiagnosedProblem isn't found for ID: " + id );
         }
 
         DiagnosedProblemResourceAssembler dprAsm = new DiagnosedProblemResourceAssembler();
         DiagnosedProblemResource dpr = dprAsm.toResource( dp, language );
 
-        response = new ResponseEntity <>( dpr, HttpStatus.OK );
-        return response;
+        return new ResponseEntity < DiagnosedProblemResource >( dpr, HttpStatus.OK );
+
     }
 
     public ResponseEntity < Void > saveDiagnosedProblemByLanguage( FileUploadForm uf, Languages language )
@@ -66,26 +64,23 @@ public class DiagnosedProblemRestService extends GenericRestService
         System.out.println( "saveDiagnosedProblemByLanguage - start" );
         uploadForm = uf;
 
-        ResponseEntity < Void > response;
         if ( uploadForm == null )
         {
-            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
-            return response;
+            throw new ResourceNotFoundException( "FileUploadForm is null" );
         }
 
         PlantPartPhaseProblem pppProblem = getPlantPartPhaseProblem();
         if ( pppProblem == null )
         {
-            response = new ResponseEntity <>( HttpStatus.BAD_REQUEST );
-            return response;
+            throw new ResourceNotFoundException( "PlantPartPhaseProblem isn't found for ID: "
+                    + uploadForm.getPppProblemId() );
         }
 
         // Get user
         user = getUserFromAuth();
         if ( user == null )
         {
-            response = new ResponseEntity <>( HttpStatus.UNAUTHORIZED );
-            return response;
+            throw new BadRequestException( "User can't be authorized." );
         }
 
         DiagnosedProblem dp = new DiagnosedProblem();
@@ -103,8 +98,7 @@ public class DiagnosedProblemRestService extends GenericRestService
         URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().pathSegment( dp.getId().toString() ).build()
                 .toUri();
         headers.setLocation( location );
-        response = new ResponseEntity <>( headers, HttpStatus.CREATED );
-        return response;
+        return new ResponseEntity < Void >( headers, HttpStatus.CREATED );
     }
 
     private PlantPartPhaseProblem getPlantPartPhaseProblem()

@@ -12,7 +12,7 @@ import com.crophealer.rest.v1.service.PaipRestService;
 
 @Controller
 @RequestMapping("/rest/v1/est/paips")
-public class PaipsRestController
+public class PaipsRestController extends GenericController
 {
 
     // @Autowired

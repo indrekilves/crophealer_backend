@@ -22,7 +22,7 @@ public class ProblemResourceAssembler
         {
             TypedQuery < ProblemTranslation > tq = ProblemTranslation.findProblemTranslationsByProblemAndLang( p,
                     language );
-            if ( tq != null )
+            if ( tq != null && tq.getResultList().size() > 0 )
             {
                 ProblemTranslation pt = tq.getSingleResult();
                 if ( pt != null )

@@ -23,7 +23,7 @@ public class ActiveIngredientResourceAssembler
         {
             TypedQuery < ActiveIngredientTranslation > tq = ActiveIngredientTranslation
                     .findActiveIngredientTranslationsByActiveIngredientAndLang( ai, language );
-            if ( tq != null )
+            if ( tq != null && tq.getResultList().size() > 0 )
             {
                 ActiveIngredientTranslation ait = tq.getSingleResult();
                 if ( ait != null )

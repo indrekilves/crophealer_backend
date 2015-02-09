@@ -6,5 +6,6 @@
         <field:display field="name" id="s_com_crophealer_domain_PlantPartTranslation_name" object="${plantparttranslation}" z="d6hqarqvYst1bHvLqMRN+4znyHM="/>
         <field:display field="plantPart" id="s_com_crophealer_domain_PlantPartTranslation_plantPart" object="${plantparttranslation}" z="hP2juoYuI9N8fZLC9pQPmZnJOeI="/>
         <field:display field="lang" id="s_com_crophealer_domain_PlantPartTranslation_lang" object="${plantparttranslation}" z="wyfiMAOb4VT5OrCMRgCoVEZYEAU="/>
+        <field:display field="description" id="s_com_crophealer_domain_PlantPartTranslation_description" object="${plantparttranslation}" z="zmMDfeJfKKXYStlMGXbsNuBSHtM="/>
     </page:show>
 </div>

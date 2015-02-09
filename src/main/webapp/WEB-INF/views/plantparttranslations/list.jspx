@@ -7,6 +7,7 @@
             <table:column id="c_com_crophealer_domain_PlantPartTranslation_name" property="name" z="9A8Qb06DNTI/ADRS/lXzNsBSdps="/>
             <table:column id="c_com_crophealer_domain_PlantPartTranslation_plantPart" property="plantPart" z="a/5SqjJw89myGUSR0u9Z7qADwmY="/>
             <table:column id="c_com_crophealer_domain_PlantPartTranslation_lang" property="lang" z="ukJUDBPsB24Xawk+IOekOK7wtGY="/>
+            <table:column id="c_com_crophealer_domain_PlantPartTranslation_description" property="description" z="fJ/sn7VeGnmaQ1pBZxBVVxHv35Y="/>
         </table:table>
     </page:list>
 </div>

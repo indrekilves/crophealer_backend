@@ -13,7 +13,7 @@ import com.crophealer.rest.v1.service.PlantPartPhaseRestService;
 
 @Controller
 @RequestMapping("/rest/v1/est/plantPartPhases")
-public class PlantPartPhaseRestController
+public class PlantPartPhaseRestController extends GenericController
 {
 
     @Autowired

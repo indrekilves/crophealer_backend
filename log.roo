@@ -684,3 +684,12 @@ finder list
 finder add findUserAdvisorsByAdvisorAndClient
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-12-25 23:22:38
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-12-26 21:21:38
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-01-17 16:27:19
+focus --class ~.domain.PlantPart
+field string --fieldName iconUrl
+focus --class ~.domain.PlantPartTranslation
+field string --fieldName description --sizeMax 1000 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-01-17 23:16:26
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-01-20 18:30:11
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-01-20 23:03:46
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-01-21 11:09:01

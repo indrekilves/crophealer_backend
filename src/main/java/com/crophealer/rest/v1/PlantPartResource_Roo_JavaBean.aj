@@ -23,4 +23,20 @@ privileged aspect PlantPartResource_Roo_JavaBean {
         this.name = name;
     }
     
+    public String PlantPartResource.getDescription() {
+        return this.description;
+    }
+    
+    public void PlantPartResource.setDescription(String description) {
+        this.description = description;
+    }
+    
+    public String PlantPartResource.getIconUrl() {
+        return this.iconUrl;
+    }
+    
+    public void PlantPartResource.setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+    
 }

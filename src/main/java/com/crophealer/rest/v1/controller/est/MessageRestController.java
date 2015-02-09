@@ -13,7 +13,7 @@ import com.crophealer.rest.v1.service.MessageRestService;
 
 @Controller
 @RequestMapping("/rest/v1/est/messages")
-public class MessageRestController
+public class MessageRestController extends GenericController
 {
 
     @Autowired

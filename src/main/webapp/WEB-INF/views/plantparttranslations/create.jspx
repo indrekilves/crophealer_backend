@@ -6,6 +6,7 @@
         <field:input field="name" id="c_com_crophealer_domain_PlantPartTranslation_name" z="zy6PLrIuI2M3R8xkrkehyaG7GOo="/>
         <field:select field="plantPart" id="c_com_crophealer_domain_PlantPartTranslation_plantPart" itemValue="id" items="${plantparts}" path="/plantparts" z="BwojyAtdo5u2d0O/zA28kkJvqJs="/>
         <field:select field="lang" id="c_com_crophealer_domain_PlantPartTranslation_lang" itemValue="id" items="${languageses}" path="/languageses" z="izpbw2hEktDFw1O72QNLsyp55fk="/>
+        <field:textarea field="description" id="c_com_crophealer_domain_PlantPartTranslation_description" z="bqyA+6b7eM3nnrpsCBkoAd4BnsM="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_crophealer_domain_PlantPartTranslation" render="${not empty dependencies}" z="WdzgvqMBeLwVwjVTP8rbUXl84yc="/>
 </div>

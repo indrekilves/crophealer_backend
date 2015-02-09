@@ -4,5 +4,6 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_com_crophealer_domain_PlantPart" modelAttribute="plantPart" path="/plantparts" versionField="Version" z="8Y0XSY3BtvE827PCoAFPt18EptU=">
         <field:input field="comment" id="c_com_crophealer_domain_PlantPart_comment" z="cJcHnRD0shvq4Cipky52fQyCY3w="/>
+        <field:input field="iconUrl" id="c_com_crophealer_domain_PlantPart_iconUrl" z="+rOULofOJXZ+iUupgSgvgaocfI0="/>
     </form:update>
 </div>

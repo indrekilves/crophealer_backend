@@ -17,16 +17,18 @@ public class PlantPartResourceAssembler
 
         PlantPartResource ppr = new PlantPartResource();
         ppr.setId( pp.getId() );
+        ppr.setIconUrl( pp.getIconUrl() );
         if ( l != null )
         {
             TypedQuery < PlantPartTranslation > tq = PlantPartTranslation.findPlantPartTranslationsByPlantPartAndLang(
                     pp, l );
-            if ( tq != null )
+            if ( tq != null && tq.getResultList().size() > 0 )
             {
                 PlantPartTranslation ppt = tq.getSingleResult();
                 if ( ppt != null )
                 {
                     ppr.setName( ppt.getName() );
+                    ppr.setDescription( ppt.getDescription() );
                 }
             }
         }
