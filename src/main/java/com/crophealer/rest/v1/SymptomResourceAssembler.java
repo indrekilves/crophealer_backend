@@ -14,7 +14,6 @@ public class SymptomResourceAssembler
 
     public SymptomResource toResource( Symptom s, Languages language )
     {
-
         SymptomResource sr = new SymptomResource();
         sr.setId( s.getId() );
         if ( language != null )

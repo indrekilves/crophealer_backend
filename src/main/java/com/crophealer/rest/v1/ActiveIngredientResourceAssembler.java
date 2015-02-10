@@ -15,7 +15,6 @@ public class ActiveIngredientResourceAssembler
 
     public ActiveIngredientResource toResource( ActiveIngredient ai, Languages language )
     {
-
         ActiveIngredientResource air = new ActiveIngredientResource();
         air.setId( ai.getId() );
         air.setLatinName( ai.getLatinName() );

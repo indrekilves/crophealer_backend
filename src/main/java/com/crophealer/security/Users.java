@@ -35,8 +35,6 @@ import com.crophealer.utils.EmailValidator;
 public class Users
 {
 
-    /**
-     */
     private String username;
 
     /**

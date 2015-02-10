@@ -11,7 +11,6 @@ public class UserResourceAssembler
 
     public UserResource toResource( Users u )
     {
-
         UserResource ur = new UserResource();
         ur.setId( u.getId() );
         ur.setUsername( u.getUsername() );

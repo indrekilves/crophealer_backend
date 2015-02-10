@@ -10,7 +10,6 @@ public class ProducerResourceAssembler
 
     public ProducerResource toResource( Producer p )
     {
-
         ProducerResource pr = new ProducerResource();
         pr.setId( p.getId() );
         pr.setName( p.getName() );
